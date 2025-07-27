@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project: Luggage Please — Dominik Barański</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/project.css" />
+</head>
+<body>
+  <main class="project-container">
+    <div class="project-header">
+      <h1>Luggage Please</h1>
+      <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
+    </div>
+    <p class="project-description">
+      At Rubens Games I programmed and integrated several mechanics for "Luggage Please" (Unity). Below are the three most important ones I created. Art assets were provided by the studio.
+    </p>
+    <section class="mechanic-row">
+      <a href="images/luggage-please/suitcase_preview.png" class="zoom-img" data-img="images/suitcase_preview.png">
+        <img src="images/suitcase_preview.png" alt="Suitcase mechanic" class="mechanic-img" />
+      </a>
+      <div class="mechanic-details">
+        <h2>Advanced Suitcase & Item Physics System</h2>
+        <ul>
+          <li><strong>Dynamic item physics</strong> (activates when suitcase is open).</li>
+          <li><strong>Free item manipulation</strong> (grabbing, rotating, inserting/removing).</li>
+          <li>Features for <strong>resetting item position</strong> and a <strong>visual drop indicator</strong>.</li>
+          <li><strong>Anti-closure mechanism</strong> to prevent closing if obstructed.</li>
+        </ul>
+      </div>
+      <div class="mechanic-video">
+        <iframe src="https://www.youtube.com/embed/j2EKQQgl6fg" title="Suitcase" allowfullscreen></iframe>
+      </div>
+    </section>
+    <section class="mechanic-row">
+      <a href="images/luggage-please/xray_previev.png" class="zoom-img" data-img="images/xray_previev.png">
+        <img src="images/xray_previev.png" alt="X-Ray Scanner" class="mechanic-img" />
+      </a>
+      <div class="mechanic-details">
+        <h2>X-Ray Scanner with Material Differentiation</h2>
+        <ul>
+          <li><strong>Scans suitcase contents</strong> and displays on screen.</li>
+          <li><strong>Color-coded distinction</strong> for metal, organic matter, and other materials.</li>
+        </ul>
+      </div>
+      <div class="mechanic-video">
+        <iframe src="https://www.youtube.com/embed/g5YQQ2sDoTU" title="X-ray scanner" allowfullscreen></iframe>
+      </div>
+    </section>
+    <section class="mechanic-row">
+      <a href="images/luggage-please/wheel_preview.png" class="zoom-img" data-img="images/wheel_preview.png">
+        <img src="images/wheel_preview.png" alt="Interaction Wheel" class="mechanic-img" />
+      </a>
+      <div class="mechanic-details">
+        <h2>Contextual Interaction Wheel</h2>
+        <ul>
+          <li><strong>Intuitive menu</strong> for NPC/environment interaction.</li>
+          <li><strong>Dynamic options</strong> based on location (e.g. different actions at X-ray vs suitcase scale).</li>
+        </ul>
+      </div>
+      <div class="mechanic-video">
+        <iframe src="https://www.youtube.com/embed/lBOSJhvBtVM" title="Interaction Wheel" allowfullscreen></iframe>
+      </div>
+    </section>
+    <a href="index.html" class="back-link">← Back to Portfolio Home</a>
+    <footer>
+      <p>Developed by Dominik Barański during internship at Rubens Games.</p>
+      <p><a href="https://github.com/dbarans" target="_blank">My GitHub Profile</a></p>
+    </footer>
+
+<div id="img-lightbox" class="img-lightbox" style="display:none;">
+  <span class="close-lightbox">&times;</span>
+  <img src="" alt="preview" class="lightbox-img" />
+</div>
+<script>
+  document.querySelectorAll('.zoom-img').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      const src = this.getAttribute('data-img');
+      document.querySelector('#img-lightbox .lightbox-img').src = src;
+      document.getElementById('img-lightbox').style.display = 'flex';
+    });
+  });
+  document.querySelector('#img-lightbox .close-lightbox').onclick = function() {
+    document.getElementById('img-lightbox').style.display = 'none';
+    document.querySelector('#img-lightbox .lightbox-img').src = '';
+  };
+  document.getElementById('img-lightbox').onclick = function(e) {
+    if(e.target === this) {
+      this.style.display = 'none';
+      this.querySelector('.lightbox-img').src = '';
+    }
+  }
+</script>
+
+  </main>
+</body>
+</html>

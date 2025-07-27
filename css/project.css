@@ -1,0 +1,181 @@
+.project-container {
+  max-width: 1240px;
+  margin: 60px auto 0 auto;
+  background: var(--section);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 30px #1117;
+  padding: 54px 44px 38px 44px;
+  display: flex;
+  flex-direction: column;
+}
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+.project-header h1 {
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  letter-spacing: -1.3px;
+  flex: 1 1 auto;
+}
+.project-header .tech-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.9;
+  margin-bottom: 3px;
+}
+.project-description {
+  color: #d6eaff;
+  font-size: 1.12em;
+  margin-bottom: 40px;
+  margin-top: 0;
+  line-height: 1.56;
+  letter-spacing: .01em;
+}
+.mechanic-row {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 40px;
+  background: var(--bg);
+  border-radius: 15px;
+  box-shadow: 0 1px 12px #2c466316;
+  padding: 30px 25px 24px 24px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(127deg,#27dcfd 25%,#b68bfa 60%,#5afea3 94%) 1;
+}
+.mechanic-img {
+  width: 230px;
+  height: 230px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 0.5px 10px #3cc7fa17;
+  background: #192657;
+  flex-shrink: 0;
+  border: 1.5px solid var(--highlight);
+  align-self: center;
+  cursor: pointer;
+  transition: box-shadow .12s, border-color .12s;
+}
+.mechanic-img:hover { box-shadow: 0 4px 32px #3cc7fa38; border-color: var(--accent);}
+.mechanic-details {
+  flex: 1 1 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 180px;
+  max-width: 420px;
+}
+.mechanic-details h2 {
+  font-size: 1.13em;
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0 0 14px 0;
+  border: none;
+  padding-bottom: 0;
+  letter-spacing: 0.01em;
+}
+.mechanic-details ul {
+  margin: 0 0 2px 16px;
+  padding: 0;
+  color: #e0ecff;
+  font-size: 1em;
+}
+.mechanic-details li strong {
+  color: var(--yellow);
+}
+.mechanic-details li {
+  margin-bottom: 4px;
+  line-height: 1.42;
+}
+.mechanic-video {
+  flex: 1 1 450px;
+  min-width: 320px;
+  max-width: 640px;
+  aspect-ratio: 16/9;
+  border-radius: 16px;
+  background: #12141b;
+  overflow: hidden;
+  box-shadow: 0 1px 12px #3cc7fa19;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 13px;
+}
+.mechanic-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 13px;
+  aspect-ratio: 16/9;
+  display: block;
+}
+.back-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1.13em;
+  font-weight: 700;
+  margin: 40px 0 0 0;
+  text-align: center;
+  display: block;
+  transition: color 0.12s;
+}
+.back-link:hover {
+  color: var(--highlight);
+}
+footer {
+  margin-top: 48px;
+  text-align: center;
+  font-size: 0.97em;
+  color: #93b7c4;
+}
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--primary-light);
+  transition: color .11s, border-bottom .11s;
+}
+footer a:hover {
+  color: var(--highlight);
+  border-bottom: 1.5px solid var(--highlight);
+}
+
+.img-lightbox {
+  position: fixed;
+  z-index: 1003;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(12,14,21,0.93);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  transition: background .15s;
+}
+.img-lightbox .lightbox-img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 13px;
+  box-shadow: 0 4px 48px #000a, 0 1px 7px #3cc7fa20;
+  cursor: default;
+}
+.close-lightbox {
+  position: absolute; top: 28px; right: 48px;
+  color: #fff; font-size: 2.4em; font-weight: 500; cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  transition: color .13s;
+}
+.close-lightbox:hover { color: #b68bfa; }
+@media(max-width:700px) {
+  .project-container { padding: 3vw 1vw; }
+  .mechanic-row { gap: 10px; flex-direction: column; align-items: stretch; padding: 8px 2px;}
+  .mechanic-img { width: 90px; height: 90px;}
+  .mechaniс-video { min-width: 70vw;}
+  .img-lightbox .lightbox-img { max-width: 98vw; max-height: 75vh;}
+  .close-lightbox { right: 14px; top: 16px; font-size: 2em;}
+}
