@@ -7,15 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/project.css" />
+  <link rel="stylesheet" href="css/custom-buttons.css" />
 </head>
 <body>
   <main class="project-container">
-    <div class="project-header">
-      <h1>Luggage Please</h1>
+    <div class="project-header" style="display: flex; align-items: center; gap: 18px;">
+      <img src="images/luggage-please/logo.png" alt="Luggage Please logo" class="mechanic-img" style="width: 54px; height: 54px; margin-right: 8px;" />
+      <h1 style="margin: 0 18px 0 0; font-size: 2.15rem; font-weight: 700; color: var(--primary); letter-spacing: -1.3px;">Luggage Please</h1>
+      <span style="flex:1"></span>
       <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
     </div>
     <p class="project-description">
-      At Rubens Games I programmed and integrated several mechanics for "Luggage Please" (Unity). Below are the three most important ones I created. Art assets were provided by the studio.
+      At Rubens Games I programmed and integrated several mechanics for <strong>Luggage Please</strong> (<strong>Unity</strong>).
+      Below are the three most important ones I created. Art assets were provided by the studio.
     </p>
     <section class="mechanic-row">
       <a href="images/luggage-please/suitcase_preview.png" class="zoom-img" data-img="images/luggage-please/suitcase_preview.png">
@@ -69,32 +73,30 @@
       <p>Developed by Dominik Barański during internship at Rubens Games.</p>
       <p><a href="https://github.com/dbarans" target="_blank">My GitHub Profile</a></p>
     </footer>
-
-<div id="img-lightbox" class="img-lightbox" style="display:none;">
-  <span class="close-lightbox">&times;</span>
-  <img src="" alt="preview" class="lightbox-img" />
-</div>
-<script>
-  document.querySelectorAll('.zoom-img').forEach(el => {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      const src = this.getAttribute('data-img');
-      document.querySelector('#img-lightbox .lightbox-img').src = src;
-      document.getElementById('img-lightbox').style.display = 'flex';
-    });
-  });
-  document.querySelector('#img-lightbox .close-lightbox').onclick = function() {
-    document.getElementById('img-lightbox').style.display = 'none';
-    document.querySelector('#img-lightbox .lightbox-img').src = '';
-  };
-  document.getElementById('img-lightbox').onclick = function(e) {
-    if(e.target === this) {
-      this.style.display = 'none';
-      this.querySelector('.lightbox-img').src = '';
-    }
-  }
-</script>
-
+    <div id="img-lightbox" class="img-lightbox" style="display:none;">
+      <span class="close-lightbox">&times;</span>
+      <img src="" alt="preview" class="lightbox-img" />
+    </div>
+    <script>
+      document.querySelectorAll('.zoom-img').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const src = this.getAttribute('data-img');
+          document.querySelector('#img-lightbox .lightbox-img').src = src;
+          document.getElementById('img-lightbox').style.display = 'flex';
+        });
+      });
+      document.querySelector('#img-lightbox .close-lightbox').onclick = function() {
+        document.getElementById('img-lightbox').style.display = 'none';
+        document.querySelector('#img-lightbox .lightbox-img').src = '';
+      };
+      document.getElementById('img-lightbox').onclick = function(e) {
+        if(e.target === this) {
+          this.style.display = 'none';
+          this.querySelector('.lightbox-img').src = '';
+        }
+      }
+    </script>
   </main>
 </body>
 </html>

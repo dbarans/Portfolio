@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project: Game of Life — Dominik Barański</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/project.css" />
+  <link rel="stylesheet" href="css/custom-buttons.css" />
+</head>
+<body>
+  <main class="project-container">
+    <div class="project-header" style="display: flex; align-items: center; gap: 18px;">
+      <img src="images/game-of-life/logo.png" alt="Game of Life logo" class="mechanic-img" style="width: 54px; height: 54px; margin-right: 8px;" />
+      <h1 style="margin: 0 18px 0 0; font-size: 2.15rem; font-weight: 700; color: var(--primary); letter-spacing: -1.3px;">Game of Life</h1>
+      <span style="flex:1"></span>
+      <img src="images/logo_android.svg" alt="Android logo" class="tech-icon" />
+      <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
+    </div>
+
+    <p class="project-description">
+      I developed this <strong>Game of Life</strong> simulator for <strong>Android</strong> using <strong>Unity</strong>. 
+      This project is my own take on John Conway's famous cellular automaton — bringing it to mobile with my own features and UX.
+      <br /><br />
+      <em>Note: This game is still in development and currently undergoing closed testing on the Google Play Store.</em>
+    </p>
+
+    <section class="mechanic-row">
+      <div class="mechanic-details">
+        <ul>
+          <li><strong>Infinite world</strong> — move and explore in any direction without boundaries.</li>
+          <li><strong>Built-in tutorial</strong> introducing controls and game rules.</li>
+          <li><strong>Subtle vibration feedback</strong> when text appears.</li>
+          <li><strong>Minimalist UI</strong> created using DOTween.</li>
+          <li>Smooth <strong>multi-threaded</strong> generation calculations.</li>
+        </ul>
+        <div class="project-buttons">
+          <a class="project-btn" href="https://dbarans.itch.io/game-of-life" target="_blank" rel="noopener noreferrer">
+            Download on itch.io
+          </a>
+          <a class="project-btn" href="https://github.com/dbarans/GameOfLife" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+      <div class="mechanic-video" style="margin-left:65px;">
+        <iframe
+          src="https://www.youtube.com/embed/SrhfzU1Fw_I"
+          title="Game of Life - intro"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <a href="index.html" class="back-link">← Back to Portfolio Home</a>
+    <footer>
+      <p>Developed by Dominik Barański.</p>
+      <p><a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">My GitHub Profile</a></p>
+    </footer>
+    
+    <div id="img-lightbox" class="img-lightbox" style="display:none;">
+      <span class="close-lightbox">&times;</span>
+      <img src="" alt="preview" class="lightbox-img" />
+    </div>
+    <script>
+      document.querySelectorAll('.zoom-img').forEach(el => {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          const src = this.getAttribute('data-img');
+          document.querySelector('#img-lightbox .lightbox-img').src = src;
+          document.getElementById('img-lightbox').style.display = 'flex';
+        });
+      });
+      document.querySelector('#img-lightbox .close-lightbox').onclick = function() {
+        document.getElementById('img-lightbox').style.display = 'none';
+        document.querySelector('#img-lightbox .lightbox-img').src = '';
+      };
+      document.getElementById('img-lightbox').onclick = function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+          this.querySelector('.lightbox-img').src = '';
+        }
+      };
+    </script>
+  </main>
+</body>
+</html>

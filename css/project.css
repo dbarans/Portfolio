@@ -68,7 +68,7 @@
   flex-direction: column;
   justify-content: flex-start;
   min-width: 180px;
-  max-width: 420px;
+  max-width: 480px;
 }
 .mechanic-details h2 {
   font-size: 1.13em;
@@ -83,15 +83,28 @@
   margin: 0 0 2px 16px;
   padding: 0;
   color: #e0ecff;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 .mechanic-details li strong {
   color: var(--yellow);
 }
 .mechanic-details li {
+  font-size: 0.9em;
   margin-bottom: 4px;
   line-height: 1.42;
 }
+
+.mechanic-details a {
+  color: #3cc7fa;
+  text-decoration: none;
+  border-bottom: 1.5px solid #e6f9ff;
+  transition: color .11s, border-bottom .11s;
+}
+.mechanic-details a:hover {
+  color: #b68bfa;
+  border-bottom: 1.5px solid #b68bfa;
+}
+
 .mechanic-video {
   flex: 1 1 450px;
   min-width: 320px;
@@ -178,4 +191,77 @@ footer a:hover {
   .mechaniс-video { min-width: 70vw;}
   .img-lightbox .lightbox-img { max-width: 98vw; max-height: 75vh;}
   .close-lightbox { right: 14px; top: 16px; font-size: 2em;}
+}
+.project-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 10px 0 0 0;
+  flex-wrap: wrap;
+}
+.project-btn {
+  padding: 11px 28px 10px 28px;
+  background: linear-gradient(98deg, #27dcfd 20%, #b68bfa 90%);
+  color: #22252e;
+  font-weight: 600;
+  font-size: 1.07em;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 18px #5afea331, 0 1px 7px #3cc7fa24;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.14s, box-shadow 0.13s, color 0.13s;
+  letter-spacing: .01em;
+  outline: none;
+  display: inline-block;
+}
+.project-btn:hover, .project-btn:focus {
+  background: linear-gradient(100deg, #5afea3 10%, #b68bfa 90%);
+  color: #191c24;
+  box-shadow: 0 4px 32px #3cc7fa26, 0 2px 12px #27dcfd33;
+}
+@media(max-width: 700px) {
+  .project-buttons { flex-direction: column; gap: 9px; }
+  .project-btn { width: 100%; text-align: center; }
+}
+.project-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 10px 0 0 0;
+  flex-wrap: wrap;
+}
+
+.project-btn {
+  padding: 11px 28px 10px 28px;
+  background: #262a34;
+  color: #3cc7fa;
+  font-weight: 600;
+  font-size: 1.07em;
+  border: 1.5px solid #3cc7fa;
+  border-radius: 10px;
+  box-shadow: 0 1px 7px #3cc7fa10;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.14s, border 0.13s, color 0.13s;
+  letter-spacing: .01em;
+  outline: none;
+  display: inline-block;
+}
+
+.project-btn:hover, .project-btn:focus {
+  background: #202937;
+  color: #b68bfa;
+  border: 1.5px solid #5afea3;
+}
+
+@media (max-width: 700px) {
+  .project-buttons {
+    flex-direction: column;
+    gap: 9px;
+  }
+  .project-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

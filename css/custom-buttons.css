@@ -1,0 +1,59 @@
+.project-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.project-btn {
+  padding: 9px 24px 8px 24px;
+  background: #262a34;
+  color: #3cc7fa;
+  font-weight: 600;
+  font-size: 1.05em;
+  border: 1.5px solid #3cc7fa;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px #3cc7fa1a;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.14s, border 0.13s, color 0.13s;
+  letter-spacing: 0.01em;
+  outline: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.project-btn:hover,
+.project-btn:focus {
+  background: #202937;
+  color: #b68bfa;
+  border-color: #5afea3;
+}
+
+@media (max-width: 900px) {
+  .mechanic-row {
+    flex-direction: column;
+  }
+  .mechanic-video {
+    margin-left: 0 !important;
+  }
+  .project-buttons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .project-buttons {
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .project-btn {
+    width: 100%;
+    text-align: center;
+    padding: 9px 0;
+    font-size: 1em;
+  }
+}
