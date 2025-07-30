@@ -18,24 +18,23 @@
       <img src="images/logo_android.svg" alt="Android logo" class="tech-icon" />
       <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
     </div>
-
-    <p class="project-description">
-      I developed this <strong>Game of Life</strong> simulator for <strong>Android</strong> using <strong>Unity</strong>. 
-      This project is my own take on John Conway's famous cellular automaton — bringing it to mobile with my own features and UX.
-      <br /><br />
-      <em>Note: This game is still in development and currently undergoing closed testing on the Google Play Store.</em>
-    </p>
-
-    <section class="mechanic-row">
-      <div class="mechanic-details">
+    <section class="mechanic-row" style="display: flex; gap: 40px; align-items: flex-start;">
+      <div class="mechanic-details" style="flex-basis: 60%; max-width: 60%;">
+        <p class="project-description" style="margin-bottom: 24px;">
+          I developed this <strong>Game of Life</strong> simulator for <strong>Android</strong> using <strong>Unity</strong>.<br />
+          This project is my own take on John Conway's famous cellular automaton — bringing it to mobile with my own features and UX.<br /><br />
+          <em>Note: This game is still in development and currently undergoing closed testing on the Google Play Store.</em>
+        </p>
         <ul>
-          <li><strong>Infinite world</strong> — move and explore in any direction without boundaries.</li>
-          <li><strong>Built-in tutorial</strong> introducing controls and game rules.</li>
-          <li><strong>Subtle vibration feedback</strong> when text appears.</li>
-          <li><strong>Minimalist UI</strong> created using DOTween.</li>
-          <li>Smooth <strong>multi-threaded</strong> generation calculations.</li>
-        </ul>
-        <div class="project-buttons">
+  <li><strong>Infinite world</strong> — move and explore in any direction without boundaries.</li>
+  <li><strong>Built-in tutorial</strong> introducing controls and game rules.</li>
+  <li><strong>Subtle vibration feedback</strong> when text appears.</li>
+  <li><strong>Minimalist UI</strong> created using DOTween.</li>
+  <li>Smooth <strong>multi-threaded</strong> generation calculations.</li>
+  <li><strong>Tilemap-based world</strong> — only tiles within the camera's view are rendered.</li>
+</ul>
+
+        <div class="project-buttons" style="margin-top: 16px;">
           <a class="project-btn" href="https://dbarans.itch.io/game-of-life" target="_blank" rel="noopener noreferrer">
             Download on itch.io
           </a>
@@ -44,23 +43,15 @@
           </a>
         </div>
       </div>
-      <div class="mechanic-video" style="margin-left:65px;">
-        <iframe
-          src="https://www.youtube.com/embed/SrhfzU1Fw_I"
-          title="Game of Life - intro"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+      <div class="mechanic-video vertical-video" style="margin-left: 0; flex-basis: 32%; max-width: 32%;">
+        <iframe width="250" height="560" src="https://www.youtube.com/embed/0501nT7ZJzw" title="Game of Life - vertical" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </section>
-
     <a href="index.html" class="back-link">← Back to Portfolio Home</a>
     <footer>
       <p>Developed by Dominik Barański.</p>
       <p><a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">My GitHub Profile</a></p>
     </footer>
-    
     <div id="img-lightbox" class="img-lightbox" style="display:none;">
       <span class="close-lightbox">&times;</span>
       <img src="" alt="preview" class="lightbox-img" />
