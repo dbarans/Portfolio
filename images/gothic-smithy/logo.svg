@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="gsGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#3d2a1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="16" fill="url(#gsGrad)" stroke="#c4a574" stroke-width="1.5"/>
+  <text x="60" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#e8dcc8">Gothic</text>
+  <text x="60" y="78" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#c4a574">Smithy</text>
+</svg>

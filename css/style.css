@@ -440,6 +440,17 @@ body {
   border-bottom-color: rgba(167, 139, 250, 0.5);
 }
 
+.project-attribution {
+  margin: 1.25rem auto 0;
+  max-width: 42rem;
+  padding: 0 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  opacity: 0.92;
+  text-align: center;
+}
+
 .lang-toggle {
   border-radius: 999px;
   padding: 0.45rem 0.85rem;

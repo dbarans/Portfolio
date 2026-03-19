@@ -19,6 +19,7 @@
       'index.role.luggage': 'Unity · Gameplay (Internship)',
       'index.role.gol': 'Unity · Android (Solo)',
       'index.role.neon': 'Unity · Game Jam (48h)',
+      'index.role.gothic': 'Unity · FPS Crafting (Solo)',
       'index.footer.developedBy': 'Developed by Dominik Barański',
       'index.footer.githubProfile': 'My GitHub Profile',
       'index.footer.linkedin': 'LinkedIn',
@@ -43,7 +44,7 @@
       'luggage.m3.li2':
         '<strong>Dynamic options</strong> based on location (e.g. different actions at X-ray vs suitcase scale).',
 
-      'luggage.back': '← Back to Portfolio Home',
+      'luggage.back': '← Back to home',
       'luggage.footer.developedBy':
         'Developed by Dominik Barański during internship at Rubens Games.',
       'luggage.footer.githubProfile': 'My GitHub Profile',
@@ -61,7 +62,7 @@
 
       'gol.playStore': 'Download on Play Store',
       'gol.github': 'View on GitHub',
-      'gol.back': '← Back to Portfolio Home',
+      'gol.back': '← Back to home',
       'gol.footer.developedBy': 'Developed by Dominik Barański.',
       'gol.footer.githubProfile': 'My GitHub Profile',
 
@@ -80,9 +81,24 @@
       'neon.team.5': 'Kacper Kowalski — UI/UX',
       'neon.itch': 'Download on itch.io',
       'neon.github': 'View on GitHub',
-      'neon.back': '← Back to Portfolio Home',
+      'neon.back': '← Back to home',
       'neon.footer.developedBy': 'NeON — team project (PogJam 2026).',
       'neon.footer.githubProfile': 'My GitHub Profile',
+
+      'gothic.intro':
+        '<strong>Gothic Smithy</strong> is a <strong>solo</strong> <strong>Unity</strong> prototype: first-person crafting with inventory, workbenches, and NPC dialogue, presented in a <strong>Gothic&nbsp;I</strong>-inspired style. Built in <strong>C#</strong> with <strong>ScriptableObject</strong>-driven items and recipes so stations and UI always reflect the same definitions, plus integrated inventory and dialogue.',
+      'gothic.li1':
+        '<strong>Crafting</strong> — multi-ingredient recipes, station-specific rules, validation and consumption; UI driven from the same data (<strong>ScriptableObjects</strong>).',
+      'gothic.li2':
+        '<strong>Feedback</strong> — crafting reflected in UI; layered SFX where it supports the flow.',
+      'gothic.li3':
+        '<strong>Player &amp; content</strong> — stacked inventory, optional voice lines on dialogue rows.',
+      'gothic.github': 'View on GitHub',
+      'gothic.back': '← Back to home',
+      'gothic.footer.developedBy': 'Gothic Smithy — Unity · solo project',
+      'gothic.footer.githubProfile': 'My GitHub Profile',
+      'gothic.attribution':
+        'Some visual and audio assets reference the <strong>Gothic</strong> series; rights remain with <strong>Piranha Bytes</strong> and <strong>THQ Nordic</strong>.',
     },
     pl: {
       'index.subtitle': 'Portfolio programisty gier',
@@ -101,6 +117,7 @@
       'index.role.luggage': 'Unity · Mechaniki (Staż)',
       'index.role.gol': 'Unity · Android (Solo)',
       'index.role.neon': 'Unity · Game Jam (48h)',
+      'index.role.gothic': 'Unity · Kowalstwo FPP (Solo)',
       'index.footer.developedBy': 'Zrobione przez Dominika Barańskiego',
       'index.footer.githubProfile': 'Mój profil GitHub',
       'index.footer.linkedin': 'LinkedIn',
@@ -125,7 +142,7 @@
       'luggage.m3.li2':
         '<strong>Dynamiczne opcje</strong> zależnie od miejsca (np. inne akcje przy skanerze RTG vs. w skali walizki).',
 
-      'luggage.back': '← Wróć do strony głównej portfolio',
+      'luggage.back': '← Wróć na stronę główną',
       'luggage.footer.developedBy':
         'Opracowane i wykonane przez Dominika Barańskiego podczas stażu w Rubens Games.',
       'luggage.footer.githubProfile': 'Mój profil GitHub',
@@ -143,7 +160,7 @@
 
       'gol.playStore': 'Pobierz w Google Play',
       'gol.github': 'Zobacz na GitHub',
-      'gol.back': '← Wróć do strony głównej portfolio',
+      'gol.back': '← Wróć na stronę główną',
       'gol.footer.developedBy': 'Opracowane przez Dominika Barańskiego.',
       'gol.footer.githubProfile': 'Mój profil GitHub',
 
@@ -162,9 +179,24 @@
       'neon.team.5': 'Kacper Kowalski — UI i UX',
       'neon.itch': 'Pobierz na itch.io',
       'neon.github': 'Zobacz na GitHub',
-      'neon.back': '← Wróć do strony głównej portfolio',
+      'neon.back': '← Wróć na stronę główną',
       'neon.footer.developedBy': 'NeON — projekt zespołowy (PogJam 2026).',
       'neon.footer.githubProfile': 'Mój profil GitHub',
+
+      'gothic.intro':
+        '<strong>Gothic Smithy</strong> to <strong>samodzielny</strong> prototyp w <strong>Unity</strong>: <strong>FPP</strong>, crafting, ekwipunek, stacje i dialogi NPC, w stylistyce nawiązującej do <strong>Gothica&nbsp;I</strong>. Kod w <strong>C#</strong>: przedmioty i receptury jako <strong>ScriptableObjects</strong> — stacje i interfejs korzystają z tych samych definicji co logika, plus ekwipunek i dialogi.',
+      'gothic.li1':
+        '<strong>Crafting</strong> — receptury wieloskładnikowe, zasady per stacja, walidacja i zużycie; UI spięte z tymi samymi danymi (<strong>ScriptableObjects</strong>).',
+      'gothic.li2':
+        '<strong>Feedback</strong> — crafting widoczny w UI; warstwa SFX wspierająca przepływ.',
+      'gothic.li3':
+        '<strong>Gracz i treść</strong> — stacki w inventory, opcjonalny głos na linię dialogu.',
+      'gothic.github': 'Zobacz na GitHub',
+      'gothic.back': '← Wróć na stronę główną',
+      'gothic.footer.developedBy': 'Gothic Smithy — Unity · projekt solowy',
+      'gothic.footer.githubProfile': 'Mój profil GitHub',
+      'gothic.attribution':
+        'Część assetów wizualnych i dźwiękowych nawiązuje do serii <strong>Gothic</strong>; prawa pozostają u <strong>Piranha Bytes</strong> i <strong>THQ Nordic</strong>.',
     },
   };
 
