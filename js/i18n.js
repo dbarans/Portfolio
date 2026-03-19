@@ -24,7 +24,7 @@
       'index.footer.linkedin': 'LinkedIn',
 
       'luggage.desc':
-        'At Rubens Games I programmed and integrated several mechanics for <strong>Luggage Please</strong> (<strong>Unity</strong>).<br/>Below are the three most important ones I created. Art assets were provided by the studio.',
+        'During my internship at <strong>Rubens Games</strong>, I built and integrated gameplay systems for <strong>Luggage Please</strong> in <strong>Unity</strong>.<br/>Here are three mechanics I delivered end to end. Art assets were provided by the studio.',
       'luggage.m1.title': 'Advanced Suitcase & Item Physics System',
       'luggage.m1.li1': '<strong>Dynamic item physics</strong> (activates when suitcase is open).',
       'luggage.m1.li2': '<strong>Free item manipulation</strong> (grabbing, rotating, inserting/removing).',
@@ -121,7 +121,7 @@
       'index.footer.linkedin': 'LinkedIn',
 
       'luggage.desc':
-        'W Rubens Games zaprogramowałem i zintegrowałem kilka mechanik do <strong>Luggage Please</strong> (<strong>Unity</strong>).<br/>Poniżej trzy najważniejsze, które stworzyłem. Grafiki dostarczyło studio.',
+        'Podczas stażu w <strong>Rubens Games</strong> tworzyłem i integrowałem systemy gameplayowe do <strong>Luggage Please</strong> w <strong>Unity</strong>.<br/>Poniżej trzy mechaniki, które dowiozłem od implementacji po integrację. Assety graficzne dostarczyło studio.',
       'luggage.m1.title': 'Zaawansowany system fizyki walizki i przedmiotów',
       'luggage.m1.li1': '<strong>Dynamiczna fizyka przedmiotów</strong> (włącza się, gdy walizka jest otwarta).',
       'luggage.m1.li2':

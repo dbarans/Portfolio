@@ -13,7 +13,7 @@
 .project-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0;
   margin-bottom: 0.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
@@ -26,24 +26,42 @@
   margin: 0;
   letter-spacing: -0.035em;
   flex: 1 1 auto;
+  margin-right: 1rem;
 }
 
 .project-header-spacer {
   flex: 1 1 auto;
+  margin-right: 1rem;
 }
 
 .project-header .tech-icon {
   width: 34px;
   height: 34px;
   opacity: 0.88;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 0;
   filter: grayscale(1) brightness(1.15);
+}
+
+.project-header .project-header-spacer + .tech-icon,
+.project-header h1 + .tech-icon {
+  margin-left: auto;
+}
+
+.project-header .tech-icon + .tech-icon {
+  margin-left: 6px;
+}
+
+.project-header .tech-icon[src$="unity.svg"] {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .project-header .mechanic-img {
   width: 52px;
   height: 52px;
-  margin-right: 4px;
+  margin-right: 1rem;
   object-fit: contain;
   cursor: default;
   transition: none;
@@ -57,6 +75,28 @@
   line-height: 1.65;
   letter-spacing: 0.01em;
   max-width: 72ch;
+}
+
+.mechanics-group {
+  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-elevated);
+}
+
+.mechanics-group-intro {
+  margin-bottom: 1rem;
+  max-width: none;
+}
+
+.mechanics-group .mechanic-row {
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.mechanics-group .mechanic-row:last-child {
+  margin-bottom: 0;
 }
 
 .mechanic-row {
@@ -99,6 +139,11 @@
 .mechanic-row--top {
   gap: 2rem;
   align-items: flex-start;
+}
+
+.mechanic-row--intro {
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .mechanic-details--wide {
