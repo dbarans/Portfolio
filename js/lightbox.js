@@ -35,7 +35,6 @@
     });
   });
 
-  // Close button
   if (closeBtn) {
     closeBtn.addEventListener('click', () => closeLightbox());
   }

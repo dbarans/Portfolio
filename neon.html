@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project: NeON — Dominik Barański</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/project.css" />
+    <link rel="stylesheet" href="css/custom-buttons.css" />
+  </head>
+  <body class="page-project">
+    <div class="site">
+      <header class="site-header">
+        <a href="index.html" class="site-brand">
+          <span class="site-brand-mark" aria-hidden="true"></span>
+          <span class="site-brand-text">Dominik Barański</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="index.html" class="site-nav-link" data-i18n="index.nav.home">Home</a>
+          <a href="index.html#projects" class="site-nav-link is-active" data-i18n="index.nav.projects">Projects</a>
+          <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+          <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+        </nav>
+        <div class="site-header-actions">
+          <button id="lang-toggle" type="button" class="lang-toggle lang-toggle--header" aria-label="Zmień język">PL</button>
+          <a href="https://github.com/dbarans" class="site-contact-btn" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.contact">Contact</a>
+        </div>
+      </header>
+
+      <main class="project-container">
+        <div class="project-header">
+          <img src="images/neon/neon.jpg" alt="" class="mechanic-img" />
+          <h1>NeON</h1>
+          <img src="images/unity.svg" alt="" class="tech-icon" />
+        </div>
+
+        <section class="mechanic-row mechanic-row--top">
+          <div class="mechanic-details mechanic-details--wide">
+            <p class="project-description project-description--tight" data-i18n="neon.jam"></p>
+            <p class="project-description project-description--tight" data-i18n="neon.desc"></p>
+            <ul>
+              <li data-i18n="neon.li1"></li>
+              <li data-i18n="neon.li2"></li>
+              <li data-i18n="neon.li3"></li>
+            </ul>
+            <h2 data-i18n="neon.teamTitle">Team</h2>
+            <ul class="neon-team-list">
+              <li data-i18n="neon.team.1"></li>
+              <li data-i18n="neon.team.2"></li>
+              <li data-i18n="neon.team.3"></li>
+              <li data-i18n="neon.team.4"></li>
+              <li data-i18n="neon.team.5"></li>
+            </ul>
+
+            <div class="project-buttons">
+              <a
+                class="project-btn"
+                href="https://francuza.itch.io/neon"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="neon.itch">
+                Download on itch.io
+              </a>
+              <a
+                class="project-btn"
+                href="https://github.com/FrancuzA/NeOn"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="neon.github">
+                View on GitHub
+              </a>
+            </div>
+          </div>
+          <div class="mechanic-video mechanic-video--left">
+            <iframe
+              src="https://www.youtube.com/embed/hugVv6ekStU"
+              title="NeON gameplay"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+        </section>
+
+        <a href="index.html" class="back-link" data-i18n="neon.back">← Back to Portfolio Home</a>
+        <footer class="site-footer">
+          <p data-i18n="neon.footer.developedBy">NeON — team project (PogJam 2026).</p>
+          <p class="site-footer-links">
+            <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="neon.footer.githubProfile">My GitHub Profile</a>
+            <span class="site-footer-sep" aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
+          </p>
+        </footer>
+      </main>
+    </div>
+    <script src="js/header-scroll.js" defer></script>
+    <script src="js/i18n.js" defer></script>
+  </body>
+</html>
