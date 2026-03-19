@@ -1,44 +1,49 @@
 .project-buttons {
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 1rem;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
 .project-btn {
-  padding: 9px 24px 8px 24px;
-  background: #262a34;
-  color: #3cc7fa;
+  padding: 0.55rem 1.2rem;
+  background: var(--card);
+  color: var(--primary);
   font-weight: 600;
-  font-size: 1.05em;
-  border: 1.5px solid #3cc7fa;
-  border-radius: 10px;
-  box-shadow: 0 1px 5px #3cc7fa1a;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  box-shadow: none;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.14s, border 0.13s, color 0.13s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
   letter-spacing: 0.01em;
   outline: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
 }
 
 .project-btn:hover,
-.project-btn:focus {
-  background: #202937;
-  color: #b68bfa;
-  border-color: #5afea3;
+.project-btn:focus-visible {
+  background: rgba(167, 139, 250, 0.1);
+  color: #fff;
+  border-color: rgba(167, 139, 250, 0.45);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12);
 }
 
 @media (max-width: 900px) {
   .mechanic-row {
     flex-direction: column;
   }
+
   .mechanic-video {
     margin-left: 0 !important;
   }
+
   .project-buttons {
     justify-content: flex-start;
   }
@@ -47,13 +52,14 @@
 @media (max-width: 700px) {
   .project-buttons {
     flex-direction: column;
-    gap: 6px;
-    margin-top: 6px;
+    gap: 8px;
+    margin-top: 0.75rem;
   }
+
   .project-btn {
     width: 100%;
     text-align: center;
-    padding: 9px 0;
-    font-size: 1em;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
   }
 }

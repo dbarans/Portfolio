@@ -4,140 +4,124 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Project: Game of Life — Dominik Barański</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/project.css" />
     <link rel="stylesheet" href="css/custom-buttons.css" />
   </head>
-  <body>
-    <main class="project-container">
-      <div
-        class="project-header"
-        style="display: flex; align-items: center; gap: 18px">
-        <img
-          src="images/game-of-life/logo.png"
-          alt="Game of Life logo"
-          class="mechanic-img"
-          style="width: 54px; height: 54px; margin-right: 8px" />
-        <h1
-          style="
-            margin: 0 18px 0 0;
-            font-size: 2.15rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -1.3px;
-          ">
-          Game of Life
-        </h1>
-        <span style="flex: 1"></span>
-        <img
-          src="images/logo_android.svg"
-          alt="Android logo"
-          class="tech-icon" />
-        <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
-      </div>
-      <section
-        class="mechanic-row"
-        style="display: flex; gap: 40px; align-items: flex-start">
-        <div class="mechanic-details" style="flex-basis: 60%; max-width: 60%">
-          <p class="project-description" style="margin-bottom: 24px">
-            I developed this <strong>Game of Life</strong> simulator for
-            <strong>Android</strong> using <strong>Unity</strong>.<br />
-            This project is my own take on John Conway's famous cellular
-            automaton — bringing it to mobile with my own features and UX.<br /><br />
-          </p>
-          <ul>
-            <li>
-              <strong>Infinite world</strong> — move and explore in any
-              direction without boundaries.
-            </li>
-            <li>
-              <strong>Built-in tutorial</strong> introducing controls and game
-              rules.
-            </li>
-            <li>
-              <strong>Subtle vibration feedback</strong> when text appears.
-            </li>
-            <li><strong>Minimalist UI</strong> created using DOTween.</li>
-            <li>
-              Smooth <strong>multi-threaded</strong> generation calculations.
-            </li>
-            <li>
-              <strong>Tilemap-based world</strong> — only tiles within the
-              camera's view are rendered.
-            </li>
-          </ul>
+  <body class="page-project">
+    <div class="site">
+      <header class="site-header">
+        <a href="index.html" class="site-brand">
+          <span class="site-brand-mark" aria-hidden="true"></span>
+          <span class="site-brand-text">Dominik Barański</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="index.html" class="site-nav-link" data-i18n="index.nav.home">Home</a>
+          <a href="index.html#projects" class="site-nav-link is-active" data-i18n="index.nav.projects">Projects</a>
+          <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+          <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+        </nav>
+        <div class="site-header-actions">
+          <button id="lang-toggle" type="button" class="lang-toggle lang-toggle--header" aria-label="Zmień język">PL</button>
+          <a href="https://github.com/dbarans" class="site-contact-btn" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.contact">Contact</a>
+        </div>
+      </header>
 
-          <div class="project-buttons" style="margin-top: 16px">
-            <a
-              class="project-btn"
-              href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
-              target="_blank"
-              rel="noopener noreferrer">
-              Download on Play Store
-            </a>
-            <a
-              class="project-btn"
-              href="https://github.com/dbarans/GameOfLife"
-              target="_blank"
-              rel="noopener noreferrer">
-              View on GitHub
-            </a>
+      <main class="project-container">
+        <div class="project-header">
+          <img src="images/game-of-life/logo.png" alt="" class="mechanic-img" />
+          <h1>Game of Life</h1>
+          <img src="images/logo_android.svg" alt="" class="tech-icon" />
+          <img src="images/unity.svg" alt="" class="tech-icon" />
+        </div>
+        <section class="mechanic-row mechanic-row--top">
+          <div class="mechanic-details mechanic-details--wide">
+            <p class="project-description project-description--tight" data-i18n="gol.desc">
+              I developed this <strong>Game of Life</strong> simulator for
+              <strong>Android</strong> using <strong>Unity</strong>.<br />
+              This project is my own take on John Conway's famous cellular
+              automaton — bringing it to mobile with my own features and UX.<br /><br />
+            </p>
+            <ul>
+              <li data-i18n="gol.li1">
+                <strong>Infinite world</strong> — move and explore in any
+                direction without boundaries.
+              </li>
+              <li data-i18n="gol.li2">
+                <strong>Built-in tutorial</strong> introducing controls and game
+                rules.
+              </li>
+              <li data-i18n="gol.li3">
+                <strong>Subtle vibration feedback</strong> when text appears.
+              </li>
+              <li data-i18n="gol.li4"><strong>Minimalist UI</strong> created using DOTween.</li>
+              <li data-i18n="gol.li5">
+                Smooth <strong>multi-threaded</strong> generation calculations.
+              </li>
+              <li data-i18n="gol.li6">
+                <strong>Tilemap-based world</strong> — only tiles within the
+                camera's view are rendered.
+              </li>
+              <li data-i18n="gol.li7">
+                <strong>Pattern library</strong> — large built-in collection of classic Game of Life patterns (gliders, oscillators, still lifes, and more) ready to place and experiment with.
+              </li>
+            </ul>
+
+            <div class="project-buttons">
+              <a
+                class="project-btn"
+                href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="gol.playStore">
+                Download on Play Store
+              </a>
+              <a
+                class="project-btn"
+                href="https://github.com/dbarans/GameOfLife"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="gol.github">
+                View on GitHub
+              </a>
+            </div>
           </div>
-        </div>
+          <div class="mechanic-video vertical-video mechanic-video--left">
+            <iframe
+              width="250"
+              height="560"
+              src="https://www.youtube.com/embed/0501nT7ZJzw"
+              title="Game of Life - vertical"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+        </section>
+        <a href="index.html" class="back-link" data-i18n="gol.back">← Back to Portfolio Home</a>
+        <footer class="site-footer">
+          <p data-i18n="gol.footer.developedBy">Developed by Dominik Barański.</p>
+          <p class="site-footer-links">
+            <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="gol.footer.githubProfile">My GitHub Profile</a>
+            <span class="site-footer-sep" aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
+          </p>
+        </footer>
+
         <div
-          class="mechanic-video vertical-video"
-          style="margin-left: 0; flex-basis: 32%; max-width: 32%">
-          <iframe
-            width="250"
-            height="560"
-            src="https://www.youtube.com/embed/0501nT7ZJzw"
-            title="Game of Life - vertical"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+          id="img-lightbox"
+          class="img-lightbox"
+          hidden
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image preview">
+          <button type="button" class="close-lightbox" aria-label="Close">&times;</button>
+          <img src="" alt="" class="lightbox-img" />
         </div>
-      </section>
-      <a href="index.html" class="back-link">← Back to Portfolio Home</a>
-      <footer>
-        <p>Developed by Dominik Barański.</p>
-        <p>
-          <a
-            href="https://github.com/dbarans"
-            target="_blank"
-            rel="noopener noreferrer"
-            >My GitHub Profile</a
-          >
-        </p>
-      </footer>
-      <div id="img-lightbox" class="img-lightbox" style="display: none">
-        <span class="close-lightbox">&times;</span>
-        <img src="" alt="preview" class="lightbox-img" />
-      </div>
-      <script>
-        document.querySelectorAll(".zoom-img").forEach((el) => {
-          el.addEventListener("click", function (e) {
-            e.preventDefault();
-            const src = this.getAttribute("data-img");
-            document.querySelector("#img-lightbox .lightbox-img").src = src;
-            document.getElementById("img-lightbox").style.display = "flex";
-          });
-        });
-        document.querySelector("#img-lightbox .close-lightbox").onclick =
-          function () {
-            document.getElementById("img-lightbox").style.display = "none";
-            document.querySelector("#img-lightbox .lightbox-img").src = "";
-          };
-        document.getElementById("img-lightbox").onclick = function (e) {
-          if (e.target === this) {
-            this.style.display = "none";
-            this.querySelector(".lightbox-img").src = "";
-          }
-        };
-      </script>
-    </main>
+      </main>
+    </div>
+    <script src="js/lightbox.js" defer></script>
+    <script src="js/header-scroll.js" defer></script>
+    <script src="js/i18n.js" defer></script>
   </body>
 </html>

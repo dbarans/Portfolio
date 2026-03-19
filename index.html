@@ -4,48 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dominik Barański - Game Dev Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-  <main class="container">
-    <header>
-      <h1>Dominik Barański</h1>
-      <p class="subtitle">Game Programmer Portfolio</p>
+<body class="page-home">
+  <div class="site">
+    <header class="site-header">
+      <a href="index.html" class="site-brand">
+        <span class="site-brand-mark" aria-hidden="true"></span>
+        <span class="site-brand-text">Dominik Barański</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html" class="site-nav-link is-active" data-i18n="index.nav.home">Home</a>
+        <a href="#projects" class="site-nav-link" data-i18n="index.nav.projects">Projects</a>
+        <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+        <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+      </nav>
+      <div class="site-header-actions">
+        <button id="lang-toggle" type="button" class="lang-toggle lang-toggle--header" aria-label="Zmień język">PL</button>
+        <a href="https://github.com/dbarans" class="site-contact-btn" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.contact">Contact</a>
+      </div>
     </header>
-    <section>
-      <ul class="project-list">
-        <li>
-          <a href="luggage-please.html" class="project-link">
-            <div class="project-thumb-wrap">
-              <img src="images/luggage-please/logo.png" alt="Luggage Please thumbnail" class="project-thumb" />
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 id="hero-heading" class="hero-title">
+              <span class="hero-title-line text-gradient" data-i18n="index.hero.line1">Game programmer</span>
+              <span class="hero-title-line hero-title-line--plain" data-i18n="index.hero.line2">building mechanics players remember.</span>
+            </h1>
+            <p class="hero-lead" data-i18n="index.hero.lead">
+              Unity &amp; C# — gameplay, systems and tools. I focus on clarity, performance and feel.
+            </p>
+            <a href="#projects" class="hero-cta">
+              <span data-i18n="index.hero.cta">View my work</span>
+              <span class="hero-cta-icon" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-placeholder">
+              <span class="hero-placeholder-initials" aria-hidden="true">DB</span>
+              <span class="hero-placeholder-hint" data-i18n="index.hero.photoHint">Photo coming soon</span>
             </div>
-            <div class="project-info">
-              <div class="project-title">Luggage Please</div>
-              <div class="project-role">Game Mechanics</div>
-            </div>
-            <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
-          </a>
-        </li>
-        <li>
-          <a href="game-of-life.html" class="project-link">
-            <div class="project-thumb-wrap">
-              <img src="images/game-of-life/logo.png" alt="Game of Life thumbnail" class="project-thumb" />
-            </div>
-            <div class="project-info">
-              <div class="project-title">Game of Life</div>
-              <div class="project-role">Game Programming</div>
-            </div>
-            <img src="images/logo_android.svg" alt="Android logo" class="tech-icon" />
-            <img src="images/unity.svg" alt="Unity logo" class="tech-icon" />
-          </a>
-        </li>
-      </ul>
-    </section>
-    <footer>
-      <p>Developed by Dominik Barański</p>
-      <p><a href="https://github.com/dbarans" target="_blank">My GitHub Profile</a></p>
-    </footer>
-  </main>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section-projects">
+        <h2 class="section-title" data-i18n="index.section.projects">Selected projects</h2>
+        <ul class="project-list">
+          <li>
+            <a href="luggage-please.html" class="project-link">
+              <div class="project-thumb-wrap">
+                <img src="images/luggage-please/logo.png" alt="" class="project-thumb" />
+              </div>
+              <div class="project-info">
+                <div class="project-title">Luggage Please</div>
+                <div class="project-role" data-i18n="index.role.luggage">Game Mechanics</div>
+              </div>
+              <img src="images/unity.svg" alt="" class="tech-icon" />
+            </a>
+          </li>
+          <li>
+            <a href="game-of-life.html" class="project-link">
+              <div class="project-thumb-wrap">
+                <img src="images/game-of-life/logo.png" alt="" class="project-thumb" />
+              </div>
+              <div class="project-info">
+                <div class="project-title">Game of Life</div>
+                <div class="project-role" data-i18n="index.role.gol">Game Programming</div>
+              </div>
+              <img src="images/logo_android.svg" alt="" class="tech-icon" />
+              <img src="images/unity.svg" alt="" class="tech-icon" />
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="site-footer">
+        <p data-i18n="index.footer.developedBy">Developed by Dominik Barański</p>
+        <p class="site-footer-links">
+          <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.githubProfile">My GitHub Profile</a>
+          <span class="site-footer-sep" aria-hidden="true">·</span>
+          <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
+        </p>
+      </footer>
+    </main>
+  </div>
+  <script src="js/header-scroll.js" defer></script>
+  <script src="js/i18n.js" defer></script>
 </body>
 </html>
