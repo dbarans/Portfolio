@@ -380,8 +380,8 @@ body {
 }
 
 .tech-icon {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   margin-left: auto;
   margin-right: 12px;
   opacity: 0.75;
@@ -517,8 +517,8 @@ body {
   }
 
   .tech-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     margin-right: 8px;
   }
 }
