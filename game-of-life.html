@@ -3,11 +3,292 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Project: Game of Life — Dominik Barański</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Game of Life — Dominik Barański</title>
+    <meta
+      name="description"
+      content="High-performance Conway's Game of Life for Android built in Unity — multithreaded, bit-parallel simulation engine. 10,000+ downloads on Google Play." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/project.css" />
     <link rel="stylesheet" href="css/custom-buttons.css" />
+    <style>
+      /* Dedicated Game of Life page theme — scoped to .gol-page, shared CSS untouched */
+      .gol-page {
+        --gol-surface: #10161d;
+        --gol-surface-2: #151d26;
+        --gol-border: #1f2a35;
+        --gol-border-hi: #2e4152;
+        --gol-cell: #5afea3;
+        --gol-cell-dim: #2f7d55;
+        --gol-text: #dbe6ee;
+        --gol-muted: #7d8ea0;
+        --gol-heading: #f2f7fb;
+        --gol-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+        /* Faint cell grid — the game's board as a backdrop */
+        background-image: linear-gradient(rgba(90, 254, 163, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(90, 254, 163, 0.045) 1px, transparent 1px);
+        background-size: 28px 28px;
+        border-radius: 16px;
+      }
+      .gol-hero {
+        background: linear-gradient(180deg, var(--gol-surface-2), var(--gol-surface));
+        border: 1px solid var(--gol-border);
+        border-radius: 16px;
+        padding: 42px 46px 36px 46px;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Glider motif in the hero corner — the game's icon pattern */
+      .gol-hero::after {
+        content: "";
+        position: absolute;
+        top: 26px;
+        right: 30px;
+        width: 66px;
+        height: 66px;
+        opacity: 0.16;
+        pointer-events: none;
+        background:
+          linear-gradient(var(--gol-cell), var(--gol-cell)) 22px 0 / 18px 18px,
+          linear-gradient(var(--gol-cell), var(--gol-cell)) 44px 22px / 18px 18px,
+          linear-gradient(var(--gol-cell), var(--gol-cell)) 0 44px / 18px 18px,
+          linear-gradient(var(--gol-cell), var(--gol-cell)) 22px 44px / 18px 18px,
+          linear-gradient(var(--gol-cell), var(--gol-cell)) 44px 44px / 18px 18px;
+        background-repeat: no-repeat;
+      }
+      .gol-hero-top {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+      .gol-logo {
+        width: 76px;
+        height: 76px;
+        border-radius: 18px;
+        border: 1px solid var(--gol-border-hi);
+        background: #0c1117;
+      }
+      .gol-title-wrap { flex: 1 1 auto; min-width: 240px; }
+      .gol-title {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--gol-heading);
+        letter-spacing: -1.2px;
+        line-height: 1.05;
+      }
+      .gol-subtitle {
+        margin: 8px 0 0 0;
+        color: var(--gol-muted);
+        font-size: 1.02rem;
+      }
+      .gol-subtitle b { color: var(--gol-cell); font-weight: 600; }
+      .gol-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .gol-stat {
+        background: #0a0e12;
+        border: 1px solid var(--gol-border);
+        border-radius: 10px;
+        padding: 14px 16px 12px 16px;
+      }
+      .gol-stat b {
+        display: block;
+        font-family: var(--gol-mono);
+        color: var(--gol-cell);
+        font-size: 1.06em;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+      }
+      .gol-stat span {
+        display: block;
+        margin-top: 4px;
+        color: var(--gol-muted);
+        font-size: 0.74em;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .gol-main {
+        display: flex;
+        gap: 26px;
+        align-items: flex-start;
+        margin-top: 26px;
+      }
+      .gol-content { flex: 1 1 0; min-width: 0; }
+      .gol-section {
+        background: var(--gol-surface);
+        border: 1px solid var(--gol-border);
+        border-radius: 16px;
+        padding: 30px 34px;
+        margin-bottom: 22px;
+      }
+      .gol-section h2 {
+        margin: 0 0 18px 0;
+        font-family: var(--gol-mono);
+        font-size: 0.86rem;
+        font-weight: 700;
+        color: var(--gol-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      /* Little living cell before each section heading */
+      .gol-section h2::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        background: var(--gol-cell);
+        flex-shrink: 0;
+      }
+      .gol-lead {
+        color: var(--gol-text);
+        font-size: 1.06em;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .gol-lead strong { color: var(--gol-heading); font-weight: 600; }
+      .gol-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .gol-card {
+        background: var(--gol-surface-2);
+        border: 1px solid var(--gol-border);
+        border-left: 3px solid var(--gol-cell-dim);
+        border-radius: 10px;
+        padding: 16px 18px;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      .gol-card:hover {
+        border-color: var(--gol-border-hi);
+        border-left-color: var(--gol-cell);
+      }
+      .gol-card h3 {
+        margin: 0 0 7px 0;
+        font-size: 0.96em;
+        font-weight: 700;
+        color: var(--gol-heading);
+        letter-spacing: 0.01em;
+      }
+      .gol-card p {
+        margin: 0;
+        color: #a9bac9;
+        font-size: 0.88em;
+        line-height: 1.6;
+      }
+      .gol-card strong { color: var(--gol-text); font-weight: 600; }
+      .gol-card code {
+        font-family: var(--gol-mono);
+        background: #0c1117;
+        color: var(--gol-cell);
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+      .gol-features {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 24px;
+      }
+      .gol-features li {
+        color: #a9bac9;
+        font-size: 0.92em;
+        line-height: 1.55;
+        padding-left: 21px;
+        position: relative;
+      }
+      .gol-features li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.42em;
+        width: 8px;
+        height: 8px;
+        background: var(--gol-cell-dim);
+      }
+      .gol-features strong { color: var(--gol-text); font-weight: 600; }
+      .gol-video {
+        flex: 0 0 300px;
+        position: sticky;
+        top: 24px;
+      }
+      .gol-video iframe {
+        width: 300px;
+        height: 640px;
+        border: 1px solid var(--gol-border);
+        border-radius: 16px;
+        display: block;
+        background: #0c1117;
+      }
+      .gol-video-caption {
+        text-align: center;
+        color: var(--gol-muted);
+        font-family: var(--gol-mono);
+        font-size: 0.72em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 12px;
+      }
+      .gol-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+      .gol-btn {
+        padding: 12px 26px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.98em;
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        transition: background 0.14s, border-color 0.14s, color 0.14s;
+        display: inline-block;
+      }
+      .gol-btn-primary {
+        background: var(--gol-cell);
+        color: #08130c;
+        border: 1px solid var(--gol-cell);
+      }
+      .gol-btn-primary:hover { background: #83ffbe; border-color: #83ffbe; }
+      .gol-btn-secondary {
+        background: transparent;
+        color: var(--gol-text);
+        border: 1px solid var(--gol-border-hi);
+      }
+      .gol-btn-secondary:hover {
+        border-color: var(--gol-cell);
+        color: var(--gol-cell);
+      }
+      @media (max-width: 980px) {
+        .gol-main { flex-direction: column; }
+        .gol-video {
+          position: static;
+          flex: none;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .gol-cards { grid-template-columns: 1fr; }
+        .gol-features { grid-template-columns: 1fr; }
+        .gol-stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 600px) {
+        .gol-hero { padding: 26px 20px; }
+        .gol-hero::after { display: none; }
+        .gol-section { padding: 22px 18px; }
+        .gol-title { font-size: 1.8rem; }
+        .gol-stats { grid-template-columns: 1fr; }
+        .gol-video iframe { width: 90vw; height: calc(90vw * 640 / 300); }
+      }
+    </style>
   </head>
   <body class="page-project">
     <div class="site">
@@ -27,77 +308,173 @@
         </div>
       </header>
 
-      <main class="project-container">
-        <div class="project-header">
-          <img src="images/game-of-life/logo.png" alt="" class="mechanic-img" />
-          <h1>Game of Life</h1>
-          <img src="images/logo_android.svg" alt="" class="tech-icon" />
-          <img src="images/unity.svg" alt="" class="tech-icon" />
-          <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-        </div>
-        <section class="mechanic-row mechanic-row--top">
-          <div class="mechanic-details mechanic-details--wide">
-            <p class="project-description project-description--tight" data-i18n="gol.desc">
-              I developed this <strong>Game of Life</strong> simulator for
-              <strong>Android</strong> using <strong>Unity</strong>.<br />
-              This project is my own take on John Conway's famous cellular
-              automaton — bringing it to mobile with my own features and UX.<br /><br />
-            </p>
-            <ul>
-              <li data-i18n="gol.li1">
-                <strong>Infinite world</strong> — move and explore in any
-                direction without boundaries.
-              </li>
-              <li data-i18n="gol.li2">
-                <strong>Built-in tutorial</strong> introducing controls and game
-                rules.
-              </li>
-              <li data-i18n="gol.li3">
-                <strong>Subtle vibration feedback</strong> when text appears.
-              </li>
-              <li data-i18n="gol.li4"><strong>Minimalist UI</strong> created using DOTween.</li>
-              <li data-i18n="gol.li5">
-                Smooth <strong>multi-threaded</strong> generation calculations.
-              </li>
-              <li data-i18n="gol.li6">
-                <strong>Tilemap-based world</strong> — only tiles within the
-                camera's view are rendered.
-              </li>
-              <li data-i18n="gol.li7">
-                <strong>Pattern library</strong> — large built-in collection of classic Game of Life patterns (gliders, oscillators, still lifes, and more) ready to place and experiment with.
-              </li>
-            </ul>
-
-            <div class="project-buttons">
-              <a
-                class="project-btn"
-                href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-i18n="gol.playStore">
-                Download on Play Store
-              </a>
-              <a
-                class="project-btn"
-                href="https://github.com/dbarans/GameOfLife"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-i18n="gol.github">
-                View on GitHub
-              </a>
+      <main class="project-container gol-page">
+        <header class="gol-hero">
+          <div class="gol-hero-top">
+            <img src="images/game-of-life/logo.png" alt="Game of Life logo" class="gol-logo" />
+            <div class="gol-title-wrap">
+              <h1 class="gol-title">Game of Life</h1>
+              <p class="gol-subtitle">
+                High-performance cellular automaton engine for <b>Android</b> · <b>Unity / C#</b>
+              </p>
             </div>
           </div>
-          <div class="mechanic-video vertical-video mechanic-video--left">
+          <div class="gol-stats">
+            <div class="gol-stat">
+              <b>10,000+</b>
+              <span>Google Play downloads</span>
+            </div>
+            <div class="gol-stat">
+              <b>O(active region)</b>
+              <span>cost per generation</span>
+            </div>
+            <div class="gol-stat">
+              <b>64 cells / op</b>
+              <span>bit-parallel kernel</span>
+            </div>
+            <div class="gol-stat">
+              <b>~0 GC</b>
+              <span>steady-state allocations</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="gol-main">
+          <div class="gol-content">
+            <section class="gol-section">
+              <h2>Overview</h2>
+              <p class="gol-lead">
+                A <strong>Conway's Game of Life</strong> simulator for
+                <strong>Android</strong>, built in <strong>Unity</strong> (C#,
+                IL2CPP) and published on Google Play with over
+                <strong>10,000 downloads</strong>. The core of the project is a
+                heavily optimized, multithreaded simulation engine designed to
+                keep large, fast-evolving patterns running smoothly on mobile
+                hardware.
+              </p>
+            </section>
+
+            <section class="gol-section">
+              <h2>Engine &amp; Performance</h2>
+              <div class="gol-cards">
+                <div class="gol-card">
+                  <h3>Bit-parallel simulation kernel</h3>
+                  <p>
+                    The world is partitioned into 64×64 chunks stored as
+                    <code>ulong</code> bitmasks. Neighbor counts for 64 cells at
+                    a time are computed with bitwise full-adders, compiled with
+                    <strong>Unity Burst</strong> as a parallel job.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3>Active-chunk tracking</h3>
+                  <p>
+                    Only chunks near cells that changed last generation are
+                    recomputed — a step costs O(active region), not
+                    O(population). Stable regions cost nothing, no matter how
+                    large.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3>Multithreaded generation pipeline</h3>
+                  <p>
+                    A background calculation thread runs up to 100 generations
+                    ahead of the display, storing per-generation deltas (born /
+                    died cells) in a lock-guarded ring buffer instead of full
+                    grid snapshots.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3>Delta-driven incremental rendering</h3>
+                  <p>
+                    The Tilemap renderer applies only each generation's born and
+                    died cells, culled to the camera view — the whole living set
+                    is never copied on the hot path.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3>Procedural grid shader</h3>
+                  <p>
+                    Grid lines are drawn in a fragment shader on a single
+                    camera-following quad: one draw call, constant cost at any
+                    zoom, with an LOD fade when zoomed out.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3>Object pooling</h3>
+                  <p>
+                    Per-chunk buffers are pooled for near-zero steady-state GC
+                    pressure — no allocation spikes or GC hitches on mobile.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="gol-section">
+              <h2>Product Features</h2>
+              <ul class="gol-features">
+                <li>
+                  <strong>Infinite world</strong> — sparse storage of live cells
+                  only; pan and pinch-zoom (5×–500×) in any direction.
+                </li>
+                <li>
+                  <strong>Pattern Book</strong> — classic patterns (gliders,
+                  oscillators, still lifes) loaded from RLE files with a custom
+                  parser and runtime thumbnail rasterization.
+                </li>
+                <li>
+                  <strong>Save slots</strong> — with timestamps, camera state,
+                  and generated previews.
+                </li>
+                <li>
+                  <strong>Interactive tutorial</strong> — teaches the rules by
+                  having the player draw and evolve patterns.
+                </li>
+                <li>
+                  <strong>Haptic feedback</strong> — native Android vibration
+                  bridge with amplitude control.
+                </li>
+                <li>
+                  <strong>Polished UI</strong> — animated with DOTween,
+                  adjustable simulation speed up to an uncapped INF mode.
+                </li>
+              </ul>
+            </section>
+
+            <section class="gol-section">
+              <h2>Links</h2>
+              <div class="gol-buttons">
+                <a
+                  class="gol-btn gol-btn-primary"
+                  href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-i18n="gol.playStore">
+                  Download on Play Store
+                </a>
+                <a
+                  class="gol-btn gol-btn-secondary"
+                  href="https://github.com/dbarans/GameOfLife"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-i18n="gol.github">
+                  View on GitHub
+                </a>
+              </div>
+            </section>
+          </div>
+
+          <aside class="gol-video">
             <iframe
-              width="250"
-              height="560"
               src="https://www.youtube.com/embed/0501nT7ZJzw"
-              title="Game of Life - vertical"
+              title="Game of Life — gameplay"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen></iframe>
-          </div>
-        </section>
+            <p class="gol-video-caption">Gameplay recording</p>
+          </aside>
+        </div>
+
         <a href="index.html" class="back-link" data-i18n="gol.back">← Back to home</a>
         <footer class="site-footer">
           <p data-i18n="gol.footer.developedBy">Developed by Dominik Barański.</p>
