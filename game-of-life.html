@@ -113,6 +113,17 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
+      .gol-stat--featured {
+        background: linear-gradient(100deg, #27dcfd 0%, var(--gol-cell) 100%);
+        border-color: transparent;
+        box-shadow: 0 4px 20px rgba(90, 254, 163, 0.18);
+      }
+      .gol-stat--featured b {
+        color: #06120c;
+      }
+      .gol-stat--featured span {
+        color: rgba(6, 18, 12, 0.72);
+      }
       .gol-main {
         display: flex;
         gap: 26px;
@@ -320,7 +331,7 @@
             </div>
           </div>
           <div class="gol-stats">
-            <div class="gol-stat">
+            <div class="gol-stat gol-stat--featured">
               <b>10,000+</b>
               <span>Google Play downloads</span>
             </div>
