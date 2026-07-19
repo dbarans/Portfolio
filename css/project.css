@@ -113,8 +113,8 @@
 }
 
 .mechanic-row:hover {
-  border-color: rgba(167, 139, 250, 0.22);
-  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.08);
+  border-color: rgba(138, 180, 248, 0.22);
+  box-shadow: 0 0 0 1px rgba(138, 180, 248, 0.08);
 }
 
 .mechanic-img {
@@ -133,7 +133,7 @@
 
 .mechanic-img:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-  border-color: rgba(167, 139, 250, 0.35);
+  border-color: rgba(138, 180, 248, 0.35);
 }
 
 .mechanic-row--top {
@@ -189,7 +189,7 @@
 }
 
 .mechanic-details ul.neon-team-list li strong {
-  color: #c4b5fd;
+  color: #a8c7fa;
   font-weight: 600;
 }
 
@@ -216,7 +216,7 @@
 }
 
 .mechanic-details li strong {
-  color: #c4b5fd;
+  color: #a8c7fa;
   font-weight: 600;
 }
 
@@ -234,8 +234,8 @@
 }
 
 .mechanic-details a:hover {
-  color: #a78bfa;
-  border-bottom-color: rgba(167, 139, 250, 0.5);
+  color: #8ab4f8;
+  border-bottom-color: rgba(138, 180, 248, 0.5);
 }
 
 .mechanic-video {
@@ -340,7 +340,7 @@
 }
 
 .close-lightbox:hover {
-  color: #a78bfa;
+  color: #8ab4f8;
 }
 
 @media (max-width: 900px) {
