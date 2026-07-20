@@ -74,7 +74,7 @@
 
       'gol.overview.title': 'Overview',
       'gol.overview.lead':
-        'A <strong>Conway\'s Game of Life</strong> simulator for <strong>Android</strong>, built in <strong>Unity</strong> (C#, IL2CPP) and published on Google Play with over <strong>10,000 downloads</strong>. The core of the project is a heavily optimized, multithreaded simulation engine designed to keep large, fast-evolving patterns running smoothly on mobile hardware.',
+        'I built this <strong>Conway\'s Game of Life</strong> simulator for <strong>Android</strong> in <strong>Unity</strong> (C#, IL2CPP) and published it on Google Play, where it now has over <strong>10,000 downloads</strong>. Under the hood is a multithreaded engine I wrote to keep large, fast-changing patterns running smoothly, even on lower-end phones.',
 
       'gol.engine.title': 'Engine &amp; Performance',
       'gol.engine.c1.title': 'Bit-parallel simulation kernel',
@@ -259,7 +259,7 @@
 
       'gol.overview.title': 'Przegląd',
       'gol.overview.lead':
-        'Symulator <strong>Gry w życie Conwaya</strong> na <strong>Androida</strong>, zbudowany w <strong>Unity</strong> (C#, IL2CPP) i opublikowany w Google Play z ponad <strong>10 000 pobrań</strong>. Rdzeniem projektu jest mocno zoptymalizowany, wielowątkowy silnik symulacji, zaprojektowany tak, by duże, szybko zmieniające się wzory działały płynnie na sprzęcie mobilnym.',
+        'Zbudowałem ten symulator <strong>Gry w życie Conwaya</strong> na <strong>Androida</strong> w <strong>Unity</strong> (C#, IL2CPP) i opublikowałem w Google Play, gdzie ma dziś ponad <strong>10 000 pobrań</strong>. Pod maską działa wielowątkowy silnik, który napisałem tak, by duże, szybko zmieniające się wzory chodziły płynnie nawet na słabszych telefonach.',
 
       'gol.engine.title': 'Silnik i wydajność',
       'gol.engine.c1.title': 'Bitowo-równoległy kernel symulacji',
