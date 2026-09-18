@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dominik Barański - Game Dev Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/islands.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
 <body class="page-home">
   <div class="site">
@@ -27,6 +29,7 @@
 
     <main>
       <section class="hero" aria-labelledby="hero-heading">
+        <canvas class="hero-field" aria-hidden="true"></canvas>
         <div class="hero-grid">
           <div class="hero-copy">
             <h1 id="hero-heading" class="hero-title">
@@ -51,36 +54,106 @@
         </div>
       </section>
 
-      <section id="projects" class="section-projects">
-        <h2 class="section-title" data-i18n="index.section.projects">Selected projects</h2>
+      <section id="projects" class="islands" aria-labelledby="projects-heading">
+        <div class="islands-stage">
+          <canvas class="islands-bg" aria-hidden="true"></canvas>
+          <h2 id="projects-heading" class="islands-title" data-i18n="index.section.projects">Selected projects</h2>
+          <div class="islands-rail" aria-hidden="true">
+            <span class="islands-rail-label" data-i18n="index.isl.rail">Project</span>
+            <span class="islands-rail-num"><span data-rail-num>01</span><small>/03</small></span>
+            <span class="islands-rail-bar"><span class="islands-rail-fill"></span></span>
+          </div>
+          <article class="island island--1" aria-labelledby="isl-gol-title">
+            <span class="island-block" aria-hidden="true"></span>
+            <div class="island-card">
+              <div class="island-head">
+                <span class="island-role" data-i18n="index.isl.gol.role">Solo · released</span>
+                <span class="island-count" data-i18n="index.isl.count1">Project 01 of 03</span>
+              </div>
+              <h3 class="island-title" id="isl-gol-title">Game of Life</h3>
+              <p class="island-hook" data-step="2" data-i18n="index.isl.gol.hook">A board without edges that never slows down.</p>
+              <p class="island-lead" data-step="3" data-i18n="index.isl.gol.lead">An Android simulator: you draw living cells with your finger, and they are born and die by four simple rules. I built all of it myself — the engine, gameplay, interface and the store release.</p>
+              <ul class="island-points" data-step="4">
+                <li data-i18n="index.isl.gol.p1">Zoom out to hundreds of thousands of cells — still smooth, even on an older phone.</li>
+                <li data-i18n="index.isl.gol.p2">An experimental turbo mode leaps thousands of generations per frame.</li>
+                <li data-i18n="index.isl.gol.p3">A pattern library, save slots and a tutorial that teaches the rules through drawing.</li>
+              </ul>
+              <div class="island-foot" data-step="5">
+                <div class="island-stats">
+                  <div class="island-stat"><b data-i18n="index.isl.gol.s1v">15,000+</b><span data-i18n="index.isl.gol.s1l">Google Play downloads</span></div>
+                  <div class="island-stat"><b data-i18n="index.isl.gol.s2v">2.2–2.5×</b><span data-i18n="index.isl.gol.s2l">faster after optimisation</span></div>
+                </div>
+                <div class="island-actions">
+                  <a class="island-cta" href="game-of-life.html" data-i18n="index.isl.gol.cta">How it works →</a>
+                  <span class="island-deeper" data-i18n="index.isl.gol.deeper">Architecture, code excerpts, measurements and rejected approaches.</span>
+                </div>
+              </div>
+            </div>
+            <span class="island-num" aria-hidden="true">01</span>
+          </article>
+          <article class="island island--2" aria-labelledby="isl-thesis-title">
+            <span class="island-block" aria-hidden="true"></span>
+            <div class="island-card">
+              <div class="island-head">
+                <span class="island-role" data-i18n="index.isl.thesis.role">Team · defence 10.2026</span>
+                <span class="island-count" data-i18n="index.isl.count2">Project 02 of 03</span>
+              </div>
+              <h3 class="island-title" id="isl-thesis-title" data-i18n="index.isl.thesis.title">Engineering thesis</h3>
+              <p class="island-hook" data-step="2" data-i18n="index.isl.thesis.hook">An enemy that genuinely can’t see you.</p>
+              <p class="island-lead" data-step="3" data-i18n="index.isl.thesis.lead">A horror game built as a team for our degree project. My part is the enemy’s behaviour and what the player sees in the dark.</p>
+              <ul class="island-points" data-step="4">
+                <li data-i18n="index.isl.thesis.p1">Line of sight is computed, not faked.</li>
+                <li data-i18n="index.isl.thesis.p2">The darkness is the same information the enemy uses.</li>
+                <li data-i18n="index.isl.thesis.p3">Four project layers, so several people can write code in parallel.</li>
+              </ul>
+              <div class="island-foot" data-step="5">
+                <div class="island-stats">
+                  <div class="island-stat"><b data-i18n="index.isl.thesis.s1v">URP</b><span data-i18n="index.isl.thesis.s1l">custom full-screen effect</span></div>
+                  <div class="island-stat"><b data-i18n="index.isl.thesis.s2v">Team</b><span data-i18n="index.isl.thesis.s2l">shared repository</span></div>
+                </div>
+                <div class="island-actions">
+                  <span class="island-cta is-soon" data-i18n="index.isl.thesis.cta">Devlog soon</span>
+                  <span class="island-deeper" data-i18n="index.isl.thesis.deeper">A state diagram and a walkthrough of the mask pipeline — in preparation.</span>
+                </div>
+              </div>
+            </div>
+            <span class="island-num" aria-hidden="true">02</span>
+          </article>
+          <article class="island island--3" aria-labelledby="isl-luggage-title">
+            <span class="island-block" aria-hidden="true"></span>
+            <div class="island-card">
+              <div class="island-head">
+                <span class="island-role" data-i18n="index.isl.luggage.role">Rubens Games · commercial</span>
+                <span class="island-count" data-i18n="index.isl.count3">Project 03 of 03</span>
+              </div>
+              <h3 class="island-title" id="isl-luggage-title">Luggage Please</h3>
+              <p class="island-hook" data-step="2" data-i18n="index.isl.luggage.hook">Three mechanics delivered in someone else’s codebase.</p>
+              <p class="island-lead" data-step="3" data-i18n="index.isl.luggage.lead">A Rubens Games title — you check passengers’ luggage at an airport. Art and game design were the studio’s; I delivered the mechanics.</p>
+              <ul class="island-points" data-step="4">
+                <li data-i18n="index.isl.luggage.p1">You can’t close a suitcase if something sticks out.</li>
+                <li data-i18n="index.isl.luggage.p2">The scanner tells metal from organic matter by colour.</li>
+                <li data-i18n="index.isl.luggage.p3">The interaction menu changes its options depending on where you are.</li>
+              </ul>
+              <div class="island-foot" data-step="5">
+                <div class="island-stats">
+                  <div class="island-stat"><b data-i18n="index.isl.luggage.s1v">3 systems</b><span data-i18n="index.isl.luggage.s1l">in the studio’s game</span></div>
+                  <div class="island-stat"><b data-i18n="index.isl.luggage.s2v">Internship</b><span data-i18n="index.isl.luggage.s2l">joining an existing project</span></div>
+                </div>
+                <div class="island-actions">
+                  <a class="island-cta" href="luggage-please.html" data-i18n="index.isl.luggage.cta">See details →</a>
+                  <span class="island-deeper" data-i18n="index.isl.luggage.deeper">How it plugged into the existing project.</span>
+                </div>
+              </div>
+            </div>
+            <span class="island-num" aria-hidden="true">03</span>
+          </article>
+          <span class="islands-hint" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <section class="section-projects section-projects--more">
+        <h2 class="section-title" data-i18n="index.section.more">More projects</h2>
         <ul class="project-list">
-          <li>
-            <a href="game-of-life.html" class="project-link">
-              <div class="project-thumb-wrap">
-                <img src="images/game-of-life/logo.png" alt="" class="project-thumb" />
-              </div>
-              <div class="project-info">
-                <div class="project-title">Game of Life</div>
-                <div class="project-role" data-i18n="index.role.gol">Game Programming</div>
-              </div>
-              <img src="images/logo_android.svg" alt="" class="tech-icon" />
-              <img src="images/unity.svg" alt="" class="tech-icon" />
-              <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-            </a>
-          </li>
-          <li>
-            <a href="luggage-please.html" class="project-link">
-              <div class="project-thumb-wrap">
-                <img src="images/luggage-please/logo.png" alt="" class="project-thumb" />
-              </div>
-              <div class="project-info">
-                <div class="project-title">Luggage Please</div>
-                <div class="project-role" data-i18n="index.role.luggage">Game Mechanics</div>
-              </div>
-              <img src="images/unity.svg" alt="" class="tech-icon" />
-              <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-            </a>
-          </li>
           <li>
             <a href="neon.html" class="project-link">
               <div class="project-thumb-wrap">
@@ -122,5 +195,7 @@
   </div>
   <script src="js/header-scroll.js" defer></script>
   <script src="js/i18n.js" defer></script>
+  <script src="js/cellfield.js" defer></script>
+  <script src="js/islands.js" defer></script>
 </body>
 </html>

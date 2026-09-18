@@ -1,0 +1,378 @@
+/* Project "islands" — scroll-driven project cards over a parallax cell field.
+   Without JS (or with reduced motion) the islands are plain sections, one below another. */
+.islands {
+  --isl-stage: #070708;
+  --isl-bone: #f4f3ef;
+  --isl-paper: #f2f1ed;
+  --isl-ink: #0a0a0a;
+  --isl-red: #e8452b;
+  --isl-rail: #24241f;
+  --isl-muted-dark: #98988e;
+  --isl-font: 'Schibsted Grotesk', 'Inter', 'Segoe UI', Arial, sans-serif;
+  --isl-mono: 'DM Mono', ui-monospace, Consolas, monospace;
+
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--isl-stage);
+  font-family: var(--isl-font);
+  color: var(--isl-paper);
+  scroll-margin-top: 0;
+}
+
+.islands-stage {
+  position: relative;
+  padding: 96px 16px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 96px;
+  overflow: hidden;
+}
+
+.islands-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.islands-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Rail (project number + progress) ---------- */
+.islands-rail {
+  display: none;
+}
+
+/* ---------- Island ---------- */
+.island {
+  --w: 660px;
+  position: relative;
+  width: min(var(--w), calc(100vw - 56px));
+  box-sizing: border-box;
+}
+
+.island-block {
+  position: absolute;
+  left: var(--dx);
+  top: var(--dy);
+  right: var(--rx);
+  bottom: var(--by);
+  background: var(--block);
+  display: block;
+}
+
+.island-card {
+  position: relative;
+  background: var(--bg);
+  border: 2px solid var(--edge);
+  color: var(--fg);
+  padding: 28px 32px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.island-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 3px solid var(--rule);
+  padding-bottom: 11px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.island-role { letter-spacing: 2.4px; }
+.island-count { letter-spacing: 2.2px; color: var(--muted); white-space: nowrap; }
+
+.island-title {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -2.1px;
+  line-height: 0.95;
+  color: var(--fg);
+}
+
+.island-hook {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.6px;
+}
+
+.island-lead {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.island-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.island-points li {
+  display: flex;
+  gap: 13px;
+  align-items: baseline;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+.island-points li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--rule);
+  flex-shrink: 0;
+  display: block;
+  transform: translateY(-1px);
+}
+
+.island-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 3px solid var(--rule);
+  padding-top: 16px;
+}
+.island-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+.island-stat { display: flex; flex-direction: column; gap: 3px; }
+.island-stat b {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.island-stat span {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.island-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.island-cta {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  padding: 15px 24px;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+a.island-cta:hover,
+a.island-cta:focus-visible {
+  background: var(--btn-fg);
+  color: var(--btn-bg);
+  outline: 2px solid var(--btn-bg);
+  outline-offset: -2px;
+}
+.island-cta.is-soon {
+  background: transparent;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 2px var(--muted);
+}
+.island-deeper {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 260px;
+}
+
+.island-num {
+  position: absolute;
+  left: -20px;
+  top: -50px;
+  font-size: 92px;
+  font-weight: 900;
+  letter-spacing: -5px;
+  line-height: 1;
+  color: var(--num);
+  display: block;
+  pointer-events: none;
+}
+
+/* Skins: three colours, three different islands */
+.island--1 {
+  --w: 660px;
+  --dx: 16px; --dy: 16px; --rx: -16px; --by: -16px;
+  --block: var(--isl-ink); --bg: var(--isl-bone); --edge: var(--isl-ink); --fg: var(--isl-ink);
+  --body: #3a3a36; --muted: #6b6b66; --rule: var(--isl-red);
+  --btn-bg: var(--isl-ink); --btn-fg: var(--isl-bone); --num: var(--isl-red);
+}
+.island--2 {
+  --w: 600px;
+  --dx: -18px; --dy: 18px; --rx: 18px; --by: -18px;
+  --block: var(--isl-red); --bg: var(--isl-ink); --edge: var(--isl-bone); --fg: var(--isl-bone);
+  --body: #c6c4bc; --muted: #98988e; --rule: var(--isl-bone);
+  --btn-bg: var(--isl-bone); --btn-fg: var(--isl-ink); --num: var(--isl-bone);
+}
+.island--3 {
+  --w: 690px;
+  --dx: 18px; --dy: -18px; --rx: -18px; --by: 18px;
+  --block: var(--isl-red); --bg: var(--isl-bone); --edge: var(--isl-ink); --fg: var(--isl-ink);
+  --body: #3a3a36; --muted: #6b6b66; --rule: var(--isl-ink);
+  --btn-bg: var(--isl-red); --btn-fg: var(--isl-ink); --num: var(--isl-bone);
+}
+
+.islands-hint { display: none; }
+
+/* ---------- Live (scroll-driven) mode, enabled by js/islands.js ---------- */
+.islands.is-live .islands-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  padding: 0;
+  display: block;
+}
+
+.islands.is-live .island {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  opacity: 0;
+  visibility: hidden;
+}
+.islands.is-live .island.is-shown { visibility: visible; }
+
+.islands.is-live .islands-rail {
+  position: absolute;
+  left: 40px;
+  top: 104px;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 3;
+}
+.islands-rail-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--isl-muted-dark);
+}
+.islands-rail-num {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -2.2px;
+  line-height: 0.9;
+  color: var(--isl-paper);
+}
+.islands-rail-num small { font-size: 18px; color: var(--isl-muted-dark); letter-spacing: 0; }
+.islands-rail-bar {
+  width: 3px;
+  height: 250px;
+  background: var(--isl-rail);
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.islands-rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--isl-red);
+  transform-origin: top;
+  transform: scaleY(0);
+  display: block;
+}
+
+.islands.is-live .islands-hint {
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+  z-index: 6;
+  display: block;
+  font-family: var(--isl-mono);
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--isl-muted-dark);
+}
+
+/* Progressive reveal: space is reserved, so the island never changes height */
+.islands.is-live [data-step] {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.islands.is-live [data-step].is-in {
+  opacity: 1;
+  transform: none;
+}
+.islands.is-live .island-points li {
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.islands.is-live .island-points.is-in li { opacity: 1; transform: none; }
+.islands.is-live .island-points.is-in li:nth-child(2) { transition-delay: 80ms; }
+.islands.is-live .island-points.is-in li:nth-child(3) { transition-delay: 160ms; }
+
+/* ---------- Other projects (below the islands) ---------- */
+.section-projects--more { padding-top: 3.5rem; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 860px) {
+  .islands.is-live .islands-rail {
+    left: 16px;
+    top: auto;
+    bottom: 12px;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .islands-rail-num { font-size: 22px; letter-spacing: -1px; }
+  .islands-rail-num small { font-size: 12px; }
+  .islands-rail-bar { width: 80px; height: 3px; }
+  .islands-rail-fill { transform-origin: left; }
+  .islands.is-live .islands-hint { right: 16px; bottom: 18px; }
+  .islands.is-live .islands-rail-label { display: none; }
+}
+
+@media (max-width: 600px) {
+  .island-card { padding: 20px 18px 22px; gap: 13px; }
+  .island-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .island-title { font-size: 34px; letter-spacing: -1.4px; }
+  .island-hook { font-size: 17px; }
+  .island-lead { font-size: 14px; line-height: 1.5; }
+  .island-points li { font-size: 13.5px; }
+  .island-stat b { font-size: 21px; }
+  .island-stats { gap: 24px; }
+  .island-num { font-size: 60px; left: -10px; top: -34px; letter-spacing: -3px; }
+  .island-cta { padding: 12px 18px; font-size: 12px; }
+  .island { width: calc(100vw - 48px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .islands [data-step],
+  .islands .island-points li { transition: none !important; }
+}
+
+/* The islands are full-bleed; clip (unlike hidden) keeps position: sticky working. */
+.page-home { overflow-x: clip; }
