@@ -6,7 +6,7 @@
     <title>Game of Life — Dominik Barański</title>
     <meta
       name="description"
-      content="High-performance Conway's Game of Life for Android built in Unity — multithreaded, bit-parallel simulation engine. 10,000+ downloads on Google Play." />
+      content="High-performance Conway's Game of Life for Android built in Unity — multithreaded, bit-parallel simulation engine. 15,000+ downloads on Google Play." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/project.css" />
@@ -113,12 +113,12 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
-      .gol-btn.gol-video-cta {
-        display: flex;
+      .gol-btn.gol-cta {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        margin-top: 16px;
+        margin-top: 22px;
         text-align: center;
       }
       .gol-btn-icon {
@@ -126,13 +126,13 @@
         height: 16px;
         flex-shrink: 0;
       }
-      .gol-btn-primary.gol-video-cta {
+      .gol-btn-primary.gol-cta {
         background: linear-gradient(100deg, #27dcfd 0%, var(--gol-cell) 100%);
         border-color: transparent;
         box-shadow: 0 4px 20px rgba(90, 254, 163, 0.18);
         color: #06120c;
       }
-      .gol-btn-primary.gol-video-cta:hover {
+      .gol-btn-primary.gol-cta:hover {
         background: linear-gradient(100deg, #57e6ff 0%, #83ffbe 100%);
         border-color: transparent;
         color: #06120c;
@@ -276,27 +276,112 @@
         border-radius: 4px;
         font-size: 0.9em;
       }
-      .gol-video {
-        flex: 0 0 300px;
-        position: sticky;
-        top: 24px;
+      /* Code highlights */
+      .gol-code-intro {
+        color: #a9bac9;
+        font-size: 0.92em;
+        line-height: 1.6;
+        margin: 0 0 18px 0;
       }
-      .gol-video iframe {
-        width: 300px;
-        height: 640px;
-        border: 1px solid var(--gol-border);
-        border-radius: 16px;
-        display: block;
-        background: #0c1117;
-      }
-      .gol-video-caption {
-        text-align: center;
-        color: var(--gol-muted);
+      .gol-code-intro code,
+      .gol-snippet-desc code {
         font-family: var(--gol-mono);
-        font-size: 0.72em;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: 12px;
+        background: #0c1117;
+        color: var(--gol-cell);
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        white-space: nowrap;
+      }
+      .gol-snippet {
+        background: var(--gol-surface-2);
+        border: 1px solid var(--gol-border);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        /* keep long code lines from widening the page; the <pre> scrolls instead */
+        contain: inline-size;
+      }
+      .gol-snippet:last-child { margin-bottom: 0; }
+      .gol-snippet[open] { border-color: var(--gol-border-hi); }
+      .gol-snippet summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 14px 18px 14px 40px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px 14px;
+      }
+      .gol-snippet summary::-webkit-details-marker { display: none; }
+      .gol-snippet summary::before {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 20px;
+        width: 8px;
+        height: 8px;
+        background: var(--gol-cell-dim);
+        transition: transform 0.15s, background 0.15s;
+      }
+      .gol-snippet[open] summary::before { background: var(--gol-cell); transform: rotate(45deg); }
+      .gol-snippet summary:hover .gol-snippet-title { color: var(--gol-cell); }
+      .gol-snippet-title {
+        color: var(--gol-heading);
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .gol-snippet-file {
+        font-family: var(--gol-mono);
+        font-size: 0.72rem;
+        color: var(--gol-muted);
+        overflow-wrap: anywhere;
+      }
+      .gol-snippet-desc {
+        margin: 0;
+        padding: 0 18px 14px 40px;
+        color: #a9bac9;
+        font-size: 0.88em;
+        line-height: 1.6;
+      }
+      .gol-snippet-desc strong { color: var(--gol-text); font-weight: 600; }
+      .gol-snippet pre {
+        margin: 0;
+        max-height: 520px;
+        overflow: auto;
+        background: #0a0e13;
+        border-top: 1px solid var(--gol-border);
+        padding: 16px 18px;
+      }
+      .gol-snippet pre code {
+        font-family: var(--gol-mono);
+        font-size: 0.78rem;
+        line-height: 1.6;
+        color: #c9d6e2;
+        background: none;
+        padding: 0;
+        white-space: pre;
+        tab-size: 4;
+        font-variant-ligatures: none;
+      }
+      .gol-snippet .hljs-comment { color: #6b7d8f; font-style: italic; }
+      .gol-snippet .hljs-keyword,
+      .gol-snippet .hljs-built_in { color: #7cc4ff; }
+      .gol-snippet .hljs-type,
+      .gol-snippet .hljs-title.class_ { color: #5afea3; }
+      .gol-snippet .hljs-title.function_ { color: #ffd479; }
+      .gol-snippet .hljs-number,
+      .gol-snippet .hljs-literal { color: #f7a26b; }
+      .gol-snippet .hljs-string { color: #b5e08a; }
+      .gol-snippet .hljs-meta { color: #c39bff; }
+      .gol-snippet .hljs-doctag { color: #8fa3b6; }
+      @media (max-width: 600px) {
+        .gol-snippet summary { padding-left: 34px; }
+        .gol-snippet summary::before { left: 14px; }
+        .gol-snippet-desc { padding-left: 14px; padding-right: 14px; }
+        .gol-snippet pre { padding: 14px; }
+        .gol-snippet pre code { font-size: 0.72rem; }
       }
       .gol-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
       .gol-btn {
@@ -325,15 +410,6 @@
         color: var(--gol-cell);
       }
       @media (max-width: 980px) {
-        .gol-main { flex-direction: column; }
-        .gol-video {
-          position: static;
-          flex: none;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
         .gol-cards { grid-template-columns: 1fr; }
         .gol-features { grid-template-columns: 1fr; }
         .gol-stats { grid-template-columns: repeat(2, 1fr); }
@@ -344,7 +420,6 @@
         .gol-section { padding: 22px 18px; }
         .gol-title { font-size: 1.8rem; }
         .gol-stats { grid-template-columns: 1fr; }
-        .gol-video iframe { width: 90vw; height: calc(90vw * 640 / 300); }
       }
     </style>
   </head>
@@ -379,7 +454,7 @@
           </div>
           <div class="gol-stats">
             <div class="gol-stat">
-              <b>10,000+</b>
+              <b>15,000+</b>
               <span data-i18n="gol.stat.downloads">Google Play downloads</span>
             </div>
             <div class="gol-stat">
@@ -391,10 +466,18 @@
               <span data-i18n="gol.stat.kernel">bit-parallel kernel</span>
             </div>
             <div class="gol-stat">
-              <b>~0 GC</b>
-              <span data-i18n="gol.stat.gc">steady-state allocations</span>
+              <b>2.2–2.5×</b>
+              <span data-i18n="gol.stat.speedup">measured Burst speedup</span>
             </div>
           </div>
+          <a
+            class="gol-btn gol-btn-primary gol-cta"
+            href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
+            target="_blank"
+            rel="noopener noreferrer">
+            <svg class="gol-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5c0-.55.32-1.03.8-1.27l12.9 8.27c.5.32.5 1.05 0 1.37L5.8 20.14A1.42 1.42 0 0 1 5 18.87V3.5z" fill="currentColor"/></svg>
+            <span data-i18n="gol.playStore">Download on Play Store</span>
+          </a>
         </header>
 
         <div class="gol-main">
@@ -405,7 +488,7 @@
                 I built this <strong>Conway's Game of Life</strong> simulator
                 for <strong>Android</strong> in <strong>Unity</strong> (C#,
                 IL2CPP) and published it on Google Play, where it now has over
-                <strong>10,000 downloads</strong>. Under the hood is a
+                <strong>15,000 downloads</strong>. Under the hood is a
                 multithreaded engine I wrote to keep large, fast-changing
                 patterns running smoothly, even on lower-end phones.
               </p>
@@ -420,7 +503,19 @@
                     The world is partitioned into 64×64 chunks stored as
                     <code>ulong</code> bitmasks. Neighbor counts for 64 cells at
                     a time are computed with bitwise full-adders, compiled with
-                    <strong>Unity Burst</strong> as a parallel job.
+                    <strong>Unity Burst</strong> as a parallel job — measured
+                    <strong>2.2–2.5× faster</strong> than the managed version on
+                    device.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c7.title">Fully parallel step pipeline</h3>
+                  <p data-i18n="gol.engine.c7.body">
+                    The frontier lives in native containers, not a managed
+                    dictionary, so every stage of a step — neighbour gather,
+                    kernel, delta write, frontier apply — runs as a Burst
+                    <code>IJobParallelFor</code>. On mobile the serial gather,
+                    not the kernel, turned out to be the real bottleneck.
                   </p>
                 </div>
                 <div class="gol-card">
@@ -450,6 +545,35 @@
                   </p>
                 </div>
                 <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c8.title">Region-queryable living set</h3>
+                  <p data-i18n="gol.engine.c8.body">
+                    Live cells are stored as chunked row bitmasks, so "what is on
+                    screen" costs O(visible cells) instead of walking the whole
+                    population under the grid lock. A puffer's ever-growing
+                    static trail no longer drags throughput down.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c9.title">Far-zoom LOD renderer</h3>
+                  <p data-i18n="gol.engine.c9.body">
+                    Zoomed out, hundreds of thousands of tiles are replaced by
+                    one quad: living cells are rasterized into an
+                    <code>Alpha8</code> mask texture (one byte write per cell)
+                    and drawn in a single pass.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c10.title">Direct-apply at high speed</h3>
+                  <p data-i18n="gol.engine.c10.body">
+                    Above the animation cutoff the calc thread publishes whole
+                    changed chunks (one 512-byte copy each) straight into the
+                    live grid and the main thread only renders, so frame rate
+                    stops gating throughput. On a 275k-cell soup:
+                    <strong>64 → 141 gen/s</strong>, lock hold 5.6 → 2.1 ms per
+                    generation.
+                  </p>
+                </div>
+                <div class="gol-card">
                   <h3 data-i18n="gol.engine.c5.title">Procedural grid shader</h3>
                   <p data-i18n="gol.engine.c5.body">
                     Grid lines are drawn in a fragment shader on a single
@@ -462,6 +586,29 @@
                   <p data-i18n="gol.engine.c6.body">
                     Per-chunk buffers are pooled for near-zero steady-state GC
                     pressure — no allocation spikes or GC hitches on mobile.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c11.title">HashLife “Turbo” engine</h3>
+                  <p data-i18n="gol.engine.c11.body">
+                    A second, experimental engine: Gosper's HashLife with an
+                    interned quadtree and a memoised successor, jumping 2<sup>k</sup>
+                    generations per frame. On a 255k-cell Universal Turing Machine
+                    it goes from ~300 to <strong>61,440 gen/s</strong>; on a
+                    smaller Turing machine, <strong>3.9 M gen/s</strong>. Jumps are
+                    abortable, the node budget scales with device RAM, and a
+                    collection keeps the memo instead of discarding it.
+                  </p>
+                </div>
+                <div class="gol-card">
+                  <h3 data-i18n="gol.engine.c12.title">Verified, not assumed</h3>
+                  <p data-i18n="gol.engine.c12.body">
+                    Every engine change is checked differentially against a
+                    brute-force reference outside Unity — many-generation runs,
+                    because a stateful cache only fails after several steps. Burst
+                    compilation of all jobs is verified headless with
+                    <code>bcl.exe</code>, including a negative control, and every
+                    performance claim here comes from on-device measurement.
                   </p>
                 </div>
               </div>
@@ -533,7 +680,9 @@
                   buffer. The Unity main thread consumes one delta per display step
                   and applies it incrementally. Back-pressure holds the calc thread
                   at most 100 generations ahead, so it never races away from what
-                  the player sees.
+                  the player sees. Above 10 gen/s — where birth / death animations
+                  stop — the buffer is bypassed and the calc thread publishes
+                  changed chunks straight into the live grid.
                 </p>
               </div>
 
@@ -605,7 +754,7 @@
 
                   <text x="380" y="238" fill="#a9bac9" font-family="Inter,sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.neighbourSum">Σ 8 neighbours · bitwise full-adders</text>
                   <text x="380" y="260" fill="#5afea3" font-family="'JetBrains Mono',monospace" font-size="12" font-weight="700" text-anchor="middle">64 cells / op</text>
-                  <text x="380" y="281" fill="#a9bac9" font-family="Inter,sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.burstCompiled">IJobParallelFor · Burst-compiled</text>
+                  <text x="380" y="281" fill="#a9bac9" font-family="Inter,sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.burstCompiled">gather + kernel · Burst jobs</text>
 
                   <!-- Panel 3: delta out -->
                   <rect x="512" y="44" width="232" height="252" rx="10" fill="#0c1117" stroke="#2e4152" />
@@ -659,11 +808,362 @@
                   one-chunk halo — are recomputed, so a step costs
                   <strong>O(active region)</strong> no matter how large the stable
                   population is. Each chunk's neighbour counts are evaluated 64
-                  cells at a time with bitwise full-adders inside a
-                  <strong>Burst</strong>-compiled parallel job, and the born / died
-                  delta is simply the XOR of a chunk's old and new bitmask.
+                  cells at a time with bitwise full-adders. The frontier is held in
+                  native containers, so both the neighbour gather and the kernel run
+                  as <strong>Burst</strong>-compiled parallel jobs, and the born /
+                  died delta is simply the XOR of a chunk's old and new bitmask.
                 </p>
               </div>
+            </section>
+
+            <section class="gol-section">
+              <h2 data-i18n="gol.code.title">Code Highlights</h2>
+              <p class="gol-code-intro" data-i18n="gol.code.intro">
+                The repository is private, so here are selected excerpts from the
+                engine — copied verbatim from the source, including the original
+                comments. Only elisions marked <code>// …</code> were made.
+              </p>
+              <details class="gol-snippet" open>
+                <summary>
+                  <span class="gol-snippet-title" data-i18n="gol.code.s1.title">Bit-parallel Life rule — 64 cells per operation</span>
+                  <span class="gol-snippet-file">Assets/Scripts/BitmaskKernel.cs</span>
+                </summary>
+                <p class="gol-snippet-desc" data-i18n="gol.code.s1.desc">
+                  The whole Game of Life rule as bitwise arithmetic. Each <code>ulong</code> is 64 cells of a row; the eight neighbour counts are summed with full- and half-adders into three bit-planes, and “alive next generation” is a boolean expression over those planes. Burst compiles it to branch-free native code and <code>IJobParallelFor</code> runs one chunk per index.
+                </p>
+                <pre><code class="language-csharp">private static void Compute(NativeArray&lt;ulong&gt; nbr, bool allowBirth, NativeArray&lt;ulong&gt; outRows)
+{
+    ulong birthMask = allowBirth ? ulong.MaxValue : 0UL;
+
+    // Three-deep sliding window over the halo-assembled rows. Each row is assembled once
+    // and read at r-1, r and r+1, so six locals replace the two NativeArray(66) Temp
+    // allocations this used to make on every Execute (~6000 alloc/free pairs per generation
+    // at ~3000 candidates), along with all the array indexing.
+    //
+    // Only rows 1..64 (the chunk's own) are ever written out — rows 0 and 65 would need a
+    // next-gen computed too under a full 66-row loop, but that output is always discarded
+    // (they serve only as *input* halo), so skipping it changes nothing observable.
+    AssembleHaloRow(nbr, 0, out ulong prev0, out ulong prev1);
+    AssembleHaloRow(nbr, 1, out ulong cur0, out ulong cur1);
+
+    for (int r = 1; r &lt;= ChunkSize; r++)
+    {
+        AssembleHaloRow(nbr, r + 1, out ulong nxt0, out ulong nxt1);
+
+        NeighborWords(prev0, prev1, out ulong aboveL0, out ulong aboveR0, out ulong aboveL1, out ulong aboveR1);
+        NeighborWords(nxt0, nxt1, out ulong belowL0, out ulong belowR0, out ulong belowL1, out ulong belowR1);
+        NeighborWords(cur0, cur1, out ulong selfL0, out ulong selfR0, out ulong selfL1, out ulong selfR1);
+
+        ulong b0_0 = 0, b1_0 = 0, b2_0 = 0;
+        ulong b0_1 = 0, b1_1 = 0, b2_1 = 0;
+
+        FullAdder(aboveL0, prev0, aboveR0, out ulong aS0, out ulong aC0);
+        AddBits(ref b0_0, ref b1_0, ref b2_0, aS0, aC0);
+        FullAdder(aboveL1, prev1, aboveR1, out ulong aS1, out ulong aC1);
+        AddBits(ref b0_1, ref b1_1, ref b2_1, aS1, aC1);
+
+        FullAdder(belowL0, nxt0, belowR0, out ulong bS0, out ulong bC0);
+        AddBits(ref b0_0, ref b1_0, ref b2_0, bS0, bC0);
+        FullAdder(belowL1, nxt1, belowR1, out ulong bS1, out ulong bC1);
+        AddBits(ref b0_1, ref b1_1, ref b2_1, bS1, bC1);
+
+        HalfAdder(selfL0, selfR0, out ulong sS0, out ulong sC0);
+        AddBits(ref b0_0, ref b1_0, ref b2_0, sS0, sC0);
+        HalfAdder(selfL1, selfR1, out ulong sS1, out ulong sC1);
+        AddBits(ref b0_1, ref b1_1, ref b2_1, sS1, sC1);
+
+        ulong eq2_0 = (~b0_0) &amp; b1_0 &amp; (~b2_0);
+        ulong eq3_0 = b0_0 &amp; b1_0 &amp; (~b2_0);
+        ulong isAlive0 = cur0;
+        ulong next0 = (isAlive0 &amp; (eq2_0 | eq3_0)) | (~isAlive0 &amp; birthMask &amp; eq3_0);
+
+        ulong eq2_1 = (~b0_1) &amp; b1_1 &amp; (~b2_1);
+        ulong eq3_1 = b0_1 &amp; b1_1 &amp; (~b2_1);
+        ulong isAlive1 = cur1;
+        ulong next1 = (isAlive1 &amp; (eq2_1 | eq3_1)) | (~isAlive1 &amp; birthMask &amp; eq3_1);
+
+        // Extract inner chunk row: inner col localX == region col localX+1, so cols
+        // 1..63 come from word0 shifted left by 1, col 64 from word1's MSB.
+        ulong rowBits = (next0 &lt;&lt; 1) | ((next1 &gt;&gt; 63) &amp; 1UL);
+        outRows[r - 1] = rowBits;
+
+        prev0 = cur0; prev1 = cur1;
+        cur0 = nxt0; cur1 = nxt1;
+    }
+}
+
+// Bit0 (MSB, 1UL&lt;&lt;63) is the leftmost column of the word. Returns this row's left- and
+// right-shifted neighbour words for both words (i=0, i=1) of a 2-word-wide row.
+private static void NeighborWords(ulong w0, ulong w1, out ulong l0, out ulong r0, out ulong l1, out ulong r1)
+{
+    l0 = w0 &gt;&gt; 1;
+    r0 = (w0 &lt;&lt; 1) | (w1 &gt;&gt; 63);
+    l1 = (w1 &gt;&gt; 1) | ((w0 &amp; 1UL) &lt;&lt; 63);
+    r1 = w1 &lt;&lt; 1;
+}
+
+private static void FullAdder(ulong a, ulong b, ulong c, out ulong sum, out ulong carry)
+{
+    sum = a ^ b ^ c;
+    carry = (a &amp; b) | (a &amp; c) | (b &amp; c);
+}
+
+private static void HalfAdder(ulong a, ulong b, out ulong sum, out ulong carry)
+{
+    sum = a ^ b;
+    carry = a &amp; b;
+}
+
+// Ripple-carry add into 3 bit-planes (LSB first); final carry-out dropped (safe — a
+// neighbour count of 8 truncates to 0 in 3 bits, which doesn't alias counts 2 or 3).
+private static void AddBits(ref ulong b0, ref ulong b1, ref ulong b2, ulong addend0, ulong addend1)
+{
+    FullAdder(b0, addend0, 0, out ulong s0, out ulong c0);
+    FullAdder(b1, addend1, c0, out ulong s1, out ulong c1);
+    FullAdder(b2, 0, c1, out ulong s2, out _);
+    b0 = s0;
+    b1 = s1;
+    b2 = s2;
+}
+
+[BurstCompile]
+public struct ComputeChunksJob : IJobParallelFor
+{
+    [ReadOnly] public NativeArray&lt;ulong&gt; AllNbr;
+    public bool AllowBirth;
+    [NativeDisableParallelForRestriction] public NativeArray&lt;ulong&gt; AllOutRows;
+
+    public void Execute(int index)
+    {
+        NativeArray&lt;ulong&gt; nbr = AllNbr.GetSubArray(index * HaloWords, HaloWords);
+        NativeArray&lt;ulong&gt; outRows = AllOutRows.GetSubArray(index * ChunkSize, ChunkSize);
+        Compute(nbr, AllowBirth, outRows);
+    }
+}</code></pre>
+              </details>
+              <details class="gol-snippet">
+                <summary>
+                  <span class="gol-snippet-title" data-i18n="gol.code.s2.title">One step: only active chunks, as a chain of Burst jobs</span>
+                  <span class="gol-snippet-file">Assets/Scripts/BitmaskGenerationSolver.cs</span>
+                </summary>
+                <p class="gol-snippet-desc" data-i18n="gol.code.s2.desc">
+                  Candidates are derived from the chunks that changed last step plus one ring around them, so the cost tracks the active region, never the population. Gather, kernel and delta counting are chained through <code>JobHandle</code> dependencies, and the batch size is sized to the worker count instead of a fixed constant.
+                </p>
+                <pre><code class="language-csharp">// Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
+// change now (neighbourhood adjacency is symmetric), so candidates = N(_lastChanged).
+// This is O(active), never a walk over all occupied chunks — the key to keeping the
+// step cost independent of a large stable pattern's size.
+_candidates.Clear();
+foreach (long key in _lastChanged)
+{
+    int cx = ChunkX(key), cy = ChunkY(key);
+    for (int dx = -1; dx &lt;= 1; dx++)
+        for (int dy = -1; dy &lt;= 1; dy++)
+            _candidates.Add(ChunkKey(cx + dx, cy + dy));
+}
+
+_newChanged.Clear();
+
+_candidateList.Clear();
+foreach (long key in _candidates) _candidateList.Add(key);
+int count = _candidateList.Count;
+LastRecomputed = count; // every candidate is, by construction, recomputed
+
+if (count &gt; 0)
+{
+    EnsureCapacity(count);
+    for (int idx = 0; idx &lt; count; idx++) _candidateKeysBuffer[idx] = _candidateList[idx];
+
+    // Every job stage is spread across Job System worker threads (see
+    // BitmaskKernel.GatherJob's doc comment for why the gather/count/write stages also
+    // need to be part of this, not just the kernel).
+    //
+    // Batch size targets ~2 batches per worker rather than a fixed small constant: with
+    // e.g. 250 candidates on a 4-worker device, a fixed batchSize=8 would schedule ~31
+    // batches for only 4 workers — most of the parallel win gets eaten by per-batch
+    // scheduling overhead. Aiming for ~1-2 batches/worker (the usual Job System
+    // heuristic) keeps overhead low while still using every worker.
+    int batchSize = System.Math.Max(1, count / (JobWorkerCount * 2));
+
+    JobHandle gatherHandle = new BitmaskKernel.GatherJob
+    {
+        CandidateKeys = _candidateKeysBuffer,
+        ChunkIndex = _chunkIndex,
+        ChunkData = _chunkData.AsArray(),
+        AllNbr = _allNbrBuffer,
+        OldBlockIds = _oldBlockIds
+    }.Schedule(count, batchSize);
+
+    JobHandle kernelHandle = new BitmaskKernel.ComputeChunksJob
+    {
+        AllNbr = _allNbrBuffer,
+        AllowBirth = allowBirth,
+        AllOutRows = _allOutBuffer
+    }.Schedule(count, batchSize, gatherHandle);
+
+    // Pass 1 (parallel, depends on the kernel): per-candidate born/died bit counts +
+    // changed/newIsEmpty flags. Cheap (popcount, no per-bit loop) — see
+    // BitmaskKernel.CountDeltaJob's doc comment.
+    JobHandle countHandle = new BitmaskKernel.CountDeltaJob
+    {
+        AllOutRows = _allOutBuffer,
+        OldBlockIds = _oldBlockIds,
+        ChunkData = _chunkData.AsArray(),
+        BornCounts = _bornCounts,
+        DiedCounts = _diedCounts,
+        Changed = _changedFlags,
+        NewIsEmpty = _newEmptyFlags,
+        NewPopCounts = _newPopCounts
+    }.Schedule(count, batchSize, kernelHandle);
+    countHandle.Complete();
+    // … prefix sum, optional per-cell delta, serial block allocation
+
+    // Finalize pass B (parallel): every block id is now assigned and distinct, so the
+    // actual bulk copies are disjoint writes — safe to spread across worker threads.
+    new BitmaskKernel.ApplyJob
+    {
+        AllOutRows = _allOutBuffer,
+        BlockIds = _blockIds,
+        ChunkData = _chunkData.AsArray()
+    }.Schedule(count, batchSize).Complete();
+}
+
+(_lastChanged, _newChanged) = (_newChanged, _lastChanged);</code></pre>
+              </details>
+              <details class="gol-snippet">
+                <summary>
+                  <span class="gol-snippet-title" data-i18n="gol.code.s3.title">HashLife successor — Gosper's algorithm, abortable</span>
+                  <span class="gol-snippet-file">Assets/Scripts/HashLife/HashLifeSuccessor.cs</span>
+                </summary>
+                <p class="gol-snippet-desc" data-i18n="gol.code.s3.desc">
+                  The Turbo engine's core: a memoised recursion over an interned quadtree that advances the centre of a node by 2<sup>k</sup> generations. The abort check sits only on the cache-miss path, because a jump made entirely of cache hits has nothing worth abandoning.
+                </p>
+                <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Returns the level-(m.Level - 1) node that is the central square of
+/// &lt;paramref name="m"/&gt; advanced by &lt;c&gt;2^min(jTop, m.Level - 2)&lt;/c&gt; generations.
+/// Requires &lt;c&gt;m.Level &amp;gt;= 2&lt;/c&gt;. Memoizes on &lt;paramref name="m"/&gt; keyed by
+/// &lt;paramref name="jTop"/&gt; (see HashLifeNode.Result / ResultJTop): for a fixed jTop the
+/// effective step at every level is min(jTop, level-2), which collapses regardless of
+/// call path, so one cached result per (node, jTop) is complete — see HASHLIFE_PLAN.md
+/// B4.2's "why this caching is sound".
+/// &lt;/summary&gt;
+public HashLifeNode Successor(HashLifeNode m, int jTop)
+{
+    if (m.Population == 0) return store.Empty(m.Level - 1);
+    if (m.Result != null &amp;&amp; m.ResultJTop == jTop) return m.Result;
+
+    HashLifeNode result = m.Level == 2 ? Life4x4(store, m) : SuccessorRecursive(m, jTop);
+
+    m.Result = result;
+    m.ResultJTop = jTop;
+    return result;
+}
+
+private HashLifeNode SuccessorRecursive(HashLifeNode m, int jTop)
+{
+    // Checked here and not in Successor: the memoised fast path above returns without
+    // doing any work, so a jump that is entirely cache hits has nothing to abandon. This
+    // is the miss path, which is where the seconds are. One volatile read against nine
+    // dictionary probes and thirteen recursive calls is noise.
+    if (abort.Requested) throw new HashLifeAbortedException();
+
+    int k = m.Level;
+    HashLifeNode a = m.NW, b = m.NE, c = m.SW, d = m.SE;
+
+    // The nine overlapping level-(k-1) subsquares of m, in row-major order — see
+    // HASHLIFE_PLAN.md B3. Join's argument order is always (NW, NE, SW, SE).
+    HashLifeNode s00 = a;
+    HashLifeNode s01 = store.Join(a.NE, b.NW, a.SE, b.SW);
+    HashLifeNode s02 = b;
+    HashLifeNode s10 = store.Join(a.SW, a.SE, c.NW, c.NE);
+    HashLifeNode s11 = store.Join(a.SE, b.SW, c.NE, d.NW);
+    HashLifeNode s12 = store.Join(b.SW, b.SE, d.NW, d.NE);
+    HashLifeNode s20 = c;
+    HashLifeNode s21 = store.Join(c.NE, d.NW, c.SE, d.SW);
+    HashLifeNode s22 = d;
+
+    int jj = jTop &lt; k - 2 ? jTop : k - 2;
+
+    HashLifeNode c00 = Successor(s00, jj);
+    HashLifeNode c01 = Successor(s01, jj);
+    HashLifeNode c02 = Successor(s02, jj);
+    HashLifeNode c10 = Successor(s10, jj);
+    HashLifeNode c11 = Successor(s11, jj);
+    HashLifeNode c12 = Successor(s12, jj);
+    HashLifeNode c20 = Successor(s20, jj);
+    HashLifeNode c21 = Successor(s21, jj);
+    HashLifeNode c22 = Successor(s22, jj);
+
+    if (jj &lt; k - 2)
+    {
+        // The nine partials are already advanced 2^jj (less than the max this level
+        // could do) — just re-centre them, do not advance again.
+        return store.Join(
+            store.Center(store.Join(c00, c01, c10, c11)),
+            store.Center(store.Join(c01, c02, c11, c12)),
+            store.Center(store.Join(c10, c11, c20, c21)),
+            store.Center(store.Join(c11, c12, c21, c22)));
+    }
+
+    // The nine partials are each advanced 2^(k-3); a second round of Successor on the
+    // four re-joined quadrants adds another 2^(k-3), totalling 2^(k-2) == jj's full step
+    // at this level.
+    return store.Join(
+        Successor(store.Join(c00, c01, c10, c11), jj),
+        Successor(store.Join(c01, c02, c11, c12), jj),
+        Successor(store.Join(c10, c11, c20, c21), jj),
+        Successor(store.Join(c11, c12, c21, c22), jj));
+}</code></pre>
+              </details>
+              <details class="gol-snippet">
+                <summary>
+                  <span class="gol-snippet-title" data-i18n="gol.code.s4.title">Region query in O(visible cells)</span>
+                  <span class="gol-snippet-file">Assets/Scripts/ChunkedCellSet.cs</span>
+                </summary>
+                <p class="gol-snippet-desc" data-i18n="gol.code.s4.desc">
+                  Answers “which living cells are on screen” without walking the population. It chooses between probing the window's chunk coordinates and walking the stored chunks, whichever is smaller — a tight window and the far-zoom LOD window sit at opposite extremes.
+                </p>
+                <pre><code class="language-csharp">/// &lt;summary&gt;
+/// Appends the living cells inside the inclusive world bounds to &lt;paramref name="outCells"/&gt;
+/// (not cleared first). This is the hot query: cost is O(visible cells + touched chunks),
+/// never O(total population).
+/// &lt;/summary&gt;
+public void CopyWindowTo(int minX, int maxX, int minY, int maxY, ICollection&lt;Vector3Int&gt; outCells)
+{
+    if (count == 0 || minX &gt; maxX || minY &gt; maxY) return;
+
+    int cx0 = minX &gt;&gt; ChunkShift, cx1 = maxX &gt;&gt; ChunkShift;
+    int cy0 = minY &gt;&gt; ChunkShift, cy1 = maxY &gt;&gt; ChunkShift;
+
+    // Two ways to find the overlapping chunks: probe every chunk coordinate the window
+    // spans, or walk the stored chunks and reject the ones outside it. Which is cheaper
+    // flips with zoom — a tight window spans a handful of coordinates, while the far-zoom
+    // LOD window can span far more coordinates than the pattern has chunks. Pick the
+    // smaller of the two so neither zoom extreme degrades.
+    long spanned = (long)(cx1 - cx0 + 1) * (cy1 - cy0 + 1);
+    if (spanned &lt;= chunks.Count)
+    {
+        for (int cy = cy0; cy &lt;= cy1; cy++)
+        {
+            for (int cx = cx0; cx &lt;= cx1; cx++)
+            {
+                long key = BitmaskKernel.ChunkKey(cx, cy);
+                if (!chunks.TryGetValue(key, out Chunk chunk)) continue;
+                EmitChunk(key, chunk, minX, maxX, minY, maxY, outCells);
+            }
+        }
+        return;
+    }
+
+    foreach (KeyValuePair&lt;long, Chunk&gt; entry in chunks)
+    {
+        int cx = BitmaskKernel.ChunkX(entry.Key);
+        int cy = BitmaskKernel.ChunkY(entry.Key);
+        if (cx &lt; cx0 || cx &gt; cx1 || cy &lt; cy0 || cy &gt; cy1) continue;
+        EmitChunk(entry.Key, entry.Value, minX, maxX, minY, maxY, outCells);
+    }
+}</code></pre>
+              </details>
             </section>
 
             <section class="gol-section">
@@ -671,16 +1171,22 @@
               <ul class="gol-features">
                 <li data-i18n="gol.features.f1">
                   <strong>Infinite world</strong> — sparse storage of live cells
-                  only; pan and pinch-zoom (5×–500×) in any direction.
+                  only; pan and frame-rate-independent pinch zoom anchored between
+                  the fingers, from single cells out to patterns hundreds of
+                  thousands of cells wide.
                 </li>
                 <li data-i18n="gol.features.f2">
                   <strong>Pattern Book</strong> — classic patterns (gliders,
                   oscillators, still lifes) loaded from RLE files with a custom
-                  parser and runtime thumbnail rasterization.
+                  parser and runtime thumbnail rasterization — a tile view and a
+                  searchable list with an A–Z index rail, plus All / Large /
+                  Favourites tabs with starred favourites.
                 </li>
                 <li data-i18n="gol.features.f3">
-                  <strong>Save slots</strong> — with timestamps, camera state,
-                  and generated previews.
+                  <strong>Save slots</strong> — a tile picker with shaded
+                  previews and camera state. Slots live in RLE files encoded on
+                  a worker thread instead of PlayerPrefs, where reading one large
+                  save alone took 4.4 s on a Pixel 6 Pro.
                 </li>
                 <li data-i18n="gol.features.f4">
                   <strong>Interactive tutorial</strong> — teaches the rules by
@@ -694,27 +1200,17 @@
                   <strong>Polished UI</strong> — animated with DOTween,
                   adjustable simulation speed up to an uncapped INF mode.
                 </li>
+                <li data-i18n="gol.features.f7">
+                  <strong>Lab build mode</strong> <em>(in development)</em> —
+                  selection, clipboard with OR / XOR / OVER paste, rotate and
+                  mirror, undo budgeted in cells rather than steps, a stamp
+                  library with RLE import / export, and a TEST button that
+                  detects still lifes and oscillator periods.
+                </li>
               </ul>
             </section>
           </div>
 
-          <aside class="gol-video">
-            <iframe
-              src="https://www.youtube.com/embed/0501nT7ZJzw"
-              title="Game of Life — gameplay"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen></iframe>
-            <p class="gol-video-caption" data-i18n="gol.videoCaption">Gameplay recording</p>
-            <a
-              class="gol-btn gol-btn-primary gol-video-cta"
-              href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife"
-              target="_blank"
-              rel="noopener noreferrer">
-              <svg class="gol-btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5c0-.55.32-1.03.8-1.27l12.9 8.27c.5.32.5 1.05 0 1.37L5.8 20.14A1.42 1.42 0 0 1 5 18.87V3.5z" fill="currentColor"/></svg>
-              <span data-i18n="gol.playStore">Download on Play Store</span>
-            </a>
-          </aside>
         </div>
 
         <a href="index.html" class="back-link" data-i18n="gol.back">← Back to home</a>
@@ -742,5 +1238,15 @@
     <script src="js/lightbox.js" defer></script>
     <script src="js/header-scroll.js" defer></script>
     <script src="js/i18n.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        if (window.hljs) {
+          document.querySelectorAll('.gol-snippet pre code').forEach(function (el) {
+            window.hljs.highlightElement(el);
+          });
+        }
+      });
+    </script>
   </body>
 </html>

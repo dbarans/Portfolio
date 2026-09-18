@@ -9,7 +9,7 @@
       'index.nav.github': 'GitHub',
       'index.nav.linkedin': 'LinkedIn',
       'index.hero.line1': 'Game programmer',
-      'index.hero.line2': '10,000+ downloads on Google Play — built solo.',
+      'index.hero.line2': '15,000+ downloads on Google Play — built solo.',
       'index.hero.lead':
         'Unity &amp; C# — gameplay systems, tools, and performance work, from a solo Android release to a studio internship.',
       'index.hero.cta': 'View my work',
@@ -70,16 +70,28 @@
       'gol.stat.downloads': 'Google Play downloads',
       'gol.stat.costPerGen': 'cost per generation',
       'gol.stat.kernel': 'bit-parallel kernel',
-      'gol.stat.gc': 'steady-state allocations',
+      'gol.stat.speedup': 'measured Burst speedup',
 
       'gol.overview.title': 'Overview',
       'gol.overview.lead':
-        'I built this <strong>Conway\'s Game of Life</strong> simulator for <strong>Android</strong> in <strong>Unity</strong> (C#, IL2CPP) and published it on Google Play, where it now has over <strong>10,000 downloads</strong>. Under the hood is a multithreaded engine I wrote to keep large, fast-changing patterns running smoothly, even on lower-end phones.',
+        'I built this <strong>Conway\'s Game of Life</strong> simulator for <strong>Android</strong> in <strong>Unity</strong> (C#, IL2CPP) and published it on Google Play, where it now has over <strong>15,000 downloads</strong>. Under the hood is a multithreaded engine I wrote to keep large, fast-changing patterns running smoothly, even on lower-end phones.',
 
       'gol.engine.title': 'Engine &amp; Performance',
       'gol.engine.c1.title': 'Bit-parallel simulation kernel',
       'gol.engine.c1.body':
-        'The world is partitioned into 64×64 chunks stored as <code>ulong</code> bitmasks. Neighbor counts for 64 cells at a time are computed with bitwise full-adders, compiled with <strong>Unity Burst</strong> as a parallel job.',
+        'The world is partitioned into 64×64 chunks stored as <code>ulong</code> bitmasks. Neighbor counts for 64 cells at a time are computed with bitwise full-adders, compiled with <strong>Unity Burst</strong> as a parallel job — measured <strong>2.2–2.5× faster</strong> than the managed version on device.',
+      'gol.engine.c7.title': 'Fully parallel step pipeline',
+      'gol.engine.c7.body':
+        'The frontier lives in native containers, not a managed dictionary, so every stage of a step — neighbour gather, kernel, delta write, frontier apply — runs as a Burst <code>IJobParallelFor</code>. On mobile the serial gather, not the kernel, turned out to be the real bottleneck.',
+      'gol.engine.c8.title': 'Region-queryable living set',
+      'gol.engine.c8.body':
+        'Live cells are stored as chunked row bitmasks, so "what is on screen" costs O(visible cells) instead of walking the whole population under the grid lock. A puffer\'s ever-growing static trail no longer drags throughput down.',
+      'gol.engine.c9.title': 'Far-zoom LOD renderer',
+      'gol.engine.c9.body':
+        'Zoomed out, hundreds of thousands of tiles are replaced by one quad: living cells are rasterized into an <code>Alpha8</code> mask texture (one byte write per cell) and drawn in a single pass.',
+      'gol.engine.c10.title': 'Direct-apply at high speed',
+      'gol.engine.c10.body':
+        'Above the animation cutoff the calc thread publishes whole changed chunks (one 512-byte copy each) straight into the live grid and the main thread only renders, so frame rate stops gating throughput. On a 275k-cell soup: <strong>64 → 141 gen/s</strong>, lock hold 5.6 → 2.1 ms per generation.',
       'gol.engine.c2.title': 'Active-chunk tracking',
       'gol.engine.c2.body':
         'Only chunks near cells that changed last generation are recomputed — a step costs O(active region), not O(population). Stable regions cost nothing, no matter how large.',
@@ -95,6 +107,12 @@
       'gol.engine.c6.title': 'Object pooling',
       'gol.engine.c6.body':
         'Per-chunk buffers are pooled for near-zero steady-state GC pressure — no allocation spikes or GC hitches on mobile.',
+      'gol.engine.c11.title': 'HashLife “Turbo” engine',
+      'gol.engine.c11.body':
+        'A second, experimental engine: Gosper\'s HashLife with an interned quadtree and a memoised successor, jumping 2<sup>k</sup> generations per frame. On a 255k-cell Universal Turing Machine it goes from ~300 to <strong>61,440 gen/s</strong>; on a smaller Turing machine, <strong>3.9 M gen/s</strong>. Jumps are abortable, the node budget scales with device RAM, and a collection keeps the memo instead of discarding it.',
+      'gol.engine.c12.title': 'Verified, not assumed',
+      'gol.engine.c12.body':
+        'Every engine change is checked differentially against a brute-force reference outside Unity — many-generation runs, because a stateful cache only fails after several steps. Burst compilation of all jobs is verified headless with <code>bcl.exe</code>, including a negative control, and every performance claim here comes from on-device measurement.',
 
       'gol.arch.title': 'Architecture',
 
@@ -117,7 +135,7 @@
       'gol.diag1.perStep': '1 / step',
       'gol.diag1.backpressure': 'back-pressure — calc sleeps while ≥ 100 generations ahead of display',
       'gol.diag1.caption':
-        'A background <strong>calculation thread</strong> runs up to 100 generations ahead of the display, writing each generation\'s <strong>born / died delta</strong> into a lock-guarded ring buffer. The Unity main thread consumes one delta per display step and applies it incrementally. Back-pressure holds the calc thread at most 100 generations ahead, so it never races away from what the player sees.',
+        'A background <strong>calculation thread</strong> runs up to 100 generations ahead of the display, writing each generation\'s <strong>born / died delta</strong> into a lock-guarded ring buffer. The Unity main thread consumes one delta per display step and applies it incrementally. Back-pressure holds the calc thread at most 100 generations ahead, so it never races away from what the player sees. Above 10 gen/s — where birth / death animations stop — the buffer is bypassed and the calc thread publishes changed chunks straight into the live grid.',
 
       'gol.diag2.title': 'Active-chunk, bit-parallel engine',
       'gol.diag2.aria':
@@ -129,29 +147,46 @@
       'gol.diag2.panel2Title': '2 · BIT-PARALLEL KERNEL',
       'gol.diag2.parallelCandidates': '× N candidates in parallel',
       'gol.diag2.neighbourSum': 'Σ 8 neighbours · bitwise full-adders',
-      'gol.diag2.burstCompiled': 'IJobParallelFor · Burst-compiled',
+      'gol.diag2.burstCompiled': 'gather + kernel · Burst jobs',
       'gol.diag2.panel3Title': '3 · DELTA = OLD ⊕ NEW',
       'gol.diag2.born': 'born',
       'gol.diag2.died': 'died',
       'gol.diag2.caption':
-        'Space is split into 64×64 chunks stored as <code>ulong</code> bitmasks. Only chunks that changed last step — plus their one-chunk halo — are recomputed, so a step costs <strong>O(active region)</strong> no matter how large the stable population is. Each chunk\'s neighbour counts are evaluated 64 cells at a time with bitwise full-adders inside a <strong>Burst</strong>-compiled parallel job, and the born / died delta is simply the XOR of a chunk\'s old and new bitmask.',
+        'Space is split into 64×64 chunks stored as <code>ulong</code> bitmasks. Only chunks that changed last step — plus their one-chunk halo — are recomputed, so a step costs <strong>O(active region)</strong> no matter how large the stable population is. Each chunk\'s neighbour counts are evaluated 64 cells at a time with bitwise full-adders. The frontier is held in native containers, so both the neighbour gather and the kernel run as <strong>Burst</strong>-compiled parallel jobs, and the born / died delta is simply the XOR of a chunk\'s old and new bitmask.',
+
+      'gol.code.title': 'Code Highlights',
+      'gol.code.intro':
+        'The repository is private, so here are selected excerpts from the engine — copied verbatim from the source, including the original comments. Only elisions marked <code>// …</code> were made.',
+      'gol.code.s1.title': 'Bit-parallel Life rule — 64 cells per operation',
+      'gol.code.s1.desc':
+        'The whole Game of Life rule as bitwise arithmetic. Each <code>ulong</code> is 64 cells of a row; the eight neighbour counts are summed with full- and half-adders into three bit-planes, and “alive next generation” is a boolean expression over those planes. Burst compiles it to branch-free native code and <code>IJobParallelFor</code> runs one chunk per index.',
+      'gol.code.s2.title': 'One step: only active chunks, as a chain of Burst jobs',
+      'gol.code.s2.desc':
+        'Candidates are derived from the chunks that changed last step plus one ring around them, so the cost tracks the active region, never the population. Gather, kernel and delta counting are chained through <code>JobHandle</code> dependencies, and the batch size is sized to the worker count instead of a fixed constant.',
+      'gol.code.s3.title': 'HashLife successor — Gosper\'s algorithm, abortable',
+      'gol.code.s3.desc':
+        'The Turbo engine\'s core: a memoised recursion over an interned quadtree that advances the centre of a node by 2<sup>k</sup> generations. The abort check sits only on the cache-miss path, because a jump made entirely of cache hits has nothing worth abandoning.',
+      'gol.code.s4.title': 'Region query in O(visible cells)',
+      'gol.code.s4.desc':
+        'Answers “which living cells are on screen” without walking the population. It chooses between probing the window\'s chunk coordinates and walking the stored chunks, whichever is smaller — a tight window and the far-zoom LOD window sit at opposite extremes.',
 
       'gol.features.title': 'Product Features',
       'gol.features.f1':
-        '<strong>Infinite world</strong> — sparse storage of live cells only; pan and pinch-zoom (5×–500×) in any direction.',
+        '<strong>Infinite world</strong> — sparse storage of live cells only; pan and frame-rate-independent pinch zoom anchored between the fingers, from single cells out to patterns hundreds of thousands of cells wide.',
       'gol.features.f2':
-        '<strong>Pattern Book</strong> — classic patterns (gliders, oscillators, still lifes) loaded from RLE files with a custom parser and runtime thumbnail rasterization.',
+        '<strong>Pattern Book</strong> — classic patterns (gliders, oscillators, still lifes) loaded from RLE files with a custom parser and runtime thumbnail rasterization — a tile view and a searchable list with an A–Z index rail, plus All / Large / Favourites tabs with starred favourites.',
       'gol.features.f3':
-        '<strong>Save slots</strong> — with timestamps, camera state, and generated previews.',
+        '<strong>Save slots</strong> — a tile picker with shaded previews and camera state. Slots live in RLE files encoded on a worker thread instead of PlayerPrefs, where reading one large save alone took 4.4 s on a Pixel 6 Pro.',
       'gol.features.f4':
         '<strong>Interactive tutorial</strong> — teaches the rules by having the player draw and evolve patterns.',
       'gol.features.f5':
         '<strong>Haptic feedback</strong> — native Android vibration bridge with amplitude control.',
       'gol.features.f6':
         '<strong>Polished UI</strong> — animated with DOTween, adjustable simulation speed up to an uncapped INF mode.',
+      'gol.features.f7':
+        '<strong>Lab build mode</strong> <em>(in development)</em> — selection, clipboard with OR / XOR / OVER paste, rotate and mirror, undo budgeted in cells rather than steps, a stamp library with RLE import / export, and a TEST button that detects still lifes and oscillator periods.',
 
       'gol.links.title': 'Links',
-      'gol.videoCaption': 'Gameplay recording',
 
       'neon.jam':
         '<strong>PogJam 2026</strong> (Collegium Da Vinci, February 2026) — <strong>48-hour</strong> team game jam; theme: <strong>neon</strong>. Prototype in <strong>Unity</strong>. I worked as a <strong>Unity developer</strong>.',
@@ -194,7 +229,7 @@
       'index.nav.github': 'GitHub',
       'index.nav.linkedin': 'LinkedIn',
       'index.hero.line1': 'Programista gier',
-      'index.hero.line2': '10 000+ pobrań w Google Play — zbudowane samodzielnie.',
+      'index.hero.line2': '15 000+ pobrań w Google Play — zbudowane samodzielnie.',
       'index.hero.lead':
         'Unity i C# — systemy gameplayowe, narzędzia i wydajność, od solowego wydania na Androida po staż w studiu.',
       'index.hero.cta': 'Zobacz projekty',
@@ -255,16 +290,28 @@
       'gol.stat.downloads': 'pobrań w Google Play',
       'gol.stat.costPerGen': 'koszt jednej generacji',
       'gol.stat.kernel': 'kernel bitowo-równoległy',
-      'gol.stat.gc': 'alokacji w stanie ustalonym',
+      'gol.stat.speedup': 'zmierzone przyspieszenie Burst',
 
       'gol.overview.title': 'Przegląd',
       'gol.overview.lead':
-        'Zbudowałem ten symulator <strong>Gry w życie Conwaya</strong> na <strong>Androida</strong> w <strong>Unity</strong> (C#, IL2CPP) i opublikowałem w Google Play, gdzie ma dziś ponad <strong>10 000 pobrań</strong>. Pod maską działa wielowątkowy silnik, który napisałem tak, by duże, szybko zmieniające się wzory chodziły płynnie nawet na słabszych telefonach.',
+        'Zbudowałem ten symulator <strong>Gry w życie Conwaya</strong> na <strong>Androida</strong> w <strong>Unity</strong> (C#, IL2CPP) i opublikowałem w Google Play, gdzie ma dziś ponad <strong>15 000 pobrań</strong>. Pod maską działa wielowątkowy silnik, który napisałem tak, by duże, szybko zmieniające się wzory chodziły płynnie nawet na słabszych telefonach.',
 
       'gol.engine.title': 'Silnik i wydajność',
       'gol.engine.c1.title': 'Bitowo-równoległy kernel symulacji',
       'gol.engine.c1.body':
-        'Świat jest podzielony na chunki 64×64 przechowywane jako maski bitowe <code>ulong</code>. Liczba sąsiadów dla 64 komórek naraz jest liczona bitowymi sumatorami pełnymi, skompilowanymi z <strong>Unity Burst</strong> jako zadanie równoległe.',
+        'Świat jest podzielony na chunki 64×64 przechowywane jako maski bitowe <code>ulong</code>. Liczba sąsiadów dla 64 komórek naraz jest liczona bitowymi sumatorami pełnymi, skompilowanymi z <strong>Unity Burst</strong> jako zadanie równoległe — zmierzone <strong>2,2–2,5× szybciej</strong> niż wersja zarządzana, na urządzeniu.',
+      'gol.engine.c7.title': 'W pełni równoległy potok kroku',
+      'gol.engine.c7.body':
+        'Frontier trzymany jest w kontenerach natywnych, nie w zarządzanym słowniku, więc każdy etap kroku — zbieranie sąsiadów, kernel, zapis delty, aktualizacja frontiera — działa jako zadanie Burst <code>IJobParallelFor</code>. Na mobile prawdziwym wąskim gardłem okazało się szeregowe zbieranie sąsiadów, nie sam kernel.',
+      'gol.engine.c8.title': 'Zbiór żywych komórek odpytywany regionami',
+      'gol.engine.c8.body':
+        'Żywe komórki są przechowywane jako chunkowane maski bitowe wierszy, więc pytanie „co jest na ekranie” kosztuje O(widocznych komórek), zamiast przechodzenia całej populacji pod blokadą siatki. Wciąż rosnący, statyczny ślad puffera nie obniża już przepustowości.',
+      'gol.engine.c9.title': 'Renderer LOD przy dalekim oddaleniu',
+      'gol.engine.c9.body':
+        'Po oddaleniu setki tysięcy kafelków zastępuje jeden quad: żywe komórki są rasteryzowane do tekstury maski <code>Alpha8</code> (jeden zapis bajtu na komórkę) i rysowane w jednym przebiegu.',
+      'gol.engine.c10.title': 'Bezpośredni zapis przy dużej prędkości',
+      'gol.engine.c10.body':
+        'Powyżej progu animacji wątek obliczeniowy publikuje całe zmienione chunki (jedna kopia 512 bajtów na chunk) prosto do żywej siatki, a wątek główny tylko renderuje, więc liczba klatek przestaje ograniczać przepustowość. Na zupie 275 tys. komórek: <strong>64 → 141 gen/s</strong>, czas trzymania blokady 5,6 → 2,1 ms na generację.',
       'gol.engine.c2.title': 'Śledzenie aktywnych chunków',
       'gol.engine.c2.body':
         'Przeliczane są tylko chunki w pobliżu komórek, które zmieniły się w poprzedniej generacji — krok kosztuje O(aktywnego obszaru), nie O(populacji). Stabilne regiony nic nie kosztują, niezależnie od rozmiaru.',
@@ -280,6 +327,12 @@
       'gol.engine.c6.title': 'Pula obiektów',
       'gol.engine.c6.body':
         'Bufory per chunk są pulowane, dając niemal zerowe obciążenie GC w stanie ustalonym — brak skoków alokacji i przycięć GC na mobile.',
+      'gol.engine.c11.title': 'Silnik HashLife „Turbo”',
+      'gol.engine.c11.body':
+        'Drugi, eksperymentalny silnik: HashLife Gospera z internowanym drzewem czwórkowym i memoizowanym następnikiem, przeskakujący 2<sup>k</sup> generacji na klatkę. Na Uniwersalnej Maszynie Turinga (255 tys. komórek) przyspiesza z ~300 do <strong>61 440 gen/s</strong>, na mniejszej maszynie Turinga — <strong>3,9 mln gen/s</strong>. Skoki można przerwać, budżet węzłów skaluje się z pamięcią RAM urządzenia, a odśmiecanie zachowuje memo zamiast je wyrzucać.',
+      'gol.engine.c12.title': 'Zweryfikowane, nie zakładane',
+      'gol.engine.c12.body':
+        'Każda zmiana silnika jest sprawdzana różnicowo z referencją brute-force poza Unity — w przebiegach wielogeneracyjnych, bo stanowy cache psuje się dopiero po kilku krokach. Kompilacja Burst wszystkich zadań jest weryfikowana bez edytora przez <code>bcl.exe</code>, łącznie z próbą negatywną, a każda liczba na tej stronie pochodzi z pomiaru na urządzeniu.',
 
       'gol.arch.title': 'Architektura',
 
@@ -304,7 +357,7 @@
       'gol.diag1.perStep': '1 / krok',
       'gol.diag1.backpressure': 'back-pressure — obliczenia wstrzymują się przy ≥ 100 generacjach przewagi nad wyświetlaniem',
       'gol.diag1.caption':
-        'Działający w tle <strong>wątek obliczeniowy</strong> może wyprzedzać wyświetlanie o maksymalnie 100 generacji, zapisując deltę <strong>born / died</strong> każdej generacji do buforu kołowego chronionego blokadą. Wątek główny Unity odczytuje po jednej delcie na krok wyświetlania i aplikuje ją przyrostowo. Mechanizm back-pressure trzyma wątek obliczeniowy maksymalnie 100 generacji przed wyświetlaniem, więc nigdy nie oddala się od tego, co widzi gracz.',
+        'Działający w tle <strong>wątek obliczeniowy</strong> może wyprzedzać wyświetlanie o maksymalnie 100 generacji, zapisując deltę <strong>born / died</strong> każdej generacji do buforu kołowego chronionego blokadą. Wątek główny Unity odczytuje po jednej delcie na krok wyświetlania i aplikuje ją przyrostowo. Mechanizm back-pressure trzyma wątek obliczeniowy maksymalnie 100 generacji przed wyświetlaniem, więc nigdy nie oddala się od tego, co widzi gracz. Powyżej 10 gen/s — gdzie kończą się animacje narodzin i śmierci — bufor jest pomijany, a wątek obliczeniowy publikuje zmienione chunki prosto do żywej siatki.',
 
       'gol.diag2.title': 'Silnik bitowo-równoległy z pamięcią aktywnych chunków',
       'gol.diag2.aria':
@@ -316,29 +369,46 @@
       'gol.diag2.panel2Title': '2 · KERNEL BITOWO-RÓWNOLEGŁY',
       'gol.diag2.parallelCandidates': '× N kandydatów równolegle',
       'gol.diag2.neighbourSum': 'Σ 8 sąsiadów · bitowe sumatory pełne',
-      'gol.diag2.burstCompiled': 'IJobParallelFor · skompilowane w Burst',
+      'gol.diag2.burstCompiled': 'gather + kernel · zadania Burst',
       'gol.diag2.panel3Title': '3 · DELTA = STARA ⊕ NOWA',
       'gol.diag2.born': 'narodziny',
       'gol.diag2.died': 'śmierć',
       'gol.diag2.caption':
-        'Przestrzeń jest podzielona na chunki 64×64 przechowywane jako maski bitowe <code>ulong</code>. Przeliczane są tylko chunki, które zmieniły się w poprzednim kroku — wraz z otaczającym je halo o szerokości jednego chunka — więc koszt kroku to <strong>O(aktywnego obszaru)</strong>, niezależnie od tego, jak duża jest stabilna populacja. Liczba sąsiadów każdego chunka jest liczona po 64 komórki naraz za pomocą bitowych sumatorów pełnych wewnątrz zadania skompilowanego w <strong>Burst</strong>, a delta born / died to po prostu XOR starej i nowej maski bitowej chunka.',
+        'Przestrzeń jest podzielona na chunki 64×64 przechowywane jako maski bitowe <code>ulong</code>. Przeliczane są tylko chunki, które zmieniły się w poprzednim kroku — wraz z otaczającym je halo o szerokości jednego chunka — więc koszt kroku to <strong>O(aktywnego obszaru)</strong>, niezależnie od tego, jak duża jest stabilna populacja. Liczba sąsiadów każdego chunka jest liczona po 64 komórki naraz bitowymi sumatorami pełnymi. Frontier trzymany jest w kontenerach natywnych, więc zarówno zbieranie sąsiadów, jak i kernel działają jako równoległe zadania <strong>Burst</strong>, a delta born / died to po prostu XOR starej i nowej maski bitowej chunka.',
+
+      'gol.code.title': 'Wybrane fragmenty kodu',
+      'gol.code.intro':
+        'Repozytorium jest prywatne, dlatego poniżej wybrane fragmenty silnika — skopiowane dosłownie ze źródła, razem z oryginalnymi komentarzami (po angielsku). Jedyne zmiany to pominięcia oznaczone <code>// …</code>.',
+      'gol.code.s1.title': 'Reguła gry bitowo-równolegle — 64 komórki na operację',
+      'gol.code.s1.desc':
+        'Cała reguła Gry w życie jako arytmetyka bitowa. Każdy <code>ulong</code> to 64 komórki wiersza; osiem liczników sąsiadów jest sumowanych sumatorami pełnymi i połówkowymi do trzech płaszczyzn bitowych, a „żywa w następnej generacji” to wyrażenie logiczne na tych płaszczyznach. Burst kompiluje to do bezgałęziowego kodu natywnego, a <code>IJobParallelFor</code> liczy jeden chunk na indeks.',
+      'gol.code.s2.title': 'Jeden krok: tylko aktywne chunki, jako łańcuch zadań Burst',
+      'gol.code.s2.desc':
+        'Kandydaci wynikają z chunków zmienionych w poprzednim kroku plus jednego pierścienia wokół nich, więc koszt zależy od aktywnego obszaru, nigdy od populacji. Zbieranie sąsiadów, kernel i liczenie delty są połączone zależnościami <code>JobHandle</code>, a rozmiar paczki dobierany jest do liczby wątków roboczych zamiast stałej.',
+      'gol.code.s3.title': 'Następnik HashLife — algorytm Gospera, z możliwością przerwania',
+      'gol.code.s3.desc':
+        'Serce silnika Turbo: memoizowana rekurencja po internowanym drzewie czwórkowym, przesuwająca środek węzła o 2<sup>k</sup> generacji. Sprawdzenie przerwania jest tylko na ścieżce chybienia w cache, bo skok złożony wyłącznie z trafień nie ma czego porzucać.',
+      'gol.code.s4.title': 'Zapytanie o region w O(widocznych komórek)',
+      'gol.code.s4.desc':
+        'Odpowiada na pytanie „które żywe komórki są na ekranie” bez przechodzenia całej populacji. Wybiera tańszą z dwóch dróg — sprawdzenie współrzędnych chunków w oknie albo przejście po zapisanych chunkach — bo ciasne okno i okno LOD przy dalekim oddaleniu to dwa przeciwne skrajne przypadki.',
 
       'gol.features.title': 'Funkcje aplikacji',
       'gol.features.f1':
-        '<strong>Nieskończony świat</strong> — rzadkie przechowywanie tylko żywych komórek; przesuwanie i przybliżanie (5×–500×) w dowolnym kierunku.',
+        '<strong>Nieskończony świat</strong> — rzadkie przechowywanie tylko żywych komórek; przesuwanie i niezależne od liczby klatek przybliżanie zakotwiczone między palcami — od pojedynczych komórek po wzory szerokie na setki tysięcy komórek.',
       'gol.features.f2':
-        '<strong>Biblioteka wzorów</strong> — klasyczne wzory (glidery, oscylatory, układy statyczne) wczytywane z plików RLE przez własny parser, z generowaniem miniatur w czasie działania.',
+        '<strong>Biblioteka wzorów</strong> — klasyczne wzory (glidery, oscylatory, układy statyczne) wczytywane z plików RLE przez własny parser, z generowaniem miniatur w czasie działania — widok kafelków i przeszukiwalna lista z indeksem A–Z, plus zakładki Wszystkie / Duże / Ulubione z oznaczaniem gwiazdką.',
       'gol.features.f3':
-        '<strong>Sloty zapisu</strong> — ze znacznikami czasu, stanem kamery i wygenerowanymi podglądami.',
+        '<strong>Sloty zapisu</strong> — wybór z kafelków z cieniowanymi podglądami i stanem kamery. Sloty trzymane są w plikach RLE kodowanych na wątku roboczym zamiast w PlayerPrefs, gdzie samo odczytanie jednego dużego zapisu trwało 4,4 s na Pixelu 6 Pro.',
       'gol.features.f4':
         '<strong>Interaktywny samouczek</strong> — uczy zasad, pozwalając graczowi rysować i obserwować ewolucję wzorów.',
       'gol.features.f5':
         '<strong>Wibracje</strong> — natywny mostek do wibracji na Androidzie z kontrolą amplitudy.',
       'gol.features.f6':
         '<strong>Dopracowany interfejs</strong> — animowany za pomocą DOTween, regulowana prędkość symulacji aż po nielimitowany tryb INF.',
+      'gol.features.f7':
+        '<strong>Tryb Lab do budowania</strong> <em>(w trakcie prac)</em> — zaznaczanie, schowek z wklejaniem OR / XOR / OVER, obracanie i odbijanie, cofanie z budżetem liczonym w komórkach, a nie w krokach, biblioteka stempli z importem / eksportem RLE oraz przycisk TEST wykrywający układy stabilne i okresy oscylatorów.',
 
       'gol.links.title': 'Linki',
-      'gol.videoCaption': 'Nagranie z rozgrywki',
 
       'neon.jam':
         '<strong>PogJam 2026</strong> (Collegium Da Vinci, luty 2026) — <strong>48 godzin</strong>; temat jamu: <strong>neon</strong>. Zespołowy prototyp w <strong>Unity</strong>. Moja rola: <strong>Unity developer</strong>.',
