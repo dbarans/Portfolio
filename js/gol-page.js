@@ -19,6 +19,18 @@
     if (tag) tag.addEventListener('load', highlight);
   }
 
+  // --- Diagrams scroll sideways on narrow screens; only then are they a keyboard stop
+  // (their focus ring comes from the page-wide [tabindex] rule).
+  const scrollers = Array.from(document.querySelectorAll('.gp-diagram-scroll'));
+  function syncScrollers() {
+    scrollers.forEach((el) => {
+      if (el.scrollWidth > el.clientWidth + 1) el.setAttribute('tabindex', '0');
+      else el.removeAttribute('tabindex');
+    });
+  }
+  syncScrollers();
+  window.addEventListener('resize', syncScrollers);
+
   const sections = Array.from(document.querySelectorAll('.gp-sec[data-preset]'));
   const links = Array.from(document.querySelectorAll('.gp-nav a'));
   const field = setUpField();

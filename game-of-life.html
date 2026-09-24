@@ -66,7 +66,7 @@
           <p class="gp-lead" data-i18n="gp.lead">An Android simulator where the board has no edges — and the game doesn’t slow down, because it only computes what actually moves.</p>
           <ul class="gp-figs" aria-label="Key figures" data-i18n-attr="aria-label" data-i18n-attr-key="gp.figs.aria">
             <li><b data-i18n="gp.figs.dl.v">15,000+</b><span data-i18n="gp.figs.dl.l">downloads on Google Play</span></li>
-            <li><b data-i18n="gp.figs.burst.v">2.2–2.5×</b><span data-i18n="gp.figs.burst.l">more generations per second after moving the engine to Burst jobs</span></li>
+            <li><b data-i18n="gp.figs.burst.v">2.2–2.5×</b><span data-i18n="gp.figs.burst.l">more generations per second after moving the engine to Burst jobs (Unity editor)</span></li>
             <li><b data-i18n="gp.figs.device.v">64 → 141/s</b><span data-i18n="gp.figs.device.l">generations per second, 275k-cell soup in fast mode on a Pixel 6 Pro</span></li>
           </ul>
         </header>
@@ -211,9 +211,9 @@ foreach (long key in _lastChanged)
 
           <h3 class="gp-h3" data-i18n="gp.s2.arch">Architecture</h3>
           <figure class="gp-diagram">
-            <figcaption class="gp-diagram-title" data-i18n="gol.diag1.title">Multithreaded generation pipeline</figcaption>
+            <figcaption class="gp-diagram-title" id="diag1-t" data-i18n="gol.diag1.title">Multithreaded generation pipeline</figcaption>
             <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
-            <div class="gp-diagram-scroll">
+            <div class="gp-diagram-scroll" role="region" aria-labelledby="diag1-t">
             <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag1.aria" aria-label="A background calculation thread produces per-generation deltas into a lock-guarded ring buffer that the Unity main thread consumes one step at a time, with back-pressure holding the calc thread at most 100 generations ahead.">
                   <defs>
                     <marker id="d1-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
@@ -272,9 +272,9 @@ foreach (long key in _lastChanged)
           </figure>
           <p class="gp-diagram-caption" data-i18n="gp.diag1.c">The calculation thread writes each generation’s <strong>born / died delta</strong> into a lock-guarded ring buffer and may run up to 100 generations ahead; the main thread applies one delta per step. Above 10 gen/s the buffer is bypassed and changed chunks go straight into the live grid.</p>
           <figure class="gp-diagram">
-            <figcaption class="gp-diagram-title" data-i18n="gol.diag2.title">Active-chunk, bit-parallel engine</figcaption>
+            <figcaption class="gp-diagram-title" id="diag2-t" data-i18n="gol.diag2.title">Active-chunk, bit-parallel engine</figcaption>
             <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
-            <div class="gp-diagram-scroll">
+            <div class="gp-diagram-scroll" role="region" aria-labelledby="diag2-t">
             <svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria" aria-label="The world is split into 64 by 64 bitmask chunks; only chunks that changed last step plus their halo are recomputed by a Burst-compiled parallel kernel that counts 64 cells per bitwise operation, and the output is the XOR delta of each chunk's old and new bitmask.">
                   <defs>
                     <marker id="d2-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
