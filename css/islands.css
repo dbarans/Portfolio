@@ -12,12 +12,14 @@
   --isl-mono: 'DM Mono', ui-monospace, Consolas, monospace;
 
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  /* Full-bleed; --sbw (set by js/islands.js) takes a classic scrollbar out of 100vw */
+  width: calc(100vw - var(--sbw, 0px));
+  margin-left: calc(50% - (100vw - var(--sbw, 0px)) / 2);
   background: var(--isl-stage);
   font-family: var(--isl-font);
   color: var(--isl-paper);
-  scroll-margin-top: 0;
+  /* Cancel html's scroll-padding-top (style.css): #projects should land on the stage itself */
+  scroll-margin-top: -5.5rem;
 }
 
 .islands-stage {
@@ -203,6 +205,7 @@ a.island-cta:focus-visible {
 
 .island-num {
   position: absolute;
+  z-index: var(--num-z, auto);
   left: -20px;
   top: -50px;
   font-size: 92px;
@@ -236,6 +239,9 @@ a.island-cta:focus-visible {
   --body: #3a3a36; --muted: #6b6b66; --rule: var(--isl-ink);
   --btn-bg: var(--isl-red); --btn-fg: var(--isl-ink); --num: var(--isl-bone);
 }
+/* A bone number on a bone card melts into it: tuck it behind the card instead. */
+.island--3 .island-card { z-index: 1; }
+.island--3 { --num-z: 0; }
 
 .islands-hint { display: none; }
 
@@ -249,15 +255,17 @@ a.island-cta:focus-visible {
   display: block;
 }
 
+/* Islands off screen are transparent but stay in the accessibility tree and in the tab
+   order; focusing a link inside one scrolls the page to it (js/islands.js). */
 .islands.is-live .island {
   position: absolute;
   top: 0;
   left: 0;
   will-change: transform, opacity;
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
 }
-.islands.is-live .island.is-shown { visibility: visible; }
+.islands.is-live .island.is-shown { pointer-events: auto; }
 
 .islands.is-live .islands-rail {
   position: absolute;
@@ -314,7 +322,8 @@ a.island-cta:focus-visible {
   color: var(--isl-muted-dark);
 }
 
-/* Progressive reveal: space is reserved, so the island never changes height */
+/* Staggered reveal as an island rises into place, so it is complete by the time it rests.
+   Space is reserved, so the island never changes height. */
 .islands.is-live [data-step] {
   opacity: 0;
   transform: translate3d(0, 10px, 0);
@@ -324,36 +333,48 @@ a.island-cta:focus-visible {
   opacity: 1;
   transform: none;
 }
+.islands.is-live [data-step="3"].is-in { transition-delay: 70ms; }
+.islands.is-live [data-step="4"].is-in { transition-delay: 140ms; }
+.islands.is-live [data-step="5"].is-in { transition-delay: 260ms; }
 .islands.is-live .island-points li {
   opacity: 0;
   transform: translate3d(0, 8px, 0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .islands.is-live .island-points.is-in li { opacity: 1; transform: none; }
-.islands.is-live .island-points.is-in li:nth-child(2) { transition-delay: 80ms; }
-.islands.is-live .island-points.is-in li:nth-child(3) { transition-delay: 160ms; }
+.islands.is-live .island-points.is-in li:nth-child(1) { transition-delay: 140ms; }
+.islands.is-live .island-points.is-in li:nth-child(2) { transition-delay: 190ms; }
+.islands.is-live .island-points.is-in li:nth-child(3) { transition-delay: 240ms; }
+/* Keyboard focus shows everything at once */
+.islands.is-live .island:focus-within [data-step],
+.islands.is-live .island:focus-within .island-points li { opacity: 1; transform: none; transition: none; }
 
 /* ---------- Other projects (below the islands) ---------- */
 .section-projects--more { padding-top: 3.5rem; }
 
-/* ---------- Small screens ---------- */
-@media (max-width: 860px) {
-  .islands.is-live .islands-rail {
-    left: 16px;
-    top: auto;
-    bottom: 12px;
-    width: auto;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-  .islands-rail-num { font-size: 22px; letter-spacing: -1px; }
-  .islands-rail-num small { font-size: 12px; }
-  .islands-rail-bar { width: 80px; height: 3px; }
-  .islands-rail-fill { transform-origin: left; }
-  .islands.is-live .islands-hint { right: 16px; bottom: 18px; }
-  .islands.is-live .islands-rail-label { display: none; }
+/* ---------- Narrow stage (no room for a side rail): set by js/islands.js ---------- */
+.islands.is-live.is-narrow .islands-rail {
+  left: 16px;
+  top: auto;
+  bottom: 12px;
+  width: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
+.islands.is-narrow .islands-rail-num { font-size: 22px; letter-spacing: -1px; }
+.islands.is-narrow .islands-rail-num small { font-size: 12px; }
+.islands.is-narrow .islands-rail-bar { width: 80px; height: 3px; }
+.islands.is-narrow .islands-rail-fill { transform-origin: left; }
+.islands.is-live.is-narrow .islands-hint {
+  right: 16px;
+  bottom: 18px;
+  max-width: calc(100% - 200px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.islands.is-live.is-narrow .islands-rail-label { display: none; }
 
 @media (max-width: 600px) {
   .island-card { padding: 20px 18px 22px; gap: 13px; }
