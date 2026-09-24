@@ -197,7 +197,7 @@
 
 
       'index.isl.grave.role': 'Team of 4 · engineering project 2026',
-      'index.isl.grave.hook': 'You only see what’s lit — and the monsters hear every step.',
+      'index.isl.grave.hook': 'You only see what’s lit. The dungeon is new every run.',
       'index.isl.grave.lead': 'A finished 2D top-down survival horror, built by a team of four as our engineering project. I wrote three of its systems: the vision cone, the dungeon generator and A* pathfinding.',
       'index.isl.grave.p1': 'Vision cone — outside the light, monsters disappear from view.',
       'index.isl.grave.p2': 'Procedural dungeons — the same seed rebuilds the identical dungeon.',
@@ -206,7 +206,7 @@
       'index.isl.grave.s1l': 'failed generations',
       'index.isl.grave.s2v': '48 / 48',
       'index.isl.grave.s2l': 'unit tests green',
-      'index.isl.grave.cta': 'How it works →',
+      'index.isl.grave.cta': 'See the three systems →',
       'index.isl.grave.deeper': 'A shader light mask, a seeded generator and A* — with code and diagrams.',
 
 
@@ -479,7 +479,7 @@
 
 
       'index.isl.grave.role': 'Zespół 4 osób · projekt inżynierski 2026',
-      'index.isl.grave.hook': 'Widzisz tylko to, co oświetlone — a potwory słyszą każdy krok.',
+      'index.isl.grave.hook': 'Widzisz tylko to, co oświetlone. Loch jest nowy w każdej grze.',
       'index.isl.grave.lead': 'Ukończony survival horror 2D z widokiem z góry, zrobiony w czteroosobowym zespole jako projekt inżynierski. Napisałem trzy jego systemy: stożek widzenia, generator lochów i pathfinding A*.',
       'index.isl.grave.p1': 'Stożek widzenia — poza światłem potwory znikają z widoku.',
       'index.isl.grave.p2': 'Proceduralne lochy — to samo ziarno odtwarza identyczny loch.',
@@ -488,7 +488,7 @@
       'index.isl.grave.s1l': 'błędnych generacji',
       'index.isl.grave.s2v': '48 / 48',
       'index.isl.grave.s2l': 'zielonych testów jednostkowych',
-      'index.isl.grave.cta': 'Jak to działa →',
+      'index.isl.grave.cta': 'Zobacz trzy systemy →',
       'index.isl.grave.deeper': 'Maska światła w shaderze, generator z ziarnem i A* — z kodem i diagramami.',
 
 

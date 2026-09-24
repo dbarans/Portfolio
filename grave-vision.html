@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vision cone — Grave — Dominik Barański</title>
   <meta name="description" content="A dynamic vision cone with wall shadows for Grave (Unity 6, URP 2D): every light is written into one shared mask that the darkness and the enemy shader both read." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave-vision.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vision cone — Grave" />
+  <meta property="og:description" content="A dynamic vision cone with wall shadows for Grave (Unity 6, URP 2D): every light is written into one shared mask that the darkness and the enemy shader both read." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave-vision.html" />
+  <meta name="twitter:card" content="summary" />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grave.css" />
 </head>
@@ -17,14 +24,14 @@
       <a href="grave-dungeon.html"><span>02</span><span data-i18n="grave.nav.dungeon">Dungeons</span></a>
       <a href="grave-pathfinding.html"><span>03</span><span>A*</span></a>
     </nav>
-    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Zmień język / Change language">PL</button>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
   </header>
 
   <main class="gr-page" id="main">
     <header class="gr-head">
       <p class="gr-kicker" data-i18n="grave.v.kicker">Grave · System 01 of 03</p>
       <h1 data-i18n="grave.c1.title">Vision cone</h1>
-      <p class="gr-lead" data-i18n="grave.v.lead">A dynamic vision cone with wall shadows, written into one shared light mask. The floor and the enemies are both seen through that mask, so anything outside the cone is simply invisible — with no separate hiding logic.</p>
+      <p class="gr-lead" data-i18n="grave.v.lead">One shared light mask: the floor and the enemies are both seen through it, so anything outside the cone is simply invisible — no hiding logic.</p>
     </header>
 
     <figure class="gr-figure">
@@ -33,21 +40,21 @@
         <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
         <span class="gr-hud" aria-hidden="true"></span>
       </div>
-      <figcaption><span data-i18n="grave.v.cap">Looking → torch → aiming, on a loop. Hover to aim.</span></figcaption>
+      <figcaption><span class="gr-sketch-only"><span data-i18n="grave.v.cap">Looking → torch → aiming, on a loop.</span> <span class="gr-hover-only" data-i18n="grave.v.hover">Hover to aim.</span></span></figcaption>
     </figure>
 
     <section class="gr-block" aria-labelledby="v-problem">
       <h2 id="v-problem" data-i18n="grave.d.problem">Problem</h2>
-      <p class="gr-problem" data-i18n="grave.v.problem">Darkness is a mechanic here: you only see what is lit and not blocked. So visibility has to be cheap every frame, respect walls, react to the torch and to aiming, work with lamps — and never make things pop in at the edge of the light.</p>
+      <p class="gr-problem" data-i18n="grave.v.problem">Darkness is a mechanic: you see only what’s lit and unblocked. Visibility must be cheap every frame, respect walls, follow the torch and aiming, and never pop things in at the light’s edge.</p>
     </section>
 
     <section class="gr-block" aria-labelledby="v-how">
       <h2 id="v-how" data-i18n="grave.d.how">How it works</h2>
       <ol class="gr-steps">
-        <li><b data-i18n="grave.v.s1.t">A mesh from raycasts</b><span data-i18n="grave.v.s1.d"><code>FieldOfView</code> casts a fan of <code>Physics2D.Raycast</code>s and builds a mesh — in a plain class shared with the lamps.</span></li>
+        <li><b data-i18n="grave.v.s1.t">A mesh from raycasts</b><span data-i18n="grave.v.s1.d"><code>FieldOfView</code> casts a fan of <code>Physics2D.Raycast</code>s; a plain class shared with the lamps builds the mesh.</span></li>
         <li><b data-i18n="grave.v.s2.t">One mask for every light</b><span data-i18n="grave.v.s2.d">A second camera draws all lights into one <code>RenderTexture</code>; with <code>BlendOp Max</code> overlapping lights never darken.</span></li>
         <li><b data-i18n="grave.v.s3.t">Everything reads the same mask</b><span data-i18n="grave.v.s3.d">The darkness and the enemy shader (<code>alpha *= mask</code>): an enemy half in the cone shows only its lit half.</span></li>
-        <li><b data-i18n="grave.v.s4.t">Cheap every frame</b><span data-i18n="grave.v.s4.d">Dense rays only inside the cone (1/° vs 0.25/° outside), shadow edges found by bisection, cached buffers, a scalable mask.</span></li>
+        <li><b data-i18n="grave.v.s4.t">Cheap every frame</b><span data-i18n="grave.v.s4.d">Dense rays only in the cone (1/° vs 0.25/° outside), bisected shadow edges, cached buffers, a scalable mask.</span></li>
       </ol>
     </section>
 
@@ -56,7 +63,7 @@
       <div>
         <ul class="gr-stats">
           <li><b data-i18n="grave.v.n1.v">≈165 <small>vs ≈360</small></b><span data-i18n="grave.v.n1.l">rays per frame — calculated from the player prefab’s settings, before edge refinement</span></li>
-          <li><b data-i18n="grave.v.n2.v">15 → 20 u.</b><span data-i18n="grave.v.n2.l">view range without → with the torch</span></li>
+          <li><b data-i18n="grave.v.n2.v">15 → 20 units</b><span data-i18n="grave.v.n2.l">view range without → with the torch</span></li>
           <li><b>4</b><span data-i18n="grave.v.n3.l">bisection steps on each shadow edge</span></li>
           <li><b data-i18n="grave.v.n4.v">1 mask</b><span data-i18n="grave.v.n4.l">one RenderTexture read by the darkness and every masked sprite</span></li>
         </ul>
@@ -67,13 +74,13 @@
       <h2 class="gr-label" id="v-more" data-i18n="grave.d.more">Go deeper</h2>
 
       <details class="gr-more">
-        <summary><span data-i18n="grave.d.full">Full technical breakdown</span></summary>
+        <summary><span data-i18n="grave.d.full">More detail</span></summary>
         <div class="gr-more-body">
           <ol class="gr-list">
-            <li data-i18n="grave.v.f1"><b>Visibility mesh.</b> <code>FieldOfView</code> (in <code>LateUpdate</code>) casts a fan of <code>Physics2D.Raycast</code>s and builds a mesh. The building itself lives in a plain class, <code>OcclusionMeshBuilder</code>, shared with the lamps (<code>StationaryLightSource</code>) — no copied code.</li>
-            <li data-i18n="grave.v.f2"><b>One mask for all lights.</b> <code>VisionMaskRenderer</code>: a second camera sees only the <code>VisionMask</code> layer, renders every light into a <code>RenderTexture</code> (ARGB32) and publishes it as the global <code>_VisionMask</code>. Alpha = how strongly a pixel is lit, RGB = the light’s colour (amber for a lamp or torch, neutral for sight). Lights are joined with <code>BlendOp Max</code>, so where they overlap they never darken.</li>
-            <li data-i18n="grave.v.f3"><b>Consumers read the same mask.</b> The darkness overlay (<code>DarknessOverlay</code>) and the <code>SpriteFovMasked</code> shader (<code>alpha *= mask</code>) on enemies and barrels. An object half inside the cone shows only its visible half; the light’s edge is smooth (the mask’s gradient), wall edges are sharp.</li>
-            <li data-i18n="grave.v.f4"><b>Per-frame optimisations.</b> Adaptive ray density (1/° inside the cone, 0.25/° outside), binary refinement of shadow edges (4 iterations, only on occluder edges), cached angle list, buffers and delegates, adjustable mask resolution (0.25–1×).</li>
+            <li data-i18n="grave.v.f1"><b>Where it runs.</b> <code>FieldOfView</code> works in <code>LateUpdate</code>; the mesh is built by <code>OcclusionMeshBuilder</code>, the same class the lamps (<code>StationaryLightSource</code>) use.</li>
+            <li data-i18n="grave.v.f2"><b>What the mask holds.</b> The <code>VisionMaskRenderer</code> camera sees only the <code>VisionMask</code> layer and writes an ARGB32 <code>RenderTexture</code>, published as the global <code>_VisionMask</code>. Alpha is how strongly a pixel is lit; RGB is the light’s colour — amber for a lamp or torch, neutral for sight.</li>
+            <li data-i18n="grave.v.f3"><b>Who reads it.</b> <code>DarknessOverlay</code> and the <code>SpriteFovMasked</code> shader on enemies and barrels. The light’s edge stays smooth (the mask’s gradient); wall edges stay sharp.</li>
+            <li data-i18n="grave.v.f4"><b>Per-frame details.</b> The 4 bisection steps run only on occluder edges; the angle list, buffers and delegates are cached; the mask resolution goes from 0.25 to 1×.</li>
             <li data-i18n="grave.v.f5"><b>Tied to gameplay.</b> With a torch the cone grows to 130° and 20 units and the view takes on the flame’s colour; aiming narrows it (min. 25° pistol / 35° shotgun) — precision at the cost of situational awareness.</li>
           </ol>
         </div>

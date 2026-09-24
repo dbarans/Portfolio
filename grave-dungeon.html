@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Procedural dungeons — Grave — Dominik Barański</title>
   <meta name="description" content="A deterministic 200×200 dungeon generator for Grave (Unity 6, C#): one seed builds the whole layout; 0 of 200 seeds failed validation, 48 of 48 unit tests green." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave-dungeon.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Procedural dungeons — Grave" />
+  <meta property="og:description" content="A deterministic 200×200 dungeon generator for Grave (Unity 6, C#): one seed builds the whole layout; 0 of 200 seeds failed validation, 48 of 48 unit tests green." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave-dungeon.html" />
+  <meta name="twitter:card" content="summary" />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grave.css" />
 </head>
@@ -17,14 +24,14 @@
       <a href="grave-dungeon.html" aria-current="page"><span>02</span><span data-i18n="grave.nav.dungeon">Dungeons</span></a>
       <a href="grave-pathfinding.html"><span>03</span><span>A*</span></a>
     </nav>
-    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Zmień język / Change language">PL</button>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
   </header>
 
   <main class="gr-page" id="main">
     <header class="gr-head">
       <p class="gr-kicker" data-i18n="grave.g.kicker">Grave · System 02 of 03</p>
       <h1 data-i18n="grave.c2.title">Procedural dungeons</h1>
-      <p class="gr-lead" data-i18n="grave.g.lead">A deterministic 200×200 dungeon generator: one seed produces the whole layout — rooms, corridors with loops, treasure rooms, the exit and the key — so a save only has to store that seed.</p>
+      <p class="gr-lead" data-i18n="grave.g.lead">One seed builds the whole 200×200 dungeon — rooms, looping corridors, treasure rooms, exit and key — so a save stores only the seed.</p>
     </header>
 
     <figure class="gr-figure">
@@ -34,7 +41,7 @@
         <span class="gr-hud" aria-hidden="true"></span>
       </div>
       <figcaption>
-        <span data-i18n="grave.g.cap">Watch for a seed coming back.</span>
+        <span class="gr-sketch-only" data-i18n="grave.g.cap">Watch for a seed coming back.</span>
         <ul class="gr-legend">
           <li><i style="background:#5b8fd6"></i><span data-i18n="grave.role.hub">hub</span></li>
           <li><i style="background:#c262b4"></i><span data-i18n="grave.role.treasure">treasure</span></li>
@@ -46,15 +53,15 @@
 
     <section class="gr-block" aria-labelledby="g-problem">
       <h2 id="g-problem" data-i18n="grave.d.problem">Problem</h2>
-      <p class="gr-problem" data-i18n="grave.g.problem">Every run needs a new layout, yet every map must be traversable and playable — key, exit, treasure rooms as dead ends — and have loops, or you can’t shake off a chase. Loading a save must rebuild the identical dungeon on any machine.</p>
+      <p class="gr-problem" data-i18n="grave.g.problem">Every run needs a new, playable layout — key, exit, dead-end treasure rooms — with loops so you can shake off a chase. Loading a save must rebuild the identical dungeon on any machine.</p>
     </section>
 
     <section class="gr-block" aria-labelledby="g-how">
       <h2 id="g-how" data-i18n="grave.d.how">How it works</h2>
       <ol class="gr-steps">
-        <li><b data-i18n="grave.g.s1.t">A 9-stage pipeline</b><span data-i18n="grave.g.s1.d">Rooms by rejection sampling, a graph from Kruskal’s MST plus loops from the shortest rejected edges, then carving, doors, roles, interiors, chokepoints.</span></li>
-        <li><b data-i18n="grave.g.s2.t">Generate and validate</b><span data-i18n="grave.g.s2.d">Every attempt is checked for traversability; a failed one retries on its own random stream (up to 160), and the fallback is the best result, not a crash.</span></li>
-        <li><b data-i18n="grave.g.s3.t">Deterministic by design</b><span data-i18n="grave.g.s3.d">Own PRNG (xorshift128 + FNV-1a) instead of <code>UnityEngine.Random</code>; one stream per stage, so changing one stage doesn’t shift the rest.</span></li>
+        <li><b data-i18n="grave.g.s1.t">A 9-stage pipeline</b><span data-i18n="grave.g.s1.d">Rejection-sampled rooms, Kruskal’s MST plus loops from the shortest rejected edges, then carving, doors, roles, interiors, chokepoints.</span></li>
+        <li><b data-i18n="grave.g.s2.t">Generate and validate</b><span data-i18n="grave.g.s2.d">Each attempt is checked for traversability; a failure retries on a fresh random stream (up to 160) and falls back to the best result, never a crash.</span></li>
+        <li><b data-i18n="grave.g.s3.t">Deterministic by design</b><span data-i18n="grave.g.s3.d">A custom PRNG (xorshift128 + FNV-1a) instead of <code>UnityEngine.Random</code>; one stream per stage, so changing one stage doesn’t shift the rest.</span></li>
         <li><b data-i18n="grave.g.s4.t">Testable without a scene</b><span data-i18n="grave.g.s4.d">Plain C#, no <code>MonoBehaviour</code>, in its own <code>Grave.Generation.Layout</code> asmdef; the scene side is <code>DungeonBuilder</code> → <code>DungeonPainter</code> → <code>DungeonPopulator</code>.</span></li>
       </ol>
     </section>
@@ -65,7 +72,7 @@
         <ul class="gr-stats">
           <li><b>0 / 200</b><span data-i18n="grave.g.n1">layouts rejected by validation (3 needed a retry)</span></li>
           <li><b data-i18n="grave.g.n2.v">≈104 ms</b><span data-i18n="grave.g.n2">average per 200×200 layout (200 seeds in ≈21 s)</span></li>
-          <li><b>4 × 200</b><span data-i18n="grave.g.n3">the series repeated four times — identical results</span></li>
+          <li><b>4 × 200</b><span data-i18n="grave.g.n3">the series run four times — identical results</span></li>
           <li><b>48 / 48</b><span data-i18n="grave.g.n4">unit tests green (edit mode, 4.6 s)</span></li>
         </ul>
         <p class="gr-note" data-i18n="grave.g.note">A series of 200 seeds, production settings.</p>
@@ -76,14 +83,13 @@
       <h2 class="gr-label" id="g-more" data-i18n="grave.d.more">Go deeper</h2>
 
       <details class="gr-more">
-        <summary><span data-i18n="grave.d.full">Full technical breakdown</span></summary>
+        <summary><span data-i18n="grave.d.full">More detail</span></summary>
         <div class="gr-more-body">
           <ol class="gr-list">
-            <li data-i18n="grave.g.f1"><b>A 9-stage pipeline</b> (<code>BuildOnce</code>): room placement (rejection sampling instead of BSP — it leaves a margin of solid rock that keeps corridors readable) → connection graph (Kruskal’s MST + loops from the shortest rejected edges) → carving rooms and corridors → doorway normalisation → room roles (hub, treasure rooms, exit, key) → interior decoration → chokepoints.</li>
-            <li data-i18n="grave.g.f2"><b>Generate and validate.</b> Every attempt goes through a traversability check; on failure the next attempt gets its own random stream (up to 160 tries), and if all of them fail, the best result is returned instead of a crash.</li>
-            <li data-i18n="grave.g.f3"><b>Deterministic by design.</b> Own PRNG (xorshift128 + FNV-1a) instead of <code>UnityEngine.Random</code> (global state) and <code>string.GetHashCode()</code> (not stable between environments). A separate stream per stage (<code>Derive("rooms")</code>), so changing one stage doesn’t shift the rest of the map.</li>
-            <li data-i18n="grave.g.f4"><b>Decoration driven by measurement.</b> The generator computes (recursive shadowcasting) how much of a room is visible from its entrances and adds pillars and partitions in batches until visibility drops below a threshold that depends on the room’s area.</li>
-            <li data-i18n="grave.g.f5"><b>Architecture.</b> Logic in plain C# (no <code>MonoBehaviour</code>) in a separate asmdef, <code>Grave.Generation.Layout</code> — testable without loading a scene. The scene side is <code>DungeonBuilder</code> → <code>DungeonPainter</code> (Tilemap) → <code>DungeonPopulator</code> (through the <code>Built</code> event).</li>
+            <li data-i18n="grave.g.f1"><b>Why rejection sampling, not BSP:</b> it leaves a margin of solid rock between rooms, which keeps the corridors readable.</li>
+            <li data-i18n="grave.g.f2"><b>Why not the built-ins:</b> <code>UnityEngine.Random</code> is global state and <code>string.GetHashCode()</code> isn’t stable between environments. Each stage takes its own stream, e.g. <code>Derive("rooms")</code>.</li>
+            <li data-i18n="grave.g.f3"><b>Decoration driven by measurement.</b> The generator computes (recursive shadowcasting) how much of a room is visible from its entrances and adds pillars and partitions in batches until visibility drops below a threshold that depends on the room’s area.</li>
+            <li data-i18n="grave.g.f4"><b>Scene side.</b> <code>DungeonPainter</code> draws the Tilemap; <code>DungeonPopulator</code> runs on the <code>Built</code> event.</li>
           </ol>
         </div>
       </details>

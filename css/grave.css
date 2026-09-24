@@ -136,6 +136,10 @@ body.page-grave {
 }
 .gr-media video,
 .gr-media img { object-fit: cover; }
+.gr-card .gr-media { aspect-ratio: 16 / 9; }
+/* Captions and legends that describe the sketch go away once real footage replaces it */
+.gr-figure:has(.gr-media.has-video) .gr-sketch-only { display: none; }
+@media (hover: none) { .gr-hover-only { display: none; } }
 .gr-media.has-video canvas,
 .gr-media.has-video .gr-media-note,
 .gr-media.has-video .gr-hud { display: none; }
@@ -184,7 +188,7 @@ body.page-grave {
 .gr-hero-inner {
   max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(30px, 5vw, 56px) var(--g-gutter) clamp(18px, 3vw, 30px);
+  padding: clamp(24px, 3.2vw, 40px) var(--g-gutter) clamp(16px, 2.4vw, 24px);
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 18px 48px;
@@ -214,7 +218,7 @@ body.page-grave {
   align-items: flex-start;
   gap: 14px;
   margin: 0;
-  font-size: clamp(4rem, 13vw, 8.6rem);
+  font-size: clamp(3.6rem, 9vw, 6.6rem);
   font-weight: 900;
   letter-spacing: -0.065em;
   line-height: 0.82;

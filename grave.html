@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Grave — Dominik Barański</title>
   <meta name="description" content="Grave, a top-down 2D survival horror in Unity 6 made by a team of four. The three systems I wrote: a vision cone with an HLSL light mask, seeded procedural dungeons, and A* pathfinding." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Grave — three systems of a 2D horror game" />
+  <meta property="og:description" content="Vision cone with an HLSL light mask, seeded procedural dungeons and A* pathfinding — the three systems I wrote for a team-made Unity 6 horror game." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave.html" />
+  <meta name="twitter:card" content="summary" />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grave.css" />
 </head>
@@ -12,7 +19,7 @@
   <a class="gr-skip" href="#systems" data-i18n="grave.skip">Skip to the systems</a>
   <header class="gr-top">
     <a class="gr-back" href="index.html#projects" data-i18n="grave.back">← All projects</a>
-    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Zmień język / Change language">PL</button>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
   </header>
 
   <main>
@@ -22,7 +29,7 @@
       <section class="gr-hero" aria-labelledby="grave-title">
         <div class="gr-hero-inner">
           <div>
-            <p class="gr-kicker" data-i18n="grave.kicker">Project 02 of 03 · Engineering project 2026</p>
+            <p class="gr-kicker" data-i18n="grave.kicker">Project 02 of 03 · Engineering thesis, 2026</p>
             <h1 class="gr-title" id="grave-title">Grave <span class="gr-wip" data-i18n="grave.wip">working title</span></h1>
           </div>
           <div class="gr-hero-side">
@@ -34,7 +41,7 @@
               </ul>
               <a class="gr-btn" href="https://github.com/dbarans/engineering-project" target="_blank" rel="noopener noreferrer" data-i18n="grave.github">Code on GitHub ↗</a>
             </div>
-            <p class="gr-team" data-i18n="grave.team">A finished, playable PC game, built by a team of four at Collegium Da Vinci. Saving, inventory, UI, world interactions and sound are my teammates’ work — this page shows only my three systems.</p>
+            <p class="gr-team" data-i18n="grave.team">A finished, playable PC game, built by a team of four at Collegium Da Vinci. Saving, inventory, UI, world interactions and sound are my teammates’ work.</p>
           </div>
         </div>
       </section>
@@ -102,9 +109,9 @@
       <ul class="gr-shows-list">
         <li><b data-i18n="grave.shows.1.t">Performance by habit</b><span data-i18n="grave.shows.1.d">Node budgets, version stamping instead of clearing arrays, adaptive ray sampling, reusable buffers — each with a reason.</span></li>
         <li><b data-i18n="grave.shows.2.t">Testable code</b><span data-i18n="grave.shows.2.d">Logic in plain C# in its own asmdef, 48 invariant tests, repeatable measurements over 200 seeds instead of eyeballing.</span></li>
-        <li><b data-i18n="grave.shows.3.t">Unity below the components</b><span data-i18n="grave.shows.3.d">An own visibility-mask pipeline (second camera, RenderTexture, HLSL shaders, blending), 2D physics, editor tools.</span></li>
+        <li><b data-i18n="grave.shows.3.t">Unity beyond components</b><span data-i18n="grave.shows.3.d">A custom visibility-mask pipeline (second camera, RenderTexture, HLSL shaders, blending), 2D physics, editor tools.</span></li>
         <li><b data-i18n="grave.shows.4.t">Problem → cause → fix</b><span data-i18n="grave.shows.4.d">Stencil → continuous mask (sprite pop-in), the nav grid’s initialisation order, a stale grid after a barrel is destroyed.</span></li>
-        <li><b data-i18n="grave.shows.5.t">Delivered as a team</b><span data-i18n="grave.shows.5.d">A finished, built game; Git with pull requests and review, tasks tracked as GU-XXXX.</span></li>
+        <li><b data-i18n="grave.shows.5.t">Delivered as a team</b><span data-i18n="grave.shows.5.d">A finished, built game; Git with pull requests and review.</span></li>
       </ul>
     </section>
 
@@ -114,11 +121,11 @@
         <div class="gr-more-body">
           <dl class="gr-stack">
             <div><dt>Unity 6 (6000.3.8f1)</dt><dd data-i18n="grave.stack.unity">URP 2D Renderer, Tilemap, <code>Physics2D</code> (Raycast, OverlapCircle, Linecast, ContactFilter2D), ScriptableObject (generator settings), asmdef, <code>[ExecuteAlways]</code>, <code>[ContextMenu]</code>, Gizmos/Handles, EditorWindow.</dd></div>
-            <div><dt data-i18n="grave.stack.render.t">Rendering / shaders</dt><dd data-i18n="grave.stack.render">Own HLSL shaders (URP 2D), a second camera → <code>RenderTexture</code> as a global texture, <code>BlendOp Max</code>, <code>MaterialPropertyBlock</code>, screen-space sampling.</dd></div>
+            <div><dt data-i18n="grave.stack.render.t">Rendering / shaders</dt><dd data-i18n="grave.stack.render">Custom HLSL shaders (URP 2D), a second camera → <code>RenderTexture</code> as a global texture, <code>BlendOp Max</code>, <code>MaterialPropertyBlock</code>, screen-space sampling.</dd></div>
             <div><dt>C# (.NET Standard 2.1)</dt><dd data-i18n="grave.stack.cs">Logic without <code>MonoBehaviour</code>, events/delegates (<code>Built</code>), <code>ConditionalWeakTable</code>, <code>MethodImpl(AggressiveInlining)</code>, reusable buffers.</dd></div>
             <div><dt data-i18n="grave.stack.algo.t">Algorithms &amp; data structures</dt><dd data-i18n="grave.stack.algo">A* (binary heap, tie-break, node budget), Kruskal’s MST + Union-Find, Hopcroft–Tarjan articulation points (iterative), graph bridges, flood fill/BFS, cellular automaton (caves), recursive shadowcasting, xorshift128, FNV-1a.</dd></div>
             <div><dt data-i18n="grave.stack.patterns.t">Patterns &amp; principles</dt><dd data-i18n="grave.stack.patterns">Strategy, ISP (narrow capability interfaces), Observer, generate-and-test, logic separated from the engine, configuration in ScriptableObjects.</dd></div>
-            <div><dt data-i18n="grave.stack.process.t">Quality &amp; process</dt><dd data-i18n="grave.stack.process">Unity Test Framework (NUnit, edit mode, 48 tests), an own editor tool, Git/GitHub (<code>dev</code> branch, <code>GU-XXXX</code> tasks, pull requests with review), Trello.</dd></div>
+            <div><dt data-i18n="grave.stack.process.t">Quality &amp; process</dt><dd data-i18n="grave.stack.process">Unity Test Framework (NUnit, edit mode, 48 tests), a custom editor tool, Git/GitHub (<code>dev</code> branch, pull requests with review), Trello.</dd></div>
           </dl>
         </div>
       </details>

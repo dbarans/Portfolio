@@ -498,6 +498,46 @@
     g.fillRect(x - r * 0.08, y + r * 0.45, r * 0.16, r * 0.3);
   }
 
+  // Static cells drawn once per light level, one pixel per cell; frames only scale them up.
+  function levelLayers(solid, cols, rows, pal) {
+    return [0, 1, 2, 3].map((level) => {
+      const c = document.createElement('canvas');
+      c.width = cols;
+      c.height = rows;
+      const lg = c.getContext('2d');
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const set = solid[y * cols + x] ? pal.wall : (cellHash(x, y) & 1 ? pal.floorAlt : pal.floor);
+          lg.fillStyle = set[level];
+          lg.fillRect(x, y, 1, 1);
+        }
+      }
+      return c;
+    });
+  }
+
+  // The cone's light: level 1 over the whole visible area, then stepped discs for 2 and 3.
+  // Leaves the visibility clip in place, so the caller can draw what only the light reveals
+  // and then restores it.
+  function drawLight(g, layers, vis, ox, oy, range, s, offX, offY, rows, extra) {
+    const blit = (level) => {
+      g.drawImage(layers[level], offX, offY, layers[level].width * s, layers[level].height * s);
+      if (extra) extra(level);
+    };
+    g.imageSmoothingEnabled = false;
+    blit(0);
+    g.save();
+    polygonPath(g, vis, ox, oy, s, offX, offY);
+    g.clip();
+    [1, 2, 3].forEach((level) => {
+      g.save();
+      steppedDisc(g, ox, oy, (range * (4 - level)) / 3, s, offX, offY, rows);
+      g.clip();
+      blit(level);
+      g.restore();
+    });
+  }
+
   function setHud(el, text) {
     if (el && el.textContent !== text) el.textContent = text;
   }
@@ -514,6 +554,7 @@
     });
     for (let y = 1; y < 6; y++) put(13, y);
     const grid = { solid, cols, rows };
+    const layers = { look: levelLayers(solid, cols, rows, SIGHT), torch: levelLayers(solid, cols, rows, TORCH) };
     const enemy = { x: 23.2, y: 6.2 };
     const g = canvas.getContext('2d');
     let pointer = null;
@@ -530,7 +571,6 @@
       const f = fitGrid(W, H, cols, rows);
       const cycle = time % 15;
       const phase = cycle < 6 ? 'look' : cycle < 11 ? 'torch' : 'aim';
-      const pal = phase === 'torch' ? TORCH : SIGHT;
       const px = 6.5 + ((Math.sin(time * 0.35) + 1) / 2) * 22, py = 11.5;
       let aim;
       const toEnemy = Math.atan2(enemy.y - py, enemy.x - px);
@@ -543,24 +583,7 @@
 
       g.fillStyle = BG;
       g.fillRect(0, 0, W, H);
-      const cell = (x, y, level) => {
-        const wall = solid[y * cols + x];
-        const set = wall ? pal.wall : (cellHash(x, y) & 1 ? pal.floorAlt : pal.floor);
-        g.fillStyle = set[level];
-        g.fillRect(f.ox + x * f.s, f.oy + y * f.s, Math.ceil(f.s), Math.ceil(f.s));
-      };
-      for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) cell(x, y, 0);
-
-      g.save();
-      polygonPath(g, vis, px, py, f.s, f.ox, f.oy);
-      g.clip();
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const d = Math.hypot(x + 0.5 - px, y + 0.5 - py);
-          if (d > range + 1) continue;
-          cell(x, y, d < range / 3 ? 3 : d < (2 * range) / 3 ? 2 : 1);
-        }
-      }
+      drawLight(g, phase === 'torch' ? layers.torch : layers.look, vis, px, py, range, f.s, f.ox, f.oy, rows);
       // The enemy is drawn only through the visibility mask: outside it, it simply isn't seen.
       const de = Math.hypot(enemy.x - px, enemy.y - py);
       drawSkull(g, f.ox + enemy.x * f.s, f.oy + enemy.y * f.s, f.s * 0.95, de < range / 3 ? 3 : de < (2 * range) / 3 ? 2 : 1);
@@ -594,17 +617,28 @@
     const g = canvas.getContext('2d');
     const cache = new Map();
     let cacheKey = '';
+    let lastFrame = '';
 
     function get(seed, cols, rows) {
       const key = cols + 'x' + rows;
       if (key !== cacheKey) { cache.clear(); cacheKey = key; }
       if (!cache.has(seed)) {
-        cache.set(seed, generateDungeon(seed, cols, rows, { rooms: Math.round((cols * rows) / 150) }));
+        const d = generateDungeon(seed, cols, rows, { rooms: Math.round((cols * rows) / 150) });
+        // Walls and pillars of the finished layout, one pixel per cell.
+        d.wallLayer = document.createElement('canvas');
+        d.wallLayer.width = cols;
+        d.wallLayer.height = rows;
+        const wg = d.wallLayer.getContext('2d');
+        wg.fillStyle = '#44464d';
+        for (let i = 0; i < d.walls.length; i += 2) wg.fillRect(d.walls[i], d.walls[i + 1], 1, 1);
+        wg.fillStyle = '#5d6067';
+        for (let i = 0; i < d.pillars.length; i += 2) wg.fillRect(d.pillars[i], d.pillars[i + 1], 1, 1);
+        cache.set(seed, d);
       }
       return cache.get(seed);
     }
 
-    return function draw(time, W, H, still) {
+    return function draw(time, W, H, still, dt, force) {
       const cols = 64, rows = Math.max(30, Math.round((64 * H) / W));
       const total = STAGE_T.reduce((a, b) => a + b, 0);
       const k = still ? 0 : Math.floor(time / total) % SEEDS.length;
@@ -616,6 +650,17 @@
       const d = get(seed, cols, rows);
       const f = fitGrid(W, H, cols, rows);
       const s = f.s, X = (x) => f.ox + x * s, Y = (y) => f.oy + y * s;
+      const edges = d.mst.concat(d.loops);
+      const cells = d.path.length / 2;
+      const shownRooms = stage === 0 ? Math.ceil(u * d.rooms.length) : d.rooms.length;
+      const shownEdges = stage === 1 ? Math.ceil(u * edges.length) : edges.length;
+      const shownCells = stage === 2 ? Math.floor(u * cells) : cells;
+      // Fades move in eighths, so most frames are identical and can be skipped.
+      const fade = stage === 2 ? Math.round((1 - u) * 8) / 8 : 1;
+      const reveal = Math.round(clamp(u * 3, 0, 1) * 8) / 8;
+      const frame = [W, H, k, stage, shownRooms, shownEdges, shownCells, fade, stage === 3 ? reveal : 0, isPl()].join('|');
+      if (frame === lastFrame && !force) return;
+      lastFrame = frame;
 
       g.fillStyle = BG;
       g.fillRect(0, 0, W, H);
@@ -623,16 +668,11 @@
       if (stage >= 2) {
         g.fillStyle = '#26272c';
         d.rooms.forEach((r) => g.fillRect(X(r.x), Y(r.y), r.w * s, r.h * s));
-        const cells = d.path.length / 2;
-        const shown = stage === 2 ? Math.floor(u * cells) : cells;
-        for (let i = 0; i < shown; i++) g.fillRect(X(d.path[2 * i]), Y(d.path[2 * i + 1]), Math.ceil(s), Math.ceil(s));
+        for (let i = 0; i < shownCells; i++) g.fillRect(X(d.path[2 * i]), Y(d.path[2 * i + 1]), Math.ceil(s), Math.ceil(s));
       }
       if (stage === 3) {
-        g.fillStyle = '#44464d';
-        for (let i = 0; i < d.walls.length; i += 2) g.fillRect(X(d.walls[i]), Y(d.walls[i + 1]), Math.ceil(s), Math.ceil(s));
-        g.fillStyle = '#5d6067';
-        for (let i = 0; i < d.pillars.length; i += 2) g.fillRect(X(d.pillars[i]), Y(d.pillars[i + 1]), Math.ceil(s), Math.ceil(s));
-        const reveal = clamp(u * 3, 0, 1);
+        g.imageSmoothingEnabled = false;
+        g.drawImage(d.wallLayer, f.ox, f.oy, cols * s, rows * s);
         d.rooms.forEach((r, i) => {
           const role = d.roles[i];
           if (!role) return;
@@ -648,19 +688,16 @@
         });
       }
       if (stage <= 2) {
-        const shown = stage === 0 ? Math.ceil(u * d.rooms.length) : d.rooms.length;
         g.strokeStyle = stage === 2 ? '#3a3c42' : '#8e8c86';
         g.lineWidth = 1;
-        for (let i = 0; i < shown; i++) {
+        for (let i = 0; i < shownRooms; i++) {
           const r = d.rooms[i];
           g.strokeRect(X(r.x) + 0.5, Y(r.y) + 0.5, r.w * s - 1, r.h * s - 1);
         }
       }
       if (stage === 1 || stage === 2) {
-        const edges = d.mst.concat(d.loops);
-        const shown = stage === 1 ? Math.ceil(u * edges.length) : edges.length;
-        g.globalAlpha = stage === 2 ? 1 - u : 1;
-        for (let i = 0; i < shown; i++) {
+        g.globalAlpha = fade;
+        for (let i = 0; i < shownEdges; i++) {
           const e = edges[i], a = d.rooms[e.a], b = d.rooms[e.b];
           const loop = i >= d.mst.length;
           g.strokeStyle = loop ? AMBER : '#b5b3ac';
@@ -695,6 +732,18 @@
     });
     for (let y = 1; y < rows - 1; y++) put(27, y);
     const barrels = [[27, 10], [27, 11]];
+    // Walls and floor never change (barrels are drawn on top), so they are drawn once.
+    const base = document.createElement('canvas');
+    base.width = cols;
+    base.height = rows;
+    const bg = base.getContext('2d');
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const barrel = barrels.some(([bx, by]) => bx === x && by === y);
+        bg.fillStyle = solid[y * cols + x] && !barrel ? '#44464d' : (x + y) & 1 ? '#15161a' : '#17181c';
+        bg.fillRect(x, y, 1, 1);
+      }
+    }
     const grid = { solid, cols, rows };
     const pf = new Pathfinder(grid);
     const g = canvas.getContext('2d');
@@ -763,14 +812,13 @@
       const s = f.s, X = (x) => f.ox + x * s, Y = (y) => f.oy + y * s;
       g.fillStyle = BG;
       g.fillRect(0, 0, W, H);
-      const id = pf.searchId;
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          const i = y * cols + x;
-          if (solid[i]) g.fillStyle = '#44464d';
-          else if (!st.rejected && pf.closed[i] === id && st.visited) g.fillStyle = (x + y) & 1 ? '#23252c' : '#25272e';
-          else g.fillStyle = (x + y) & 1 ? '#15161a' : '#17181c';
-          g.fillRect(X(x), Y(y), Math.ceil(s), Math.ceil(s));
+      g.imageSmoothingEnabled = false;
+      g.drawImage(base, f.ox, f.oy, cols * s, rows * s);
+      if (!st.rejected && st.visited) {
+        const id = pf.searchId;
+        g.fillStyle = '#25272e';
+        for (let i = 0; i < cols * rows; i++) {
+          if (pf.closed[i] === id && !solid[i]) g.fillRect(X(i % cols), Y((i / cols) | 0), Math.ceil(s), Math.ceil(s));
         }
       }
       barrels.forEach(([x, y]) => {
@@ -810,27 +858,38 @@
   // The one frame each sketch shows with reduced motion: the torch with the monster on the
   // edge of its light, and the A* chase under way after the barrels break.
   const STILL_T = { fov: 8.5, dungeon: 0, astar: 6 };
+  // Slow sketches read fine at low frame rates; the small hub cards need even fewer.
+  const FRAME_MS = { page: 1000 / 24, card: 1000 / 15 };
 
-  function attachFootage(fig, src) {
+  // Footage takes over the frame once it has loaded; it inherits the sketch's accessible name
+  // and only plays while on screen.
+  function attachFootage(sk, src) {
     const isGif = /\.gif$/i.test(src);
     const el = document.createElement(isGif ? 'img' : 'video');
+    const label = () => sk.canvas.getAttribute('aria-label') || '';
     if (isGif) {
-      el.alt = '';
+      el.alt = label();
     } else {
       el.muted = true;
       el.loop = true;
       el.playsInline = true;
       el.autoplay = !reduceMotion.matches;
+      el.preload = reduceMotion.matches ? 'auto' : 'metadata';
       el.setAttribute('muted', '');
+      el.setAttribute('aria-label', label());
+      sk.video = el;
     }
-    const done = () => {
-      fig.classList.add('has-video');
-      const sk = sketches.find((k) => k.fig === fig);
-      if (sk) sk.off = true;
-    };
-    el.addEventListener(isGif ? 'load' : 'loadeddata', done, { once: true });
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'lang-toggle') {
+        setTimeout(() => el.setAttribute(isGif ? 'alt' : 'aria-label', label()), 0);
+      }
+    });
+    el.addEventListener(isGif ? 'load' : 'loadeddata', () => {
+      sk.fig.classList.add('has-video');
+      sk.off = true;
+    }, { once: true });
     el.src = src;
-    fig.insertBefore(el, fig.firstChild);
+    sk.fig.insertBefore(el, sk.fig.firstChild);
   }
 
   function initSketches() {
@@ -844,10 +903,11 @@
       else if (kind === 'dungeon') draw = dungeonSketch(canvas, hud);
       else if (kind === 'astar') draw = astarSketch(canvas, hud);
       if (!draw) return;
-      const sk = { fig, canvas, draw, kind, time: 0, visible: false, off: false, w: 0, h: 0, dpr: 1 };
+      const every = fig.closest('.gr-card') ? FRAME_MS.card : FRAME_MS.page;
+      const sk = { fig, canvas, draw, kind, every, last: 0, time: 0, visible: false, off: false, video: null, w: 0, h: 0, dpr: 1 };
       sketches.push(sk);
       const src = fig.getAttribute('data-video');
-      if (src) attachFootage(fig, src);
+      if (src) attachFootage(sk, src);
     });
     if (!sketches.length) return;
 
@@ -858,51 +918,67 @@
       sk.canvas.width = Math.round(sk.w * sk.dpr);
       sk.canvas.height = Math.round(sk.h * sk.dpr);
     };
-    const paint = (sk, still, dt) => {
+    const paint = (sk, still, dt, force) => {
       if (sk.off || !sk.w || !sk.h) return;
       const g = sk.canvas.getContext('2d');
       g.setTransform(sk.dpr, 0, 0, sk.dpr, 0, 0);
-      sk.draw(still ? STILL_T[sk.kind] : sk.time, sk.w, sk.h, still, dt || 0);
+      sk.draw(still ? STILL_T[sk.kind] : sk.time, sk.w, sk.h, still, dt || 0, force);
     };
-    const paintStill = () => sketches.forEach((sk) => { size(sk); paint(sk, true); });
+    const paintStill = () => sketches.forEach((sk) => { size(sk); paint(sk, true, 0, true); });
 
-    let last = 0, raf = 0;
+    // On a phone the hub stacks its cards, so only the one nearest the middle of the screen
+    // moves; the others keep their last frame.
+    const running = () => {
+      const live = sketches.filter((sk) => sk.visible && !sk.off);
+      if (live.length < 2 || window.innerWidth >= 960) return live;
+      const mid = window.innerHeight / 2;
+      const dist = (sk) => { const r = sk.canvas.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - mid); };
+      return [live.reduce((a, b) => (dist(b) < dist(a) ? b : a))];
+    };
+
+    let raf = 0;
     const loop = (now) => {
       raf = 0;
-      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
-      last = now;
-      let any = false;
-      sketches.forEach((sk) => {
-        if (!sk.visible || sk.off) return;
-        any = true;
+      const live = running();
+      if (!live.length || document.hidden) { sketches.forEach((sk) => { sk.last = 0; }); return; }
+      raf = requestAnimationFrame(loop);
+      live.forEach((sk) => {
+        if (sk.last && now - sk.last < sk.every - 1) return;
+        const dt = sk.last ? Math.min((now - sk.last) / 1000, 0.1) : 0;
+        sk.last = now;
         sk.time += dt;
         paint(sk, false, dt);
       });
-      if (any && !document.hidden) raf = requestAnimationFrame(loop);
-      else last = 0;
     };
     const kick = () => {
       if (reduceMotion.matches) { paintStill(); return; }
       if (!raf) raf = requestAnimationFrame(loop);
     };
 
+    const onScreen = (sk, yes) => {
+      sk.visible = yes;
+      if (sk.video) {
+        if (yes && !reduceMotion.matches) sk.video.play().catch(() => {});
+        else sk.video.pause();
+      }
+    };
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
-          const sk = sketches.find((k) => k.canvas === e.target);
-          if (sk) sk.visible = e.isIntersecting;
+          const sk = sketches.find((k) => k.fig === e.target);
+          if (sk) onScreen(sk, e.isIntersecting);
         });
         kick();
       });
-      sketches.forEach((sk) => io.observe(sk.canvas));
+      sketches.forEach((sk) => io.observe(sk.fig));
     } else {
-      sketches.forEach((sk) => { sk.visible = true; });
+      sketches.forEach((sk) => onScreen(sk, true));
     }
 
     sketches.forEach(size);
     // Resizing clears a canvas, so repaint the current frame instead of waiting for the loop.
     window.addEventListener('resize', () => {
-      sketches.forEach((sk) => { size(sk); paint(sk, reduceMotion.matches, 0); });
+      sketches.forEach((sk) => { size(sk); paint(sk, reduceMotion.matches, 0, true); });
     });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
     if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', kick);
@@ -973,21 +1049,7 @@
       }
       grid = { solid, cols, rows };
 
-      // One tiny canvas per light level, one pixel per cell, scaled up without smoothing.
-      layers = [0, 1, 2, 3].map((level) => {
-        const c = document.createElement('canvas');
-        c.width = cols;
-        c.height = rows;
-        const lg = c.getContext('2d');
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            const set = solid[y * cols + x] ? HALL.wall : (cellHash(x, y) & 1 ? HALL.floorAlt : HALL.floor);
-            lg.fillStyle = set[level];
-            lg.fillRect(x, y, 1, 1);
-          }
-        }
-        return c;
-      });
+      layers = levelLayers(solid, cols, rows, HALL);
       if (!pointer && slabs[0]) aim = Math.atan2((slabs[0].y + slabs[0].h / 2) / CELL - oy, (slabs[0].x + slabs[0].w / 2) / CELL - ox);
       room.classList.add('is-live');
       draw();
@@ -1001,23 +1063,10 @@
         aim = Math.atan2((pointer.y - base.top) / CELL - oy, (pointer.x - base.left) / CELL - ox);
       }
       g.setTransform(dpr, 0, 0, dpr, 0, 0);
-      g.imageSmoothingEnabled = false;
-      const layer = (level) => {
-        g.drawImage(layers[level], 0, 0, cols * CELL, rows * CELL);
+      const vis = visibility(grid, ox, oy, aim, 100, range, 2.5);
+      drawLight(g, layers, vis, ox, oy, range, CELL, 0, 0, rows, (level) => {
         g.fillStyle = HALL.slab[level];
         slabs.forEach((r) => g.fillRect(r.x, r.y, r.w, r.h));
-      };
-      layer(0);
-      const vis = visibility(grid, ox, oy, aim, 100, range, 2.5);
-      g.save();
-      polygonPath(g, vis, ox, oy, CELL, 0, 0);
-      g.clip();
-      [1, 2, 3].forEach((level) => {
-        g.save();
-        steppedDisc(g, ox, oy, (range * (4 - level)) / 3, CELL, 0, 0, rows);
-        g.clip();
-        layer(level);
-        g.restore();
       });
       g.restore();
       g.fillStyle = AMBER;

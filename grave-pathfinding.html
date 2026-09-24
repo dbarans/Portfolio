@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>A* pathfinding — Grave — Dominik Barański</title>
   <meta name="description" content="A custom A* for Grave (Unity 6, C#) on an 8-directional grid built from scene physics: version stamping, O(1) rejection of unreachable targets and a 4,000-node budget." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave-pathfinding.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="A* pathfinding — Grave" />
+  <meta property="og:description" content="A custom A* for Grave (Unity 6, C#) on an 8-directional grid built from scene physics: version stamping, O(1) rejection of unreachable targets and a 4,000-node budget." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave-pathfinding.html" />
+  <meta name="twitter:card" content="summary" />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/grave.css" />
 </head>
@@ -17,14 +24,14 @@
       <a href="grave-dungeon.html"><span>02</span><span data-i18n="grave.nav.dungeon">Dungeons</span></a>
       <a href="grave-pathfinding.html" aria-current="page"><span>03</span><span>A*</span></a>
     </nav>
-    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Zmień język / Change language">PL</button>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
   </header>
 
   <main class="gr-page" id="main">
     <header class="gr-head">
       <p class="gr-kicker" data-i18n="grave.p.kicker">Grave · System 03 of 03</p>
       <h1 data-i18n="grave.c3.title">A* pathfinding</h1>
-      <p class="gr-lead" data-i18n="grave.p.lead">A custom A* on an 8-directional grid built from the scene’s physics, designed so that a search costs as much as the cells it visits — not the size of the map.</p>
+      <p class="gr-lead" data-i18n="grave.p.lead">A custom A* on an 8-directional grid built from scene physics: a search costs what it visits, not the size of the map.</p>
     </header>
 
     <figure class="gr-figure">
@@ -34,8 +41,8 @@
         <span class="gr-hud" aria-hidden="true"></span>
       </div>
       <figcaption>
-        <span data-i18n="grave.p.cap">Barrels block the gap, then break.</span>
-        <ul class="gr-legend">
+        <span class="gr-sketch-only" data-i18n="grave.p.cap">Barrels block the gap, then break.</span>
+        <ul class="gr-legend gr-sketch-only">
           <li><i style="background:#ffb85c"></i><span data-i18n="grave.p.lg.route">route</span></li>
           <li><i style="background:#2a2c33;outline:1px solid #44464d"></i><span data-i18n="grave.p.lg.visited">visited cells</span></li>
           <li><i style="background:#8a5f33"></i><span data-i18n="grave.p.lg.barrel">barrels</span></li>
@@ -45,16 +52,16 @@
 
     <section class="gr-block" aria-labelledby="p-problem">
       <h2 id="p-problem" data-i18n="grave.d.problem">Problem</h2>
-      <p class="gr-problem" data-i18n="grave.p.problem">Enemies re-plan several times a second across a 200×200 dungeon full of obstacles. A naive A* allocates and clears map-sized arrays on every search, and an unreachable target — a locked room, a point inside a wall — means searching the entire map, every frame.</p>
+      <p class="gr-problem" data-i18n="grave.p.problem">Enemies re-plan several times a second on a 200×200 map full of obstacles. A naive A* allocates and clears map-sized arrays on every search, and an unreachable target means searching the whole map — every frame.</p>
     </section>
 
     <section class="gr-block" aria-labelledby="p-how">
       <h2 id="p-how" data-i18n="grave.d.how">How it works</h2>
       <ol class="gr-steps">
         <li><b data-i18n="grave.p.s1.t">A grid from physics</b><span data-i18n="grave.p.s1.d"><code>Physics2D.OverlapCircle</code> in every cell with a 1-element buffer — no allocations in the loop — into a flat <code>bool[]</code>.</span></li>
-        <li><b data-i18n="grave.p.s2.t">The core</b><span data-i18n="grave.p.s2.d">8 directions, octile heuristic × 1.001 against equal-cost plateaus, no corner cutting, an own binary heap with lazy deletion.</span></li>
-        <li><b data-i18n="grave.p.s3.t">Version stamping</b><span data-i18n="grave.p.s3.d">Nothing is cleared per search: each cell remembers the last search that touched it, so the cost follows the visited cells.</span></li>
-        <li><b data-i18n="grave.p.s4.t">Safeguards</b><span data-i18n="grave.p.s4.d">Region ids reject an unreachable target in O(1); past a 4,000-node budget the agent gets the route to the closest point and keeps walking.</span></li>
+        <li><b data-i18n="grave.p.s2.t">The core</b><span data-i18n="grave.p.s2.d">8 directions, octile heuristic × 1.001 against equal-cost plateaus, no corner cutting, a custom binary heap with lazy deletion.</span></li>
+        <li><b data-i18n="grave.p.s3.t">Version stamping</b><span data-i18n="grave.p.s3.d">Nothing is cleared per search: each cell remembers the last search that touched it, so cost follows visited cells.</span></li>
+        <li><b data-i18n="grave.p.s4.t">Safeguards</b><span data-i18n="grave.p.s4.d">Region ids reject unreachable targets in O(1); past a 4,000-node budget the agent walks toward the closest point found.</span></li>
       </ol>
     </section>
 
@@ -67,7 +74,7 @@
           <li><b>O(1)</b><span data-i18n="grave.p.n3">rejecting an unreachable target (comparing region ids)</span></li>
           <li><b data-i18n="grave.p.n4.v">0.25 <small>/ 0.75 s</small></b><span data-i18n="grave.p.n4">re-plan interval / cooldown after a failed search</span></li>
         </ul>
-        <p class="gr-note" data-i18n="grave.p.note">Checked in manual play tests: the enemy avoids obstacles, doesn’t cut corners, and a target cut off by two barrels in a corridor doesn’t freeze the game.</p>
+        <p class="gr-note" data-i18n="grave.p.note">Checked by hand in play: enemies avoid obstacles, don’t cut corners, and a target sealed off by two barrels doesn’t freeze the game.</p>
       </div>
     </section>
 
@@ -75,14 +82,14 @@
       <h2 class="gr-label" id="p-more" data-i18n="grave.d.more">Go deeper</h2>
 
       <details class="gr-more">
-        <summary><span data-i18n="grave.d.full">Full technical breakdown</span></summary>
+        <summary><span data-i18n="grave.d.full">More detail</span></summary>
         <div class="gr-more-body">
           <ol class="gr-list">
-            <li data-i18n="grave.p.f1"><b>A grid from physics.</b> <code>Physics2D.OverlapCircle</code> at the centre of every cell (no triggers, a 1-element buffer — zero allocations in the loop), written into a flat <code>bool[]</code> instead of <code>Node[,]</code>.</li>
-            <li data-i18n="grave.p.f2"><b>The core.</b> 8 directions, octile heuristic × 1.001 (the tie-break removes plateaus of equal-cost nodes), no corner cutting, an own binary heap with duplicates and lazy deletion.</li>
-            <li data-i18n="grave.p.f3"><b>Version stamping.</b> Instead of clearing arrays for the whole map, every cell remembers the number of the last search — the start-up cost depends on the visited cells. Buffers are cached per grid (<code>ConditionalWeakTable</code> — no leak once the scene is released).</li>
-            <li data-i18n="grave.p.f4"><b>Safeguards.</b> Connected-region ids (flood fill) → an unreachable target is rejected in O(1); a budget of <b>4,000 nodes</b> → the route to the closest point found is returned (the agent keeps walking); a start or target inside a wall is moved to the nearest free cell.</li>
-            <li data-i18n="grave.p.f5"><b>Integration.</b> Strategy pattern (<code>IMovementStrategy</code>: <code>PathfindingMovement</code> / <code>SimpleDirectMovement</code>) and narrow capability interfaces (ISP): <code>IPathStatusProvider</code>, <code>IWalkabilityProbe</code>, <code>IMovementArrivalTolerance</code> — the enemy doesn’t know how it moves. Re-planning every 0.25 s; after a failed route, a 0.75 s cooldown.</li>
+            <li data-i18n="grave.p.f1"><b>The grid.</b> One <code>Physics2D.OverlapCircle</code> per cell centre, ignoring triggers, stored in a flat <code>bool[]</code> rather than <code>Node[,]</code>.</li>
+            <li data-i18n="grave.p.f2"><b>The heap.</b> A node can be pushed again at a lower cost; the stale copy is skipped when it’s popped (lazy deletion).</li>
+            <li data-i18n="grave.p.f3"><b>Buffers</b> are cached per grid in a <code>ConditionalWeakTable</code>, so nothing leaks once the scene is released.</li>
+            <li data-i18n="grave.p.f4"><b>Walls at either end.</b> A start or target inside a wall is moved to the nearest free cell.</li>
+            <li data-i18n="grave.p.f5"><b>Integration.</b> Strategy (<code>IMovementStrategy</code>: <code>PathfindingMovement</code> / <code>SimpleDirectMovement</code>) and narrow capability interfaces (ISP): <code>IPathStatusProvider</code>, <code>IWalkabilityProbe</code>, <code>IMovementArrivalTolerance</code> — the enemy doesn’t know how it moves.</li>
           </ol>
         </div>
       </details>
