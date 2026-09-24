@@ -11,11 +11,40 @@
   --h-line: #24241f;
   --h-font: 'Schibsted Grotesk', 'Inter', 'Segoe UI', Arial, sans-serif;
   --h-mono: 'DM Mono', ui-monospace, Consolas, monospace;
+  /* Full-bleed width without the classic scrollbar (islands.js sets --sbw) */
+  --h-vw: calc(100vw - var(--sbw, 0px));
 
   background: var(--h-stage);
   font-family: var(--h-font);
   color: var(--h-paper);
 }
+
+/* ---------- Focus & skip link ---------- */
+/* :where() keeps this at low specificity so components can style their own focus state */
+:where(.page-home) a:focus-visible,
+:where(.page-home) button:focus-visible {
+  outline: 2px solid var(--h-red);
+  outline-offset: 3px;
+}
+
+.page-home .skip-link {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 2000;
+  padding: 12px 18px;
+  background: var(--h-bone);
+  color: var(--h-ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 6px 6px 0 0 var(--h-red);
+  transform: translateY(-200%);
+}
+.page-home .skip-link:focus { transform: none; }
+.page-home main:focus { outline: none; }
 
 /* ---------- Header ---------- */
 .page-home .site-header {
@@ -44,6 +73,9 @@
 
 .page-home .site-nav { gap: 22px; }
 .page-home .site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px; /* comfortable tap target without changing the look */
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -65,6 +97,7 @@
   font-weight: 500;
   letter-spacing: 1.4px;
   padding: 7px 11px;
+  min-width: 40px;
 }
 .page-home .lang-toggle:hover {
   background: var(--h-paper);
@@ -76,7 +109,7 @@
 /* ---------- Hero ---------- */
 .page-home .hero {
   position: relative;
-  padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(4rem, 8vw, 6.5rem);
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
 }
 
 /* Full-bleed cell field behind the hero — the same generator the islands use */
@@ -84,13 +117,16 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(50% - 50vw);
-  width: 100vw;
+  left: calc(50% - var(--h-vw) / 2);
+  width: var(--h-vw);
   height: 100%;
   display: block;
   pointer-events: none;
 }
-.page-home .hero-grid { position: relative; }
+.page-home .hero-grid {
+  position: relative;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
 
 .page-home .hero-title {
   margin: 0 0 1.5rem;
@@ -99,18 +135,20 @@
   line-height: 1;
 }
 
+/* Kicker: who (bone) and what (red), above the headline */
 .page-home .hero-title-line.text-gradient {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
   margin-bottom: 22px;
   background: none;
   -webkit-text-fill-color: currentColor;
   color: var(--h-red);
   font-family: var(--h-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 2.6px;
+  letter-spacing: 2.4px;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 .page-home .hero-title-line.text-gradient::before {
@@ -119,20 +157,28 @@
   height: 10px;
   background: var(--h-red);
   flex-shrink: 0;
+  align-self: center;
+  margin-right: 12px;
 }
+.page-home .hero-name {
+  color: var(--h-paper);
+  -webkit-text-fill-color: var(--h-paper);
+}
+.page-home .hero-sep { white-space: pre; }
 
 .page-home .hero-title-line--plain {
   margin: 0;
   color: var(--h-paper);
   -webkit-text-fill-color: var(--h-paper);
-  font-size: clamp(2.4rem, 5.4vw, 4.1rem);
+  font-size: clamp(2.3rem, 5.2vw, 4.1rem);
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 0.98;
+  text-wrap: balance;
 }
 
 .page-home .hero-lead {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: var(--h-body);
   max-width: 34rem;
@@ -169,37 +215,78 @@
   font-size: 1rem;
 }
 
-/* The portrait slot as an island: bone edge, red offset block, big number-style initials */
+/* The side slot as an island: bone edge, red offset block. A live Game of Life tile
+   (js/islands.js) on top, the facts a recruiter looks for underneath. */
+.page-home .hero-visual { min-height: 0; justify-content: flex-end; }
 .page-home .hero-glow { display: none; }
-.page-home .hero-visual { min-height: 0; }
-.page-home .hero-placeholder {
-  width: min(100%, 300px);
-  border-radius: 0;
+
+.hero-card {
+  width: min(100%, 420px);
   background: var(--h-ink);
   border: 2px solid var(--h-bone);
   box-shadow: 18px 18px 0 0 var(--h-red);
-  gap: 14px;
+  box-sizing: border-box;
 }
-.page-home .hero-photo {
-  border-radius: 0;
-  border: 2px solid var(--h-bone);
-  box-shadow: 18px 18px 0 0 var(--h-red);
+
+.hero-card-tile {
+  position: relative;
+  height: 150px;
+  border-bottom: 2px solid var(--h-bone);
+  background: var(--h-ink);
 }
-.page-home .hero-placeholder-initials {
-  background: none;
-  -webkit-text-fill-color: var(--h-bone);
-  color: var(--h-bone);
-  font-size: clamp(4rem, 9vw, 5.75rem);
-  font-weight: 900;
-  letter-spacing: -5px;
-  line-height: 1;
+.hero-life {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-.page-home .hero-placeholder-hint {
+.hero-card-caption {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  padding: 3px 6px;
+  background: var(--h-ink);
   font-family: var(--h-mono);
-  font-size: 10.5px;
-  letter-spacing: 2px;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
   color: var(--h-muted);
 }
+
+.hero-facts {
+  margin: 0;
+  padding: 6px 22px 10px;
+}
+.hero-fact {
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--h-line);
+}
+.hero-fact:last-child { border-bottom: 0; }
+.hero-fact dt {
+  font-family: var(--h-mono);
+  font-size: 10.5px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--h-muted);
+}
+.hero-fact dd {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--h-paper);
+}
+.hero-fact dd a {
+  color: var(--h-paper);
+  text-decoration: none;
+  border-bottom: 2px solid var(--h-red);
+  transition: color 0.15s;
+}
+.hero-fact dd a + a { margin-left: 14px; }
+.hero-fact dd a:hover { color: var(--h-red); }
 
 /* ---------- More projects ---------- */
 .page-home .section-title {
@@ -235,16 +322,22 @@
   box-shadow: 8px 8px 0 0 var(--h-red);
   transform: translate(-3px, -3px);
 }
+.page-home .project-link:focus-visible {
+  outline: 2px solid var(--h-red);
+  outline-offset: 4px;
+}
 .page-home .project-thumb-wrap {
   border-radius: 0;
   background: #121211;
 }
 .page-home .project-thumb { border-radius: 0; }
 .page-home .project-title {
+  margin: 0;
   color: var(--h-paper);
   font-size: 1.3rem;
   font-weight: 900;
   letter-spacing: -0.03em;
+  line-height: 1.3;
 }
 .page-home .project-role {
   color: var(--h-muted);
@@ -253,6 +346,50 @@
   letter-spacing: 1.6px;
   text-transform: uppercase;
 }
+
+/* ---------- Contact ---------- */
+.home-contact { padding: 1.5rem 0 1rem; }
+.home-contact-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px 48px;
+  padding-top: 0.5rem;
+}
+.home-contact-big {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--h-paper);
+}
+.home-contact-lead {
+  margin: 0.6rem 0 0;
+  max-width: 34rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--h-body);
+}
+.home-contact-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  padding: 0 8px 8px 0; /* room for the CTA's offset shadow */
+}
+.home-contact-alt {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--h-paper);
+  text-decoration: none;
+  border-bottom: 2px solid var(--h-red);
+  padding: 4px 0;
+}
+.home-contact-alt:hover { color: var(--h-red); }
 
 /* ---------- Footer ---------- */
 .page-home .site-footer {
@@ -268,6 +405,7 @@
   border-bottom: 2px solid var(--h-red);
 }
 .page-home .site-footer a:hover { color: var(--h-red); border-bottom-color: var(--h-red); }
+.page-home .site-footer a:focus-visible { outline: 2px solid var(--h-red); outline-offset: 3px; }
 
 @media (max-width: 900px) {
   .page-home .site-header { padding: 12px 0 0; }
@@ -276,15 +414,41 @@
     flex: 1 1 100%;
     width: 100%;
     justify-content: center;
-    gap: 8px 16px;
+    gap: 0 18px;
     border-top: 1px solid var(--h-line);
-    padding: 10px 0 12px;
+    padding: 4px 0 6px;
   }
-  .page-home .hero-visual { order: 0; margin-top: 1rem; }
-  .page-home .hero-placeholder { width: min(100%, 220px); box-shadow: 12px 12px 0 0 var(--h-red); }
+  .page-home .hero-grid { grid-template-columns: 1fr; }
+  .page-home .hero-visual { order: 0; margin-top: 0.5rem; justify-content: flex-start; }
+  .hero-card { width: min(100%, 440px); box-shadow: 12px 12px 0 0 var(--h-red); }
+  .hero-card-tile { height: 120px; }
+  .home-contact-body { grid-template-columns: 1fr; }
+  .home-contact-actions { margin-top: 1rem; }
+}
+
+@media (max-width: 520px) {
+  /* Name and role on two lines, without a dangling separator */
+  .page-home .hero-sep {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .page-home .hero-role { flex-basis: 100%; padding-left: 22px; }
+}
+
+@media (max-width: 420px) {
+  .page-home .site-nav { gap: 0 14px; }
+  .page-home .site-nav-link { letter-spacing: 1.6px; }
+  .hero-facts { padding: 4px 16px 8px; }
+  .hero-fact { grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 10px 0; }
+  .hero-fact dd { font-size: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .page-home .hero-cta:hover,
-  .page-home .project-link:hover { transform: none; }
+  .page-home .hero-cta:focus-visible,
+  .page-home .project-link:hover,
+  .page-home .project-link:focus-visible { transform: none; }
 }
