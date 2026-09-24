@@ -10,7 +10,7 @@
       'index.hero.line1': '<span class="hero-name">Dominik Barański</span><span class="hero-sep"> · </span><span class="hero-role">Game programmer</span>',
       'index.hero.line2': '15,000+ downloads on Google\u00a0Play\u00a0— built solo.',
       'index.hero.lead':
-        'Unity &amp; C# — a solo Android release, a team survival horror and mechanics shipped during a studio internship.',
+        'Unity &amp; C# — a solo Android release, a survival horror built in a team of four, and mechanics shipped during a studio internship.',
       'index.hero.cta': 'View my work',
       'index.section.projects': 'Selected projects',
       'index.role.neon': 'Unity · Game Jam',
@@ -165,15 +165,14 @@
       'index.isl.luggage.deeper': 'How it plugged into the existing project.',
       'index.meta.title': 'Dominik Barański — Game Programmer (Unity &amp; C#)',
       'index.meta.description':
-        'Portfolio of Dominik Barański, a Unity & C# game programmer: a solo-built Android game with 15,000+ Google Play downloads, a team survival horror, and mechanics shipped during a studio internship at Rubens Games.',
+        'Portfolio of Dominik Barański, a Unity & C# game programmer: a solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship at Rubens Games.',
       'index.skip': 'Skip to content',
       'index.hero.card.stack': 'Stack',
       'index.hero.card.released': 'Released',
       'index.hero.card.internship': 'Internship',
       'index.hero.card.profiles': 'Profiles',
       'index.contact.title': 'Contact',
-      'index.contact.big': 'Let’s talk.',
-      'index.contact.lead': 'The Game of Life repository is private — I’m happy to walk through the code in an interview.',
+      'index.contact.lead': 'I’m happy to walk through the code behind these projects in an interview.',
       'index.contact.cta': 'Message me on LinkedIn',
       'index.contact.github': 'GitHub profile',
 
@@ -287,7 +286,7 @@
       'index.hero.line1': '<span class="hero-name">Dominik Barański</span><span class="hero-sep"> · </span><span class="hero-role">Programista gier</span>',
       'index.hero.line2': '15\u00a0000+ pobrań w\u00a0Google\u00a0Play\u00a0— gra zrobiona w\u00a0pojedynkę.',
       'index.hero.lead':
-        'Unity i\u00a0C# — solowe wydanie na Androida, zespołowy survival horror i\u00a0mechaniki dowiezione na stażu w\u00a0studiu.',
+        'Unity i\u00a0C# — solowe wydanie na Androida, survival horror zrobiony w\u00a0czteroosobowym zespole i\u00a0mechaniki dowiezione na stażu w\u00a0studiu.',
       'index.hero.cta': 'Zobacz projekty',
       'index.section.projects': 'Wybrane projekty',
       'index.role.neon': 'Unity · Game Jam',
@@ -442,15 +441,14 @@
       'index.isl.luggage.deeper': 'Jak wpiąłem je w istniejący projekt.',
       'index.meta.title': 'Dominik Barański — programista gier (Unity i C#)',
       'index.meta.description':
-        'Portfolio Dominika Barańskiego, programisty gier w Unity i C#: samodzielnie zrobiona gra na Androida z ponad 15 000 pobrań w Google Play, zespołowy survival horror i mechaniki dowiezione na stażu w Rubens Games.',
+        'Portfolio Dominika Barańskiego, programisty gier w Unity i C#: samodzielnie zrobiona gra na Androida z ponad 15 000 pobrań w Google Play, survival horror zrobiony w czteroosobowym zespole i mechaniki dowiezione na stażu w Rubens Games.',
       'index.skip': 'Przejdź do treści',
       'index.hero.card.stack': 'Technologie',
       'index.hero.card.released': 'Wydana',
       'index.hero.card.internship': 'Staż',
       'index.hero.card.profiles': 'Profile',
       'index.contact.title': 'Kontakt',
-      'index.contact.big': 'Porozmawiajmy.',
-      'index.contact.lead': 'Repozytorium Game of Life jest prywatne — kod chętnie pokażę i\u00a0omówię na rozmowie.',
+      'index.contact.lead': 'Kod stojący za tymi projektami chętnie omówię na rozmowie.',
       'index.contact.cta': 'Napisz na LinkedIn',
       'index.contact.github': 'Profil GitHub',
 

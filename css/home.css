@@ -352,25 +352,16 @@
 .home-contact-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
+  align-items: center;
   gap: 8px 48px;
   padding-top: 0.5rem;
 }
-.home-contact-big {
-  grid-column: 1 / -1;
-  margin: 0;
-  font-size: clamp(2rem, 4.4vw, 3.2rem);
-  font-weight: 900;
-  letter-spacing: -0.045em;
-  line-height: 1;
-  color: var(--h-paper);
-}
 .home-contact-lead {
-  margin: 0.6rem 0 0;
+  margin: 0;
   max-width: 34rem;
-  font-size: 1.02rem;
-  line-height: 1.6;
-  color: var(--h-body);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--h-paper);
 }
 .home-contact-actions {
   display: flex;
