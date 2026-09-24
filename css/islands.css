@@ -1,13 +1,13 @@
-/* Project "islands" — scroll-driven project cards over a parallax cell field.
-   Without JS (or with reduced motion) the islands are plain sections, one below another. */
+/* Project "islands" — scroll-driven project cards on the home page's neutral sheet. The page
+   stays neutral; every card is a window into its own project's world (palette + a texture drawn
+   by js/islands.js). Without JS (or with reduced motion) the islands are plain sections. */
 .islands {
-  --isl-stage: #070708;
-  --isl-bone: #f4f3ef;
-  --isl-paper: #f2f1ed;
-  --isl-ink: #0a0a0a;
-  --isl-red: #e8452b;
-  --isl-rail: #24241f;
-  --isl-muted-dark: #98988e;
+  /* The frame: the home page's own identity (see css/home.css) */
+  --isl-paper: #edeef0;
+  --isl-ink: #101216;
+  --isl-muted: #5b606b;
+  --isl-rail: #d3d6dc;
+  --isl-accent: #2e3cf0;
   --isl-font: 'Schibsted Grotesk', 'Inter', 'Segoe UI', Arial, sans-serif;
   --isl-mono: 'DM Mono', ui-monospace, Consolas, monospace;
 
@@ -15,9 +15,9 @@
   /* Full-bleed; --sbw (set by js/islands.js) takes a classic scrollbar out of 100vw */
   width: calc(100vw - var(--sbw, 0px));
   margin-left: calc(50% - (100vw - var(--sbw, 0px)) / 2);
-  background: var(--isl-stage);
+  background: transparent; /* the page's sheet shows through */
   font-family: var(--isl-font);
-  color: var(--isl-paper);
+  color: var(--isl-ink);
   /* Cancel html's scroll-padding-top (style.css): #projects should land on the stage itself */
   scroll-margin-top: -5.5rem;
 }
@@ -30,15 +30,6 @@
   align-items: center;
   gap: 96px;
   overflow: hidden;
-}
-
-.islands-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  pointer-events: none;
 }
 
 .islands-title {
@@ -75,6 +66,7 @@
 
 .island-card {
   position: relative;
+  z-index: 1;
   background: var(--bg);
   border: 2px solid var(--edge);
   color: var(--fg);
@@ -84,6 +76,16 @@
   flex-direction: column;
   gap: 16px;
 }
+/* The project's world, behind the card's content */
+.island-tex {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.island-card > :not(.island-tex) { position: relative; }
 
 .island-head {
   display: flex;
@@ -203,45 +205,43 @@ a.island-cta:focus-visible {
   max-width: 260px;
 }
 
+/* The big number belongs to the page's frame (ink), tucked behind its card */
 .island-num {
   position: absolute;
-  z-index: var(--num-z, auto);
+  z-index: 0;
   left: -20px;
-  top: -50px;
+  top: -52px;
   font-size: 92px;
   font-weight: 900;
   letter-spacing: -5px;
   line-height: 1;
-  color: var(--num);
+  color: var(--isl-ink);
   display: block;
   pointer-events: none;
 }
 
-/* Skins: three colours, three different islands */
-.island--1 {
+/* Skins: each card is its own project's world */
+.island--1 { /* Game of Life: black board, bone type, its red */
   --w: 660px;
   --dx: 16px; --dy: 16px; --rx: -16px; --by: -16px;
-  --block: var(--isl-ink); --bg: var(--isl-bone); --edge: var(--isl-ink); --fg: var(--isl-ink);
-  --body: #3a3a36; --muted: #6b6b66; --rule: var(--isl-red);
-  --btn-bg: var(--isl-ink); --btn-fg: var(--isl-bone); --num: var(--isl-red);
+  --block: #e8452b; --bg: #0a0a0a; --edge: #0a0a0a; --fg: #f2f1ed;
+  --body: #c6c4bc; --muted: #98988e; --rule: #e8452b;
+  --btn-bg: #f2f1ed; --btn-fg: #0a0a0a;
 }
-.island--2 {
+.island--2 { /* Grave: near-black, cool type, a single amber accent */
   --w: 600px;
   --dx: -18px; --dy: 18px; --rx: 18px; --by: -18px;
-  --block: var(--isl-red); --bg: var(--isl-ink); --edge: var(--isl-bone); --fg: var(--isl-bone);
-  --body: #c6c4bc; --muted: #98988e; --rule: var(--isl-bone);
-  --btn-bg: var(--isl-bone); --btn-fg: var(--isl-ink); --num: var(--isl-bone);
+  --block: #ffb85c; --bg: #0b0c0e; --edge: #2a2d33; --fg: #e4e6ea;
+  --body: #b0b5be; --muted: #7f858f; --rule: #ffb85c;
+  --btn-bg: #ffb85c; --btn-fg: #0b0c0e;
 }
-.island--3 {
+.island--3 { /* Luggage Please: the x-ray monitor, teal outlines on black */
   --w: 690px;
   --dx: 18px; --dy: -18px; --rx: -18px; --by: 18px;
-  --block: var(--isl-red); --bg: var(--isl-bone); --edge: var(--isl-ink); --fg: var(--isl-ink);
-  --body: #3a3a36; --muted: #6b6b66; --rule: var(--isl-ink);
-  --btn-bg: var(--isl-red); --btn-fg: var(--isl-ink); --num: var(--isl-bone);
+  --block: #3dd6cb; --bg: #05090b; --edge: #1d3f41; --fg: #e8f6f5;
+  --body: #a9c5c4; --muted: #6f9091; --rule: #3dd6cb;
+  --btn-bg: #3dd6cb; --btn-fg: #05090b;
 }
-/* A bone number on a bone card melts into it: tuck it behind the card instead. */
-.island--3 .island-card { z-index: 1; }
-.island--3 { --num-z: 0; }
 
 .islands-hint { display: none; }
 
@@ -278,20 +278,21 @@ a.island-cta:focus-visible {
   z-index: 3;
 }
 .islands-rail-label {
+  font-family: var(--isl-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.6px;
+  font-weight: 500;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
-  color: var(--isl-muted-dark);
+  color: var(--isl-muted);
 }
 .islands-rail-num {
   font-size: 48px;
   font-weight: 900;
   letter-spacing: -2.2px;
   line-height: 0.9;
-  color: var(--isl-paper);
+  color: var(--isl-ink);
 }
-.islands-rail-num small { font-size: 18px; color: var(--isl-muted-dark); letter-spacing: 0; }
+.islands-rail-num small { font-size: 18px; color: var(--isl-muted); letter-spacing: 0; }
 .islands-rail-bar {
   width: 3px;
   height: 250px;
@@ -303,7 +304,7 @@ a.island-cta:focus-visible {
 .islands-rail-fill {
   position: absolute;
   inset: 0;
-  background: var(--isl-red);
+  background: var(--isl-accent);
   transform-origin: top;
   transform: scaleY(0);
   display: block;
@@ -315,11 +316,13 @@ a.island-cta:focus-visible {
   bottom: 20px;
   z-index: 6;
   display: block;
+  padding: 6px 8px;
+  background: var(--isl-paper);
   font-family: var(--isl-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--isl-muted-dark);
+  color: var(--isl-muted);
 }
 
 /* Staggered reveal as an island rises into place, so it is complete by the time it rests.
@@ -353,22 +356,27 @@ a.island-cta:focus-visible {
 .section-projects--more { padding-top: 3.5rem; }
 
 /* ---------- Narrow stage (no room for a side rail): set by js/islands.js ---------- */
+/* Rail and hint sit on paper chips: a tall card can pass underneath them */
 .islands.is-live.is-narrow .islands-rail {
-  left: 16px;
+  left: 10px;
   top: auto;
-  bottom: 12px;
+  bottom: 8px;
   width: auto;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  padding: 6px 10px;
+  background: var(--isl-paper);
 }
 .islands.is-narrow .islands-rail-num { font-size: 22px; letter-spacing: -1px; }
 .islands.is-narrow .islands-rail-num small { font-size: 12px; }
 .islands.is-narrow .islands-rail-bar { width: 80px; height: 3px; }
 .islands.is-narrow .islands-rail-fill { transform-origin: left; }
 .islands.is-live.is-narrow .islands-hint {
-  right: 16px;
-  bottom: 18px;
+  right: 10px;
+  bottom: 8px;
+  padding: 10px 10px 9px;
+  background: var(--isl-paper);
   max-width: calc(100% - 200px);
   white-space: nowrap;
   overflow: hidden;
@@ -385,7 +393,7 @@ a.island-cta:focus-visible {
   .island-points li { font-size: 13.5px; }
   .island-stat b { font-size: 21px; }
   .island-stats { gap: 24px; }
-  .island-num { font-size: 60px; left: -10px; top: -34px; letter-spacing: -3px; }
+  .island-num { font-size: 60px; left: -10px; top: -36px; letter-spacing: -3px; }
   .island-cta { padding: 12px 18px; font-size: 12px; }
   .island { width: calc(100vw - 48px); }
 }

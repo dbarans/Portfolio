@@ -167,6 +167,7 @@
       'index.meta.description':
         'Portfolio of Dominik Barański, a Unity & C# game programmer: a solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship at Rubens Games.',
       'index.skip': 'Skip to content',
+      'index.hero.card.title': 'At a glance',
       'index.hero.card.stack': 'Stack',
       'index.hero.card.released': 'Released',
       'index.hero.card.internship': 'Internship',
@@ -443,6 +444,7 @@
       'index.meta.description':
         'Portfolio Dominika Barańskiego, programisty gier w Unity i C#: samodzielnie zrobiona gra na Androida z ponad 15 000 pobrań w Google Play, survival horror zrobiony w czteroosobowym zespole i mechaniki dowiezione na stażu w Rubens Games.',
       'index.skip': 'Przejdź do treści',
+      'index.hero.card.title': 'W skrócie',
       'index.hero.card.stack': 'Technologie',
       'index.hero.card.released': 'Wydana',
       'index.hero.card.internship': 'Staż',
