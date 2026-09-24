@@ -4,25 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Game of Life — Dominik Barański</title>
-  <meta name="description" content="Conway's Game of Life for Android built in Unity — a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <meta name="description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/game-of-life.html" />
+  <meta name="theme-color" content="#070708" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dominik Barański — Game Dev Portfolio" />
+  <meta property="og:title" content="Game of Life — Dominik Barański" />
+  <meta property="og:description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/game-of-life.html" />
+  <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
+  <meta property="og:image:width" content="540" />
+  <meta property="og:image:height" content="540" />
+  <meta property="og:image:alt" content="Game of Life logo: a glider" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Game of Life — Dominik Barański" />
+  <meta name="twitter:description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/gol-page.css" />
 </head>
 <body class="page-gol">
+  <a class="gp-skip" href="#content" data-i18n="gp.skip">Skip to content</a>
   <div class="gp">
     <aside class="gp-panel">
       <canvas class="gp-field" aria-hidden="true"></canvas>
       <div class="gp-panel-inner">
         <div class="gp-panel-top">
           <a href="index.html#projects" class="gp-back" data-i18n="gp.back">← All projects</a>
-          <button id="lang-toggle" type="button" class="gp-lang" aria-label="Zmień język">PL</button>
+          <button id="lang-toggle" type="button" class="gp-lang" aria-label="Switch to Polish (PL)" data-i18n-attr="aria-label" data-i18n-attr-key="gp.lang.aria">PL</button>
         </div>
-        <nav class="gp-nav" aria-label="Sections">
+        <nav class="gp-nav" aria-label="Sections" data-i18n-attr="aria-label" data-i18n-attr-key="gp.nav.aria">
           <a href="#s0"><span>00</span><span data-i18n="gp.nav.s0">At a glance</span></a>
           <a href="#s1"><span>01</span><span data-i18n="gp.nav.s1">Measurements</span></a>
           <a href="#s2"><span>02</span><span data-i18n="gp.nav.s2">Engine and code</span></a>
           <a href="#s3"><span>03</span><span data-i18n="gp.nav.s3">Rejected alternatives</span></a>
-          <a href="#s4"><span>04</span><span data-i18n="gp.nav.s4">How it's verified</span></a>
+          <a href="#s4"><span>04</span><span data-i18n="gp.nav.s4">How it’s verified</span></a>
         </nav>
         <div class="gp-panel-bottom">
           <p class="gp-caption" data-i18n="gp.caption">[ The field changes with the section you’re reading ]</p>
@@ -34,16 +54,21 @@
       </div>
     </aside>
 
-    <main class="gp-main">
+    <main class="gp-main" id="content" tabindex="-1">
       <div class="gp-col">
         <div class="gp-meta">
           <span data-i18n="gp.meta.n">Project 01 of 03</span>
-          <span data-i18n="gp.meta.role">Solo · released on Google Play</span>
+          <span data-i18n="gp.meta.role">Solo&nbsp;· Unity&nbsp;/&nbsp;C#&nbsp;· released on Google Play</span>
         </div>
 
         <header class="gp-head">
           <h1>Game of Life</h1>
           <p class="gp-lead" data-i18n="gp.lead">An Android simulator where the board has no edges — and the game doesn’t slow down, because it only computes what actually moves.</p>
+          <ul class="gp-figs" aria-label="Key figures" data-i18n-attr="aria-label" data-i18n-attr-key="gp.figs.aria">
+            <li><b data-i18n="gp.figs.dl.v">15,000+</b><span data-i18n="gp.figs.dl.l">downloads on Google Play</span></li>
+            <li><b data-i18n="gp.figs.burst.v">2.2–2.5×</b><span data-i18n="gp.figs.burst.l">more generations per second after moving the engine to Burst jobs</span></li>
+            <li><b data-i18n="gp.figs.device.v">64 → 141/s</b><span data-i18n="gp.figs.device.l">generations per second, 275k-cell soup in fast mode on a Pixel 6 Pro</span></li>
+          </ul>
         </header>
 
         <section id="s0" class="gp-sec" data-preset="grid" aria-labelledby="s0-h">
@@ -72,7 +97,7 @@
           </dl>
           <div class="gp-callout">
             <b data-i18n="gp.callout.k">Next: the technical part</b>
-            <p data-i18n="gp.callout.p">If you don’t write code, you already have the whole picture above. Below is the same project spelled out for someone who wants the measurements, the architecture and the code.</p>
+            <p data-i18n="gp.callout.p">Not a programmer? You already have the whole picture. Below: measurements, architecture and code.</p>
           </div>
         </section>
 
@@ -122,13 +147,13 @@
                 <td class="what"><span data-i18n="gp.s1.utm.w">Universal Turing Machine, 255k cells</span><small data-i18n="gp.s1.utm.s">Turbo (experimental), device</small></td>
                 <td class="num was" data-i18n="gp.s1.utm.a">~300/s</td>
                 <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.utm.b">61 440/s</td>
+                <td class="num now" data-i18n="gp.s1.utm.b">61,440/s</td>
                 <td class="gain" data-i18n="gp.s1.utm.g">Patterns built from clocks and guns can be fast-forwarded by thousands of generations per frame.</td>
               </tr>
               </tbody>
             </table>
           </div>
-          <p class="gp-note" data-i18n="gp.s1.note">Each number is a recorded before / after measurement on the same pattern and settings; where it was taken is noted under each row.</p>
+          <p class="gp-note" data-i18n="gp.s1.note">Before / after on the same pattern and settings; where it was measured is under each row.</p>
         </section>
 
         <section id="s2" class="gp-sec" data-preset="dense" aria-labelledby="s2-h">
@@ -180,13 +205,15 @@ foreach (long key in _lastChanged)
             </div>
             <div class="gp-row">
               <dt data-i18n="gp.s2.e.gc.t">Pooling</dt>
-              <dd data-i18n="gp.s2.e.gc.d">Per-chunk buffers are pooled, so steady-state allocation is near zero and there are no GC hitches.</dd>
+              <dd data-i18n="gp.s2.e.gc.d">Per-chunk buffers are pooled, keeping steady-state allocation near zero.</dd>
             </div>
           </dl>
 
           <h3 class="gp-h3" data-i18n="gp.s2.arch">Architecture</h3>
           <figure class="gp-diagram">
-            <p class="gp-diagram-title" data-i18n="gol.diag1.title">Multithreaded generation pipeline</p>
+            <figcaption class="gp-diagram-title" data-i18n="gol.diag1.title">Multithreaded generation pipeline</figcaption>
+            <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
+            <div class="gp-diagram-scroll">
             <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag1.aria" aria-label="A background calculation thread produces per-generation deltas into a lock-guarded ring buffer that the Unity main thread consumes one step at a time, with back-pressure holding the calc thread at most 100 generations ahead.">
                   <defs>
                     <marker id="d1-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
@@ -194,8 +221,8 @@ foreach (long key in _lastChanged)
                   </defs>
 
                   <!-- Box A: calculation thread -->
-                  <rect x="16" y="60" width="212" height="150" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="16" y="60" width="4" height="150" rx="2" fill="#8C3A2B" />
+                  <rect x="16" y="60" width="212" height="150" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="16" y="60" width="4" height="150" fill="#8C3A2B" />
                   <text x="38" y="86" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.calcThread">CALCULATION THREAD</text>
                   <text x="38" y="104" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.calcThreadSub">background · IsBackground</text>
                   <line x1="38" y1="116" x2="208" y2="116" stroke="#24241F" />
@@ -204,26 +231,26 @@ foreach (long key in _lastChanged)
                   <text x="38" y="184" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.emitsDelta">emits born / died delta</text>
 
                   <!-- Box B: ring buffer -->
-                  <rect x="274" y="50" width="212" height="170" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="274" y="50" width="4" height="170" rx="2" fill="#8C3A2B" />
+                  <rect x="274" y="50" width="212" height="170" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="274" y="50" width="4" height="170" fill="#8C3A2B" />
                   <text x="296" y="76" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.ringBuffer">DELTA RING BUFFER</text>
                   <text x="296" y="94" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.ringBufferSub">128 slots · lock-guarded</text>
-                  <rect x="296" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="316" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="336" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="356" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="376" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="396" y="110" width="15" height="15" rx="2" fill="#E8452B" />
-                  <rect x="416" y="110" width="15" height="15" rx="2" fill="#141413" stroke="#3A3A36" />
-                  <rect x="436" y="110" width="15" height="15" rx="2" fill="#141413" stroke="#3A3A36" />
-                  <rect x="456" y="110" width="15" height="15" rx="2" fill="#141413" stroke="#3A3A36" />
+                  <rect x="296" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="316" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="336" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="356" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="376" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="396" y="110" width="15" height="15" fill="#E8452B" />
+                  <rect x="416" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
+                  <rect x="436" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
+                  <rect x="456" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
                   <text x="296" y="146" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag1.filledLabel">filled = calculated, waiting to display</text>
                   <line x1="296" y1="172" x2="464" y2="172" stroke="#24241F" />
                   <text x="296" y="192" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.storesDeltas">stores deltas, not snapshots</text>
 
                   <!-- Box C: main thread -->
-                  <rect x="532" y="60" width="212" height="150" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="532" y="60" width="4" height="150" rx="2" fill="#8C3A2B" />
+                  <rect x="532" y="60" width="212" height="150" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="532" y="60" width="4" height="150" fill="#8C3A2B" />
                   <text x="554" y="86" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.mainThread">MAIN (UNITY) THREAD</text>
                   <text x="554" y="104" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.mainThreadSub">Update() @ frame rate</text>
                   <line x1="554" y1="116" x2="724" y2="116" stroke="#24241F" />
@@ -241,63 +268,66 @@ foreach (long key in _lastChanged)
                   <path d="M638,210 V258 H124 V214" fill="none" stroke="#98988E" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#d1-arw-dim)" />
                   <text x="381" y="250" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag1.backpressure">back-pressure — calc sleeps while ≥ 100 generations ahead of display</text>
                 </svg>
+            </div>
           </figure>
           <p class="gp-diagram-caption" data-i18n="gp.diag1.c">The calculation thread writes each generation’s <strong>born / died delta</strong> into a lock-guarded ring buffer and may run up to 100 generations ahead; the main thread applies one delta per step. Above 10 gen/s the buffer is bypassed and changed chunks go straight into the live grid.</p>
           <figure class="gp-diagram">
-            <p class="gp-diagram-title" data-i18n="gol.diag2.title">Active-chunk, bit-parallel engine</p>
+            <figcaption class="gp-diagram-title" data-i18n="gol.diag2.title">Active-chunk, bit-parallel engine</figcaption>
+            <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
+            <div class="gp-diagram-scroll">
             <svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria" aria-label="The world is split into 64 by 64 bitmask chunks; only chunks that changed last step plus their halo are recomputed by a Burst-compiled parallel kernel that counts 64 cells per bitwise operation, and the output is the XOR delta of each chunk's old and new bitmask.">
                   <defs>
                     <marker id="d2-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
                   </defs>
 
                   <!-- Panel 1: active-chunk cache -->
-                  <rect x="16" y="44" width="232" height="252" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="16" y="44" width="4" height="252" rx="2" fill="#8C3A2B" />
+                  <rect x="16" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="16" y="44" width="4" height="252" fill="#8C3A2B" />
                   <text x="34" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel1Title">1 · ACTIVE-CHUNK CACHE</text>
 
-                  <!-- 5x4 chunk grid: gray = skipped, dim = candidate halo, green = changed -->
-                  <rect x="57" y="92" width="26" height="26" rx="3" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="92" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="92" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="147" y="92" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="92" width="26" height="26" rx="3" fill="#141413" stroke="#2A2A28" />
+                  <!-- 5x4 chunk grid: gray = skipped, dim = candidate halo, red = changed -->
+                  <rect x="57" y="92" width="26" height="26" fill="#141413" stroke="#2A2A28" />
+                  <rect x="87" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="117" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="147" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="177" y="92" width="26" height="26" fill="#141413" stroke="#2A2A28" />
 
-                  <rect x="57" y="122" width="26" height="26" rx="3" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="122" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="122" width="26" height="26" rx="3" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="147" y="122" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="122" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="57" y="122" width="26" height="26" fill="#141413" stroke="#2A2A28" />
+                  <rect x="87" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="117" y="122" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
+                  <rect x="147" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="177" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
 
-                  <rect x="57" y="152" width="26" height="26" rx="3" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="152" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="152" width="26" height="26" rx="3" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="147" y="152" width="26" height="26" rx="3" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="177" y="152" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="57" y="152" width="26" height="26" fill="#141413" stroke="#2A2A28" />
+                  <rect x="87" y="152" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="117" y="152" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
+                  <rect x="147" y="152" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
+                  <rect x="177" y="152" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
 
-                  <rect x="57" y="182" width="26" height="26" rx="3" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="182" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="182" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="147" y="182" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="182" width="26" height="26" rx="3" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="57" y="182" width="26" height="26" fill="#141413" stroke="#2A2A28" />
+                  <rect x="87" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="117" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="147" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="177" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
 
                   <!-- Legend -->
-                  <rect x="57" y="232" width="13" height="13" rx="2" fill="#E8452B" stroke="#E8452B" />
+                  <rect x="57" y="232" width="13" height="13" fill="#E8452B" stroke="#E8452B" />
                   <text x="77" y="243" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendChanged">changed last step</text>
-                  <rect x="57" y="252" width="13" height="13" rx="2" fill="#2A1512" stroke="#8C3A2B" />
+                  <rect x="57" y="252" width="13" height="13" fill="#2A1512" stroke="#8C3A2B" />
                   <text x="77" y="263" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendCandidate">candidate (halo)</text>
-                  <rect x="57" y="272" width="13" height="13" rx="2" fill="#141413" stroke="#2A2A28" />
+                  <rect x="57" y="272" width="13" height="13" fill="#141413" stroke="#2A2A28" />
                   <text x="77" y="283" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendSkipped">stable → skipped</text>
 
                   <!-- Panel 2: bit-parallel kernel -->
-                  <rect x="264" y="44" width="232" height="252" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="264" y="44" width="4" height="252" rx="2" fill="#8C3A2B" />
+                  <rect x="264" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="264" y="44" width="4" height="252" fill="#8C3A2B" />
                   <text x="282" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel2Title">2 · BIT-PARALLEL KERNEL</text>
                   <text x="312" y="96" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10" data-i18n="gol.diag2.parallelCandidates">× N candidates in parallel</text>
 
                   <!-- Stacked chunk (parallel jobs) -->
-                  <rect x="315" y="110" width="104" height="104" rx="4" fill="none" stroke="#2A2A28" />
-                  <rect x="320" y="105" width="104" height="104" rx="4" fill="none" stroke="#3A3A36" />
-                  <rect x="325" y="100" width="104" height="104" rx="4" fill="#121211" stroke="#8C3A2B" />
+                  <rect x="315" y="110" width="104" height="104" fill="none" stroke="#2A2A28" />
+                  <rect x="320" y="105" width="104" height="104" fill="none" stroke="#3A3A36" />
+                  <rect x="325" y="100" width="104" height="104" fill="#121211" stroke="#8C3A2B" />
                   <!-- grid lines -->
                   <g stroke="#1E1E1C" stroke-width="1">
                     <line x1="338" y1="100" x2="338" y2="204" /><line x1="351" y1="100" x2="351" y2="204" /><line x1="364" y1="100" x2="364" y2="204" /><line x1="377" y1="100" x2="377" y2="204" /><line x1="390" y1="100" x2="390" y2="204" /><line x1="403" y1="100" x2="403" y2="204" /><line x1="416" y1="100" x2="416" y2="204" />
@@ -305,34 +335,34 @@ foreach (long key in _lastChanged)
                   </g>
                   <!-- live cells: two gliders -->
                   <g fill="#E8452B">
-                    <rect x="339" y="101" width="11" height="11" rx="1" /><rect x="352" y="114" width="11" height="11" rx="1" /><rect x="326" y="127" width="11" height="11" rx="1" /><rect x="339" y="127" width="11" height="11" rx="1" /><rect x="352" y="127" width="11" height="11" rx="1" />
-                    <rect x="391" y="153" width="11" height="11" rx="1" /><rect x="404" y="166" width="11" height="11" rx="1" /><rect x="378" y="179" width="11" height="11" rx="1" /><rect x="391" y="179" width="11" height="11" rx="1" /><rect x="404" y="179" width="11" height="11" rx="1" />
+                    <rect x="339" y="101" width="11" height="11" /><rect x="352" y="114" width="11" height="11" /><rect x="326" y="127" width="11" height="11" /><rect x="339" y="127" width="11" height="11" /><rect x="352" y="127" width="11" height="11" />
+                    <rect x="391" y="153" width="11" height="11" /><rect x="404" y="166" width="11" height="11" /><rect x="378" y="179" width="11" height="11" /><rect x="391" y="179" width="11" height="11" /><rect x="404" y="179" width="11" height="11" />
                   </g>
 
                   <text x="380" y="238" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.neighbourSum">Σ 8 neighbours · bitwise full-adders</text>
-                  <text x="380" y="260" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" text-anchor="middle">64 cells / op</text>
+                  <text x="380" y="260" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" text-anchor="middle" data-i18n="gp.diag2.cellsPerOp">64 cells / op</text>
                   <text x="380" y="281" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.burstCompiled">gather + kernel · Burst jobs</text>
 
                   <!-- Panel 3: delta out -->
-                  <rect x="512" y="44" width="232" height="252" rx="10" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="512" y="44" width="4" height="252" rx="2" fill="#8C3A2B" />
+                  <rect x="512" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
+                  <rect x="512" y="44" width="4" height="252" fill="#8C3A2B" />
                   <text x="530" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel3Title">3 · DELTA = OLD ⊕ NEW</text>
 
                   <!-- old grid (blinker vertical) -->
                   <g stroke="#1E1E1C" stroke-width="1" fill="#121211">
-                    <rect x="536" y="96" width="54" height="54" rx="3" stroke="#2A2A28" />
+                    <rect x="536" y="96" width="54" height="54" stroke="#2A2A28" />
                   </g>
                   <g fill="#8C3A2B">
-                    <rect x="550" y="98" width="12" height="12" rx="1" /><rect x="550" y="112" width="12" height="12" rx="1" /><rect x="550" y="126" width="12" height="12" rx="1" />
+                    <rect x="550" y="98" width="12" height="12" /><rect x="550" y="112" width="12" height="12" /><rect x="550" y="126" width="12" height="12" />
                   </g>
                   <text x="563" y="166" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle">gen n</text>
 
                   <text x="622" y="128" fill="#E8452B" font-family="'DM Mono',monospace" font-size="20" text-anchor="middle">⊕</text>
 
                   <!-- new grid (blinker horizontal) -->
-                  <rect x="654" y="96" width="54" height="54" rx="3" fill="#121211" stroke="#2A2A28" />
+                  <rect x="654" y="96" width="54" height="54" fill="#121211" stroke="#2A2A28" />
                   <g fill="#8C3A2B">
-                    <rect x="656" y="112" width="12" height="12" rx="1" /><rect x="670" y="112" width="12" height="12" rx="1" /><rect x="684" y="112" width="12" height="12" rx="1" />
+                    <rect x="656" y="112" width="12" height="12" /><rect x="670" y="112" width="12" height="12" /><rect x="684" y="112" width="12" height="12" />
                   </g>
                   <text x="681" y="166" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle">gen n+1</text>
 
@@ -340,25 +370,26 @@ foreach (long key in _lastChanged)
                   <line x1="622" y1="150" x2="608" y2="192" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
 
                   <!-- delta grid -->
-                  <rect x="575" y="196" width="54" height="54" rx="3" fill="#121211" stroke="#2A2A28" />
+                  <rect x="575" y="196" width="54" height="54" fill="#121211" stroke="#2A2A28" />
                   <!-- unchanged center -->
-                  <rect x="589" y="212" width="12" height="12" rx="1" fill="#30302B" />
-                  <!-- born (green) -->
-                  <rect x="575" y="212" width="12" height="12" rx="1" fill="#E8452B" />
-                  <rect x="603" y="212" width="12" height="12" rx="1" fill="#E8452B" />
+                  <rect x="589" y="212" width="12" height="12" fill="#30302B" />
+                  <!-- born (red) -->
+                  <rect x="575" y="212" width="12" height="12" fill="#E8452B" />
+                  <rect x="603" y="212" width="12" height="12" fill="#E8452B" />
                   <!-- died (dashed outline) -->
-                  <rect x="589" y="198" width="12" height="12" rx="1" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
-                  <rect x="589" y="226" width="12" height="12" rx="1" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
+                  <rect x="589" y="198" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
+                  <rect x="589" y="226" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
 
-                  <rect x="540" y="268" width="12" height="12" rx="2" fill="#E8452B" />
+                  <rect x="540" y="268" width="12" height="12" fill="#E8452B" />
                   <text x="558" y="278" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag2.born">born</text>
-                  <rect x="612" y="268" width="12" height="12" rx="2" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
+                  <rect x="612" y="268" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
                   <text x="630" y="278" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag2.died">died</text>
 
                   <!-- panel-to-panel arrows -->
                   <line x1="250" y1="168" x2="262" y2="168" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
                   <line x1="498" y1="168" x2="510" y2="168" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
                 </svg>
+            </div>
           </figure>
           <p class="gp-diagram-caption" data-i18n="gp.diag2.c">Only chunks that changed last step — plus a one-chunk halo — are recomputed, 64 cells per bitwise operation, and the delta is the XOR of each chunk’s old and new bitmask.</p>
 
@@ -703,7 +734,7 @@ public void CopyWindowTo(int minX, int maxX, int minY, int maxY, ICollection&lt;
             </div>
             <div class="gp-row is-chosen">
               <dt data-i18n="gp.s3.chosen.t">What I chose</dt>
-              <dd data-i18n="gp.s3.chosen.d">One control, scaled in generations per frame: AUTO, 16, 256, 4 K, 64 K. Generations per jump the engine delivers exactly, without predicting anything. An explicit position is an order and is never overridden; what actually happened is shown in the measurement row under it.</dd>
+              <dd data-i18n="gp.s3.chosen.d">One control, scaled in generations per frame: AUTO, 16, 256, 4 K, 64 K. The engine delivers generations per jump exactly, without predicting anything. An explicit position is an order and is never overridden; what actually happened is shown in the measurement row under it.</dd>
             </div>
           </dl>
         </section>
@@ -726,7 +757,10 @@ public void CopyWindowTo(int minX, int maxX, int minY, int maxY, ICollection&lt;
           </dl>
           <div class="gp-close">
             <p data-i18n="gp.close.p">The repository is private — the excerpts are above, and I’m happy to walk through the rest in an interview.</p>
-            <a class="gp-btn" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="gp.close.cta">Message me on LinkedIn</a>
+            <div class="gp-close-btns">
+              <a class="gp-btn" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="gp.close.cta">Message me on LinkedIn</a>
+              <a class="gp-btn gp-btn--ghost" href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
+            </div>
           </div>
         </section>
 
@@ -739,7 +773,7 @@ public void CopyWindowTo(int minX, int maxX, int minY, int maxY, ICollection&lt;
     </main>
   </div>
   <script src="js/i18n.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs></script>
   <script src="js/cellfield.js" defer></script>
   <script src="js/gol-page.js" defer></script>
 </body>
