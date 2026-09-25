@@ -16,11 +16,11 @@
       'index.nav.linkedin': 'LinkedIn',
       'index.meta.title': 'Dominik Barański — programista Unity',
       'index.meta.description':
-        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D.',
+        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D, a do tego systemy rozgrywki zbudowane na stażu w Rubens Games.',
 
       // ---------- index.html: hero ----------
       'index.hero.lead':
-        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z jego grafikami. Szukam pracy jako junior/mid Unity developer.',
+        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako junior/mid Unity developer.',
       'index.hero.stack': 'Unity · C# · Burst / Job System · shadery URP · Android',
       'index.hero.cta': 'Zobacz projekty',
 
@@ -34,7 +34,7 @@
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
       'index.project.grave.cta': 'Zobacz systemy →',
-      'index.project.lp.meta': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024',
+      'index.project.lp.meta': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games',
       'index.project.lp.body':
         'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
       'index.project.lp.cta': 'Zobacz, jak działają →',
@@ -371,7 +371,7 @@
       'lp.toc3.skills': 'uGUI · UI oddzielone od logiki gry · korutyny',
 
       // ---------- luggage-please.html: system 1 ----------
-      'lp.sys1.title': 'Fizyka przedmiotów działająca tylko w trakcie kontroli',
+      'lp.sys1.title': 'Fizyka walizki działająca tylko w trakcie kontroli',
       'lp.sys1.problem':
         'Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.',
       'lp.sys1.how':

@@ -119,11 +119,11 @@ Podpis: Grafika: Rubens Games.
 
 | # | System | Umiejętności |
 |---|---|---|
-| 1 | Fizyka przedmiotów działająca tylko w trakcie kontroli | Siły Rigidbody · zapytania fizyczne · przełączanie w tryb kinematyczny |
+| 1 | Fizyka walizki działająca tylko w trakcie kontroli | Siły Rigidbody · zapytania fizyczne · przełączanie w tryb kinematyczny |
 | 2 | Skaner rentgenowski zbudowany z warstw i renderer features URP | URP RenderObjects · culling mask · RenderTexture |
 | 3 | Koło interakcji, którego opcje zależą od stanowiska pasażera | uGUI · UI oddzielone od logiki gry · korutyny |
 
-#### 1. Fizyka przedmiotów działająca tylko w trakcie kontroli
+#### 1. Fizyka walizki działająca tylko w trakcie kontroli
 
 **Problem:** Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.
 

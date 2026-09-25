@@ -38,7 +38,7 @@ A top-down 2D survival horror made by a team of four. Four of the systems I buil
 
 #### Luggage Please
 
-PC · Unity 2022.3 URP · studio team · internship at Rubens Games, July–September 2024
+PC · Unity 2022.3 URP · studio team · internship at Rubens Games
 
 A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.
 
@@ -64,7 +64,7 @@ Materiał: aria-labels strony głównej (EN i PL) są na końcu sekcji PL.
 
 **Dominik Barański: Unity developer**
 
-Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z jego grafikami. Szukam pracy jako junior/mid Unity developer.
+Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako junior/mid Unity developer.
 
 Unity · C# · Burst / Job System · shadery URP · Android
 
@@ -88,7 +88,7 @@ Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z s
 
 #### Luggage Please
 
-PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024
+PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games
 
 Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.
 
