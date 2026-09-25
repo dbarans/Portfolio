@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="index.meta.title">Dominik Barański — Game Programmer (Unity &amp; C#)</title>
-  <meta name="description" content="Portfolio of Dominik Barański, a Unity &amp; C# game programmer: a solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship at Rubens Games." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
   <meta name="theme-color" content="#edeef0" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <!-- SLOT: og:image — no portfolio cover image exists yet; add one (1200×630 recommended)
+       and switch twitter:card to summary_large_image once it does. -->
   <link rel="canonical" href="https://dbarans.github.io/Portfolio/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Dominik Barański" />
-  <meta property="og:title" content="Dominik Barański — Game Programmer (Unity &amp; C#)" />
-  <meta property="og:description" content="A solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship." />
+  <meta property="og:title" content="Dominik Barański — Unity Developer" />
+  <meta property="og:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Dominik Barański — Game Programmer (Unity &amp; C#)" />
-  <meta name="twitter:description" content="A solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship." />
+  <meta name="twitter:title" content="Dominik Barański — Unity Developer" />
+  <meta name="twitter:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/islands.css" />
   <link rel="stylesheet" href="css/home.css" />
 </head>
 <body class="page-home">
@@ -33,213 +35,62 @@
         <span class="site-brand-text">Dominik Barański</span>
       </a>
       <nav class="site-nav" aria-label="Main">
-        <a href="index.html" class="site-nav-link is-active" data-i18n="index.nav.home">Home</a>
+        <a href="#contact" class="site-nav-link" data-i18n="index.nav.contact">Contact</a>
         <a href="#projects" class="site-nav-link" data-i18n="index.nav.projects">Projects</a>
         <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
         <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
       </nav>
       <div class="site-header-actions">
-        <button id="lang-toggle" type="button" class="lang-toggle lang-toggle--header" aria-label="Zmień język">PL</button>
+        <button id="lang-toggle" type="button" class="lang-toggle" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
       </div>
     </header>
 
     <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-heading">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <h1 id="hero-heading" class="hero-title">
-              <span class="hero-title-line text-gradient" data-i18n="index.hero.line1"><span class="hero-name">Dominik Barański</span><span class="hero-sep"> · </span><span class="hero-role">Game programmer</span></span>
-              <span class="hero-title-line hero-title-line--plain" data-i18n="index.hero.line2">15,000+ downloads on Google&nbsp;Play&nbsp;— built solo.</span>
-            </h1>
-            <p class="hero-lead" data-i18n="index.hero.lead">Unity &amp; C# — a solo Android release, a survival horror built in a team of four, and mechanics shipped during a studio internship.</p>
-            <a href="#projects" class="hero-cta">
-              <span data-i18n="index.hero.cta">View my work</span>
-              <span class="hero-cta-icon" aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div class="hero-visual">
-            <div class="hero-card">
-              <p class="hero-card-head" data-i18n="index.hero.card.title">At a glance</p>
-              <dl class="hero-facts">
-                <div class="hero-fact">
-                  <dt data-i18n="index.hero.card.stack">Stack</dt>
-                  <dd>Unity&nbsp;· C#&nbsp;· Burst/Jobs&nbsp;· Android</dd>
-                </div>
-                <div class="hero-fact">
-                  <dt data-i18n="index.hero.card.released">Released</dt>
-                  <dd><a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Game of Life<span aria-hidden="true"> ↗</span></a>&nbsp;· Google&nbsp;Play</dd>
-                </div>
-                <div class="hero-fact">
-                  <dt data-i18n="index.hero.card.internship">Internship</dt>
-                  <dd><a href="luggage-please.html">Luggage Please</a>&nbsp;· Rubens&nbsp;Games</dd>
-                </div>
-                <div class="hero-fact">
-                  <dt data-i18n="index.hero.card.profiles">Profiles</dt>
-                  <dd>
-                    <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
-                    <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">LinkedIn<span aria-hidden="true"> ↗</span></a>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </div>
+        <h1 id="hero-heading" class="hero-title">Dominik Barański: <span class="hero-role">Unity developer</span></h1>
+        <p class="hero-lead" data-i18n="index.hero.lead">I build game systems in Unity and C# with a focus on performance and testable code. My work ranges from a multithreaded simulation engine in an Android game with 15,000+ downloads on Google Play to enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project. As an intern at Rubens Games, I also built gameplay systems in a studio team, alongside the studio's artists. I'm looking for a junior/mid Unity developer role.</p>
+        <p class="hero-stack" data-i18n="index.hero.stack">Unity · C# · Burst / Job System · URP shaders · Android</p>
+        <a href="#projects" class="hero-cta"><span data-i18n="index.hero.cta">View projects</span><span class="hero-cta-icon" aria-hidden="true">↓</span></a>
+      </section>
+
+      <section id="projects" class="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="section-title" data-i18n="index.section.projects">Projects</h2>
+        <div class="project-grid">
+          <article class="project-card" aria-labelledby="proj-gol-h">
+            <span class="project-card-num" aria-hidden="true">01</span>
+            <p class="project-card-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · published on Google Play · 15,000+ downloads</p>
+            <h3 class="project-card-title" id="proj-gol-h">Game of Life</h3>
+            <p class="project-card-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
+            <a class="project-card-link" href="game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
+          </article>
+          <article class="project-card" aria-labelledby="proj-grave-h">
+            <span class="project-card-num" aria-hidden="true">02</span>
+            <p class="project-card-meta" data-i18n="index.project.grave.meta">Unity 6 · URP 2D · team of 4 · engineering thesis</p>
+            <h3 class="project-card-title" id="proj-grave-h">Grave</h3>
+            <p class="project-card-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
+            <a class="project-card-link" href="grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
+          </article>
+          <!-- SLOT: projekt #3 — treść dojdzie później; project-grid uses auto-fit so a third
+               .project-card can be dropped in here without touching the CSS. -->
         </div>
       </section>
 
-      <section id="projects" class="islands" aria-labelledby="projects-heading">
-        <div class="islands-stage">
-          <h2 id="projects-heading" class="islands-title" data-i18n="index.section.projects">Selected projects</h2>
-          <div class="islands-rail" aria-hidden="true">
-            <span class="islands-rail-label" data-i18n="index.isl.rail">Project</span>
-            <span class="islands-rail-num"><span data-rail-num>01</span><small>/03</small></span>
-            <span class="islands-rail-bar"><span class="islands-rail-fill"></span></span>
-          </div>
-          <article class="island island--1" aria-labelledby="isl-gol-title">
-            <span class="island-block" aria-hidden="true"></span>
-            <div class="island-card">
-              <div class="island-head">
-                <span class="island-role" data-i18n="index.isl.gol.role">Solo · released</span>
-                <span class="island-count" data-i18n="index.isl.count1">Project 01 of 03</span>
-              </div>
-              <h3 class="island-title" id="isl-gol-title">Game of Life</h3>
-              <p class="island-hook" data-step="2" data-i18n="index.isl.gol.hook">An edgeless board that only computes what moves.</p>
-              <p class="island-lead" data-step="3" data-i18n="index.isl.gol.lead">An Android simulator: you draw living cells with your finger, and they are born and die by four simple rules. I built all of it myself — the engine, gameplay, interface and the store release.</p>
-              <ul class="island-points" data-step="4">
-                <li data-i18n="index.isl.gol.p1">Zoom out to hundreds of thousands of cells — still smooth on weaker phones too.</li>
-                <li data-i18n="index.isl.gol.p2">An experimental turbo mode leaps thousands of generations per frame.</li>
-                <li data-i18n="index.isl.gol.p3">A pattern library, save slots and a tutorial that teaches the rules through drawing.</li>
-              </ul>
-              <div class="island-foot" data-step="5">
-                <div class="island-stats">
-                  <div class="island-stat"><b data-i18n="index.isl.gol.s1v">15,000+</b><span data-i18n="index.isl.gol.s1l">Google Play downloads</span></div>
-                  <div class="island-stat"><b data-i18n="index.isl.gol.s2v">2.2–2.5×</b><span data-i18n="index.isl.gol.s2l">faster after optimisation</span></div>
-                </div>
-                <div class="island-actions">
-                  <a class="island-cta" href="game-of-life.html" data-i18n="index.isl.gol.cta">How it works →</a>
-                  <span class="island-deeper" data-i18n="index.isl.gol.deeper">Architecture, code excerpts, measurements and rejected approaches.</span>
-                </div>
-              </div>
-            </div>
-            <span class="island-num" aria-hidden="true">01</span>
-          </article>
-          <article class="island island--2" aria-labelledby="isl-grave-title">
-            <span class="island-block" aria-hidden="true"></span>
-            <div class="island-card">
-              <div class="island-head">
-                <span class="island-role" data-i18n="index.isl.grave.role">Team of 4 · engineering project 2026</span>
-                <span class="island-count" data-i18n="index.isl.count2">Project 02 of 03</span>
-              </div>
-              <h3 class="island-title" id="isl-grave-title">Grave</h3>
-              <p class="island-hook" data-step="2" data-i18n="index.isl.grave.hook">You only see what’s lit. The dungeon is new every run.</p>
-              <p class="island-lead" data-step="3" data-i18n="index.isl.grave.lead">A finished 2D top-down survival horror, built by a team of four as our engineering project. I wrote three of its systems: the vision cone, the dungeon generator and A* pathfinding.</p>
-              <ul class="island-points" data-step="4">
-                <li data-i18n="index.isl.grave.p1">Vision cone — outside the light, monsters disappear from view.</li>
-                <li data-i18n="index.isl.grave.p2">Procedural dungeons — the same seed rebuilds the identical dungeon.</li>
-                <li data-i18n="index.isl.grave.p3">A* pathfinding — monsters chase you without stalling the game.</li>
-              </ul>
-              <div class="island-foot" data-step="5">
-                <div class="island-stats">
-                  <div class="island-stat"><b data-i18n="index.isl.grave.s1v">0 / 200</b><span data-i18n="index.isl.grave.s1l">failed generations</span></div>
-                  <div class="island-stat"><b data-i18n="index.isl.grave.s2v">48 / 48</b><span data-i18n="index.isl.grave.s2l">unit tests green</span></div>
-                </div>
-                <div class="island-actions">
-                  <a class="island-cta" href="grave.html" data-i18n="index.isl.grave.cta">See the three systems →</a>
-                  <span class="island-deeper" data-i18n="index.isl.grave.deeper">A shader light mask, a seeded generator and A* — with code and diagrams.</span>
-                </div>
-              </div>
-            </div>
-            <span class="island-num" aria-hidden="true">02</span>
-          </article>
-          <article class="island island--3" aria-labelledby="isl-luggage-title">
-            <span class="island-block" aria-hidden="true"></span>
-            <div class="island-card">
-              <div class="island-head">
-                <span class="island-role" data-i18n="index.isl.luggage.role">Rubens Games · commercial</span>
-                <span class="island-count" data-i18n="index.isl.count3">Project 03 of 03</span>
-              </div>
-              <h3 class="island-title" id="isl-luggage-title">Luggage Please</h3>
-              <p class="island-hook" data-step="2" data-i18n="index.isl.luggage.hook">Three mechanics delivered in someone else’s codebase.</p>
-              <p class="island-lead" data-step="3" data-i18n="index.isl.luggage.lead">A Rubens Games title — you check passengers’ luggage at an airport. Art and game design were the studio’s; I delivered the mechanics.</p>
-              <ul class="island-points" data-step="4">
-                <li data-i18n="index.isl.luggage.p1">You can’t close a suitcase if something sticks out.</li>
-                <li data-i18n="index.isl.luggage.p2">The scanner tells metal from organic matter by colour.</li>
-                <li data-i18n="index.isl.luggage.p3">The interaction menu changes its options depending on where you are.</li>
-              </ul>
-              <div class="island-foot" data-step="5">
-                <div class="island-stats">
-                  <div class="island-stat"><b data-i18n="index.isl.luggage.s1v">3 systems</b><span data-i18n="index.isl.luggage.s1l">in the studio’s game</span></div>
-                </div>
-                <div class="island-actions">
-                  <a class="island-cta" href="luggage-please.html" data-i18n="index.isl.luggage.cta">See details →</a>
-                  <span class="island-deeper" data-i18n="index.isl.luggage.deeper">How it plugged into the existing project.</span>
-                </div>
-              </div>
-            </div>
-            <span class="island-num" aria-hidden="true">03</span>
-          </article>
-          <span class="islands-hint" aria-hidden="true"></span>
-        </div>
-      </section>
-
-      <section class="section-projects section-projects--more">
-        <h2 class="section-title" data-i18n="index.section.more">More projects</h2>
-        <ul class="project-list">
-          <li>
-            <a href="neon.html" class="project-link">
-              <div class="project-thumb-wrap">
-                <img src="images/neon/neon.jpg" alt="" class="project-thumb" />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">NeON</h3>
-                <div class="project-role" data-i18n="index.role.neon">Unity · Game Jam</div>
-              </div>
-              <img src="images/unity.svg" alt="" class="tech-icon" />
-              <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-            </a>
-          </li>
-          <li>
-            <a href="gothic-smithy.html" class="project-link">
-              <div class="project-thumb-wrap">
-                <img src="images/gothic-smithy/logo.svg" alt="" class="project-thumb" />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Gothic Smithy</h3>
-                <div class="project-role" data-i18n="index.role.gothic">Unity · Crafting Prototype · Solo</div>
-              </div>
-              <img src="images/unity.svg" alt="" class="tech-icon" />
-              <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-            </a>
-          </li>
+      <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section-title" data-i18n="index.section.contact">Contact</h2>
+        <p class="contact-lead" data-i18n="index.contact.lead">Happy to walk through the code behind these projects in an interview.</p>
+        <ul class="contact-list">
+          <li><span class="contact-label" data-i18n="index.contact.email.label">Email:</span> <a href="mailto:baranskidominik109@gmail.com">baranskidominik109@gmail.com</a></li>
+          <li><span class="contact-label" data-i18n="index.contact.linkedin.label">LinkedIn:</span> <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">linkedin.com/in/baranskidominik</a></li>
+          <li><span class="contact-label" data-i18n="index.contact.github.label">GitHub:</span> <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">github.com/dbarans</a></li>
         </ul>
       </section>
-
-      <section id="contact" class="home-contact" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" class="section-title" data-i18n="index.contact.title">Contact</h2>
-        <div class="home-contact-body">
-          <p class="home-contact-lead" data-i18n="index.contact.lead">I’m happy to walk through the code behind these projects in an interview.</p>
-          <div class="home-contact-actions">
-            <a class="hero-cta" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">
-              <span data-i18n="index.contact.cta">Message me on LinkedIn</span>
-              <span class="hero-cta-icon" aria-hidden="true">↗</span>
-            </a>
-            <a class="home-contact-alt" href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="index.contact.github">GitHub profile</a>
-          </div>
-        </div>
-      </section>
-
-      <footer class="site-footer">
-        <p data-i18n="index.footer.developedBy">Developed by Dominik Barański</p>
-        <p class="site-footer-links">
-          <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.githubProfile">My GitHub Profile</a>
-          <span class="site-footer-sep" aria-hidden="true">·</span>
-          <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
-        </p>
-      </footer>
     </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Dominik Barański</p>
+    </footer>
   </div>
   <script src="js/header-scroll.js" defer></script>
   <script src="js/i18n.js" defer></script>
-  <script src="js/cellfield.js" defer></script>
-  <script src="js/islands.js" defer></script>
 </body>
 </html>

@@ -3,145 +3,456 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grave — Dominik Barański</title>
-  <meta name="description" content="Grave, a top-down 2D survival horror in Unity 6 made by a team of four. The three systems I wrote: a vision cone with an HLSL light mask, seeded procedural dungeons, and A* pathfinding." />
+  <title data-i18n="case.meta.grave.title">Grave — Case Study — Dominik Barański</title>
+  <meta name="description" content="Systems built for Grave, a 2D top-down survival horror made by a team of four in Unity 6: A* pathfinding, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator with 48 unit tests, and component-based enemy AI." data-i18n-attr="content" data-i18n-attr-key="case.meta.grave.description" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave.html" />
   <meta name="theme-color" content="#0b0c0e" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Grave — three systems of a 2D horror game" />
-  <meta property="og:description" content="Vision cone with an HLSL light mask, seeded procedural dungeons and A* pathfinding — the three systems I wrote for a team-made Unity 6 horror game." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Grave — Case Study — Dominik Barański" />
+  <meta property="og:description" content="Systems built for Grave, a 2D top-down survival horror made by a team of four in Unity 6: A* pathfinding, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator with 48 unit tests, and component-based enemy AI." />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave.html" />
+  <!-- SLOT: og:image — no Grave artwork exists yet; add one (1200×630 recommended) and switch
+       twitter:card to summary_large_image once it does. -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Grave — Case Study — Dominik Barański" />
+  <meta name="twitter:description" content="Systems built for Grave, a 2D top-down survival horror made by a team of four in Unity 6: A* pathfinding, a light mask, a seeded dungeon generator and component-based enemy AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/grave.css" />
+  <link rel="stylesheet" href="css/case-study.css" />
 </head>
-<body class="page-grave">
-  <a class="gr-skip" href="#systems" data-i18n="grave.skip">Skip to the systems</a>
-  <header class="gr-top">
-    <a class="gr-back" href="index.html#projects" data-i18n="grave.back">← All projects</a>
-    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
+<body class="page-case page-case--grave">
+  <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
+  <header class="cs-top">
+    <a class="cs-brand" href="index.html">Dominik Barański</a>
+    <a class="cs-back" href="index.html#projects" data-i18n="case.back">← All projects</a>
+    <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
   </header>
 
-  <main>
-    <div class="gr-room">
-      <canvas class="gr-room-field" aria-hidden="true"></canvas>
+  <main class="cs-page" id="main" tabindex="-1">
 
-      <section class="gr-hero" aria-labelledby="grave-title">
-        <div class="gr-hero-inner">
-          <div>
-            <p class="gr-kicker" data-i18n="grave.kicker">Project 02 of 03 · Engineering thesis, 2026</p>
-            <h1 class="gr-title" id="grave-title">Grave <span class="gr-wip" data-i18n="grave.wip">working title</span></h1>
-          </div>
-          <div class="gr-hero-side">
-            <p class="gr-pitch" data-i18n="grave.pitch">A top-down 2D survival horror where you only see what’s lit — and the monsters hear every step you take.</p>
-            <div class="gr-hero-row">
-              <p class="gr-role" data-i18n="grave.role">Three systems in this game that I wrote</p>
-              <ul class="gr-chips" aria-label="Stack" data-i18n-attr="aria-label" data-i18n-attr-key="grave.chips.aria">
-                <li>Unity 6</li><li>C#</li><li>URP</li><li>HLSL</li>
-              </ul>
-              <a class="gr-btn" href="https://github.com/dbarans/engineering-project" target="_blank" rel="noopener noreferrer" data-i18n="grave.github">Code on GitHub ↗</a>
+    <header class="cs-hero">
+      <div class="cs-hero-grid">
+        <div>
+          <p class="cs-kicker" data-i18n="case.kicker.grave">Team of 4 · engineering thesis, 2026</p>
+          <h1>Grave</h1>
+          <p class="cs-tagline" data-i18n="grave.tagline">Systems I built for a top-down 2D game in Unity 6: pathfinding, visibility, procedural dungeons and enemy AI.</p>
+          <p class="cs-intro" data-i18n="grave.intro">Grave is a top-down 2D survival horror in which the player sees only what their line of sight and light sources reach. It was made by a team of four as an engineering thesis project. This case study covers systems I built for it: enemy pathfinding, the visibility system, procedural dungeon generation and enemy AI.</p>
+        </div>
+
+        <!-- SLOT: hero animation, landscape. Alt/description EN: "A lit dungeon room seen from
+             above: pillars cut sharp shadows into the player's view cone, and everything
+             outside the light fades into darkness." Alt/description PL: "Oświetlone
+             pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia
+             gracza, a wszystko poza światłem ginie w ciemności." -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--landscape">
+            <div class="cs-media-inner">
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="grave.hero.shot">Lit dungeon room, camera from above: pillars cut sharp-edged shadows into the player's view cone, everything outside the light stays completely dark.</p>
+              <p class="cs-media-specs">16:9 · loop, 3–5s</p>
             </div>
-            <p class="gr-team" data-i18n="grave.team">A finished, playable PC game, built by a team of four at Collegium Da Vinci. Saving, inventory, UI, world interactions and sound are my teammates’ work.</p>
           </div>
-        </div>
-      </section>
+          <figcaption class="cs-media-caption" data-i18n="grave.hero.caption">A lit dungeon room seen from above: pillars cut sharp shadows into the player's view cone, and everything outside the light fades into darkness.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="images/grave/hero.webp" alt="[the figcaption text]" loading="lazy">
+               — or: —
+               <video autoplay muted loop playsinline preload="metadata" poster="images/grave/hero-poster.jpg">
+                 <source src="images/grave/hero.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/grave/hero-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
+      </div>
+    </header>
 
-      <section class="gr-systems" id="systems" aria-labelledby="systems-h">
-        <div class="gr-systems-head">
-          <h2 class="gr-label" id="systems-h" data-i18n="grave.systems">The three systems</h2>
-          <p class="gr-hint" aria-hidden="true" data-i18n="grave.hint">Move the cursor — the torch follows</p>
+    <section class="cs-keynums" aria-labelledby="keynums-h">
+      <h2 class="cs-eyebrow" id="keynums-h" data-i18n="case.keynums">Key numbers</h2>
+      <div class="cs-keynums-grid">
+        <div class="cs-keynum">
+          <b>48</b>
+          <span class="cs-keynum-label" data-i18n="grave.kn1.label">EditMode unit tests</span>
+          <span class="cs-keynum-ctx" data-i18n="grave.kn1.ctx">All cover the dungeon generator, which runs without a scene; many sweep dozens to hundreds of seeds.</span>
         </div>
-        <ul class="gr-cards">
-          <li>
-            <article class="gr-card" aria-labelledby="c1-t">
-              <figure class="gr-media" data-sketch="fov" data-video="">
-                <canvas role="img" aria-label="Sketch: a vision cone sweeps a room with pillars; the monster shows only where the light reaches." data-i18n-attr="aria-label" data-i18n-attr-key="grave.c1.canvas"></canvas>
-                <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
-              </figure>
-              <div class="gr-card-body">
-                <span class="gr-card-num">01</span>
-                <h3 id="c1-t" data-i18n="grave.c1.title">Vision cone</h3>
-                <p class="gr-card-hook" data-i18n="grave.c1.hook">You only see what’s lit. The rest — monsters included — disappears.</p>
-                <p class="gr-card-stat"><b>≈ 2×</b><span data-i18n="grave.c1.stat">fewer raycasts per frame — adaptive ray density, calculated from the player’s settings</span></p>
-                <ul class="gr-tags"><li>HLSL / URP</li><li>Rendering</li><li data-i18n="grave.tag.perf">Performance</li></ul>
-                <a class="gr-card-cta" href="grave-vision.html" data-i18n="grave.cta">See how it works →</a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="gr-card" aria-labelledby="c2-t">
-              <figure class="gr-media" data-sketch="dungeon" data-video="">
-                <canvas role="img" aria-label="Sketch: dungeons generated from seeds, stage by stage; a repeated seed rebuilds the same layout." data-i18n-attr="aria-label" data-i18n-attr-key="grave.c2.canvas"></canvas>
-                <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
-              </figure>
-              <div class="gr-card-body">
-                <span class="gr-card-num">02</span>
-                <h3 id="c2-t" data-i18n="grave.c2.title">Procedural dungeons</h3>
-                <p class="gr-card-hook" data-i18n="grave.c2.hook">Every run, a new dungeon. Same seed, identical dungeon.</p>
-                <p class="gr-card-stat"><b>≈ 104 ms</b><span data-i18n="grave.c2.stat">average for a whole 200×200 map (200 seeds) · 0 / 200 failed generations</span></p>
-                <ul class="gr-tags"><li data-i18n="grave.tag.graphs">Graph algorithms</li><li data-i18n="grave.tag.tests">Unit tests</li><li>Editor tools</li></ul>
-                <a class="gr-card-cta" href="grave-dungeon.html" data-i18n="grave.cta">See how it works →</a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="gr-card" aria-labelledby="c3-t">
-              <figure class="gr-media" data-sketch="astar" data-video="">
-                <canvas role="img" aria-label="Sketch: a monster follows an A* route that is re-planned while the player circles a pillar." data-i18n-attr="aria-label" data-i18n-attr-key="grave.c3.canvas"></canvas>
-                <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
-              </figure>
-              <div class="gr-card-body">
-                <span class="gr-card-num">03</span>
-                <h3 id="c3-t" data-i18n="grave.c3.title">A* pathfinding</h3>
-                <p class="gr-card-hook" data-i18n="grave.c3.hook">Monsters chase you across the whole dungeon — without stalling the game.</p>
-                <p class="gr-card-stat"><b>O(1)</b><span data-i18n="grave.c3.stat">rejection of an unreachable target — instead of searching the whole map</span></p>
-                <ul class="gr-tags"><li data-i18n="grave.tag.algo">Algorithms</li><li data-i18n="grave.tag.memory">Memory management</li><li>Strategy / ISP</li></ul>
-                <a class="gr-card-cta" href="grave-pathfinding.html" data-i18n="grave.cta">See how it works →</a>
-              </div>
-            </article>
-          </li>
-        </ul>
-      </section>
-    </div>
-
-    <section class="gr-shows" aria-labelledby="shows-h">
-      <h2 class="gr-label" id="shows-h" data-i18n="grave.shows">What the code shows</h2>
-      <ul class="gr-shows-list">
-        <li><b data-i18n="grave.shows.1.t">Performance by habit</b><span data-i18n="grave.shows.1.d">Node budgets, version stamping instead of clearing arrays, adaptive ray sampling, reusable buffers — each with a reason.</span></li>
-        <li><b data-i18n="grave.shows.2.t">Testable code</b><span data-i18n="grave.shows.2.d">Logic in plain C# in its own asmdef, 48 invariant tests, repeatable measurements over 200 seeds instead of eyeballing.</span></li>
-        <li><b data-i18n="grave.shows.3.t">Unity beyond components</b><span data-i18n="grave.shows.3.d">A custom visibility-mask pipeline (second camera, RenderTexture, HLSL shaders, blending), 2D physics, editor tools.</span></li>
-        <li><b data-i18n="grave.shows.4.t">Problem → cause → fix</b><span data-i18n="grave.shows.4.d">Stencil → continuous mask (sprite pop-in), the nav grid’s initialisation order, a stale grid after a barrel is destroyed.</span></li>
-        <li><b data-i18n="grave.shows.5.t">Delivered as a team</b><span data-i18n="grave.shows.5.d">A finished, built game; Git with pull requests and review.</span></li>
-      </ul>
+        <div class="cs-keynum">
+          <b data-i18n="grave.kn2.value">4,000</b>
+          <span class="cs-keynum-label" data-i18n="grave.kn2.label">Node cap per A* search</span>
+          <span class="cs-keynum-ctx" data-i18n="grave.kn2.ctx">A design limit, not a benchmark: past it, the search returns the best partial path instead of stalling the frame.</span>
+        </div>
+        <div class="cs-keynum">
+          <b>~30 → ~12 ms</b>
+          <span class="cs-keynum-label" data-i18n="grave.kn3.label">Frame time after profiling</span>
+          <span class="cs-keynum-ctx" data-i18n="grave.kn3.ctx">Measured in the editor, after one profiling pass: coarser ray sampling outside the view cone, A* buffer caching and a few other fixes.</span>
+        </div>
+      </div>
     </section>
 
-    <div class="gr-hub-more">
-      <details class="gr-more">
-        <summary><span data-i18n="grave.stack">Full tech stack</span></summary>
-        <div class="gr-more-body">
-          <dl class="gr-stack">
-            <div><dt>Unity 6 (6000.3.8f1)</dt><dd data-i18n="grave.stack.unity">URP 2D Renderer, Tilemap, <code>Physics2D</code> (Raycast, OverlapCircle, Linecast, ContactFilter2D), ScriptableObject (generator settings), asmdef, <code>[ExecuteAlways]</code>, <code>[ContextMenu]</code>, Gizmos/Handles, EditorWindow.</dd></div>
-            <div><dt data-i18n="grave.stack.render.t">Rendering / shaders</dt><dd data-i18n="grave.stack.render">Custom HLSL shaders (URP 2D), a second camera → <code>RenderTexture</code> as a global texture, <code>BlendOp Max</code>, <code>MaterialPropertyBlock</code>, screen-space sampling.</dd></div>
-            <div><dt>C# (.NET Standard 2.1)</dt><dd data-i18n="grave.stack.cs">Logic without <code>MonoBehaviour</code>, events/delegates (<code>Built</code>), <code>ConditionalWeakTable</code>, <code>MethodImpl(AggressiveInlining)</code>, reusable buffers.</dd></div>
-            <div><dt data-i18n="grave.stack.algo.t">Algorithms &amp; data structures</dt><dd data-i18n="grave.stack.algo">A* (binary heap, tie-break, node budget), Kruskal’s MST + Union-Find, Hopcroft–Tarjan articulation points (iterative), graph bridges, flood fill/BFS, cellular automaton (caves), recursive shadowcasting, xorshift128, FNV-1a.</dd></div>
-            <div><dt data-i18n="grave.stack.patterns.t">Patterns &amp; principles</dt><dd data-i18n="grave.stack.patterns">Strategy, ISP (narrow capability interfaces), Observer, generate-and-test, logic separated from the engine, configuration in ScriptableObjects.</dd></div>
-            <div><dt data-i18n="grave.stack.process.t">Quality &amp; process</dt><dd data-i18n="grave.stack.process">Unity Test Framework (NUnit, edit mode, 48 tests), a custom editor tool, Git/GitHub (<code>dev</code> branch, pull requests with review), Trello.</dd></div>
-          </dl>
+    <section class="cs-glance" aria-labelledby="glance-h">
+      <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
+      <dl class="cs-facts">
+        <div><dt data-i18n="grave.glance.team.t">Team</dt><dd data-i18n="grave.glance.team.d">4 people (engineering thesis)</dd></div>
+        <div><dt data-i18n="grave.glance.covered.t">Covered here</dt><dd data-i18n="grave.glance.covered.d">systems I built: A* pathfinding, the visibility system, procedural dungeon generation, enemy AI</dd></div>
+        <div><dt data-i18n="grave.glance.engine.t">Engine</dt><dd data-i18n="grave.glance.engine.d">Unity 6 (6000.3.8f1), URP 2D</dd></div>
+        <div><dt data-i18n="grave.glance.platform.t">Platform</dt><dd data-i18n="grave.glance.platform.d">PC</dd></div>
+        <div><dt data-i18n="grave.glance.status.t">Status</dt><dd data-i18n="grave.glance.status.d">engineering thesis project, Collegium Da Vinci, 2026</dd></div>
+        <div><dt data-i18n="grave.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="grave.glance.tech.d">C#, Physics2D, custom URP shaders (HLSL), RenderTexture, assembly definitions, Unity Test Framework (48 EditMode tests)</dd></div>
+        <div><dt data-i18n="grave.glance.code.t">Code</dt><dd><a href="https://github.com/dbarans/engineering-project/tree/main" target="_blank" rel="noopener noreferrer" data-i18n="grave.glance.code.link">team repository on GitHub</a><span aria-hidden="true"> ↗</span><span data-i18n="grave.glance.code.d">, each system below links to its own source folder</span></dd></div>
+      </dl>
+    </section>
+
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="grave.sys1.title">A* pathfinding with a predictable frame cost</span><span class="cs-toc-skills" data-i18n="grave.toc1.skills">A* · binary heap · bounded frame cost</span></a></li>
+        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="grave.sys2.title">Visibility system: a light mask rendered by a second camera and custom shaders</span><span class="cs-toc-skills" data-i18n="grave.toc2.skills">RenderTexture · custom URP shaders · raycasting</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="grave.sys3.title">Procedural dungeon generator: seeded, validated, tested</span><span class="cs-toc-skills" data-i18n="grave.toc3.skills">Graph algorithms · determinism · unit tests</span></a></li>
+        <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="grave.sys4.title">Enemy AI: senses built from components, and an update budget based on distance</span><span class="cs-toc-skills" data-i18n="grave.toc4.skills">Composition · interfaces · AI update budget</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="cs-systems">
+
+      <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">01</span>
+          <h2 id="sys-1-h" data-i18n="grave.sys1.title">A* pathfinding with a predictable frame cost</h2>
         </div>
-      </details>
-    </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="grave.sys1.problem">Enemies chase the player across a generated dungeon, a 40,000-cell grid (200×200), and no single path search may stall a frame. The worst case is an unreachable target: a plain A* explores the entire map before it gives up.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="grave.sys1.how">The level's colliders are sampled into a flat walkability grid, which is updated locally when an obstacle is destroyed. A flood fill splits the grid into connected regions, so an unreachable target is rejected in O(1) before any search starts. The search uses a binary heap, a priority queue that returns the cheapest node in O(log n). It reuses its buffers between searches, invalidating them with a per-search version number instead of clearing them. It also caps the number of explored nodes and returns the best partial path instead of freezing the game.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="grave.sys1.what">Turning a textbook algorithm into one with a bounded per-frame cost, where setup scales with the area searched rather than the map size. Movement is a swappable strategy component behind small interfaces, so enemy logic doesn't depend on the pathfinder and can be switched to simple direct movement.</p>
+        </div>
+        <p class="cs-source">
+          <span class="cs-source-label" data-i18n="case.source">Source</span>
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Pathfinding" target="_blank" rel="noopener noreferrer">Assets/Scripts/Pathfinding</a>
+        </p>
+        <div class="cs-code">
+          <p class="cs-code-file">AStarPathfinder.cs · FindPath()</p>
+          <pre tabindex="0" aria-label="Code excerpt from AStarPathfinder.cs, the FindPath method: region rejection, the heap search loop, the node budget and the partial-path fallback"><code class="language-csharp">// Different connected regions can never be joined by a path. O(1) instead of exploring
+// every reachable cell only to fail.
+if (grid.GetRegionId(startX, startY) != grid.GetRegionId(targetX, targetY)) return false;
+
+// …
+
+while (scratch.HeapCount &gt; 0)
+{
+    int current = HeapPop(scratch);
+    if (closed[current]) continue; // stale duplicate left over from a cheaper re-push
+    closed[current] = true;
+
+    if (current == target)
+        return ReconstructPath(grid, parent, start, target, result);
+
+    if (++explored &gt;= maxExploredNodes) break;
+
+    // … expand neighbours, push them onto the heap …
+}
+
+// Out of budget or out of reachable cells: hand back the route to whatever came closest,
+// so the agent still makes progress this frame.
+if (bestIndex != start)
+    ReconstructPath(grid, parent, start, bestIndex, result);
+
+return false;</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-2" aria-labelledby="sys-2-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">02</span>
+          <h2 id="sys-2-h" data-i18n="grave.sys2.title">Visibility system: a light mask rendered by a second camera and custom shaders</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="grave.sys2.problem">Everything outside the player's line of sight, enemies included, has to be hidden, and light from several sources (the player's view cone, lamps) must blend smoothly. An earlier version used the stencil buffer, which stores a simple on/off flag per pixel. Sprites were cut off sharply at the edge of the light, and two lights couldn't blend smoothly.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="grave.sys2.how">The player's view cone and every lamp go through one shared mesh builder. Where two neighbouring rays hit different surfaces, a binary search between them finds the exact edge, so outlines stay sharp without casting more rays. Max blending lets overlapping lights take the brighter value instead of adding up. The mask keeps light level in alpha and light colour in RGB, so one texture both dims and tints the scene, and sprite shaders hide whatever no light reaches.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="grave.sys2.what">Working with Unity's rendering beyond ready-made components: an extra camera, render layers, a RenderTexture, blend modes and custom URP shaders, plus replacing an architecture once it hit its limits. It also shows profiling. The cone used to cast a full circle of rays at full density just to draw a small ring of vision around the player; sampling that ring more coarsely, with other fixes in the same pass including per-grid A* buffer caching, took the frame from ~30 ms to ~12 ms (measured in the editor).</p>
+        </div>
+        <p class="cs-source">
+          <span class="cs-source-label" data-i18n="case.source">Source</span>
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Vision" target="_blank" rel="noopener noreferrer">Assets/Scripts/Vision</a>,
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Shaders" target="_blank" rel="noopener noreferrer">Assets/Shaders</a>
+        </p>
+
+        <figure class="cs-diagram" role="group" aria-labelledby="grave-diag2-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 700 620" role="img" aria-label="A four-step pipeline, top to bottom. One: a ray fan per light finds edges and builds a mesh, via OcclusionMeshBuilder, shared by the player and lamps. Two: a mask camera renders those meshes into a RenderTexture with max blending so the brighter light wins, on the VisionMask layer. Three: the result is published as the global _VisionMask texture. Four: a darkness overlay and sprite shaders sample that texture to dim the scene and hide whatever no light reaches.">
+              <defs>
+                <marker id="grave-vis-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+
+              <rect x="60" y="30" width="580" height="110" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="65" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="grave.diag2.b1a">Ray fan per light</text>
+              <text x="350" y="88" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="grave.diag2.b1b">Edge search → mesh</text>
+              <text x="350" y="118" text-anchor="middle" class="cs-i-label" font-size="12">OcclusionMeshBuilder</text>
+
+              <path d="M350,140 L350,176" class="cs-i-line" marker-end="url(#grave-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="180" width="580" height="110" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="215" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="grave.diag2.b2a">Mask camera → RenderTexture</text>
+              <text x="350" y="238" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="grave.diag2.b2b">BlendOp Max: brighter wins</text>
+              <text x="350" y="268" text-anchor="middle" class="cs-i-label" font-size="12">VisionMask layer</text>
+
+              <path d="M350,290 L350,326" class="cs-i-line" marker-end="url(#grave-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="330" width="580" height="90" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="382" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="grave.diag2.b3a">Global _VisionMask texture</text>
+
+              <path d="M350,420 L350,466" class="cs-i-line" marker-end="url(#grave-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="470" width="580" height="110" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="505" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="grave.diag2.b4a">Darkness overlay</text>
+              <text x="350" y="525" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="grave.diag2.b4b">+ sprite shaders</text>
+              <text x="350" y="558" text-anchor="middle" class="cs-i-label" font-size="12">DarknessOverlay, SpriteFovMasked</text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="grave-diag2-cap" data-i18n="grave.diag2.cap">Four stages of the mask pipeline, from casting rays to hiding whatever no light reaches.</figcaption>
+        </figure>
+
+        <!-- SLOT: system animation, landscape (gameplay). -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--landscape">
+            <div class="cs-media-inner">
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="grave.sys2.shot">Player crosses a dark room with pillars and a lamp: the view cone is blocked by the pillars, an enemy sprite fades out smoothly at the edge of the light, and two overlapping lights blend with no visible seam. Show the system itself, not a gameplay moment.</p>
+              <p class="cs-media-specs">16:9 · loop, 4–8s</p>
+            </div>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="grave.sys2.caption">The player crosses a dark room with pillars and a lamp: pillars cut into the view cone, an enemy fades out at the edge of the light, and two overlapping lights blend without a seam.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="images/grave/system-2-visibility.webp" alt="[the figcaption text]" loading="lazy">
+               — or: —
+               <video autoplay muted loop playsinline preload="metadata" poster="images/grave/system-2-poster.jpg">
+                 <source src="images/grave/system-2-visibility.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/grave/system-2-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
+      </article>
+
+      <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">03</span>
+          <h2 id="sys-3-h" data-i18n="grave.sys3.title">Procedural dungeon generator: seeded, validated, tested</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="grave.sys3.problem">Every run needs a new dungeon that is always fully connected, with no unreachable rooms and no doorways leading into solid rock. It also has to be reproducible: the same seed must produce the identical dungeon on any machine, so a level can be recreated, debugged and tested from its seed alone.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="grave.sys3.how">The generator is a pure C# pipeline in its own assembly, with no dependency on scenes or MonoBehaviours. It places rooms and connects them with a minimum spanning tree built with Kruskal's algorithm and Union-Find, which gives the cheapest set of corridors linking every room. A few extra edges add loops. The pipeline then carves rooms and corridors, including dead-end corridor alcoves, validates the result, and retries with a derived seed if validation fails. A deterministic random generator gives each stage its own independent stream, so changing one stage doesn't reshuffle the others. Graph analysis finds articulation points (chokepoints), the cells that would split the dungeon in two if blocked, so props are never placed on them.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="grave.sys3.what">Applying graph algorithms to a real game problem, and an architecture built for testing. The generator doesn't touch the engine, so 48 EditMode unit tests cover it. Many of them sweep dozens to hundreds of seeds; for example, all 500 random seeds in one test must pass validation and produce unique layouts.</p>
+        </div>
+        <p class="cs-source">
+          <span class="cs-source-label" data-i18n="case.source">Source</span>
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Generation/Layout" target="_blank" rel="noopener noreferrer">Assets/Scripts/Generation/Layout</a>,
+          <span data-i18n="grave.sys3.tests.label">tests:</span>
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Tests/EditMode" target="_blank" rel="noopener noreferrer">Assets/Tests/EditMode</a>
+        </p>
+        <div class="cs-code">
+          <p class="cs-code-file">RoomCorridorGenerator.cs · BuildOnce()</p>
+          <pre tabindex="0" aria-label="Code excerpt from RoomCorridorGenerator.cs, the BuildOnce method: the full generation pipeline, one stage per line, each with its own random stream"><code class="language-csharp">private static DungeonLayout BuildOnce(string seed, LayoutParams p, DeterministicRandom random)
+{
+    List&lt;Room&gt; rooms = PlaceRooms(p, random.Derive("rooms"), out int hubIndex,
+        out List&lt;int&gt; treasurePlots);
+    List&lt;RoomLink&gt; links = ConnectRooms(rooms, treasurePlots, hubIndex, p, random.Derive("links"));
+
+    var layout = new DungeonLayout(seed, p.MapWidth, p.MapHeight, rooms, links);
+
+    CarveRooms(layout, rooms);
+    DetailOutlines(layout, rooms, hubIndex, p, random.Derive("outlines"));
+    CorridorCarver.CarveAll(layout, rooms, links, hubIndex, p, random.Derive("corridors"));
+    DoorwayNormalizer.Apply(layout, rooms, p.DoorwayWidth);
+
+    // Roles are assigned before the interior pass because that pass reads them: the
+    // start room and the hub are deliberately left legible, and it cannot know which
+    // they are until the graph has been walked.
+    AssignRoomRoles(layout, rooms, links, hubIndex, treasurePlots, p);
+
+    RoomInteriorDecorator.Decorate(layout, p, random.Derive("interiors"));
+    Chokepoints.Detect(layout);
+
+    return layout;
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-4" aria-labelledby="sys-4-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">04</span>
+          <h2 id="sys-4-h" data-i18n="grave.sys4.title">Enemy AI: senses built from components, and an update budget based on distance</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="grave.sys4.problem">A generated dungeon holds many enemies. Each one runs a state machine (patrol, chase, investigate) and a full A* search a few times a second, even though most of them are nowhere near the player. Enemy types also differ in how they sense the player, and adding a new type shouldn't mean editing a shared base class.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="grave.sys4.how">EnemyBase finds its components by interface and never learns which classes are behind them. It queries every attached detector, and any of them can confirm the player. Hearing is a separate channel fed by a noise event bus: a heard noise sends the enemy to check the spot but doesn't count as detection, because a noise is only a suspicion. The update zones are sized from each enemy's own sensor range, so the budget adapts to the enemy type. Random jitter keeps groups from ticking on the same frame, and parked enemies release their cached paths.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="grave.sys4.what">Composition over inheritance in practice. The blind enemy type is a 16-line subclass whose only real content is [RequireComponent(typeof(SoundPlayerDetector))]: being blind just means its prefab has no VisionPlayerDetector, and it was added without touching the base class. It also shows how to budget AI cost across a large level without making enemies near the player any less responsive.</p>
+        </div>
+        <p class="cs-source">
+          <span class="cs-source-label" data-i18n="case.source">Source</span>
+          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Enemy" target="_blank" rel="noopener noreferrer">Assets/Scripts/Enemy</a>
+        </p>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="grave-diag4a-cap">
+          <p class="cs-diagram-row-label" data-i18n="grave.diag4.part1">Senses as components behind interfaces — a hub, not a pipeline</p>
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 900 560" role="img" aria-label="EnemyBase sits at the centre of a hub. It queries two sense components through interfaces, each connecting to an exact point on the hub's edge: IPlayerDetector, implemented by VisionPlayerDetector for sight, and INoiseSensor, implemented by SoundPlayerDetector and fed by NoiseEvents, for hearing, which only raises suspicion, not detection. A separate, dashed spoke leads down to IMovementStrategy, implemented by PathfindingMovement or SimpleDirectMovement — movement is not a sense. A panel to the side, linked to the hub by its own connector, shows the same hub without the sight spoke: the blind enemy type.">
+              <defs>
+                <marker id="grave-hub-line" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                  <circle cx="4" cy="4" r="3" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+
+              <text x="395" y="18" text-anchor="middle" class="cs-i-accent-text" font-size="11" letter-spacing="1.5" data-i18n="grave.diag4.senses">SENSES</text>
+
+              <path d="M180,135 L310,225" class="cs-i-line" marker-start="url(#grave-hub-line)" aria-hidden="true" />
+              <path d="M610,145 L390,225" class="cs-i-line" marker-start="url(#grave-hub-line)" aria-hidden="true" />
+              <path d="M350,315 L350,400" class="cs-i-line-dashed" marker-start="url(#grave-hub-line)" aria-hidden="true" />
+              <path d="M430,270 L660,270" class="cs-i-line-muted" marker-start="url(#grave-hub-line)" aria-hidden="true" />
+
+              <rect x="270" y="225" width="160" height="90" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="260" text-anchor="middle" class="cs-i-title" font-size="14">EnemyBase</text>
+              <text x="350" y="282" text-anchor="middle" class="cs-i-label" font-size="11" data-i18n="grave.diag4.stateMachine">state machine</text>
+
+              <rect x="40" y="40" width="280" height="95" class="cs-i-box" aria-hidden="true" />
+              <text x="180" y="70" text-anchor="middle" class="cs-i-title" font-size="13">VisionPlayerDetector</text>
+              <text x="180" y="90" text-anchor="middle" class="cs-i-label" font-size="10.5">IPlayerDetector</text>
+              <text x="180" y="111" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="grave.diag4.sight">Detection: sight</text>
+
+              <rect x="460" y="40" width="300" height="105" class="cs-i-box" aria-hidden="true" />
+              <text x="610" y="70" text-anchor="middle" class="cs-i-title" font-size="13">SoundPlayerDetector</text>
+              <text x="610" y="90" text-anchor="middle" class="cs-i-label" font-size="10">INoiseSensor ← NoiseEvents</text>
+              <text x="610" y="112" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="grave.diag4.hearing">Hearing: suspicion only</text>
+
+              <rect x="195" y="400" width="310" height="115" class="cs-i-box" aria-hidden="true" />
+              <text x="350" y="432" text-anchor="middle" class="cs-i-title" font-size="12.5">PathfindingMovement /</text>
+              <text x="350" y="452" text-anchor="middle" class="cs-i-title" font-size="12.5">SimpleDirectMovement</text>
+              <text x="350" y="471" text-anchor="middle" class="cs-i-label" font-size="10.5">IMovementStrategy</text>
+              <text x="350" y="492" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="grave.diag4.movement"><tspan x="350" dy="0">Movement: A* or direct —</tspan><tspan x="350" dy="15">not a sense</tspan></text>
+
+              <rect x="660" y="170" width="220" height="210" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
+              <text x="770" y="196" text-anchor="middle" class="cs-i-accent-text" font-size="11" data-i18n="grave.diag4.blindLabel">Blind type: no sight</text>
+              <path d="M770,236 L770,262" class="cs-i-line-muted" marker-start="url(#grave-hub-line)" aria-hidden="true" />
+              <rect x="725" y="240" width="90" height="36" class="cs-i-box" aria-hidden="true" />
+              <text x="770" y="263" text-anchor="middle" class="cs-i-title" font-size="10.5">EnemyBase</text>
+              <rect x="700" y="308" width="140" height="42" class="cs-i-box" aria-hidden="true" />
+              <text x="770" y="333" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="grave.diag4.noSight">No sight component</text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="grave-diag4a-cap" data-i18n="grave.diag4.blind">A "blind" enemy type is the same hub without the sight spoke — added without changing a line of the shared base class.</figcaption>
+        </figure>
+
+        <figure class="cs-diagram" role="group" aria-labelledby="grave-diag4b-cap">
+          <p class="cs-diagram-row-label" data-i18n="grave.diag4.part2">Update budget by distance from the player</p>
+
+          <svg class="cs-rings-wide" viewBox="0 0 750 300" role="img" aria-label="Concentric rings around the player, with a legend beside them. The innermost disk is updated every frame, sized to sensor range plus a margin. A middle band updates on a timer with random jitter. The outer band is parked, releasing its cached path. Two close rings mark hysteresis at the parking boundary — a wake line just inside the park line — and a safety floor guarantees an enemy that could still sense the player is never parked.">
+            <circle cx="150" cy="150" r="40" class="cs-i-box-accent" aria-hidden="true" />
+            <circle cx="150" cy="150" r="95" class="cs-i-line-muted" aria-hidden="true" />
+            <circle cx="150" cy="150" r="108" class="cs-i-line-dashed" aria-hidden="true" />
+            <circle cx="150" cy="150" r="118" class="cs-i-line-muted" stroke-dasharray="5 4" aria-hidden="true" />
+            <circle cx="150" cy="150" r="3" class="cs-i-dot" aria-hidden="true" />
+            <text x="150" y="132" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="grave.diag4.player">Player</text>
+
+            <circle cx="345" cy="45" r="6" class="cs-i-box-accent" aria-hidden="true" />
+            <text x="362" y="42" class="cs-i-title" font-size="12.5" data-i18n="grave.diag4.zone1.t">Every frame</text>
+            <text x="362" y="60" class="cs-i-label" font-size="10" data-i18n="grave.diag4.zone1.d">sensor range + margin</text>
+
+            <circle cx="345" cy="105" r="6" class="cs-i-line-muted" aria-hidden="true" />
+            <text x="362" y="109" class="cs-i-title" font-size="12.5" data-i18n="grave.diag4.zone2.t">Timed, with jitter</text>
+
+            <circle cx="345" cy="160" r="6" class="cs-i-line-muted" stroke-dasharray="3 2" aria-hidden="true" />
+            <text x="362" y="164" class="cs-i-title" font-size="12.5" data-i18n="grave.diag4.zone3.t">Parked, path released</text>
+
+            <text x="330" y="215" class="cs-i-accent-text" font-size="11.5" data-i18n="grave.diag4.safety.t">Safety floor</text>
+            <text x="330" y="233" class="cs-i-label" font-size="10" data-i18n="grave.diag4.safety.d">never within sensing range</text>
+
+            <text x="330" y="272" class="cs-i-title" font-size="11.5" data-i18n="grave.diag4.hysteresis">Hysteresis: park / wake</text>
+          </svg>
+
+          <svg class="cs-rings-tall" viewBox="0 0 400 600" role="img" aria-label="Concentric rings around the player, with a legend below them. The innermost disk is updated every frame, sized to sensor range plus a margin. A middle band updates on a timer with random jitter. The outer band is parked, releasing its cached path. Two close rings mark hysteresis at the parking boundary — a wake line just inside the park line — and a safety floor guarantees an enemy that could still sense the player is never parked.">
+            <circle cx="200" cy="150" r="40" class="cs-i-box-accent" aria-hidden="true" />
+            <circle cx="200" cy="150" r="95" class="cs-i-line-muted" aria-hidden="true" />
+            <circle cx="200" cy="150" r="108" class="cs-i-line-dashed" aria-hidden="true" />
+            <circle cx="200" cy="150" r="118" class="cs-i-line-muted" stroke-dasharray="5 4" aria-hidden="true" />
+            <circle cx="200" cy="150" r="3" class="cs-i-dot" aria-hidden="true" />
+            <text x="200" y="132" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="grave.diag4.player">Player</text>
+
+            <circle cx="30" cy="326" r="6" class="cs-i-box-accent" aria-hidden="true" />
+            <text x="46" y="330" class="cs-i-title" font-size="13" data-i18n="grave.diag4.zone1.t">Every frame</text>
+            <text x="46" y="349" class="cs-i-label" font-size="11" data-i18n="grave.diag4.zone1.d">sensor range + margin</text>
+
+            <circle cx="30" cy="390" r="6" class="cs-i-line-muted" aria-hidden="true" />
+            <text x="46" y="394" class="cs-i-title" font-size="13" data-i18n="grave.diag4.zone2.t">Timed, with jitter</text>
+
+            <circle cx="30" cy="434" r="6" class="cs-i-line-muted" stroke-dasharray="3 2" aria-hidden="true" />
+            <text x="46" y="438" class="cs-i-title" font-size="13" data-i18n="grave.diag4.zone3.t">Parked, path released</text>
+
+            <text x="20" y="488" class="cs-i-accent-text" font-size="12.5" data-i18n="grave.diag4.safety.t">Safety floor</text>
+            <text x="20" y="507" class="cs-i-label" font-size="11" data-i18n="grave.diag4.safety.d">never within sensing range</text>
+
+            <text x="20" y="552" class="cs-i-title" font-size="12.5" data-i18n="grave.diag4.hysteresis">Hysteresis: park / wake</text>
+          </svg>
+
+          <figcaption class="cs-diagram-cap" id="grave-diag4b-cap" data-i18n="grave.diag4.zonecap">A safety floor keeps an enemy that could still sense the player from ever being parked; hysteresis stops enemies on the boundary from flipping between states.</figcaption>
+        </figure>
+      </article>
+
+    </section>
+
+    <section class="cs-takeaway">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
+      <p data-i18n="grave.takeaway">The common thread is loose coupling through data. The generator knows nothing about pathfinding, vision or AI. It produces a layout that becomes colliders, which the A* grid and the light rays both read, and a list of chokepoints and corridor alcoves that enemy placement uses to set ambushes in the alcoves and to post guards beside a chokepoint, never on it. The AI in turn reaches pathfinding only through narrow interfaces, so the systems work together without depending on each other's code.</p>
+    </section>
+
+    <nav class="cs-next" aria-label="Next case study">
+      <a href="luggage-please.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Luggage Please →</strong></a>
+    </nav>
   </main>
 
-  <footer class="gr-foot">
-    <p data-i18n="grave.foot">Team project (4 people). I only show the systems I wrote myself.</p>
-    <p class="gr-foot-links">
-      <a href="https://github.com/dbarans/engineering-project" target="_blank" rel="noopener noreferrer" data-i18n="grave.foot.repo">Repository ↗</a>
-      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <footer class="cs-foot">
+    <p data-i18n="case.foot.grave">Team project (4 people). I only show the systems I built myself.</p>
+    <p class="cs-foot-links">
+      <a href="https://github.com/dbarans/engineering-project/tree/main" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.repo">Repository ↗</a>
+      <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.linkedin">LinkedIn</a>
     </p>
   </footer>
 
-  <script src="js/i18n-grave.js" defer></script>
   <script src="js/i18n.js" defer></script>
-  <script src="js/grave-sketches.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/case-study.js" defer></script>
 </body>
 </html>

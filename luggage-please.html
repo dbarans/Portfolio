@@ -3,122 +3,296 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project: Luggage Please — Dominik Barański</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/project.css" />
-  <link rel="stylesheet" href="css/custom-buttons.css" />
+  <title data-i18n="case.meta.lp.title">Luggage Please — Case Study — Dominik Barański</title>
+  <meta name="description" content="Systems built during an internship at Rubens Games: suitcase and item physics, an X-ray scanner made from URP layers and renderer features, and a contextual interaction wheel." data-i18n-attr="content" data-i18n-attr-key="case.meta.lp.description" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/luggage-please.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Luggage Please — Case Study — Dominik Barański" />
+  <meta property="og:description" content="Systems built during an internship at Rubens Games: suitcase and item physics, an X-ray scanner made from URP layers and renderer features, and a contextual interaction wheel." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/luggage-please.html" />
+  <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/luggage-please/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Luggage Please — Case Study — Dominik Barański" />
+  <meta name="twitter:description" content="Systems built during an internship at Rubens Games: suitcase and item physics, an X-ray scanner made from URP layers and renderer features, and a contextual interaction wheel." />
+  <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/luggage-please/og.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/case-study.css" />
 </head>
-<body class="page-project">
-  <div class="site">
-    <header class="site-header">
-      <a href="index.html" class="site-brand">
-        <span class="site-brand-mark" aria-hidden="true"></span>
-        <span class="site-brand-text">Dominik Barański</span>
-      </a>
-      <nav class="site-nav" aria-label="Main">
-        <a href="index.html" class="site-nav-link" data-i18n="index.nav.home">Home</a>
-        <a href="index.html#projects" class="site-nav-link is-active" data-i18n="index.nav.projects">Projects</a>
-        <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
-        <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
-      </nav>
-      <div class="site-header-actions">
-        <button id="lang-toggle" type="button" class="lang-toggle lang-toggle--header" aria-label="Zmień język">PL</button>
+<body class="page-case page-case--luggage">
+  <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
+  <header class="cs-top">
+    <a class="cs-brand" href="index.html">Dominik Barański</a>
+    <a class="cs-back" href="index.html#projects" data-i18n="case.back">← All projects</a>
+    <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <main class="cs-page" id="main" tabindex="-1">
+
+    <header class="cs-hero">
+      <div class="cs-hero-grid">
+        <div>
+          <p class="cs-kicker" data-i18n="case.kicker.lp">PC · Unity 2022.3 · studio team · internship at Rubens Games</p>
+          <h1>Luggage Please</h1>
+          <p class="cs-tagline" data-i18n="lp.tagline">Systems I built during my internship at Rubens Games: suitcase physics, an X-ray scanner made of URP renderer features, and a contextual interaction wheel.</p>
+          <p class="cs-intro" data-i18n="lp.intro">Luggage Please is a first-person airport security game made by a studio team at Rubens Games, where I was an intern. The studio's artists made the art. This case study covers three systems I built during the internship: suitcase and item physics, an X-ray scanner that tells materials apart, and a contextual interaction wheel for talking to passengers.</p>
+        </div>
+
+        <figure class="cs-hero-shot">
+          <img src="images/luggage-please/key-art.webp" width="1600" height="1118" loading="eager" data-i18n-attr="alt" data-i18n-attr-key="lp.hero.alt" alt="The Luggage Please key art: a cartoon open suitcase packed with clothes and a rubber duck, surrounded by a pistol, a knife, a goldfish and an open book, above the game's title." />
+          <figcaption data-i18n="lp.hero.credit">Key art: Rubens Games.</figcaption>
+        </figure>
       </div>
     </header>
 
-    <main class="project-container">
-      <div class="project-header">
-        <img src="images/luggage-please/logo.png" alt="" class="mechanic-img" />
-        <h1>Luggage Please</h1>
-        <span class="project-header-spacer" aria-hidden="true"></span>
-        <img src="images/unity.svg" alt="" class="tech-icon" />
-        <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
-      </div>
-      <section class="mechanics-group" aria-label="Luggage mechanics">
-        <p class="project-description project-description--tight mechanics-group-intro" data-i18n="luggage.desc">
-          During my internship at <strong>Rubens Games</strong>, I built and integrated gameplay systems for
-          <strong>Luggage Please</strong> in <strong>Unity</strong>.<br />
-          Here are three mechanics I delivered end to end. Art assets were provided by the studio.
-        </p>
-      <section class="mechanic-row">
-        <a href="images/luggage-please/suitcase_preview.png" class="zoom-img" data-img="images/luggage-please/suitcase_preview.png">
-          <img src="images/luggage-please/suitcase_preview.png" alt="" class="mechanic-img" />
-        </a>
-        <div class="mechanic-details">
-          <h2 data-i18n="luggage.m1.title">Advanced Suitcase &amp; Item Physics System</h2>
-          <ul>
-            <li data-i18n="luggage.m1.li1"><strong>Dynamic item physics</strong> (activates when suitcase is open).</li>
-            <li data-i18n="luggage.m1.li2"><strong>Free item manipulation</strong> (grabbing, rotating, inserting/removing).</li>
-            <li data-i18n="luggage.m1.li3">
-              Features for <strong>resetting item position</strong> and a <strong>visual drop indicator</strong>.
-            </li>
-            <li data-i18n="luggage.m1.li4"><strong>Anti-closure mechanism</strong> to prevent closing if obstructed.</li>
-          </ul>
-        </div>
-        <div class="mechanic-video">
-          <iframe src="https://www.youtube.com/embed/j2EKQQgl6fg" title="Suitcase" allowfullscreen></iframe>
-        </div>
-      </section>
-      <section class="mechanic-row">
-        <a href="images/luggage-please/xray_previev.png" class="zoom-img" data-img="images/luggage-please/xray_previev.png">
-          <img src="images/luggage-please/xray_previev.png" alt="" class="mechanic-img" />
-        </a>
-        <div class="mechanic-details">
-          <h2 data-i18n="luggage.m2.title">X-Ray Scanner with Material Differentiation</h2>
-          <ul>
-            <li data-i18n="luggage.m2.li1"><strong>Scans suitcase contents</strong> and displays on screen.</li>
-            <li data-i18n="luggage.m2.li2">
-              <strong>Color-coded distinction</strong> for metal, organic matter, and other materials.
-            </li>
-          </ul>
-        </div>
-        <div class="mechanic-video">
-          <iframe src="https://www.youtube.com/embed/g5YQQ2sDoTU" title="X-ray scanner" allowfullscreen></iframe>
-        </div>
-      </section>
-      <section class="mechanic-row">
-        <a href="images/luggage-please/wheel_preview.png" class="zoom-img" data-img="images/luggage-please/wheel_preview.png">
-          <img src="images/luggage-please/wheel_preview.png" alt="" class="mechanic-img" />
-        </a>
-        <div class="mechanic-details">
-          <h2 data-i18n="luggage.m3.title">Contextual Interaction Wheel</h2>
-          <ul>
-            <li data-i18n="luggage.m3.li1"><strong>Intuitive menu</strong> for NPC/environment interaction.</li>
-            <li data-i18n="luggage.m3.li2">
-              <strong>Dynamic options</strong> based on location (e.g. different actions at X-ray vs suitcase scale).
-            </li>
-          </ul>
-        </div>
-        <div class="mechanic-video">
-          <iframe src="https://www.youtube.com/embed/lBOSJhvBtVM" title="Interaction Wheel" allowfullscreen></iframe>
-        </div>
-      </section>
-      </section>
-      <a href="index.html" class="back-link" data-i18n="luggage.back">← Back to home</a>
-      <footer class="site-footer">
-        <p data-i18n="luggage.footer.developedBy">Developed by Dominik Barański during internship at Rubens Games.</p>
-        <p class="site-footer-links">
-          <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="luggage.footer.githubProfile">My GitHub Profile</a>
-          <span class="site-footer-sep" aria-hidden="true">·</span>
-          <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
-        </p>
-      </footer>
+    <section class="cs-glance" aria-labelledby="glance-h">
+      <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
+      <dl class="cs-facts">
+        <div><dt data-i18n="lp.glance.team.t">Team</dt><dd data-i18n="lp.glance.team.d">studio team at Rubens Games (internship); art by the studio's artists</dd></div>
+        <div><dt data-i18n="lp.glance.covered.t">Covered here</dt><dd data-i18n="lp.glance.covered.d">three systems I built: suitcase and item physics, the X-ray scanner, the contextual interaction wheel</dd></div>
+        <div><dt data-i18n="lp.glance.engine.t">Engine</dt><dd data-i18n="lp.glance.engine.d">Unity 2022.3, URP</dd></div>
+        <div><dt data-i18n="lp.glance.platform.t">Platform</dt><dd data-i18n="lp.glance.platform.d">PC</dd></div>
+        <div><dt data-i18n="lp.glance.status.t">Status</dt><dd data-i18n="lp.glance.status.d">internship project, not released</dd></div>
+        <div><dt data-i18n="lp.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="lp.glance.tech.d">C#, Rigidbody physics, physics queries (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), culling masks, RenderTexture, uGUI, TextMeshPro</dd></div>
+        <div><dt data-i18n="lp.glance.code.t">Code</dt><dd data-i18n="lp.glance.code.d">studio project, not public; the snippets on this page are shown with Rubens Games' permission</dd></div>
+      </dl>
+    </section>
 
-      <div
-        id="img-lightbox"
-        class="img-lightbox"
-        hidden
-        role="dialog"
-        aria-modal="true"
-        aria-label="Image preview">
-        <button type="button" class="close-lightbox" aria-label="Close">&times;</button>
-        <img src="" alt="" class="lightbox-img" />
-      </div>
-    </main>
-  </div>
-  <script src="js/lightbox.js" defer></script>
-  <script src="js/header-scroll.js" defer></script>
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="lp.sys1.title">Suitcase physics that runs only while the case is open</span><span class="cs-toc-skills" data-i18n="lp.toc1.skills">Rigidbody forces · physics queries · kinematic switching</span></a></li>
+        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="lp.sys2.title">An X-ray scanner built from layers and URP renderer features</span><span class="cs-toc-skills" data-i18n="lp.toc2.skills">URP RenderObjects · culling masks · RenderTexture</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="lp.sys3.title">An interaction wheel whose options follow the passenger's checkpoint</span><span class="cs-toc-skills" data-i18n="lp.toc3.skills">uGUI · UI separate from game logic · coroutines</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="cs-systems">
+
+      <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">01</span>
+          <h2 id="sys-1-h" data-i18n="lp.sys1.title">Suitcase physics that runs only while the case is open</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="lp.sys1.problem">A packed suitcase has to act as one solid object when the player carries it, throws it or sends it through the scanner. On the inspection stand, the same case has to open into loose items that the player can pick up, turn over and repack, and the lid must not close through an item left sticking out.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="lp.sys1.how">Item physics runs only while the case is open for inspection. Once the lid shuts, a bounds check (OverlapBox) decides what ended up inside. Those items become children of the case and turn kinematic, which means they move only with their parent, and their colliders switch off. A closed case therefore moves as one body with no per-item physics, and anything left outside stays behind. While the case is open, a grabbed item is pulled toward the cursor by forces rather than teleported, so it still pushes other items aside. The right mouse button switches to rotating it, and a key restores its original orientation. Holding a key while dragging shows where the item will land: a translucent, non-colliding copy on its own layer. A URP RenderObjects feature draws it, the same technique behind the scanner in system 2. A stepped BoxCast, a box-shaped raycast that accounts for the item's size, lowers the copy onto the first surface below. While the lid closes, an OverlapBox around it runs every frame, and any item in its path sends the lid back open.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="lp.sys1.what">Physics interaction designed around when simulation is actually needed: items simulate only while the player can touch them, and they change state at two clear points, lid open and lid shut. It also shows physics queries used as game logic. The lid is animated by rotation, not simulated, so instead of waiting for collision events it checks every frame whether anything is in its way.</p>
+        </div>
+
+        <div class="cs-media-row">
+          <figure>
+            <div class="cs-video">
+              <button type="button" class="cs-video-btn" data-yt-id="j2EKQQgl6fg" data-yt-title="Suitcase physics — Luggage Please" data-i18n-attr="data-yt-title" data-i18n-attr-key="lp.video1.title">
+                <span class="cs-video-icon" aria-hidden="true">▶</span>
+                <span class="cs-video-btn-label" data-i18n="lp.video1.label">Play the video: suitcase physics</span>
+              </button>
+            </div>
+            <p class="cs-video-alt"><a href="https://www.youtube.com/watch?v=j2EKQQgl6fg" target="_blank" rel="noopener noreferrer" data-i18n="lp.watchYoutube">Watch on YouTube ↗</a></p>
+          </figure>
+          <figure>
+            <img class="cs-shot" src="images/luggage-please/suitcase_preview.png" width="469" height="438" loading="lazy" alt="" />
+            <figcaption data-i18n="lp.sys1.caption">An open case: while the lid is up, every item inside is its own physics object that can be grabbed, turned and repacked.</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-code">
+          <p class="cs-code-file">LuggageAnimator.CheckCollisions()</p>
+          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/Inspection/Luggage Animator.cs, the CheckCollisions method: an OverlapBox around the lid's collider, masked to item layers, reopens the lid on a hit"><code class="language-csharp">void CheckCollisions()
+{
+    if (boxCollider == null) return;
+
+    Vector3 center = transform.TransformPoint(boxCollider.center);
+    Vector3 size = boxCollider.size;
+    Quaternion rotation = transform.rotation;
+
+    Collider[] hitColliders = Physics.OverlapBox(center, size / 2, rotation, collisionLayerMask);
+    if (hitColliders.Length > 0 && isClosing)
+    {
+        isClosing = false;
+        StartOpening();
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-2" aria-labelledby="sys-2-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">02</span>
+          <h2 id="sys-2-h" data-i18n="lp.sys2.title">An X-ray scanner built from layers and URP renderer features</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="lp.sys2.problem">The scanner shows a live see-through image of the suitcase as it rides through the machine. Items are coloured by material category (metal, organic, other), so the player can spot suspicious contents. The item models come from the studio's artists, and some combine several materials, so the colouring can't rely on code written for each item.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="lp.sys2.how">The colour separation is configuration, not C#. Every item's mesh parts sit on one of four X-ray layers: other, metal, organic, and the case shell. An orthographic scan camera sees only those layers and renders into a RenderTexture, which is shown on the console's screen model. Four RenderObjects renderer features draw those objects with an override material, one feature per layer. Renderer features are extra render passes set up in URP's renderer asset. The override material is one fresnel shader in a different colour for each category. Fresnel brightens surfaces that face sideways to the camera, so items read as glowing outlines. A short script slides the scan camera along with the case as the belt carries it through.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="lp.sys2.what">Using URP's building blocks instead of writing rendering code: layers, a culling mask, RenderObjects features with override materials, and a RenderTexture on a screen inside the game world. The setup also scales with content. The scanner covers 27 item prefabs, and a prop made of several materials, such as a drone, shows several colours because each of its parts sits on its own layer. Adding an item takes no code, only the right layers in its prefab.</p>
+        </div>
+
+        <figure class="cs-diagram" role="group" aria-labelledby="lp-diag2-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 700 740" role="img" aria-label="A five-step pipeline, top to bottom. One: item mesh parts sit on four X-ray layers — other, metal, organic, case shell. Two: an orthographic scan camera, culling mask set to X-ray layers only, follows the case. Three: four RenderObjects renderer features draw with an override material per layer, one fresnel shader in four colours. Four: the result renders into a RenderTexture. Five: that texture is the console screen's material.">
+              <defs>
+                <marker id="lp-vis-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+
+              <rect x="60" y="30" width="580" height="110" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="68" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b1a">Item mesh parts</text>
+              <text x="350" y="92" text-anchor="middle" class="cs-i-accent-text" font-size="12.5" data-i18n="lp.diag2.b1b">4 layers: other · metal · organic · case shell</text>
+
+              <path d="M350,140 L350,176" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="180" width="580" height="130" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="215" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b2a">Scan camera (orthographic)</text>
+              <text x="350" y="239" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="lp.diag2.b2b">Culling mask: X-ray layers only</text>
+              <text x="350" y="266" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="lp.diag2.b2c">→ Follows the case</text>
+
+              <path d="M350,310 L350,346" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="350" width="580" height="130" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="385" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b3a">4 × RenderObjects</text>
+              <text x="350" y="409" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="lp.diag2.b3b">Override material per layer</text>
+              <text x="350" y="436" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="lp.diag2.b3c">One fresnel shader, 4 colours</text>
+
+              <path d="M350,480 L350,516" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="520" width="580" height="70" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="563" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b4a">RenderTexture</text>
+
+              <path d="M350,590 L350,626" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+
+              <rect x="60" y="630" width="580" height="70" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="350" y="673" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b5a">Console screen material</text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="lp-diag2-cap" data-i18n="lp.diag2.cap">Five stages from item layers to the scanner's screen; each is configuration, not per-item code.</figcaption>
+        </figure>
+
+        <div class="cs-media-row">
+          <figure>
+            <div class="cs-video">
+              <button type="button" class="cs-video-btn" data-yt-id="g5YQQ2sDoTU" data-yt-title="X-ray scanner — Luggage Please" data-i18n-attr="data-yt-title" data-i18n-attr-key="lp.video2.title">
+                <span class="cs-video-icon" aria-hidden="true">▶</span>
+                <span class="cs-video-btn-label" data-i18n="lp.video2.label">Play the video: X-ray scanner</span>
+              </button>
+            </div>
+            <p class="cs-video-alt"><a href="https://www.youtube.com/watch?v=g5YQQ2sDoTU" target="_blank" rel="noopener noreferrer" data-i18n="lp.watchYoutube">Watch on YouTube ↗</a></p>
+          </figure>
+          <figure>
+            <img class="cs-shot" src="images/luggage-please/xray_previev.png" width="526" height="480" loading="lazy" alt="" />
+            <figcaption data-i18n="lp.sys2.caption">The scanner's console screen: organic items such as the fruit show in yellow, metal in orange, and everything else, including the case shell, in teal.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">03</span>
+          <h2 id="sys-3-h" data-i18n="lp.sys3.title">An interaction wheel whose options follow the passenger's checkpoint</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="lp.sys3.problem">Passengers need different actions depending on where they are in the airport flow: what makes sense in the queue is wrong at the metal detector gate. Choosing an action should be quick and shouldn't pull the player out of the game view into a full-screen menu.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="lp.sys3.how">The NPC's interaction code builds a list of option IDs from the passenger's state. Each checkpoint (queue, bag drop, metal detector gate, weighing) has its own set, and an overweight option is added only when that passenger's bag is on the scale. The wheel is built in plain uGUI. It shows only the pre-built segments whose IDs are on the list and uses trigonometry to spread them evenly around a circle, however many there are. Hovering an option shows its name in the centre. The calling coroutine waits until the player picks an option or closes the wheel, then runs the matching action.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="lp.sys3.what">A UI component kept separate from game logic. The wheel receives a list of IDs, lays out as many segments as it gets and reports the pick, while all the airport rules stay in the NPC code. The wheel also owns its input mode in OnEnable/OnDisable: opening it freezes mouse-look and movement and frees the cursor, and closing it restores both, so no caller has to remember to.</p>
+        </div>
+
+        <div class="cs-media-row">
+          <figure>
+            <div class="cs-video">
+              <button type="button" class="cs-video-btn" data-yt-id="lBOSJhvBtVM" data-yt-title="Interaction wheel — Luggage Please" data-i18n-attr="data-yt-title" data-i18n-attr-key="lp.video3.title">
+                <span class="cs-video-icon" aria-hidden="true">▶</span>
+                <span class="cs-video-btn-label" data-i18n="lp.video3.label">Play the video: interaction wheel</span>
+              </button>
+            </div>
+            <p class="cs-video-alt"><a href="https://www.youtube.com/watch?v=lBOSJhvBtVM" target="_blank" rel="noopener noreferrer" data-i18n="lp.watchYoutube">Watch on YouTube ↗</a></p>
+          </figure>
+          <figure>
+            <img class="cs-shot" src="images/luggage-please/wheel_preview.png" width="374" height="371" loading="lazy" alt="" />
+            <figcaption data-i18n="lp.sys3.caption">Three options, so each takes a third of the circle; hovering an option shows its name in the centre.</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-code">
+          <p class="cs-code-file">DialogWheel.PositionDialogSegment() · CalculateSegmentPosition()</p>
+          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/DialogWheel/DialogWheel.cs: positioning a wheel segment and computing its position from the option count alone"><code class="language-csharp">private void PositionDialogSegment(GameObject segment, int index, int totalSegments)
+{
+    float angleStep = 360f / totalSegments;
+    float angleStart = angleStep * index;
+    float angleEnd = angleStep * (index + 1);
+
+    var dialogWheelFragment = segment.GetComponent&lt;DialogWheelSegment&gt;();
+    dialogWheelFragment.SetAngle(angleStart, angleEnd);
+
+    Vector2 position = CalculateSegmentPosition(angleStart, angleEnd);
+    segment.GetComponent&lt;RectTransform&gt;().anchoredPosition = position;
+}
+
+private Vector2 CalculateSegmentPosition(float angleStart, float angleEnd)
+{
+    float middleAngle = (angleStart + angleEnd) / 2f;
+    float angleRad = middleAngle * Mathf.Deg2Rad;
+    float radius = 330f;
+
+    float posX = Mathf.Cos(angleRad) * radius;
+    float posY = Mathf.Sin(angleRad) * radius;
+
+    return new Vector2(posX, posY);
+}</code></pre>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="cs-takeaway">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
+      <p data-i18n="lp.takeaway">All three are built so that other people's work can plug in. The scanner and the drop preview are made of layers and URP renderer features rather than rendering code, so a new item model shows up on the scanner in its category colour once its parts are on the right layers. The wheel takes a list of option IDs from its caller and doesn't need to know why they were chosen. The layers even reach into physics: the lid's obstruction check uses the X-ray item layers as its mask, so one layer scheme serves both rendering and physics.</p>
+    </section>
+
+    <nav class="cs-next" aria-label="Next case study">
+      <a href="game-of-life.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Game of Life →</strong></a>
+    </nav>
+  </main>
+
+  <footer class="cs-foot">
+    <p data-i18n="case.foot.lp">Studio project, not public. Shown with Rubens Games' permission — happy to walk through the rest in an interview.</p>
+    <p class="cs-foot-links">
+      <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.linkedin">LinkedIn</a>
+    </p>
+  </footer>
+
   <script src="js/i18n.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/case-study.js" defer></script>
 </body>
 </html>

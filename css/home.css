@@ -1,7 +1,7 @@
 /* Home page identity: the portfolio's front door, deliberately not any one project's look.
    A cool light "layout sheet" (faint column guides), ink type, one ultramarine accent, square
-   edges and solid offset shadows. The projects bring their own worlds inside their cards
-   (css/islands.css). Scoped to .page-home. */
+   edges and solid offset shadows. The projects bring their own worlds inside their case-study
+   pages (css/case-study.css). Scoped to .page-home. */
 .page-home {
   --h-paper: #edeef0;
   --h-sheet: #f8f8f9;
@@ -14,8 +14,6 @@
   --h-on-accent: #ffffff;
   --h-font: 'Schibsted Grotesk', 'Inter', 'Segoe UI', Arial, sans-serif;
   --h-mono: 'DM Mono', ui-monospace, Consolas, monospace;
-  /* Full-bleed width without the classic scrollbar (islands.js sets --sbw) */
-  --h-vw: calc(100vw - var(--sbw, 0px));
 
   background-color: var(--h-paper);
   /* Column guides, like a layout sheet: hard 1px lines centred on the page */
@@ -28,7 +26,6 @@
 .page-home ::selection { background: var(--h-accent); color: var(--h-on-accent); }
 
 /* ---------- Focus & skip link ---------- */
-/* :where() keeps this at low specificity so components can style their own focus state */
 :where(.page-home) a:focus-visible,
 :where(.page-home) button:focus-visible {
   outline: 2px solid var(--h-accent);
@@ -36,30 +33,16 @@
 }
 
 .page-home .skip-link {
-  position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 2000;
-  padding: 12px 18px;
   background: var(--h-ink);
   color: var(--h-paper);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  text-decoration: none;
   box-shadow: 6px 6px 0 0 var(--h-accent);
-  transform: translateY(-200%);
 }
-.page-home .skip-link:focus { transform: none; }
-.page-home main:focus { outline: none; }
 
 /* ---------- Header ---------- */
 .page-home .site-header {
   background: var(--h-paper);
   border-bottom: 2px solid var(--h-ink);
-  box-shadow: none;
-  padding: 0;
+  padding: 18px 0;
   min-height: 60px;
 }
 
@@ -69,29 +52,16 @@
   letter-spacing: 2.8px;
   text-transform: uppercase;
   color: var(--h-ink);
-  gap: 12px;
 }
-.page-home .site-brand-mark {
-  width: 12px;
-  height: 12px;
-  border-radius: 0;
-  background: var(--h-accent);
-  opacity: 1;
-}
+.page-home .site-brand-mark { background: var(--h-accent); }
 
-.page-home .site-nav { gap: 22px; }
 .page-home .site-nav-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px; /* comfortable tap target without changing the look */
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--h-muted);
-  opacity: 1;
 }
-.page-home .site-nav-link.is-active { color: var(--h-ink); }
 .page-home .site-nav-link:hover,
 .page-home .site-nav-link:focus-visible { color: var(--h-accent); }
 
@@ -100,99 +70,33 @@
   border: 2px solid var(--h-ink);
   background: transparent;
   color: var(--h-ink);
-  font-family: var(--h-mono);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 1.4px;
   padding: 7px 11px;
   min-width: 40px;
 }
-.page-home .lang-toggle:hover {
-  background: var(--h-ink);
-  color: var(--h-paper);
-  border-color: var(--h-ink);
-}
-.page-home .lang-toggle:focus-visible { outline: 2px solid var(--h-accent); outline-offset: 2px; }
+.page-home .lang-toggle:hover { background: var(--h-ink); color: var(--h-paper); }
 
 /* ---------- Hero ---------- */
-.page-home .hero {
-  position: relative;
-  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
-}
-.page-home .hero-grid {
-  position: relative;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-}
-
 .page-home .hero-title {
-  margin: 0 0 1.5rem;
-  font-weight: 900;
-  letter-spacing: normal;
-  line-height: 1;
-}
-
-/* Kicker: who (ink) and what (accent), above the headline */
-.page-home .hero-title-line.text-gradient {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  margin-bottom: 22px;
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  color: var(--h-accent);
-  font-family: var(--h-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2.4px;
-  line-height: 1.5;
-  text-transform: uppercase;
-}
-.page-home .hero-title-line.text-gradient::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background: var(--h-accent);
-  flex-shrink: 0;
-  align-self: center;
-  margin-right: 12px;
-}
-.page-home .hero-name {
   color: var(--h-ink);
-  -webkit-text-fill-color: var(--h-ink);
+  font-size: clamp(2.1rem, 5.4vw, 3.2rem);
+  letter-spacing: -0.03em;
 }
-.page-home .hero-sep { white-space: pre; }
-
-.page-home .hero-title-line--plain {
-  margin: 0;
-  color: var(--h-ink);
-  -webkit-text-fill-color: var(--h-ink);
-  font-size: clamp(2.3rem, 5.2vw, 4.1rem);
-  font-weight: 900;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-  text-wrap: balance;
-}
-
-.page-home .hero-lead {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--h-body);
-  max-width: 34rem;
-  margin-bottom: 2rem;
-}
+.page-home .hero-title .hero-role { color: var(--h-accent); }
+.page-home .hero-lead { color: var(--h-body); font-size: 1.05rem; }
+.page-home .hero-stack { color: var(--h-muted); font-size: 0.82rem; letter-spacing: 0.03em; }
 
 .page-home .hero-cta {
-  position: relative;
   border-radius: 0;
   border: 2px solid var(--h-ink);
   background: var(--h-ink);
   color: var(--h-paper) !important;
   font-size: 13px;
-  font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
   padding: 15px 24px;
-  gap: 14px;
   box-shadow: 8px 8px 0 0 var(--h-accent);
   transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -200,179 +104,59 @@
 .page-home .hero-cta:focus-visible {
   transform: translate(3px, 3px);
   box-shadow: 5px 5px 0 0 var(--h-accent);
-  background: var(--h-ink);
-}
-.page-home .hero-cta-icon {
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  background: none;
-  color: inherit;
-  font-size: 1rem;
 }
 
-/* The side slot: an index card of facts a recruiter looks for */
-.page-home .hero-visual { min-height: 0; justify-content: flex-end; }
-
-.hero-card {
-  width: min(100%, 420px);
-  background: var(--h-sheet);
-  border: 2px solid var(--h-ink);
-  box-shadow: 14px 14px 0 0 var(--h-accent);
-  box-sizing: border-box;
-}
-.hero-card-head {
-  margin: 0;
-  padding: 12px 22px 11px;
-  border-bottom: 2px solid var(--h-ink);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--h-mono);
-  font-size: 11px;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
-  color: var(--h-ink);
-}
-.hero-card-head::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: var(--h-accent);
-}
-
-.hero-facts {
-  margin: 0;
-  padding: 4px 22px 8px;
-}
-.hero-fact {
-  display: grid;
-  grid-template-columns: 6.75rem minmax(0, 1fr);
-  gap: 12px;
-  align-items: baseline;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--h-line);
-}
-.hero-fact:last-child { border-bottom: 0; }
-.hero-fact dt {
-  font-family: var(--h-mono);
-  font-size: 10.5px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--h-muted);
-}
-.hero-fact dd {
-  margin: 0;
-  font-size: 14.5px;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--h-ink);
-}
-.hero-fact dd a {
-  color: var(--h-ink);
-  text-decoration: none;
-  border-bottom: 2px solid var(--h-accent);
-  transition: color 0.15s;
-}
-.hero-fact dd a + a { margin-left: 14px; }
-.hero-fact dd a:hover { color: var(--h-accent); }
-
-/* ---------- More projects ---------- */
+/* ---------- Section title ---------- */
 .page-home .section-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   font-family: var(--h-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2.4px;
   color: var(--h-muted);
   border-bottom: 2px solid var(--h-ink);
   padding-bottom: 12px;
-  margin-bottom: 1.25rem;
 }
-.page-home .section-title::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background: var(--h-accent);
-}
+.page-home .section-title::before { content: ""; width: 10px; height: 10px; background: var(--h-accent); flex-shrink: 0; }
 
-.page-home .project-list { gap: 12px; }
-.page-home .project-link {
-  border-radius: 0;
+/* ---------- Project cards ---------- */
+.page-home .project-card {
   background: var(--h-sheet);
-  border: 2px solid var(--h-line);
-  min-height: 84px;
+  border: 2px solid var(--h-ink);
+  box-shadow: 10px 10px 0 0 var(--h-accent);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.page-home .project-link:hover,
-.page-home .project-link:focus-visible {
-  border-color: var(--h-ink);
-  box-shadow: 8px 8px 0 0 var(--h-accent);
-  transform: translate(-3px, -3px);
-}
-.page-home .project-link:focus-visible {
-  outline: 2px solid var(--h-accent);
-  outline-offset: 4px;
-}
-.page-home .project-thumb-wrap {
-  border-radius: 0;
-  background: var(--h-ink);
-}
-.page-home .project-thumb { border-radius: 0; }
-.page-home .project-title {
-  margin: 0;
+.page-home .project-card-num { color: var(--h-accent); }
+.page-home .project-card-meta { color: var(--h-muted); }
+.page-home .project-card-title { color: var(--h-ink); font-size: 1.5rem; }
+.page-home .project-card-body { color: var(--h-body); }
+.page-home .project-card-link {
   color: var(--h-ink);
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.3;
+  border-bottom: 2px solid var(--h-accent);
+  padding-bottom: 2px;
 }
-.page-home .project-role {
-  color: var(--h-muted);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
+.page-home .project-card-link:hover { color: var(--h-accent); }
+/* The whole card is clickable, not just this short link: a stretched overlay fills
+   .project-card (the nearest positioned ancestor, see style.css), while the visible focus
+   ring still hugs the link text itself rather than the invisible overlay. */
+.page-home .project-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
-/* style.css renders the tech icons for a dark page */
-.page-home .tech-icon { filter: grayscale(1); opacity: 0.7; }
-.page-home .tech-icon[src$="unity.svg"] { filter: none; opacity: 0.8; }
+.page-home .project-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 13px 13px 0 0 var(--h-accent);
+}
+.page-home .project-card:has(.project-card-link:focus-visible) {
+  transform: translate(-3px, -3px);
+  box-shadow: 13px 13px 0 0 var(--h-accent);
+}
 
 /* ---------- Contact ---------- */
-.home-contact { padding: 1.5rem 0 1rem; }
-.home-contact-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px 48px;
-  padding-top: 0.5rem;
-}
-.home-contact-lead {
-  margin: 0;
-  max-width: 34rem;
-  font-size: 1.15rem;
-  line-height: 1.55;
+.page-home .contact-lead { color: var(--h-ink); }
+.page-home .contact-label { color: var(--h-muted); }
+.page-home .contact-list a {
   color: var(--h-ink);
-}
-.home-contact-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 18px 28px;
-  padding: 0 8px 8px 0; /* room for the CTA's offset shadow */
-}
-.home-contact-alt {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  color: var(--h-ink);
-  text-decoration: none;
   border-bottom: 2px solid var(--h-accent);
-  padding: 4px 0;
 }
-.home-contact-alt:hover { color: var(--h-accent); }
+.page-home .contact-list a:hover { color: var(--h-accent); }
 
 /* ---------- Footer ---------- */
 .page-home .site-footer {
@@ -383,55 +167,23 @@
   text-transform: uppercase;
   color: var(--h-muted);
 }
-.page-home .site-footer a {
-  color: var(--h-ink);
-  border-bottom: 2px solid var(--h-accent);
-}
-.page-home .site-footer a:hover { color: var(--h-accent); border-bottom-color: var(--h-accent); }
-.page-home .site-footer a:focus-visible { outline: 2px solid var(--h-accent); outline-offset: 3px; }
-
 @media (max-width: 900px) {
-  .page-home .site-header { padding: 12px 0 0; }
+  .page-home .site-header { padding: 12px 0; }
   .page-home .site-nav {
-    order: 3;
-    flex: 1 1 100%;
-    width: 100%;
-    justify-content: center;
-    gap: 0 18px;
     border-top: 1px solid var(--h-line);
-    padding: 4px 0 6px;
+    padding-top: 8px;
   }
-  .page-home .hero-grid { grid-template-columns: 1fr; }
-  .page-home .hero-visual { order: 0; margin-top: 0.5rem; justify-content: flex-start; }
-  .hero-card { width: min(100%, 440px); box-shadow: 10px 10px 0 0 var(--h-accent); }
-  .home-contact-body { grid-template-columns: 1fr; }
-  .home-contact-actions { margin-top: 1rem; }
 }
 
 @media (max-width: 520px) {
-  /* Name and role on two lines, without a dangling separator */
-  .page-home .hero-sep {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-  }
-  .page-home .hero-role { flex-basis: 100%; padding-left: 22px; }
-}
-
-@media (max-width: 420px) {
-  .page-home .site-nav { gap: 0 14px; }
-  .page-home .site-nav-link { letter-spacing: 1.6px; }
-  .hero-card-head { padding: 11px 16px 10px; }
-  .hero-facts { padding: 4px 16px 8px; }
-  .hero-fact { grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 10px 0; }
-  .hero-fact dd { font-size: 14px; }
+  .page-home .project-card,
+  .page-home .hero-cta { box-shadow: 6px 6px 0 0 var(--h-accent); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-home .hero-cta:hover,
-  .page-home .hero-cta:focus-visible,
-  .page-home .project-link:hover,
-  .page-home .project-link:focus-visible { transform: none; }
+  .page-home .hero-cta,
+  .page-home .project-card { transition: none; }
+  .page-home .project-card:hover,
+  .page-home .hero-cta:hover { transform: none; }
+  .page-home .project-card:has(.project-card-link:focus-visible) { transform: none; }
 }

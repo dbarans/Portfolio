@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Game of Life — Dominik Barański</title>
-  <meta name="description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <title data-i18n="case.meta.gol.title">Game of Life — Case Study — Dominik Barański</title>
+  <meta name="description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." data-i18n-attr="content" data-i18n-attr-key="case.meta.gol.description" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://dbarans.github.io/Portfolio/game-of-life.html" />
-  <meta name="theme-color" content="#070708" />
+  <meta name="theme-color" content="#0b0c0e" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Dominik Barański — Game Dev Portfolio" />
-  <meta property="og:title" content="Game of Life — Dominik Barański" />
-  <meta property="og:description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Game of Life — Case Study — Dominik Barański" />
+  <meta property="og:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/game-of-life.html" />
   <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
   <meta property="og:image:width" content="540" />
@@ -19,762 +20,372 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Game of Life — Dominik Barański" />
-  <meta name="twitter:description" content="Solo-built Conway's Game of Life for Android in Unity/C#: a multithreaded, bit-parallel engine on Burst jobs, measured on device. 15,000+ downloads on Google Play." />
+  <meta name="twitter:title" content="Game of Life — Case Study — Dominik Barański" />
+  <meta name="twitter:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
   <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/gol-page.css" />
+  <link rel="stylesheet" href="css/case-study.css" />
 </head>
-<body class="page-gol">
-  <a class="gp-skip" href="#content" data-i18n="gp.skip">Skip to content</a>
-  <div class="gp">
-    <aside class="gp-panel">
-      <canvas class="gp-field" aria-hidden="true"></canvas>
-      <div class="gp-panel-inner">
-        <div class="gp-panel-top">
-          <a href="index.html#projects" class="gp-back" data-i18n="gp.back">← All projects</a>
-          <button id="lang-toggle" type="button" class="gp-lang" aria-label="Switch to Polish (PL)" data-i18n-attr="aria-label" data-i18n-attr-key="gp.lang.aria">PL</button>
-        </div>
-        <nav class="gp-nav" aria-label="Sections" data-i18n-attr="aria-label" data-i18n-attr-key="gp.nav.aria">
-          <a href="#s0"><span>00</span><span data-i18n="gp.nav.s0">At a glance</span></a>
-          <a href="#s1"><span>01</span><span data-i18n="gp.nav.s1">Measurements</span></a>
-          <a href="#s2"><span>02</span><span data-i18n="gp.nav.s2">Engine and code</span></a>
-          <a href="#s3"><span>03</span><span data-i18n="gp.nav.s3">Rejected alternatives</span></a>
-          <a href="#s4"><span>04</span><span data-i18n="gp.nav.s4">How it’s verified</span></a>
-        </nav>
-        <div class="gp-panel-bottom">
-          <p class="gp-caption" data-i18n="gp.caption">[ The field changes with the section you’re reading ]</p>
-          <div class="gp-btns">
-            <a class="gp-btn gp-btn--solid" href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
-            <a class="gp-btn" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
+<body class="page-case page-case--gol">
+  <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
+  <header class="cs-top">
+    <a class="cs-brand" href="index.html">Dominik Barański</a>
+    <a class="cs-back" href="index.html#projects" data-i18n="case.back">← All projects</a>
+    <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <main class="cs-page" id="main" tabindex="-1">
+
+    <header class="cs-hero">
+      <div class="cs-hero-motif" aria-hidden="true">
+        <svg viewBox="0 0 200 200" focusable="false">
+          <defs>
+            <g id="gol-glider">
+              <rect x="18" y="0" width="18" height="18" />
+              <rect x="36" y="18" width="18" height="18" />
+              <rect x="0" y="36" width="18" height="18" />
+              <rect x="18" y="36" width="18" height="18" />
+              <rect x="36" y="36" width="18" height="18" />
+            </g>
+          </defs>
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(4,4) scale(0.6)" opacity="0.22" />
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(60,60) scale(0.8)" opacity="0.5" />
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(128,128) scale(1)" opacity="1" />
+        </svg>
       </div>
-    </aside>
 
-    <main class="gp-main" id="content" tabindex="-1">
-      <div class="gp-col">
-        <div class="gp-meta">
-          <span data-i18n="gp.meta.n">Project 01 of 03</span>
-          <span data-i18n="gp.meta.role">Solo&nbsp;· Unity&nbsp;/&nbsp;C#&nbsp;· released on Google Play</span>
-        </div>
-
-        <header class="gp-head">
+      <div class="cs-hero-grid">
+        <div>
+          <p class="cs-kicker" data-i18n="case.kicker.gol">Solo · Unity 2022.3 · published on Google Play</p>
           <h1>Game of Life</h1>
-          <p class="gp-lead" data-i18n="gp.lead">An Android simulator where the board has no edges — and the game doesn’t slow down, because it only computes what actually moves.</p>
-          <ul class="gp-figs" aria-label="Key figures" data-i18n-attr="aria-label" data-i18n-attr-key="gp.figs.aria">
-            <li><b data-i18n="gp.figs.dl.v">15,000+</b><span data-i18n="gp.figs.dl.l">downloads on Google Play</span></li>
-            <li><b data-i18n="gp.figs.burst.v">2.2–2.5×</b><span data-i18n="gp.figs.burst.l">more generations per second after moving the engine to Burst jobs (Unity editor)</span></li>
-            <li><b data-i18n="gp.figs.device.v">64 → 141/s</b><span data-i18n="gp.figs.device.l">generations per second, 275k-cell soup in fast mode on a Pixel 6 Pro</span></li>
-          </ul>
-        </header>
-
-        <section id="s0" class="gp-sec" data-preset="grid" aria-labelledby="s0-h">
-          <h2 id="s0-h" class="gp-kicker" data-i18n="gp.s0.h">At a glance</h2>
-          <dl class="gp-rows">
-            <div class="gp-row">
-              <dt data-i18n="gp.s0.problem.t">Problem</dt>
-              <dd data-i18n="gp.s0.problem.d">The board has no edges: the player draws on it with a finger and can zoom out to patterns hundreds of thousands of cells wide. A straightforward simulation recomputes the whole population every generation, so a large pattern on a phone quickly stops being smooth.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s0.did.t">What I did</dt>
-              <dd data-i18n="gp.s0.did.d">All of it, alone: a multithreaded simulation engine (bitwise, on Burst jobs) plus a second, experimental HashLife engine, the pattern library, save slots, the tutorial and the interface. I prepared the Google Play release and keep developing it.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s0.result.t">Result</dt>
-              <dd data-i18n="gp.s0.result.d">15,000+ downloads. A generation costs as much as the area that changes, not the number of cells — stable parts of the board cost nothing, and large patterns stay smooth on weaker phones too.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s0.app.t">In the app</dt>
-              <dd data-i18n="gp.s0.app.d">An infinite board you can zoom from one cell to a whole machine · a pattern library with search and favourites · save slots with previews · a tutorial that teaches by drawing · haptics · speed up to an uncapped INF mode.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s0.stack.t">Stack</dt>
-              <dd data-i18n="gp.s0.stack.d">Unity 2022.3 LTS · C# · IL2CPP · Burst + Job System · Android</dd>
-            </div>
-          </dl>
-          <div class="gp-callout">
-            <b data-i18n="gp.callout.k">Next: the technical part</b>
-            <p data-i18n="gp.callout.p">Not a programmer? You already have the whole picture. Below: measurements, architecture and code.</p>
-          </div>
-        </section>
-
-        <section id="s1" class="gp-sec" data-preset="bands" aria-labelledby="s1-h">
-          <h2 id="s1-h" class="gp-h2"><span class="gp-n">01</span><span data-i18n="gp.s1.h">What changed, measured</span></h2>
-          <div class="gp-table-wrap">
-            <table class="gp-table">
-              <thead>
-                <tr>
-                  <th data-i18n="gp.s1.th.what">What</th>
-                  <th class="num" data-i18n="gp.s1.th.was">Before</th>
-                  <th aria-hidden="true"></th>
-                  <th class="num" data-i18n="gp.s1.th.now">After</th>
-                  <th data-i18n="gp.s1.th.gain">What the player gets</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="what"><span data-i18n="gp.s1.save.w">Loading a large save</span><small data-i18n="gp.s1.save.s">Pixel 6 Pro</small></td>
-                <td class="num was" data-i18n="gp.s1.save.a">4.4 s</td>
-                <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.save.b">no freeze</td>
-                <td class="gain" data-i18n="gp.s1.save.g">Reading the save from PlayerPrefs froze the app. Now a worker thread reads and decodes an RLE file, and the game keeps responding.</td>
-              </tr>
-              <tr>
-                <td class="what"><span data-i18n="gp.s1.burst.w">Engine after moving to Burst jobs</span><small data-i18n="gp.s1.burst.s">Unity editor, same pattern</small></td>
-                <td class="num was" data-i18n="gp.s1.burst.a">1.0×</td>
-                <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.burst.b">2.2–2.5×</td>
-                <td class="gain" data-i18n="gp.s1.burst.g">The same pattern computes 2.2–2.5× more generations per second (about 1.6 k → 4.1 k gen/s at ~2 k cells).</td>
-              </tr>
-              <tr>
-                <td class="what"><span data-i18n="gp.s1.direct.w">275k-cell soup, fast mode</span><small data-i18n="gp.s1.direct.s">Pixel 6 Pro</small></td>
-                <td class="num was" data-i18n="gp.s1.direct.a">64/s</td>
-                <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.direct.b">141/s</td>
-                <td class="gain" data-i18n="gp.s1.direct.g">Above the animation cutoff the frame rate stops limiting simulation speed; the grid lock is held 2.1 ms per generation instead of 5.6.</td>
-              </tr>
-              <tr>
-                <td class="what"><span data-i18n="gp.s1.window.w">“What’s on screen” with 316k living cells</span><small data-i18n="gp.s1.window.s">benchmark outside Unity</small></td>
-                <td class="num was" data-i18n="gp.s1.window.a">1035 µs</td>
-                <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.window.b">~50 µs</td>
-                <td class="gain" data-i18n="gp.s1.window.g">A puffer’s growing static trail no longer slows the simulation — the cost follows the view, not the population.</td>
-              </tr>
-              <tr>
-                <td class="what"><span data-i18n="gp.s1.utm.w">Universal Turing Machine, 255k cells</span><small data-i18n="gp.s1.utm.s">Turbo (experimental), device</small></td>
-                <td class="num was" data-i18n="gp.s1.utm.a">~300/s</td>
-                <td class="arrow" aria-hidden="true">→</td>
-                <td class="num now" data-i18n="gp.s1.utm.b">61,440/s</td>
-                <td class="gain" data-i18n="gp.s1.utm.g">Patterns built from clocks and guns can be fast-forwarded by thousands of generations per frame.</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="gp-note" data-i18n="gp.s1.note">Before / after on the same pattern and settings; where it was measured is under each row.</p>
-        </section>
-
-        <section id="s2" class="gp-sec" data-preset="dense" aria-labelledby="s2-h">
-          <h2 id="s2-h" class="gp-h2"><span class="gp-n">02</span><span data-i18n="gp.s2.h">The heart of the engine: compute only what moves</span><span class="gp-tag">BitmaskGenerationSolver.cs</span></h2>
-          <p class="gp-p" data-i18n="gp.s2.p1">A cell can only change if something next to it changed in the previous generation. So instead of walking the whole population, each step recomputes only the 64×64 chunks within one ring of the last step’s changes.</p>
-          <pre><code class="language-csharp">// Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
-// change now (neighbourhood adjacency is symmetric), so candidates = N(_lastChanged).
-// This is O(active), never a walk over all occupied chunks — the key to keeping the
-// step cost independent of a large stable pattern's size.
-_candidates.Clear();
-foreach (long key in _lastChanged)
-{
-    int cx = ChunkX(key), cy = ChunkY(key);
-    for (int dx = -1; dx &lt;= 1; dx++)
-        for (int dy = -1; dy &lt;= 1; dy++)
-            _candidates.Add(ChunkKey(cx + dx, cy + dy));
-}</code></pre>
-          <p class="gp-p" data-i18n="gp.s2.p2">Those chunks are then advanced 64 cells per bitwise operation in parallel Burst jobs, and the born / died delta is the XOR of a chunk’s old and new bitmask. Stable regions cost nothing, however large they are.</p>
-
-          <h3 class="gp-h3" data-i18n="gp.s2.built">How the engine is built</h3>
-          <dl class="gp-rows gp-rows--plain">
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.kernel.t">Bit-parallel kernel</dt>
-              <dd data-i18n="gp.s2.e.kernel.d">64×64 chunks stored as <code>ulong</code> bitmasks; neighbour counts for 64 cells at once with bitwise full-adders, compiled by Burst.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.pipeline.t">Parallel step pipeline</dt>
-              <dd data-i18n="gp.s2.e.pipeline.d">Gather, kernel, delta count and apply are chained <code>IJobParallelFor</code> jobs over native containers. On mobile the serial gather, not the kernel, was the real bottleneck.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.ring.t">Delta ring buffer</dt>
-              <dd data-i18n="gp.s2.e.ring.d">A background thread runs up to 100 generations ahead and stores born / died deltas, not snapshots. The main thread replays one per step — that is what drives the birth and death animations.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.direct.t">Direct apply at speed</dt>
-              <dd data-i18n="gp.s2.e.direct.d">Above 10 gen/s the calc thread publishes whole changed chunks (512 bytes each) straight into the live grid; the main thread only renders.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.set.t">Region-queryable living set</dt>
-              <dd data-i18n="gp.s2.e.set.d">Live cells are chunked row bitmasks, so “what’s on screen” costs O(visible cells) — never a walk over the population under the lock.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.lod.t">Far-zoom LOD</dt>
-              <dd data-i18n="gp.s2.e.lod.d">Zoomed out, the Tilemap is replaced by one quad with an <code>Alpha8</code> mask — one byte per cell, one draw call.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.hashlife.t">HashLife Turbo (experimental)</dt>
-              <dd data-i18n="gp.s2.e.hashlife.d">Gosper’s algorithm on an interned quadtree: abortable jumps, a node budget scaled to device RAM, and a collection that keeps the memo.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s2.e.gc.t">Pooling</dt>
-              <dd data-i18n="gp.s2.e.gc.d">Per-chunk buffers are pooled, keeping steady-state allocation near zero.</dd>
-            </div>
-          </dl>
-
-          <h3 class="gp-h3" data-i18n="gp.s2.arch">Architecture</h3>
-          <figure class="gp-diagram">
-            <figcaption class="gp-diagram-title" id="diag1-t" data-i18n="gol.diag1.title">Multithreaded generation pipeline</figcaption>
-            <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
-            <div class="gp-diagram-scroll" role="region" aria-labelledby="diag1-t">
-            <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag1.aria" aria-label="A background calculation thread produces per-generation deltas into a lock-guarded ring buffer that the Unity main thread consumes one step at a time, with back-pressure holding the calc thread at most 100 generations ahead.">
-                  <defs>
-                    <marker id="d1-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
-                    <marker id="d1-arw-dim" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#98988E" /></marker>
-                  </defs>
-
-                  <!-- Box A: calculation thread -->
-                  <rect x="16" y="60" width="212" height="150" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="16" y="60" width="4" height="150" fill="#8C3A2B" />
-                  <text x="38" y="86" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.calcThread">CALCULATION THREAD</text>
-                  <text x="38" y="104" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.calcThreadSub">background · IsBackground</text>
-                  <line x1="38" y1="116" x2="208" y2="116" stroke="#24241F" />
-                  <text x="38" y="140" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12">Solver.Step()</text>
-                  <text x="38" y="162" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.burstJob">Burst parallel job</text>
-                  <text x="38" y="184" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.emitsDelta">emits born / died delta</text>
-
-                  <!-- Box B: ring buffer -->
-                  <rect x="274" y="50" width="212" height="170" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="274" y="50" width="4" height="170" fill="#8C3A2B" />
-                  <text x="296" y="76" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.ringBuffer">DELTA RING BUFFER</text>
-                  <text x="296" y="94" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.ringBufferSub">128 slots · lock-guarded</text>
-                  <rect x="296" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="316" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="336" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="356" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="376" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="396" y="110" width="15" height="15" fill="#E8452B" />
-                  <rect x="416" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
-                  <rect x="436" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
-                  <rect x="456" y="110" width="15" height="15" fill="#141413" stroke="#3A3A36" />
-                  <text x="296" y="146" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag1.filledLabel">filled = calculated, waiting to display</text>
-                  <line x1="296" y1="172" x2="464" y2="172" stroke="#24241F" />
-                  <text x="296" y="192" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.storesDeltas">stores deltas, not snapshots</text>
-
-                  <!-- Box C: main thread -->
-                  <rect x="532" y="60" width="212" height="150" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="532" y="60" width="4" height="150" fill="#8C3A2B" />
-                  <text x="554" y="86" fill="#E8452B" font-family="'DM Mono',monospace" font-size="13" font-weight="700" data-i18n="gol.diag1.mainThread">MAIN (UNITY) THREAD</text>
-                  <text x="554" y="104" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag1.mainThreadSub">Update() @ frame rate</text>
-                  <line x1="554" y1="116" x2="724" y2="116" stroke="#24241F" />
-                  <text x="554" y="140" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12">TryDisplayGeneration()</text>
-                  <text x="554" y="162" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.applyDelta">apply delta → Tilemap</text>
-                  <text x="554" y="184" fill="#F2F1ED" font-family="'Schibsted Grotesk',sans-serif" font-size="12" data-i18n="gol.diag1.cameraCulled">camera-culled render</text>
-
-                  <!-- Flow arrows -->
-                  <text x="251" y="126" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag1.produce">produce</text>
-                  <line x1="230" y1="135" x2="269" y2="135" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d1-arw)" />
-                  <text x="509" y="126" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag1.perStep">1 / step</text>
-                  <line x1="488" y1="135" x2="527" y2="135" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d1-arw)" />
-
-                  <!-- Back-pressure -->
-                  <path d="M638,210 V258 H124 V214" fill="none" stroke="#98988E" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#d1-arw-dim)" />
-                  <text x="381" y="250" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag1.backpressure">back-pressure — calc sleeps while ≥ 100 generations ahead of display</text>
-                </svg>
-            </div>
-          </figure>
-          <p class="gp-diagram-caption" data-i18n="gp.diag1.c">The calculation thread writes each generation’s <strong>born / died delta</strong> into a lock-guarded ring buffer and may run up to 100 generations ahead; the main thread applies one delta per step. Above 10 gen/s the buffer is bypassed and changed chunks go straight into the live grid.</p>
-          <figure class="gp-diagram">
-            <figcaption class="gp-diagram-title" id="diag2-t" data-i18n="gol.diag2.title">Active-chunk, bit-parallel engine</figcaption>
-            <p class="gp-diagram-hint" aria-hidden="true" data-i18n="gp.diag.swipe">Swipe to see the whole diagram →</p>
-            <div class="gp-diagram-scroll" role="region" aria-labelledby="diag2-t">
-            <svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria" aria-label="The world is split into 64 by 64 bitmask chunks; only chunks that changed last step plus their halo are recomputed by a Burst-compiled parallel kernel that counts 64 cells per bitwise operation, and the output is the XOR delta of each chunk's old and new bitmask.">
-                  <defs>
-                    <marker id="d2-arw" markerWidth="10" markerHeight="10" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8452B" /></marker>
-                  </defs>
-
-                  <!-- Panel 1: active-chunk cache -->
-                  <rect x="16" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="16" y="44" width="4" height="252" fill="#8C3A2B" />
-                  <text x="34" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel1Title">1 · ACTIVE-CHUNK CACHE</text>
-
-                  <!-- 5x4 chunk grid: gray = skipped, dim = candidate halo, red = changed -->
-                  <rect x="57" y="92" width="26" height="26" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="147" y="92" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="92" width="26" height="26" fill="#141413" stroke="#2A2A28" />
-
-                  <rect x="57" y="122" width="26" height="26" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="122" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="147" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="122" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-
-                  <rect x="57" y="152" width="26" height="26" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="152" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="152" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="147" y="152" width="26" height="26" fill="#E8452B" stroke="#E8452B" />
-                  <rect x="177" y="152" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-
-                  <rect x="57" y="182" width="26" height="26" fill="#141413" stroke="#2A2A28" />
-                  <rect x="87" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="117" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="147" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-                  <rect x="177" y="182" width="26" height="26" fill="#2A1512" stroke="#8C3A2B" />
-
-                  <!-- Legend -->
-                  <rect x="57" y="232" width="13" height="13" fill="#E8452B" stroke="#E8452B" />
-                  <text x="77" y="243" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendChanged">changed last step</text>
-                  <rect x="57" y="252" width="13" height="13" fill="#2A1512" stroke="#8C3A2B" />
-                  <text x="77" y="263" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendCandidate">candidate (halo)</text>
-                  <rect x="57" y="272" width="13" height="13" fill="#141413" stroke="#2A2A28" />
-                  <text x="77" y="283" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="11" data-i18n="gol.diag2.legendSkipped">stable → skipped</text>
-
-                  <!-- Panel 2: bit-parallel kernel -->
-                  <rect x="264" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="264" y="44" width="4" height="252" fill="#8C3A2B" />
-                  <text x="282" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel2Title">2 · BIT-PARALLEL KERNEL</text>
-                  <text x="312" y="96" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10" data-i18n="gol.diag2.parallelCandidates">× N candidates in parallel</text>
-
-                  <!-- Stacked chunk (parallel jobs) -->
-                  <rect x="315" y="110" width="104" height="104" fill="none" stroke="#2A2A28" />
-                  <rect x="320" y="105" width="104" height="104" fill="none" stroke="#3A3A36" />
-                  <rect x="325" y="100" width="104" height="104" fill="#121211" stroke="#8C3A2B" />
-                  <!-- grid lines -->
-                  <g stroke="#1E1E1C" stroke-width="1">
-                    <line x1="338" y1="100" x2="338" y2="204" /><line x1="351" y1="100" x2="351" y2="204" /><line x1="364" y1="100" x2="364" y2="204" /><line x1="377" y1="100" x2="377" y2="204" /><line x1="390" y1="100" x2="390" y2="204" /><line x1="403" y1="100" x2="403" y2="204" /><line x1="416" y1="100" x2="416" y2="204" />
-                    <line x1="325" y1="113" x2="429" y2="113" /><line x1="325" y1="126" x2="429" y2="126" /><line x1="325" y1="139" x2="429" y2="139" /><line x1="325" y1="152" x2="429" y2="152" /><line x1="325" y1="165" x2="429" y2="165" /><line x1="325" y1="178" x2="429" y2="178" /><line x1="325" y1="191" x2="429" y2="191" />
-                  </g>
-                  <!-- live cells: two gliders -->
-                  <g fill="#E8452B">
-                    <rect x="339" y="101" width="11" height="11" /><rect x="352" y="114" width="11" height="11" /><rect x="326" y="127" width="11" height="11" /><rect x="339" y="127" width="11" height="11" /><rect x="352" y="127" width="11" height="11" />
-                    <rect x="391" y="153" width="11" height="11" /><rect x="404" y="166" width="11" height="11" /><rect x="378" y="179" width="11" height="11" /><rect x="391" y="179" width="11" height="11" /><rect x="404" y="179" width="11" height="11" />
-                  </g>
-
-                  <text x="380" y="238" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.neighbourSum">Σ 8 neighbours · bitwise full-adders</text>
-                  <text x="380" y="260" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" text-anchor="middle" data-i18n="gp.diag2.cellsPerOp">64 cells / op</text>
-                  <text x="380" y="281" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle" data-i18n="gol.diag2.burstCompiled">gather + kernel · Burst jobs</text>
-
-                  <!-- Panel 3: delta out -->
-                  <rect x="512" y="44" width="232" height="252" fill="#0A0A0A" stroke="#3A3A36" />
-                  <rect x="512" y="44" width="4" height="252" fill="#8C3A2B" />
-                  <text x="530" y="72" fill="#E8452B" font-family="'DM Mono',monospace" font-size="12" font-weight="700" data-i18n="gol.diag2.panel3Title">3 · DELTA = OLD ⊕ NEW</text>
-
-                  <!-- old grid (blinker vertical) -->
-                  <g stroke="#1E1E1C" stroke-width="1" fill="#121211">
-                    <rect x="536" y="96" width="54" height="54" stroke="#2A2A28" />
-                  </g>
-                  <g fill="#8C3A2B">
-                    <rect x="550" y="98" width="12" height="12" /><rect x="550" y="112" width="12" height="12" /><rect x="550" y="126" width="12" height="12" />
-                  </g>
-                  <text x="563" y="166" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle">gen n</text>
-
-                  <text x="622" y="128" fill="#E8452B" font-family="'DM Mono',monospace" font-size="20" text-anchor="middle">⊕</text>
-
-                  <!-- new grid (blinker horizontal) -->
-                  <rect x="654" y="96" width="54" height="54" fill="#121211" stroke="#2A2A28" />
-                  <g fill="#8C3A2B">
-                    <rect x="656" y="112" width="12" height="12" /><rect x="670" y="112" width="12" height="12" /><rect x="684" y="112" width="12" height="12" />
-                  </g>
-                  <text x="681" y="166" fill="#98988E" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" text-anchor="middle">gen n+1</text>
-
-                  <!-- arrow down to delta -->
-                  <line x1="622" y1="150" x2="608" y2="192" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
-
-                  <!-- delta grid -->
-                  <rect x="575" y="196" width="54" height="54" fill="#121211" stroke="#2A2A28" />
-                  <!-- unchanged center -->
-                  <rect x="589" y="212" width="12" height="12" fill="#30302B" />
-                  <!-- born (red) -->
-                  <rect x="575" y="212" width="12" height="12" fill="#E8452B" />
-                  <rect x="603" y="212" width="12" height="12" fill="#E8452B" />
-                  <!-- died (dashed outline) -->
-                  <rect x="589" y="198" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
-                  <rect x="589" y="226" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
-
-                  <rect x="540" y="268" width="12" height="12" fill="#E8452B" />
-                  <text x="558" y="278" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag2.born">born</text>
-                  <rect x="612" y="268" width="12" height="12" fill="none" stroke="#98988E" stroke-dasharray="2 2" />
-                  <text x="630" y="278" fill="#C6C4BC" font-family="'Schibsted Grotesk',sans-serif" font-size="10.5" data-i18n="gol.diag2.died">died</text>
-
-                  <!-- panel-to-panel arrows -->
-                  <line x1="250" y1="168" x2="262" y2="168" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
-                  <line x1="498" y1="168" x2="510" y2="168" stroke="#E8452B" stroke-width="1.6" marker-end="url(#d2-arw)" />
-                </svg>
-            </div>
-          </figure>
-          <p class="gp-diagram-caption" data-i18n="gp.diag2.c">Only chunks that changed last step — plus a one-chunk halo — are recomputed, 64 cells per bitwise operation, and the delta is the XOR of each chunk’s old and new bitmask.</p>
-
-          <h3 class="gp-h3" data-i18n="gp.s2.more">More code — verbatim from the private repository</h3>
-          <details class="gp-snippet">
-            <summary><span class="gp-snippet-title" data-i18n="gp.code.s1.t">Bit-parallel Life rule — 64 cells per operation</span><span class="gp-snippet-file">Assets/Scripts/BitmaskKernel.cs</span></summary>
-            <p class="gp-snippet-desc" data-i18n="gp.code.s1.d">The whole rule as bitwise arithmetic: each <code>ulong</code> is 64 cells of a row, the eight neighbour counts are summed with adders into three bit-planes, and “alive next generation” is a boolean expression over those planes.</p>
-            <pre><code class="language-csharp">private static void Compute(NativeArray&lt;ulong&gt; nbr, bool allowBirth, NativeArray&lt;ulong&gt; outRows)
-{
-    ulong birthMask = allowBirth ? ulong.MaxValue : 0UL;
-
-    // Three-deep sliding window over the halo-assembled rows. Each row is assembled once
-    // and read at r-1, r and r+1, so six locals replace the two NativeArray(66) Temp
-    // allocations this used to make on every Execute (~6000 alloc/free pairs per generation
-    // at ~3000 candidates), along with all the array indexing.
-    //
-    // Only rows 1..64 (the chunk's own) are ever written out — rows 0 and 65 would need a
-    // next-gen computed too under a full 66-row loop, but that output is always discarded
-    // (they serve only as *input* halo), so skipping it changes nothing observable.
-    AssembleHaloRow(nbr, 0, out ulong prev0, out ulong prev1);
-    AssembleHaloRow(nbr, 1, out ulong cur0, out ulong cur1);
-
-    for (int r = 1; r &lt;= ChunkSize; r++)
-    {
-        AssembleHaloRow(nbr, r + 1, out ulong nxt0, out ulong nxt1);
-
-        NeighborWords(prev0, prev1, out ulong aboveL0, out ulong aboveR0, out ulong aboveL1, out ulong aboveR1);
-        NeighborWords(nxt0, nxt1, out ulong belowL0, out ulong belowR0, out ulong belowL1, out ulong belowR1);
-        NeighborWords(cur0, cur1, out ulong selfL0, out ulong selfR0, out ulong selfL1, out ulong selfR1);
-
-        ulong b0_0 = 0, b1_0 = 0, b2_0 = 0;
-        ulong b0_1 = 0, b1_1 = 0, b2_1 = 0;
-
-        FullAdder(aboveL0, prev0, aboveR0, out ulong aS0, out ulong aC0);
-        AddBits(ref b0_0, ref b1_0, ref b2_0, aS0, aC0);
-        FullAdder(aboveL1, prev1, aboveR1, out ulong aS1, out ulong aC1);
-        AddBits(ref b0_1, ref b1_1, ref b2_1, aS1, aC1);
-
-        FullAdder(belowL0, nxt0, belowR0, out ulong bS0, out ulong bC0);
-        AddBits(ref b0_0, ref b1_0, ref b2_0, bS0, bC0);
-        FullAdder(belowL1, nxt1, belowR1, out ulong bS1, out ulong bC1);
-        AddBits(ref b0_1, ref b1_1, ref b2_1, bS1, bC1);
-
-        HalfAdder(selfL0, selfR0, out ulong sS0, out ulong sC0);
-        AddBits(ref b0_0, ref b1_0, ref b2_0, sS0, sC0);
-        HalfAdder(selfL1, selfR1, out ulong sS1, out ulong sC1);
-        AddBits(ref b0_1, ref b1_1, ref b2_1, sS1, sC1);
-
-        ulong eq2_0 = (~b0_0) &amp; b1_0 &amp; (~b2_0);
-        ulong eq3_0 = b0_0 &amp; b1_0 &amp; (~b2_0);
-        ulong isAlive0 = cur0;
-        ulong next0 = (isAlive0 &amp; (eq2_0 | eq3_0)) | (~isAlive0 &amp; birthMask &amp; eq3_0);
-
-        ulong eq2_1 = (~b0_1) &amp; b1_1 &amp; (~b2_1);
-        ulong eq3_1 = b0_1 &amp; b1_1 &amp; (~b2_1);
-        ulong isAlive1 = cur1;
-        ulong next1 = (isAlive1 &amp; (eq2_1 | eq3_1)) | (~isAlive1 &amp; birthMask &amp; eq3_1);
-
-        // Extract inner chunk row: inner col localX == region col localX+1, so cols
-        // 1..63 come from word0 shifted left by 1, col 64 from word1's MSB.
-        ulong rowBits = (next0 &lt;&lt; 1) | ((next1 &gt;&gt; 63) &amp; 1UL);
-        outRows[r - 1] = rowBits;
-
-        prev0 = cur0; prev1 = cur1;
-        cur0 = nxt0; cur1 = nxt1;
-    }
-}
-
-// Bit0 (MSB, 1UL&lt;&lt;63) is the leftmost column of the word. Returns this row's left- and
-// right-shifted neighbour words for both words (i=0, i=1) of a 2-word-wide row.
-private static void NeighborWords(ulong w0, ulong w1, out ulong l0, out ulong r0, out ulong l1, out ulong r1)
-{
-    l0 = w0 &gt;&gt; 1;
-    r0 = (w0 &lt;&lt; 1) | (w1 &gt;&gt; 63);
-    l1 = (w1 &gt;&gt; 1) | ((w0 &amp; 1UL) &lt;&lt; 63);
-    r1 = w1 &lt;&lt; 1;
-}
-
-private static void FullAdder(ulong a, ulong b, ulong c, out ulong sum, out ulong carry)
-{
-    sum = a ^ b ^ c;
-    carry = (a &amp; b) | (a &amp; c) | (b &amp; c);
-}
-
-private static void HalfAdder(ulong a, ulong b, out ulong sum, out ulong carry)
-{
-    sum = a ^ b;
-    carry = a &amp; b;
-}
-
-// Ripple-carry add into 3 bit-planes (LSB first); final carry-out dropped (safe — a
-// neighbour count of 8 truncates to 0 in 3 bits, which doesn't alias counts 2 or 3).
-private static void AddBits(ref ulong b0, ref ulong b1, ref ulong b2, ulong addend0, ulong addend1)
-{
-    FullAdder(b0, addend0, 0, out ulong s0, out ulong c0);
-    FullAdder(b1, addend1, c0, out ulong s1, out ulong c1);
-    FullAdder(b2, 0, c1, out ulong s2, out _);
-    b0 = s0;
-    b1 = s1;
-    b2 = s2;
-}
-
-[BurstCompile]
-public struct ComputeChunksJob : IJobParallelFor
-{
-    [ReadOnly] public NativeArray&lt;ulong&gt; AllNbr;
-    public bool AllowBirth;
-    [NativeDisableParallelForRestriction] public NativeArray&lt;ulong&gt; AllOutRows;
-
-    public void Execute(int index)
-    {
-        NativeArray&lt;ulong&gt; nbr = AllNbr.GetSubArray(index * HaloWords, HaloWords);
-        NativeArray&lt;ulong&gt; outRows = AllOutRows.GetSubArray(index * ChunkSize, ChunkSize);
-        Compute(nbr, AllowBirth, outRows);
-    }
-}</code></pre>
-          </details>
-          <details class="gp-snippet">
-            <summary><span class="gp-snippet-title" data-i18n="gp.code.s2.t">One step as a chain of Burst jobs</span><span class="gp-snippet-file">Assets/Scripts/BitmaskGenerationSolver.cs</span></summary>
-            <p class="gp-snippet-desc" data-i18n="gp.code.s2.d">Gather, kernel and delta counting chained through <code>JobHandle</code> dependencies, with the batch size sized to the worker count rather than a fixed constant.</p>
-            <pre><code class="language-csharp">// Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
-// change now (neighbourhood adjacency is symmetric), so candidates = N(_lastChanged).
-// This is O(active), never a walk over all occupied chunks — the key to keeping the
-// step cost independent of a large stable pattern's size.
-_candidates.Clear();
-foreach (long key in _lastChanged)
-{
-    int cx = ChunkX(key), cy = ChunkY(key);
-    for (int dx = -1; dx &lt;= 1; dx++)
-        for (int dy = -1; dy &lt;= 1; dy++)
-            _candidates.Add(ChunkKey(cx + dx, cy + dy));
-}
-
-_newChanged.Clear();
-
-_candidateList.Clear();
-foreach (long key in _candidates) _candidateList.Add(key);
-int count = _candidateList.Count;
-LastRecomputed = count; // every candidate is, by construction, recomputed
-
-if (count &gt; 0)
-{
-    EnsureCapacity(count);
-    for (int idx = 0; idx &lt; count; idx++) _candidateKeysBuffer[idx] = _candidateList[idx];
-
-    // Every job stage is spread across Job System worker threads (see
-    // BitmaskKernel.GatherJob's doc comment for why the gather/count/write stages also
-    // need to be part of this, not just the kernel).
-    //
-    // Batch size targets ~2 batches per worker rather than a fixed small constant: with
-    // e.g. 250 candidates on a 4-worker device, a fixed batchSize=8 would schedule ~31
-    // batches for only 4 workers — most of the parallel win gets eaten by per-batch
-    // scheduling overhead. Aiming for ~1-2 batches/worker (the usual Job System
-    // heuristic) keeps overhead low while still using every worker.
-    int batchSize = System.Math.Max(1, count / (JobWorkerCount * 2));
-
-    JobHandle gatherHandle = new BitmaskKernel.GatherJob
-    {
-        CandidateKeys = _candidateKeysBuffer,
-        ChunkIndex = _chunkIndex,
-        ChunkData = _chunkData.AsArray(),
-        AllNbr = _allNbrBuffer,
-        OldBlockIds = _oldBlockIds
-    }.Schedule(count, batchSize);
-
-    JobHandle kernelHandle = new BitmaskKernel.ComputeChunksJob
-    {
-        AllNbr = _allNbrBuffer,
-        AllowBirth = allowBirth,
-        AllOutRows = _allOutBuffer
-    }.Schedule(count, batchSize, gatherHandle);
-
-    // Pass 1 (parallel, depends on the kernel): per-candidate born/died bit counts +
-    // changed/newIsEmpty flags. Cheap (popcount, no per-bit loop) — see
-    // BitmaskKernel.CountDeltaJob's doc comment.
-    JobHandle countHandle = new BitmaskKernel.CountDeltaJob
-    {
-        AllOutRows = _allOutBuffer,
-        OldBlockIds = _oldBlockIds,
-        ChunkData = _chunkData.AsArray(),
-        BornCounts = _bornCounts,
-        DiedCounts = _diedCounts,
-        Changed = _changedFlags,
-        NewIsEmpty = _newEmptyFlags,
-        NewPopCounts = _newPopCounts
-    }.Schedule(count, batchSize, kernelHandle);
-    countHandle.Complete();
-    // … prefix sum, optional per-cell delta, serial block allocation
-
-    // Finalize pass B (parallel): every block id is now assigned and distinct, so the
-    // actual bulk copies are disjoint writes — safe to spread across worker threads.
-    new BitmaskKernel.ApplyJob
-    {
-        AllOutRows = _allOutBuffer,
-        BlockIds = _blockIds,
-        ChunkData = _chunkData.AsArray()
-    }.Schedule(count, batchSize).Complete();
-}
-
-(_lastChanged, _newChanged) = (_newChanged, _lastChanged);</code></pre>
-          </details>
-          <details class="gp-snippet">
-            <summary><span class="gp-snippet-title" data-i18n="gp.code.s3.t">HashLife successor — Gosper’s algorithm, abortable</span><span class="gp-snippet-file">Assets/Scripts/HashLife/HashLifeSuccessor.cs</span></summary>
-            <p class="gp-snippet-desc" data-i18n="gp.code.s3.d">A memoised recursion that advances the centre of a node by 2<sup>k</sup> generations. The abort check sits only on the cache-miss path — a jump made entirely of cache hits has nothing worth abandoning.</p>
-            <pre><code class="language-csharp">/// &lt;summary&gt;
-/// Returns the level-(m.Level - 1) node that is the central square of
-/// &lt;paramref name="m"/&gt; advanced by &lt;c&gt;2^min(jTop, m.Level - 2)&lt;/c&gt; generations.
-/// Requires &lt;c&gt;m.Level &amp;gt;= 2&lt;/c&gt;. Memoizes on &lt;paramref name="m"/&gt; keyed by
-/// &lt;paramref name="jTop"/&gt; (see HashLifeNode.Result / ResultJTop): for a fixed jTop the
-/// effective step at every level is min(jTop, level-2), which collapses regardless of
-/// call path, so one cached result per (node, jTop) is complete — see HASHLIFE_PLAN.md
-/// B4.2's "why this caching is sound".
-/// &lt;/summary&gt;
-public HashLifeNode Successor(HashLifeNode m, int jTop)
-{
-    if (m.Population == 0) return store.Empty(m.Level - 1);
-    if (m.Result != null &amp;&amp; m.ResultJTop == jTop) return m.Result;
-
-    HashLifeNode result = m.Level == 2 ? Life4x4(store, m) : SuccessorRecursive(m, jTop);
-
-    m.Result = result;
-    m.ResultJTop = jTop;
-    return result;
-}
-
-private HashLifeNode SuccessorRecursive(HashLifeNode m, int jTop)
-{
-    // Checked here and not in Successor: the memoised fast path above returns without
-    // doing any work, so a jump that is entirely cache hits has nothing to abandon. This
-    // is the miss path, which is where the seconds are. One volatile read against nine
-    // dictionary probes and thirteen recursive calls is noise.
-    if (abort.Requested) throw new HashLifeAbortedException();
-
-    int k = m.Level;
-    HashLifeNode a = m.NW, b = m.NE, c = m.SW, d = m.SE;
-
-    // The nine overlapping level-(k-1) subsquares of m, in row-major order — see
-    // HASHLIFE_PLAN.md B3. Join's argument order is always (NW, NE, SW, SE).
-    HashLifeNode s00 = a;
-    HashLifeNode s01 = store.Join(a.NE, b.NW, a.SE, b.SW);
-    HashLifeNode s02 = b;
-    HashLifeNode s10 = store.Join(a.SW, a.SE, c.NW, c.NE);
-    HashLifeNode s11 = store.Join(a.SE, b.SW, c.NE, d.NW);
-    HashLifeNode s12 = store.Join(b.SW, b.SE, d.NW, d.NE);
-    HashLifeNode s20 = c;
-    HashLifeNode s21 = store.Join(c.NE, d.NW, c.SE, d.SW);
-    HashLifeNode s22 = d;
-
-    int jj = jTop &lt; k - 2 ? jTop : k - 2;
-
-    HashLifeNode c00 = Successor(s00, jj);
-    HashLifeNode c01 = Successor(s01, jj);
-    HashLifeNode c02 = Successor(s02, jj);
-    HashLifeNode c10 = Successor(s10, jj);
-    HashLifeNode c11 = Successor(s11, jj);
-    HashLifeNode c12 = Successor(s12, jj);
-    HashLifeNode c20 = Successor(s20, jj);
-    HashLifeNode c21 = Successor(s21, jj);
-    HashLifeNode c22 = Successor(s22, jj);
-
-    if (jj &lt; k - 2)
-    {
-        // The nine partials are already advanced 2^jj (less than the max this level
-        // could do) — just re-centre them, do not advance again.
-        return store.Join(
-            store.Center(store.Join(c00, c01, c10, c11)),
-            store.Center(store.Join(c01, c02, c11, c12)),
-            store.Center(store.Join(c10, c11, c20, c21)),
-            store.Center(store.Join(c11, c12, c21, c22)));
-    }
-
-    // The nine partials are each advanced 2^(k-3); a second round of Successor on the
-    // four re-joined quadrants adds another 2^(k-3), totalling 2^(k-2) == jj's full step
-    // at this level.
-    return store.Join(
-        Successor(store.Join(c00, c01, c10, c11), jj),
-        Successor(store.Join(c01, c02, c11, c12), jj),
-        Successor(store.Join(c10, c11, c20, c21), jj),
-        Successor(store.Join(c11, c12, c21, c22), jj));
-}</code></pre>
-          </details>
-          <details class="gp-snippet">
-            <summary><span class="gp-snippet-title" data-i18n="gp.code.s4.t">Region query in O(visible cells)</span><span class="gp-snippet-file">Assets/Scripts/ChunkedCellSet.cs</span></summary>
-            <p class="gp-snippet-desc" data-i18n="gp.code.s4.d">Picks the cheaper of probing the window’s chunk coordinates or walking the stored chunks — a tight window and the far-zoom LOD window sit at opposite extremes.</p>
-            <pre><code class="language-csharp">/// &lt;summary&gt;
-/// Appends the living cells inside the inclusive world bounds to &lt;paramref name="outCells"/&gt;
-/// (not cleared first). This is the hot query: cost is O(visible cells + touched chunks),
-/// never O(total population).
-/// &lt;/summary&gt;
-public void CopyWindowTo(int minX, int maxX, int minY, int maxY, ICollection&lt;Vector3Int&gt; outCells)
-{
-    if (count == 0 || minX &gt; maxX || minY &gt; maxY) return;
-
-    int cx0 = minX &gt;&gt; ChunkShift, cx1 = maxX &gt;&gt; ChunkShift;
-    int cy0 = minY &gt;&gt; ChunkShift, cy1 = maxY &gt;&gt; ChunkShift;
-
-    // Two ways to find the overlapping chunks: probe every chunk coordinate the window
-    // spans, or walk the stored chunks and reject the ones outside it. Which is cheaper
-    // flips with zoom — a tight window spans a handful of coordinates, while the far-zoom
-    // LOD window can span far more coordinates than the pattern has chunks. Pick the
-    // smaller of the two so neither zoom extreme degrades.
-    long spanned = (long)(cx1 - cx0 + 1) * (cy1 - cy0 + 1);
-    if (spanned &lt;= chunks.Count)
-    {
-        for (int cy = cy0; cy &lt;= cy1; cy++)
-        {
-            for (int cx = cx0; cx &lt;= cx1; cx++)
-            {
-                long key = BitmaskKernel.ChunkKey(cx, cy);
-                if (!chunks.TryGetValue(key, out Chunk chunk)) continue;
-                EmitChunk(key, chunk, minX, maxX, minY, maxY, outCells);
-            }
-        }
-        return;
-    }
-
-    foreach (KeyValuePair&lt;long, Chunk&gt; entry in chunks)
-    {
-        int cx = BitmaskKernel.ChunkX(entry.Key);
-        int cy = BitmaskKernel.ChunkY(entry.Key);
-        if (cx &lt; cx0 || cx &gt; cx1 || cy &lt; cy0 || cy &gt; cy1) continue;
-        EmitChunk(entry.Key, entry.Value, minX, maxX, minY, maxY, outCells);
-    }
-}</code></pre>
-          </details>
-        </section>
-
-        <section id="s3" class="gp-sec" data-preset="cone" aria-labelledby="s3-h">
-          <h2 id="s3-h" class="gp-h2"><span class="gp-n">03</span><span data-i18n="gp.s3.h">What I didn’t choose, and why</span><span class="gp-tag" data-i18n="gp.s3.tag">Turbo mode speed control</span></h2>
-          <dl class="gp-rows gp-rows--plain">
-            <div class="gp-row">
-              <dt data-i18n="gp.s3.slider.t">A generations-per-second slider</dt>
-              <dd data-i18n="gp.s3.slider.d">It promised a rate a memoising engine cannot keep: what a jump costs depends on how much of the pattern’s structure it has already learned. On a heavy pattern the slider showed a number that wasn’t happening.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s3.steptick.t">Separate “step” and “tick” controls</dt>
-              <dd data-i18n="gp.s3.steptick.d">Two views of one variable. On a heavy pattern the tick was dead — 5 jumps/s asked of a jump that took 3.4 s — and on a light one the adaptation silently overrode the step.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s3.only.t">HashLife as the only engine</dt>
-              <dd data-i18n="gp.s3.only.d">It fast-forwards periodic patterns by millions of generations, but produces no per-generation delta — so no birth / death animations or haptics — and gains nothing on chaotic soups. It stays a second, optional engine.</dd>
-            </div>
-            <div class="gp-row is-chosen">
-              <dt data-i18n="gp.s3.chosen.t">What I chose</dt>
-              <dd data-i18n="gp.s3.chosen.d">One control, scaled in generations per frame: AUTO, 16, 256, 4 K, 64 K. The engine delivers generations per jump exactly, without predicting anything. An explicit position is an order and is never overridden; what actually happened is shown in the measurement row under it.</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section id="s4" class="gp-sec" data-preset="grid" aria-labelledby="s4-h">
-          <h2 id="s4-h" class="gp-h2"><span class="gp-n">04</span><span data-i18n="gp.s4.h">How it’s verified</span></h2>
-          <dl class="gp-rows gp-rows--plain">
-            <div class="gp-row">
-              <dt data-i18n="gp.s4.diff.t">Differential tests</dt>
-              <dd data-i18n="gp.s4.diff.d">Every engine change is compared with a plain reference implementation outside Unity, over many generations — a stateful cache only goes wrong after several steps. For example 20,000 random chunks for the Burst kernel and 400,000 operations on the cell set: 0 mismatches.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s4.burst.t">Burst without the editor</dt>
-              <dd data-i18n="gp.s4.burst.d">All five jobs are compiled to native ARM64 with <code>bcl.exe</code> from the command line. A negative control — a managed array inside a job — must fail with BC1028, otherwise a clean result proves nothing.</dd>
-            </div>
-            <div class="gp-row">
-              <dt data-i18n="gp.s4.device.t">Measured, not estimated</dt>
-              <dd data-i18n="gp.s4.device.d">The numbers in section 01 come from the game’s <code>[perf]</code> line — gen/s, lock hold time, FPS — before and after a change, on the same pattern and settings.</dd>
-            </div>
-          </dl>
-          <div class="gp-close">
-            <p data-i18n="gp.close.p">The repository is private — the excerpts are above, and I’m happy to walk through the rest in an interview.</p>
-            <div class="gp-close-btns">
-              <a class="gp-btn" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="gp.close.cta">Message me on LinkedIn</a>
-              <a class="gp-btn gp-btn--ghost" href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
+          <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
+          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
+        </div>
+
+        <!-- SLOT: hero animation, portrait. Alt/description EN: "A Game of Life pattern of
+             hundreds of thousands of cells, zoomed far out on a phone and drawn as a density
+             texture." Alt/description PL: "Wzorzec gry w życie liczący setki tysięcy komórek,
+             mocno oddalony na ekranie telefonu i narysowany jako tekstura gęstości." -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait">
+            <div class="cs-media-inner">
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="gol.hero.shot">Phone screen, zoomed almost all the way out on a very large pattern (~252k cells, e.g. the Universal Turing Machine): the density texture fills the frame, no UI panels in the way.</p>
+              <p class="cs-media-specs">9:16 · loop, 3–5s</p>
             </div>
           </div>
-        </section>
-
-        <footer class="gp-foot">
-          <span data-i18n="index.footer.developedBy">Developed by Dominik Barański</span>
-          <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.githubProfile">My GitHub Profile</a>
-          <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="index.footer.linkedin">LinkedIn</a>
-        </footer>
+          <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">A Game of Life pattern of hundreds of thousands of cells, zoomed far out on a phone and drawn as a density texture.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="images/game-of-life/hero.webp" alt="[the figcaption text]" loading="lazy">
+               — or, for footage instead of a still loop: —
+               <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/hero-poster.jpg">
+                 <source src="images/game-of-life/hero.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/hero-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
       </div>
-    </main>
-  </div>
+    </header>
+
+    <section class="cs-keynums" aria-labelledby="keynums-h">
+      <h2 class="cs-eyebrow" id="keynums-h" data-i18n="case.keynums">Key numbers</h2>
+      <div class="cs-keynums-grid">
+        <div class="cs-keynum">
+          <b data-i18n="gol.kn1.value">15,000+</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn1.label">Downloads on Google Play</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
+        </div>
+        <div class="cs-keynum">
+          <b>64 → 141 gen/s</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Speed-up from direct chunk copies</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern of 275k live cells on a Pixel 6 Pro: per-generation replay vs whole-chunk copies (system 2).</span>
+        </div>
+        <div class="cs-keynum">
+          <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn3.label">Visible-cell query</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity, a 200×200-cell view with 316k live cells off-screen: chunked query vs the old full scan (system 3).</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-glance" aria-labelledby="glance-h">
+      <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
+      <dl class="cs-facts">
+        <div><dt data-i18n="gol.glance.role.t">Role</dt><dd data-i18n="gol.glance.role.d">solo (engine, gameplay, UI and store release)</dd></div>
+        <div><dt data-i18n="gol.glance.engine.t">Engine</dt><dd data-i18n="gol.glance.engine.d">Unity 2022.3 LTS, built-in render pipeline</dd></div>
+        <div><dt data-i18n="gol.glance.platform.t">Platform</dt><dd data-i18n="gol.glance.platform.d">Android (IL2CPP, ARM64)</dd></div>
+        <div><dt data-i18n="gol.glance.status.t">Status</dt><dd><span data-i18n="gol.glance.status.d1">published on</span> <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a><span aria-hidden="true"> ↗</span><span data-i18n="gol.glance.status.d2">, 15,000+ downloads</span></dd></div>
+        <div><dt data-i18n="gol.glance.tech.t">Key tech</dt><dd data-i18n="gol.glance.tech.d">C#, Burst, Job System, Native Collections, multithreading, custom shaders, Tilemap</dd></div>
+        <div><dt data-i18n="gol.glance.code.t">Code</dt><dd data-i18n="gol.glance.code.d">private repository</dd></div>
+      </dl>
+    </section>
+
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="gol.sys1.title">An engine that only computes what changes</span><span class="cs-toc-skills" data-i18n="gol.toc1.skills">Burst · Job System · bit-parallel kernel</span></a></li>
+        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
+        <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="cs-systems">
+
+      <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">01</span>
+          <h2 id="sys-1-h" data-i18n="gol.sys1.title">An engine that only computes what changes</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys1.problem">A straightforward simulation visits every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns grind down even when most of the board isn't moving.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys1.how">The board is split into 64×64 chunks stored as bitmasks (one 64-bit integer per row, one bit per cell). Each step recomputes only the chunks next to ones that changed in the previous step, counts neighbours for 64 cells at once with bitwise arithmetic, and runs as a chain of five Burst jobs on native memory. Burst compiles a restricted subset of C# into optimised native code, and the Job System spreads that work across worker threads.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys1.what">Data-oriented design with Burst and the Job System, and profiling on the target device. Parallelising only the core computation gave a clear gain in the editor but no measurable difference on the phone, because the real bottleneck was the serial data gathering around it. The release build runs the whole pipeline as jobs: on a dense random pattern, four worker threads deliver 1.96× the generations per second of one (measured on a phone).</p>
+        </div>
+        <div class="cs-code">
+          <p class="cs-code-file">BitmaskGenerationSolver.cs · Step()</p>
+          <pre tabindex="0" aria-label="Code excerpt from BitmaskGenerationSolver.cs, the Step method: building the candidate set and scheduling the Burst job chain"><code class="language-csharp">private void Step(bool allowBirth, List&lt;Vector3Int&gt; bornOut, List&lt;Vector3Int&gt; diedOut, bool emitCellDelta)
+{
+    // …
+    // Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
+    // change now (neighbourhood adjacency is symmetric), so candidates = N(_lastChanged).
+    // …
+    _candidates.Clear();
+    foreach (long key in _lastChanged)
+    {
+        int cx = ChunkX(key), cy = ChunkY(key);
+        for (int dx = -1; dx &lt;= 1; dx++)
+            for (int dy = -1; dy &lt;= 1; dy++)
+                _candidates.Add(ChunkKey(cx + dx, cy + dy));
+    }
+    // …
+    _candidateList.Clear();
+    foreach (long key in _candidates) _candidateList.Add(key);
+    int count = _candidateList.Count;
+
+    if (count &gt; 0)
+    {
+        // Batch size targets ~2 batches per worker rather than a fixed small constant: with
+        // …
+        int batchSize = System.Math.Max(1, count / (JobWorkerCount * 2));
+        JobHandle gatherHandle = new BitmaskKernel.GatherJob
+        { CandidateKeys = _candidateKeysBuffer, /* … */ }.Schedule(count, batchSize);
+        JobHandle kernelHandle = new BitmaskKernel.ComputeChunksJob
+        { AllNbr = _allNbrBuffer, /* … */ }.Schedule(count, batchSize, gatherHandle);
+        // …
+    }
+
+    (_lastChanged, _newChanged) = (_newChanged, _lastChanged);
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-2" aria-labelledby="sys-2-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">02</span>
+          <h2 id="sys-2-h" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys2.problem">The simulation must never stall rendering or touch input. At low speed, each generation also has to reach the main thread on its own, because it drives the birth/death animations and haptics. At high speed, that per-generation hand-off became the bottleneck, and a faster engine actually made the frame rate worse.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys2.how">Below the speed at which animations switch off anyway, each generation's changes (born and died cells) pass through a ring buffer, a fixed-size queue that reuses its slots, so the calculation thread can run ahead of the display. Above that speed there is nothing to animate, so the calculation thread copies whole changed chunks into the displayed state itself, and the main thread only renders.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API (a producer–consumer design with explicit lock discipline), and tracking down a counter-intuitive regression. Switching to whole-chunk copies took a 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro.</p>
+        </div>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag2-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 880 320" role="img" aria-label="Two lanes: calculation thread above, main thread below. Below the animation threshold, a Burst-jobs box feeds a delta ring buffer straddling both lanes, and the main thread replays one generation per frame with animations. Above the threshold, a separate Burst-jobs box feeds, still inside the calculation-thread lane, a box that copies whole changed chunks; that copy reaches a displayed cell set straddling both lanes, and the main thread only renders, independent of simulation speed.">
+              <defs>
+                <marker id="gol2-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+              <rect x="10" y="30" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
+              <rect x="10" y="185" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
+              <text x="24" y="48" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneCalc">CALCULATION THREAD</text>
+              <text x="24" y="203" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
+              <text x="190" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathA">BELOW ANIMATION THRESHOLD</text>
+              <text x="630" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathB">ABOVE THRESHOLD</text>
+
+              <rect x="20" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="80" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+
+              <rect x="190" y="100" width="220" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="300" y="140" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.ring">Delta ring buffer</text>
+              <text x="300" y="163" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
+
+              <rect x="190" y="208" width="220" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="300" y="236" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.replay">Replays one gen/frame</text>
+              <text x="300" y="258" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.withAnim">With animations</text>
+
+              <rect x="450" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="510" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+
+              <rect x="610" y="54" width="230" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="725" y="81" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.copies">Copies changed chunks</text>
+
+              <rect x="610" y="100" width="230" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="725" y="140" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.displayed">Displayed cell set</text>
+              <text x="725" y="163" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.shared">shared state</text>
+
+              <rect x="610" y="208" width="230" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="725" y="236" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.renders">Renders only</text>
+              <text x="725" y="258" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
+
+              <path d="M140,76 L188,147" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M300,195 L300,206" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M570,76 L608,76" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,98 L725,99" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,195 L725,206" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Two locks, always taken in one fixed order: lodLock (LOD density counters), then gridLock (board state). A fixed order rules out deadlock.</figcaption>
+        </figure>
+      </article>
+
+      <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">03</span>
+          <h2 id="sys-3-h" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys3.problem">Zoomed out, a pattern can put hundreds of thousands of cells on screen, and Unity's Tilemap pays a cost for every tile. Even finding which cells were visible used to mean scanning every live cell. The game slowed down as a pattern grew, including the parts that were off-screen.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys3.how">Live cells are stored in a chunked bitmask structure that answers "what's inside this camera rectangle" in time proportional to the visible area. Up close, the Tilemap receives only each generation's changes. Zoomed far out, it's replaced by one quad textured with cell density (one byte per texel) and drawn by a custom shader in a single draw call. The switch uses hysteresis, with separate thresholds for entering and leaving, so the view doesn't flicker between modes.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys3.what">Rendering optimisation in Unity (draw calls, the limits of a built-in component, level-of-detail switching) and choosing data structures by the queries they have to answer. In a benchmark outside Unity, the on-screen query stays at ~50 µs however many cells live off-screen. The old full scan had grown to 1,035 µs at 316k live cells.</p>
+        </div>
+
+        <!-- SLOT: system animation, portrait (phone gameplay). -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait">
+            <div class="cs-media-inner">
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="gol.sys3.shot">One continuous pinch-zoom from a handful of single cells out to a pattern of hundreds of thousands (~252k cells), FPS counter visible, showing the exact moment the Tilemap hands off to the single-quad density view with no stutter.</p>
+              <p class="cs-media-specs">9:16 · loop, 4–8s</p>
+            </div>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom from single cells out to a pattern of hundreds of thousands, with the FPS counter on: the tiles give way to the single-quad density view without a stutter.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="images/game-of-life/system-3-zoom.webp" alt="[the figcaption text]" loading="lazy">
+               — or: —
+               <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/system-3-poster.jpg">
+                 <source src="images/game-of-life/system-3-zoom.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/system-3-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
+      </article>
+
+      <article class="cs-system" id="sys-4" aria-labelledby="sys-4-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">04</span>
+          <h2 id="sys-4-h" data-i18n="gol.sys4.title">Engine code verified outside Unity</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys4.problem">A bug in a stateful, bit-level engine doesn't crash anything. It produces a plausible but wrong pattern, often many generations later, so watching the screen won't catch it.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys4.how">A .NET console harness compiles the same solver source files that ship to the store, with a small shim stubbing Unity's collections, Jobs and Burst. Every generation of every scenario (gliders crossing chunk edges and into negative coordinates, an empty board) is compared cell for cell with a naive reference. Each run also folds into a golden hash that a pure refactor must reproduce byte for byte. A headless Burst compile of all five jobs for ARM64 includes a negative control that must fail to compile, so a clean pass proves something.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, verified from the command line without opening the editor.</p>
+        </div>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag4-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 820 380" role="img" aria-label="The same solver source branches into two build targets: the Android store build, and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A separate, unconnected BurstProbe check compiles the same jobs for ARM64 with a negative control.">
+              <defs>
+                <marker id="gol4-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+              <rect x="30" y="130" width="210" height="90" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="135" y="168" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag4.source">Same solver source</text>
+              <text x="135" y="188" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskKernel.cs,</text>
+              <text x="135" y="202" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskGenerationSolver.cs</text>
+
+              <path d="M240,155 L336,72" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <path d="M240,195 L336,200" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+
+              <rect x="340" y="40" width="220" height="60" class="cs-i-box" aria-hidden="true" />
+              <text x="450" y="65" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.android">Android store build</text>
+              <text x="450" y="83" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.androidSub">the shipped game</text>
+
+              <rect x="340" y="170" width="220" height="60" class="cs-i-box" aria-hidden="true" />
+              <text x="450" y="195" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.harness">.NET test harness</text>
+              <text x="450" y="213" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.harnessSub">compiles the shipped solver</text>
+
+              <path d="M560,200 L586,203" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <rect x="590" y="150" width="210" height="110" class="cs-i-box" aria-hidden="true" />
+              <text x="695" y="180" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.naive">vs naive reference</text>
+              <text x="695" y="200" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.cellByCell">cell by cell</text>
+              <text x="695" y="228" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.hash">Golden hash</text>
+              <text x="695" y="248" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.hashSub">byte for byte</text>
+
+              <rect x="330" y="270" width="240" height="80" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
+              <text x="450" y="295" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.probe">BurstProbe: ARM64 compile</text>
+              <text x="450" y="313" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative"><tspan x="450" dy="0">Negative control —</tspan><tspan x="450" dy="15">separate, not from source</tspan></text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="gol-diag4-cap" data-i18n="gol.diag4.cap">Both branches compile the same files, so the tests are never a stale copy of the engine.</figcaption>
+        </figure>
+      </article>
+
+    </section>
+
+    <section class="cs-takeaway">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
+      <p data-i18n="gol.takeaway">Measure on the target device, not in the editor: in this project the editor pointed at the wrong bottleneck.</p>
+      <div class="cs-also">
+        <span class="cs-also-label" data-i18n="gol.also.label">Also in the codebase (not in the store build)</span>
+        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and tests against a brute-force reference, but it's switched off in the store build and planned for a future Pro version.</p>
+      </div>
+    </section>
+
+    <nav class="cs-next" aria-label="Next case study">
+      <a href="grave.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Grave →</strong></a>
+    </nav>
+  </main>
+
+  <footer class="cs-foot">
+    <p data-i18n="case.foot.gol">Solo project. The repository is private — the excerpts are above, and I'm happy to walk through the rest in an interview.</p>
+    <p class="cs-foot-links">
+      <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.linkedin">LinkedIn</a>
+    </p>
+  </footer>
+
   <script src="js/i18n.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs></script>
-  <script src="js/cellfield.js" defer></script>
-  <script src="js/gol-page.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/case-study.js" defer></script>
 </body>
 </html>
