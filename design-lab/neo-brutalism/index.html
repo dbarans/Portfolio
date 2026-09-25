@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="theme-color" content="#fff2d6" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-home nb">
+  <a class="skip-link" href="#main" data-i18n="index.skip">Skip to content</a>
+
+  <header class="nb-header">
+    <a href="index.html" class="nb-brand">
+      <span class="nb-brand-mark" aria-hidden="true">●</span>
+      <span class="nb-brand-text">Dominik&nbsp;Barański</span>
+    </a>
+    <nav class="nb-nav" aria-label="Main" data-i18n-attr="aria-label" data-i18n-attr-key="index.nav.aria">
+      <a href="#projects" class="nb-nav-link" data-i18n="index.nav.projects">Projects</a>
+      <a href="#contact" class="nb-nav-link" data-i18n="index.nav.contact">Contact</a>
+      <a href="https://github.com/dbarans" class="nb-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" class="nb-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+    </nav>
+    <button id="lang-toggle" type="button" class="nb-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="nb-hero" aria-labelledby="hero-heading">
+      <p class="nb-hero-kicker" aria-hidden="true">// PORTFOLIO — UNITY / C#</p>
+
+      <h1 id="hero-heading" class="nb-hero-title">
+        Dominik Barański<span class="nb-colon">:</span><br />
+        <span class="nb-role">Unity developer</span>
+      </h1>
+
+      <div class="nb-hero-grid">
+        <div class="nb-panel nb-panel--lead">
+          <p class="nb-hero-lead" data-i18n="index.hero.lead">I build game systems in Unity and C# with a focus on performance and testable code. My work ranges from a multithreaded simulation engine in an Android game with 15,000+ downloads on Google Play to enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project. As an intern at Rubens Games, I also built gameplay systems in a studio team, alongside the studio's artists. I'm looking for a junior/mid Unity developer role.</p>
+        </div>
+
+        <div class="nb-panel nb-panel--stack">
+          <p class="nb-panel-label" aria-hidden="true">STACK</p>
+          <p class="nb-hero-stack" data-i18n="index.hero.stack">Unity · C# · Burst / Job System · URP shaders · Android</p>
+          <a href="#projects" class="nb-cta">
+            <span data-i18n="index.hero.cta">View projects</span>
+            <span class="nb-cta-icon" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="nb-projects" aria-labelledby="projects-heading">
+      <div class="nb-projects-head">
+        <h2 id="projects-heading" class="nb-section-title" data-i18n="index.section.projects">Projects</h2>
+        <span class="nb-projects-count" aria-hidden="true">01—03</span>
+      </div>
+
+      <div class="nb-project-grid">
+
+        <article class="nb-card nb-card--yellow" aria-labelledby="proj-gol-h">
+          <span class="nb-card-tab" aria-hidden="true">01</span>
+          <div class="nb-card-media">
+            <img src="../../images/game-of-life/logo.png" alt="" loading="lazy" width="540" height="540" />
+          </div>
+          <p class="nb-card-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</p>
+          <h3 class="nb-card-title" id="proj-gol-h">Game of Life</h3>
+          <p class="nb-card-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
+          <a class="nb-card-link" href="../../game-of-life.html">
+            <span data-i18n="index.project.gol.cta">See how the engine works →</span>
+          </a>
+        </article>
+
+        <article class="nb-card nb-card--pink" aria-labelledby="proj-grave-h">
+          <span class="nb-card-tab" aria-hidden="true">02</span>
+          <div class="nb-card-media">
+            <img src="../../images/grave/hero.webp" alt="" loading="lazy" width="1440" height="1080" />
+          </div>
+          <p class="nb-card-meta" data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</p>
+          <h3 class="nb-card-title" id="proj-grave-h">Grave</h3>
+          <p class="nb-card-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
+          <a class="nb-card-link" href="../../grave.html">
+            <span data-i18n="index.project.grave.cta">See the systems →</span>
+          </a>
+        </article>
+
+        <article class="nb-card nb-card--cyan" aria-labelledby="proj-lp-h">
+          <span class="nb-card-tab" aria-hidden="true">03</span>
+          <div class="nb-card-media">
+            <img src="../../images/luggage-please/key-art.webp" alt="" loading="lazy" width="2388" height="1668" />
+          </div>
+          <p class="nb-card-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games</p>
+          <h3 class="nb-card-title" id="proj-lp-h">Luggage Please</h3>
+          <p class="nb-card-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
+          <a class="nb-card-link" href="../../luggage-please.html">
+            <span data-i18n="index.project.lp.cta">See how they work →</span>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" class="nb-contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="nb-section-title" data-i18n="index.section.contact">Contact</h2>
+      <p class="nb-contact-lead" data-i18n="index.contact.lead">Happy to walk through the code behind these projects in an interview.</p>
+
+      <ul class="nb-contact-list">
+        <li>
+          <a class="nb-contact-btn nb-contact-btn--pink" href="mailto:baranskidominik109@gmail.com">
+            <span class="nb-contact-icon" aria-hidden="true">✉</span>
+            <span class="nb-contact-text">
+              <span class="nb-contact-label" data-i18n="index.contact.email.label">Email:</span>
+              <span class="nb-contact-value">baranskidominik109@gmail.com</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="nb-contact-btn nb-contact-btn--yellow" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">
+            <span class="nb-contact-icon" aria-hidden="true">in</span>
+            <span class="nb-contact-text">
+              <span class="nb-contact-label" data-i18n="index.contact.linkedin.label">LinkedIn:</span>
+              <span class="nb-contact-value">linkedin.com/in/baranskidominik</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="nb-contact-btn nb-contact-btn--cyan" href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">
+            <span class="nb-contact-icon" aria-hidden="true">&lt;/&gt;</span>
+            <span class="nb-contact-text">
+              <span class="nb-contact-label" data-i18n="index.contact.github.label">GitHub:</span>
+              <span class="nb-contact-value">github.com/dbarans</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="nb-footer">
+    <p>© 2026 Dominik Barański</p>
+    <p class="nb-footer-tag" aria-hidden="true">MADE IN UNITY</p>
+  </footer>
+
+  <script src="../../js/i18n.js" defer></script>
+</body>
+</html>
