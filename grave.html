@@ -16,13 +16,17 @@
   <meta property="og:title" content="Grave — Case Study — Dominik Barański" />
   <meta property="og:description" content="Systems built for Grave, a 2D top-down survival horror made by a team of four in Unity 6: A* pathfinding, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator with 48 unit tests, and component-based enemy AI." data-i18n-attr="content" data-i18n-attr-key="case.meta.grave.description" />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave.html" />
-  <!-- SLOT: og:image — no Grave artwork exists yet; add one (1200×630 recommended) and switch
-       twitter:card to summary_large_image once it does. -->
+  <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/grave/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A dungeon room seen from above in Grave: pillars cut sharp shadows into the player&#39;s view cone, and an enemy stands at the edge of the light." data-i18n-attr="content" data-i18n-attr-key="grave.meta.ogImageAlt" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Grave — Case Study — Dominik Barański" />
   <meta name="twitter:description" content="Systems built for Grave, a 2D top-down survival horror made by a team of four in Unity 6: A* pathfinding, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator with 48 unit tests, and component-based enemy AI." data-i18n-attr="content" data-i18n-attr-key="case.meta.grave.description" />
+  <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/grave/og.jpg" />
+  <meta name="twitter:image:alt" content="A dungeon room seen from above in Grave: pillars cut sharp shadows into the player&#39;s view cone, and an enemy stands at the edge of the light." data-i18n-attr="content" data-i18n-attr-key="grave.meta.ogImageAlt" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -47,29 +51,11 @@
           <p class="cs-intro" data-i18n="grave.intro">Grave is a top-down 2D survival horror in which the player sees only what their line of sight and light sources reach. It was made by a team of four as an engineering thesis project. This case study covers systems I built for it: enemy pathfinding, the visibility system, procedural dungeon generation and enemy AI.</p>
         </div>
 
-        <!-- SLOT: hero animation, landscape. Alt/description EN: "A lit dungeon room seen from
-             above: pillars cut sharp shadows into the player's view cone, and everything
-             outside the light fades into darkness." Alt/description PL: "Oświetlone
-             pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia
-             gracza, a wszystko poza światłem ginie w ciemności." -->
         <figure class="cs-media">
-          <div class="cs-media-frame cs-media-frame--landscape">
-            <div class="cs-media-inner">
-              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
-              <p class="cs-media-desc" data-i18n="grave.hero.shot">Lit dungeon room, camera from above: pillars cut sharp-edged shadows into the player's view cone, everything outside the light stays completely dark.</p>
-              <p class="cs-media-specs">16:9 · loop, 3–5s</p>
-            </div>
+          <div class="cs-media-frame cs-media-frame--standard cs-media-frame--filled">
+            <img src="images/grave/hero.webp" width="1440" height="1080" loading="eager" alt="" />
           </div>
           <figcaption class="cs-media-caption" data-i18n="grave.hero.caption">A lit dungeon room seen from above: pillars cut sharp shadows into the player's view cone, and everything outside the light fades into darkness.</figcaption>
-          <!-- Later, replace the placeholder .cs-media-frame contents above with:
-               <img src="images/grave/hero.webp" alt="[the figcaption text]" loading="lazy">
-               — or: —
-               <video autoplay muted loop playsinline preload="metadata" poster="images/grave/hero-poster.jpg">
-                 <source src="images/grave/hero.webm" type="video/webm">
-               </video>
-               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/grave/hero-still.jpg">
-               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
         </figure>
       </div>
     </header>
@@ -233,25 +219,14 @@ return false;</code></pre>
           <figcaption class="cs-diagram-cap" id="grave-diag2-cap" data-i18n="grave.diag2.cap">Four stages of the mask pipeline, from casting rays to hiding whatever no light reaches.</figcaption>
         </figure>
 
-        <!-- SLOT: system animation, landscape (gameplay). -->
         <figure class="cs-media">
-          <div class="cs-media-frame cs-media-frame--landscape">
-            <div class="cs-media-inner">
-              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
-              <p class="cs-media-desc" data-i18n="grave.sys2.shot">Player crosses a dark room with pillars and a lamp: the view cone is blocked by the pillars, an enemy sprite fades out smoothly at the edge of the light, and two overlapping lights blend with no visible seam. Show the system itself, not a gameplay moment.</p>
-              <p class="cs-media-specs">16:9 · loop, 4–8s</p>
-            </div>
+          <div class="cs-media-frame cs-media-frame--standard cs-media-frame--filled">
+            <video autoplay muted loop playsinline preload="metadata" width="960" height="720" poster="images/grave/visibility-poster.webp" aria-hidden="true">
+              <source src="images/grave/visibility.webm" type="video/webm" />
+              <source src="images/grave/visibility.mp4" type="video/mp4" />
+            </video>
           </div>
-          <figcaption class="cs-media-caption" data-i18n="grave.sys2.caption">The player crosses a dark room with pillars and a lamp: pillars cut into the view cone, an enemy fades out at the edge of the light, and two overlapping lights blend without a seam.</figcaption>
-          <!-- Later, replace the placeholder .cs-media-frame contents above with:
-               <img src="images/grave/system-2-visibility.webp" alt="[the figcaption text]" loading="lazy">
-               — or: —
-               <video autoplay muted loop playsinline preload="metadata" poster="images/grave/system-2-poster.jpg">
-                 <source src="images/grave/system-2-visibility.webm" type="video/webm">
-               </video>
-               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/grave/system-2-still.jpg">
-               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+          <figcaption class="cs-media-caption" data-i18n="grave.sys2.caption">The player turns in a room with pillars: each pillar cuts a sharp shadow into the view cone, and the enemy is visible only while it stands inside the light.</figcaption>
         </figure>
       </article>
 

@@ -210,8 +210,8 @@
         'Systemy, które zbudowałem do gry 2D z widokiem z góry w Unity 6: pathfinding, widoczność, proceduralne lochy i AI przeciwników.',
       'grave.intro':
         'Grave to survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, co obejmuje jego pole widzenia i co oświetlają źródła światła. Powstał w 4-osobowym zespole jako projekt inżynierski. Opisuję tu zbudowane przeze mnie systemy: pathfinding przeciwników, system widoczności, proceduralne generowanie lochów i AI przeciwników.',
-      'grave.hero.shot':
-        'Oświetlone pomieszczenie lochu, kamera z góry: filary rzucają ostro zarysowane cienie w stożku widzenia gracza, wszystko poza światłem pozostaje całkowicie ciemne.',
+      'grave.meta.ogImageAlt':
+        'Pomieszczenie lochu w Grave widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a na granicy światła stoi przeciwnik.',
       'grave.hero.caption':
         'Oświetlone pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a wszystko poza światłem ginie w ciemności.',
 
@@ -269,10 +269,8 @@
         'Stożek widzenia gracza i każda lampa korzystają z jednego wspólnego buildera meshy. Tam, gdzie sąsiednie promienie trafiają w różne powierzchnie, wyszukiwanie binarne między nimi znajduje dokładną krawędź, więc kontury pozostają ostre bez dokładania promieni. Blending typu max sprawia, że nakładające się światła dają jaśniejszą z dwóch wartości, zamiast się sumować. Maska trzyma poziom światła w kanale alfa, a jego kolor w RGB, więc jedna tekstura jednocześnie przyciemnia i barwi scenę, a shadery sprite’ów ukrywają wszystko, do czego nie dociera żadne światło.',
       'grave.sys2.what':
         'Pracę z renderowaniem w Unity poza gotowymi komponentami: dodatkowa kamera, warstwy renderowania, RenderTexture, tryby blendingu i własne shadery URP, a także wymianę architektury, gdy poprzednia wyczerpała swoje możliwości. Do tego profilowanie. Stożek rzucał kiedyś pełne koło promieni w pełnej gęstości tylko po to, żeby narysować mały krąg widzenia wokół gracza. Rzadsze próbkowanie tego kręgu, razem z innymi poprawkami z tej samej serii, w tym ponownym użyciem buforów A* między wyszukiwaniami, skróciło klatkę z ~30 ms do ~12 ms (pomiar w edytorze).',
-      'grave.sys2.shot':
-        'Gracz przechodzi przez ciemne pomieszczenie z filarami i lampą: stożek widzenia jest zasłaniany przez filary, sprite przeciwnika płynnie znika na granicy światła, a dwa nakładające się światła łączą się bez widocznego szwu. Pokazać sam system, nie fragment rozgrywki.',
       'grave.sys2.caption':
-        'Gracz przechodzi przez ciemne pomieszczenie z filarami i lampą: filary przesłaniają stożek widzenia, przeciwnik płynnie znika na granicy światła, a dwa nakładające się światła łączą się bez szwu.',
+        'Gracz obraca się w pomieszczeniu z filarami: każdy filar wycina ostry cień w stożku widzenia, a przeciwnik jest widoczny tylko wtedy, gdy stoi w świetle.',
       'grave.diag2.b1a': 'Wachlarz promieni',
       'grave.diag2.b1b': 'Szukanie krawędzi → mesh',
       'grave.diag2.b2a': 'Kamera maski → RenderTexture',

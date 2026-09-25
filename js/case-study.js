@@ -32,9 +32,8 @@
     window.addEventListener('resize', syncScrollers);
   }
 
-  // --- Media slots are placeholders today, but once a real <video autoplay> lands inside a
-  // .cs-media-frame, prefers-reduced-motion must stop it from playing (an animated WebP/GIF
-  // can't be paused this way — see the HTML comment by each slot). No-op until then.
+  // --- A looping <video autoplay> inside a .cs-media-frame must not play under
+  // prefers-reduced-motion (an animated WebP/GIF can't be paused this way, hence video).
   function respectReducedMotion() {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce) return;

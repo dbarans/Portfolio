@@ -22,7 +22,7 @@ Meta: one text for `description`, `og:description` and `twitter:description`: �
 
 Grave is a top-down 2D survival horror in which the player sees only what their line of sight and light sources reach. It was made by a team of four as an engineering thesis project. This case study covers systems I built for it: enemy pathfinding, the visibility system, procedural dungeon generation and enemy AI.
 
-Materiał: zdjęcie hero (jeszcze nie istnieje, zrobi je właściciel): oświetlone pomieszczenie lochu, w którym filary przesłaniają stożek widzenia gracza; mają być widoczne ostre cienie za filarami i ciemność poza zasięgiem światła. Alt EN: „A lit dungeon room seen from above: pillars cut sharp shadows into the player's view cone, and everything outside the light fades into darkness.” Alt PL: „Oświetlone pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a wszystko poza światłem ginie w ciemności.”
+Materiał: zdjęcie hero: `images/grave/hero.webp` (1440×1080, 4:3), kadr z tego samego nagrania co system 2: filary rzucają ostre cienie w stożku widzenia, przeciwnik stoi na granicy światła. og:image: `images/grave/og.jpg` (1200×630, kadr z tego samego ujęcia).
 
 **Key numbers**
 
@@ -75,9 +75,9 @@ Materiał: fragment kodu: `AStarPathfinder.FindPath(...)`, linie ~94–196 wg in
 
 Materiał: diagram, pipeline od lewej do prawej, 4 kroki (etykieta główna + dopisek, EN / PL). (1) [Ray fan per light / Wachlarz promieni] + [Edge search → mesh / Szukanie krawędzi → mesh], pod spodem `OcclusionMeshBuilder` (jeden dla gracza i lamp). (2) [Mask camera → RenderTexture / Kamera maski → RenderTexture] + [BlendOp Max: brighter wins / BlendOp Max: jaśniejsze wygrywa], pod spodem warstwa `VisionMask`. (3) [Global `_VisionMask` texture / Globalna tekstura `_VisionMask`]. (4) [Darkness overlay + sprite shaders / Nakładka ciemności + shadery sprite'ów], pod spodem `DarknessOverlay`, `SpriteFovMasked`. Proza nie powtarza tych kroków, tylko wyjaśnia, po co są.
 
-Materiał: nagranie z gry: gracz idzie ciemnym pomieszczeniem z filarami i lampą. Ma być widać stożek widzenia zasłaniany przez przeszkody, sprite'y przeciwników płynnie znikające na granicy światła i dwa nakładające się światła bez widocznego szwu. Pokazywać sam system, nie warianty rozgrywki. Podpis poniżej opisuje dokładnie te trzy rzeczy; jeśli któraś nie trafi do nagrania, podpis trzeba poprawić.
+Materiał: nagranie z gry od właściciela (7,5 s, 4:3), zapętlone, bez dźwięku: `images/grave/visibility.webm` + `visibility.mp4`, poster `visibility-poster.webp`. Gracz obraca się w pomieszczeniu z filarami, stożek widzenia jest ucinany przez filary, przeciwnik pojawia się tylko w świetle. Lampy i łączenia dwóch świateł nie ma w nagraniu, więc podpis ich nie wspomina.
 
-Caption: The player crosses a dark room with pillars and a lamp: pillars cut into the view cone, an enemy fades out at the edge of the light, and two overlapping lights blend without a seam.
+Caption: The player turns in a room with pillars: each pillar cuts a sharp shadow into the view cone, and the enemy is visible only while it stands inside the light.
 
 #### 3. Procedural dungeon generator: seeded, validated, tested
 
@@ -123,7 +123,7 @@ Meta: jeden tekst dla `description`, `og:description` i `twitter:description`: �
 
 Grave to survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, co obejmuje jego pole widzenia i co oświetlają źródła światła. Powstał w 4-osobowym zespole jako projekt inżynierski. Opisuję tu zbudowane przeze mnie systemy: pathfinding przeciwników, system widoczności, proceduralne generowanie lochów i AI przeciwników.
 
-Materiał: zdjęcie hero (jeszcze nie istnieje, zrobi je właściciel): oświetlone pomieszczenie lochu, w którym filary przesłaniają stożek widzenia gracza; mają być widoczne ostre cienie za filarami i ciemność poza zasięgiem światła. Alt EN: „A lit dungeon room seen from above: pillars cut sharp shadows into the player's view cone, and everything outside the light fades into darkness.” Alt PL: „Oświetlone pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a wszystko poza światłem ginie w ciemności.”
+Materiał: zdjęcie hero: `images/grave/hero.webp` (1440×1080, 4:3), kadr z tego samego nagrania co system 2: filary rzucają ostre cienie w stożku widzenia, przeciwnik stoi na granicy światła. og:image: `images/grave/og.jpg` (1200×630, kadr z tego samego ujęcia).
 
 **Najważniejsze liczby**
 
@@ -176,9 +176,9 @@ Materiał: fragment kodu: `AStarPathfinder.FindPath(...)`, linie ~94–196 wg in
 
 Materiał: diagram, pipeline od lewej do prawej, 4 kroki (etykieta główna + dopisek, EN / PL). (1) [Ray fan per light / Wachlarz promieni] + [Edge search → mesh / Szukanie krawędzi → mesh], pod spodem `OcclusionMeshBuilder` (jeden dla gracza i lamp). (2) [Mask camera → RenderTexture / Kamera maski → RenderTexture] + [BlendOp Max: brighter wins / BlendOp Max: jaśniejsze wygrywa], pod spodem warstwa `VisionMask`. (3) [Global `_VisionMask` texture / Globalna tekstura `_VisionMask`]. (4) [Darkness overlay + sprite shaders / Nakładka ciemności + shadery sprite'ów], pod spodem `DarknessOverlay`, `SpriteFovMasked`. Proza nie powtarza tych kroków, tylko wyjaśnia, po co są.
 
-Materiał: nagranie z gry: gracz idzie ciemnym pomieszczeniem z filarami i lampą. Ma być widać stożek widzenia zasłaniany przez przeszkody, sprite'y przeciwników płynnie znikające na granicy światła i dwa nakładające się światła bez widocznego szwu. Pokazywać sam system, nie warianty rozgrywki. Podpis poniżej opisuje dokładnie te trzy rzeczy; jeśli któraś nie trafi do nagrania, podpis trzeba poprawić.
+Materiał: nagranie z gry od właściciela (7,5 s, 4:3), zapętlone, bez dźwięku: `images/grave/visibility.webm` + `visibility.mp4`, poster `visibility-poster.webp`. Gracz obraca się w pomieszczeniu z filarami, stożek widzenia jest ucinany przez filary, przeciwnik pojawia się tylko w świetle. Lampy i łączenia dwóch świateł nie ma w nagraniu, więc podpis ich nie wspomina.
 
-Podpis: Gracz przechodzi przez ciemne pomieszczenie z filarami i lampą: filary przesłaniają stożek widzenia, przeciwnik płynnie znika na granicy światła, a dwa nakładające się światła łączą się bez szwu.
+Podpis: Gracz obraca się w pomieszczeniu z filarami: każdy filar wycina ostry cień w stożku widzenia, a przeciwnik jest widoczny tylko wtedy, gdy stoi w świetle.
 
 #### 3. Generator lochów: z seeda, walidowany, przetestowany
 

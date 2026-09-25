@@ -491,6 +491,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 
 /* ---------- Media slots: visible, marked placeholders for the owner's looping animations ---------- */
 .cs-media { margin: 0; }
+.cs-system > * + .cs-media { margin-top: 32px; }
 .cs-hero .cs-media { margin: 4px 0 0; }
 .cs-media-frame {
   position: relative;
@@ -504,6 +505,9 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   overflow: hidden;
 }
 .cs-media-frame--landscape { aspect-ratio: 16 / 9; }
+.cs-media-frame--standard { aspect-ratio: 4 / 3; }
+/* Real footage: no placeholder padding or dashed border. */
+.cs-media-frame--filled { padding: 0; border: 1px solid var(--cs-line, var(--cs-muted)); background: #000; }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
 /* Ready for the real thing: an <img> or <video> dropped inside fills the same frame. */
 .cs-media-frame img,
