@@ -420,15 +420,9 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   color: var(--cs-muted);
 }
 
-/* ---------- A video (click-to-load facade) beside its screenshot ---------- */
-.cs-media-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 20px;
-  margin: 18px 0 0;
-}
-.cs-media-row > figure { margin: 0; flex: 1 1 280px; min-width: 0; }
+/* ---------- A video (click-to-load facade): the button's own background is the YouTube
+   screenshot, so nothing loads from YouTube (and no cookie is set) until it's pressed. The
+   visible label doubles as the button's accessible name — no separate aria-label needed. */
 .cs-video {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -446,13 +440,28 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   align-items: center;
   justify-content: center;
   gap: 14px;
-  background: var(--cs-bg-2);
+  background-color: var(--cs-bg-2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 0;
   padding: 16px;
   cursor: pointer;
   color: var(--cs-text);
 }
+/* A dark scrim over the poster photo, so the icon and label stay legible regardless of what's
+   in the screenshot. Clipped by .cs-video's overflow, so the focus ring below is pulled inward
+   instead of outward (the same trick as the code blocks further down this file). */
+.cs-video-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 6, 7, 0.12) 0%, rgba(6, 6, 7, 0.82) 100%);
+}
+.cs-video-btn:focus-visible { outline-offset: -3px; }
 .cs-video-icon {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -462,11 +471,14 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   border: 2px solid var(--cs-accent);
   color: var(--cs-accent);
   font-size: 20px;
+  background: rgba(11, 12, 14, 0.55);
   transition: background-color 0.15s, color 0.15s;
 }
 .cs-video-btn:hover .cs-video-icon,
 .cs-video-btn:focus-visible .cs-video-icon { background: var(--cs-accent); color: var(--cs-bg); }
 .cs-video-btn-label {
+  position: relative;
+  z-index: 1;
   max-width: 22em;
   font-size: 0.86rem;
   font-weight: 700;
@@ -476,19 +488,6 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-video-alt { margin: 8px 0 0; font-family: var(--cs-mono); font-size: 11px; }
 .cs-video-alt a { color: var(--cs-text) !important; border-bottom: 1px solid var(--cs-accent); text-decoration: none; }
 .cs-video-alt a:hover { color: var(--cs-accent) !important; }
-.cs-shot {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--cs-line-2);
-}
-.cs-media-row figcaption {
-  margin: 8px 0 0;
-  font-family: var(--cs-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.4px;
-  color: var(--cs-muted);
-}
 
 /* ---------- Media slots: visible, marked placeholders for the owner's looping animations ---------- */
 .cs-media { margin: 0; }

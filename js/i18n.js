@@ -19,7 +19,7 @@
 
       // ---------- index.html: hero ----------
       'index.hero.lead':
-        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Szukam pracy jako junior/mid Unity developer.',
+        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z jego grafikami. Szukam pracy jako junior/mid Unity developer.',
       'index.hero.stack': 'Unity · C# · Burst / Job System · shadery URP · Android',
       'index.hero.cta': 'Zobacz projekty',
 
@@ -33,6 +33,10 @@
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
       'index.project.grave.cta': 'Zobacz systemy →',
+      'index.project.lp.meta': 'PC · Unity 2022.3 · URP · zespół studia · staż w Rubens Games',
+      'index.project.lp.body':
+        'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko wtedy, gdy walizka jest otwarta, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
+      'index.project.lp.cta': 'Zobacz, jak działają →',
 
       // ---------- index.html: contact ----------
       'index.section.contact': 'Kontakt',
@@ -59,15 +63,21 @@
       'case.foot.repo': 'Repozytorium ↗',
       'case.kicker.gol': 'Solo · Unity 2022.3 · opublikowana w Google Play',
       'case.kicker.grave': 'Zespół 4 osób · praca inżynierska, 2026',
+      'case.kicker.lp': 'PC · Unity 2022.3 · zespół studia · staż w Rubens Games',
       'case.foot.gol':
         'Projekt solo. Repozytorium jest prywatne — fragmenty kodu są powyżej, a resztę chętnie pokażę na rozmowie.',
       'case.foot.grave': 'Projekt zespołowy (4 osoby). Pokazuję tylko systemy, które zbudowałem sam.',
+      'case.foot.lp':
+        'Projekt studyjny, niepubliczny. Pokazuję go za zgodą Rubens Games — resztę chętnie omówię na rozmowie.',
       'case.meta.gol.title': 'Game of Life — studium przypadku — Dominik Barański',
       'case.meta.gol.description':
         'Symulator gry w życie na Androida zbudowany tak, by radzić sobie z wzorcami liczącymi setki tysięcy żywych komórek: bitowo-równoległy silnik na Burst/Job System, zweryfikowany poza Unity. 15 000+ pobrań w Google Play.',
       'case.meta.grave.title': 'Grave — studium przypadku — Dominik Barański',
       'case.meta.grave.description':
         'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry zrobionego w 4-osobowym zespole w Unity 6: pathfinding A*, maska światła renderowana przez drugą kamerę, generator lochów z 48 testami jednostkowymi i AI przeciwników z komponentów.',
+      'case.meta.lp.title': 'Luggage Please — studium przypadku — Dominik Barański',
+      'case.meta.lp.description':
+        'Systemy zbudowane podczas stażu w Rubens Games: fizyka walizki i przedmiotów, skaner rentgenowski złożony z warstw i renderer features URP oraz kontekstowe koło interakcji.',
 
       // ---------- game-of-life.html: intro ----------
       'gol.tagline':
@@ -307,6 +317,92 @@
       // ---------- grave.html: takeaway ----------
       'grave.takeaway':
         'Łączy je jedna zasada: luźne powiązanie przez dane. Generator nic nie wie o pathfindingu, widoczności ani AI. Tworzy układ, z którego powstają collidery czytane zarówno przez siatkę A*, jak i przez promienie światła, oraz listę przewężeń i wnęk w korytarzach, z której korzysta rozmieszczanie przeciwników: zasadzki trafiają do wnęk, a strażnicy stają obok przewężenia, nigdy na nim. AI z kolei sięga do pathfindingu wyłącznie przez wąskie interfejsy, więc systemy współpracują, nie zależąc nawzajem od swojego kodu.',
+
+      // ---------- luggage-please.html: intro ----------
+      'lp.tagline':
+        'Systemy, które zbudowałem na stażu w Rubens Games: fizyka walizki, skaner rentgenowski złożony z renderer features URP i kontekstowe koło interakcji.',
+      'lp.intro':
+        'Luggage Please to gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Grafikę przygotowali artyści studia. Opisuję tu trzy systemy, które zbudowałem w czasie stażu: fizykę walizki i przedmiotów, skaner rentgenowski rozróżniający materiały i kontekstowe koło interakcji do rozmów z pasażerami.',
+      'lp.hero.alt':
+        'Grafika tytułowa Luggage Please: rysunkowa otwarta walizka z ubraniami i gumową kaczką, a wokół niej pistolet, nóż, złota rybka i otwarta książka; pod spodem tytuł gry.',
+      'lp.hero.credit': 'Grafika: Rubens Games.',
+
+      // ---------- luggage-please.html: at a glance ----------
+      'lp.glance.team.t': 'Zespół',
+      'lp.glance.team.d': 'zespół studia Rubens Games (staż); grafika od artystów studia',
+      'lp.glance.covered.t': 'Opisuję tu',
+      'lp.glance.covered.d':
+        'trzy zbudowane przeze mnie systemy: fizykę walizki i przedmiotów, skaner rentgenowski, kontekstowe koło interakcji',
+      'lp.glance.engine.t': 'Silnik',
+      'lp.glance.platform.t': 'Platforma',
+      'lp.glance.status.d': 'projekt ze stażu, niewydany',
+      'lp.glance.tech.t': 'Kluczowe technologie (w tych systemach)',
+      'lp.glance.tech.d':
+        'C#, fizyka Rigidbody, zapytania fizyczne (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), culling mask, RenderTexture, uGUI, TextMeshPro',
+      'lp.glance.code.t': 'Kod',
+      'lp.glance.code.d':
+        'projekt studia, niepubliczny; fragmenty kodu na tej stronie pokazuję za zgodą Rubens Games',
+
+      // ---------- luggage-please.html: systems on this page ----------
+      'lp.toc1.skills': 'Siły Rigidbody · zapytania fizyczne · przełączanie w tryb kinematyczny',
+      'lp.toc2.skills': 'URP RenderObjects · culling mask · RenderTexture',
+      'lp.toc3.skills': 'uGUI · UI oddzielone od logiki gry · korutyny',
+
+      // ---------- luggage-please.html: system 1 ----------
+      'lp.sys1.title': 'Fizyka przedmiotów działająca tylko w otwartej walizce',
+      'lp.sys1.problem':
+        'Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.',
+      'lp.sys1.how':
+        'Fizyka przedmiotów działa tylko wtedy, gdy walizka jest otwarta do kontroli. Po zamknięciu wieka sprawdzenie granic walizki (OverlapBox) ustala, co znalazło się w środku. Te przedmioty stają się dziećmi walizki i przechodzą w tryb kinematyczny, czyli poruszają się tylko razem z rodzicem, a ich collidery się wyłączają. Zamknięta walizka porusza się więc jak jedno ciało, bez fizyki poszczególnych przedmiotów, a to, co zostało na zewnątrz, zostaje na miejscu. Przy otwartej walizce chwycony przedmiot jest przyciągany do kursora siłami, a nie teleportowany, więc nadal odpycha inne przedmioty. Prawy przycisk myszy przełącza na obracanie, a jeden klawisz przywraca pierwotną orientację przedmiotu. Przytrzymanie klawisza podczas przeciągania pokazuje, gdzie przedmiot wyląduje: półprzezroczystą kopię bez kolizji, na osobnej warstwie. Rysuje ją renderer feature URP typu RenderObjects, czyli ta sama technika, na której opiera się skaner z systemu 2. Krokowy BoxCast, czyli rzut prostopadłościanu uwzględniający rozmiar przedmiotu, opuszcza kopię na pierwszą powierzchnię pod spodem. Podczas zamykania wieka co klatkę działa OverlapBox wokół niego, a każdy przedmiot na jego drodze sprawia, że wieko otwiera się z powrotem.',
+      'lp.sys1.what':
+        'Projektowanie interakcji fizycznych wokół tego, kiedy symulacja jest naprawdę potrzebna: przedmioty są symulowane tylko wtedy, gdy gracz może ich dotknąć, a stan zmieniają w dwóch wyraźnych momentach, przy otwarciu i zamknięciu wieka. Do tego zapytania fizyczne użyte jako logika gry. Wieko jest animowane obrotem, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, co klatkę samo sprawdza, czy coś stoi mu na drodze.',
+      'lp.sys1.caption':
+        'Otwarta walizka: dopóki wieko jest podniesione, każdy przedmiot w środku jest osobnym obiektem fizycznym, który można chwycić, obrócić i spakować z powrotem.',
+
+      // ---------- luggage-please.html: system 2 ----------
+      'lp.sys2.title': 'Skaner rentgenowski zbudowany z warstw i renderer features URP',
+      'lp.sys2.problem':
+        'Skaner pokazuje na żywo prześwietlony obraz walizki przejeżdżającej przez maszynę. Przedmioty mają kolory według kategorii materiału (metal, organiczne, inne), żeby gracz mógł wypatrzyć podejrzaną zawartość. Modele przedmiotów przygotowali artyści studia, a część z nich łączy kilka materiałów, więc kolorowanie nie może opierać się na kodzie pisanym osobno dla każdego przedmiotu.',
+      'lp.sys2.how':
+        'Podział na kolory to konfiguracja, a nie kod C#. Każda część modelu przedmiotu leży na jednej z czterech warstw rentgena: inne, metal, organiczne i skorupa walizki. Ortograficzna kamera skanera widzi tylko te warstwy i renderuje do RenderTexture, wyświetlanej na modelu ekranu konsoli. Cztery renderer features typu RenderObjects, po jednym na warstwę, rysują te obiekty z materiałem nadpisującym. Renderer features to dodatkowe przebiegi renderowania ustawiane w assecie renderera URP. Materiał nadpisujący to jeden shader fresnela w innym kolorze dla każdej kategorii. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury. Krótki skrypt przesuwa kamerę skanera razem z walizką, gdy taśma przewozi ją przez maszynę.',
+      'lp.sys2.what':
+        'Użycie gotowych elementów URP zamiast pisania kodu renderowania: warstwy, culling mask, renderer features RenderObjects z materiałami nadpisującymi i RenderTexture na ekranie w świecie gry. Rozwiązanie skaluje się też z zawartością. Skaner obsługuje 27 prefabów przedmiotów, a rekwizyt z kilku materiałów, np. dron, ma kilka kolorów, bo każda jego część leży na własnej warstwie. Dodanie przedmiotu nie wymaga kodu, tylko właściwych warstw w jego prefabie.',
+      'lp.sys2.caption':
+        'Ekran konsoli skanera: przedmioty organiczne, np. owoce, świecą na żółto, metalowe na pomarańczowo, a cała reszta, łącznie ze skorupą walizki, na turkusowo.',
+      'lp.diag2.b1a': 'Części modeli przedmiotów',
+      'lp.diag2.b1b': '4 warstwy: inne · metal · organiczne · skorupa walizki',
+      'lp.diag2.b2a': 'Kamera skanera (ortograficzna)',
+      'lp.diag2.b2b': 'Culling mask: tylko warstwy rentgena',
+      'lp.diag2.b2c': '→ Podąża za walizką',
+      'lp.diag2.b3b': 'Materiał nadpisujący na warstwę',
+      'lp.diag2.b3c': 'Jeden shader fresnela, 4 kolory',
+      'lp.diag2.b5a': 'Materiał ekranu konsoli',
+      'lp.diag2.cap':
+        'Pięć etapów od warstw przedmiotu do ekranu skanera; każdy z nich to konfiguracja, a nie kod pisany dla pojedynczego przedmiotu.',
+
+      // ---------- luggage-please.html: system 3 ----------
+      'lp.sys3.title': 'Koło interakcji, którego opcje zależą od stanowiska pasażera',
+      'lp.sys3.problem':
+        'Pasażer potrzebuje innych akcji zależnie od tego, na jakim etapie odprawy się znajduje: to, co ma sens w kolejce, jest nie na miejscu przy bramce z wykrywaczem metalu. Wybór ma być szybki i nie może wyrywać gracza z widoku gry do pełnoekranowego menu.',
+      'lp.sys3.how':
+        'Kod interakcji z NPC buduje listę identyfikatorów opcji na podstawie stanu pasażera. Każde stanowisko (kolejka, nadanie bagażu, bramka z wykrywaczem metalu, ważenie) ma własny zestaw, a opcja nadbagażu dochodzi tylko wtedy, gdy na wadze leży bagaż właśnie tego pasażera. Koło jest zbudowane w czystym uGUI. Pokazuje tylko gotowe segmenty o identyfikatorach z listy i rozkłada je równo na okręgu za pomocą trygonometrii, bez względu na ich liczbę. Po najechaniu kursorem na opcję jej nazwa pojawia się w środku. Wywołująca korutyna czeka, aż gracz wybierze opcję albo zamknie koło, i wtedy uruchamia odpowiednią akcję.',
+      'lp.sys3.what':
+        'Komponent UI oddzielony od logiki gry. Koło dostaje listę identyfikatorów, rozmieszcza tyle segmentów, ile otrzyma, i zwraca wybór, a wszystkie reguły lotniska zostają w kodzie NPC. Koło samo zarządza też trybem sterowania w OnEnable/OnDisable: otwarcie zamraża rozglądanie się i ruch oraz odblokowuje kursor, a zamknięcie przywraca jedno i drugie, więc żaden wywołujący nie musi o tym pamiętać.',
+      'lp.sys3.caption':
+        'Trzy opcje, więc każda zajmuje jedną trzecią okręgu; po najechaniu kursorem na opcję jej nazwa pojawia się w środku.',
+
+      // ---------- luggage-please.html: video facades ----------
+      'lp.video1.title': 'Fizyka walizki — Luggage Please',
+      'lp.video1.label': 'Odtwórz wideo: fizyka walizki',
+      'lp.video2.title': 'Skaner rentgenowski — Luggage Please',
+      'lp.video2.label': 'Odtwórz wideo: skaner rentgenowski',
+      'lp.video3.title': 'Koło interakcji — Luggage Please',
+      'lp.video3.label': 'Odtwórz wideo: koło interakcji',
+      'lp.watchYoutube': 'Obejrzyj na YouTube ↗',
+
+      // ---------- luggage-please.html: takeaway ----------
+      'lp.takeaway':
+        'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób. Skaner i podgląd lądowania składają się z warstw i renderer features URP, a nie z kodu renderowania, więc nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy. Koło dostaje od wywołującego listę identyfikatorów opcji i nie musi wiedzieć, skąd się wzięły. Warstwy sięgają nawet fizyki: sprawdzanie, czy coś blokuje wieko, używa warstw przedmiotów z rentgena jako maski, więc jeden układ warstw obsługuje i renderowanie, i fizykę.',
     },
   };
 
