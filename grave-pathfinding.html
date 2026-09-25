@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A* pathfinding — Grave — Dominik Barański</title>
+  <meta name="description" content="A custom A* for Grave (Unity 6, C#) on an 8-directional grid built from scene physics: version stamping, O(1) rejection of unreachable targets and a 4,000-node budget." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave-pathfinding.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="A* pathfinding — Grave" />
+  <meta property="og:description" content="A custom A* for Grave (Unity 6, C#) on an 8-directional grid built from scene physics: version stamping, O(1) rejection of unreachable targets and a 4,000-node budget." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave-pathfinding.html" />
+  <meta name="twitter:card" content="summary" />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/grave.css" />
+</head>
+<body class="page-grave">
+  <a class="gr-skip" href="#main" data-i18n="grave.skipMain">Skip to content</a>
+  <header class="gr-top">
+    <a class="gr-back" href="grave.html">← Grave</a>
+    <nav class="gr-sysnav" aria-label="Systems" data-i18n-attr="aria-label" data-i18n-attr-key="grave.sysnav">
+      <a href="grave-vision.html"><span>01</span><span data-i18n="grave.c1.title">Vision cone</span></a>
+      <a href="grave-dungeon.html"><span>02</span><span data-i18n="grave.nav.dungeon">Dungeons</span></a>
+      <a href="grave-pathfinding.html" aria-current="page"><span>03</span><span>A*</span></a>
+    </nav>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
+  </header>
+
+  <main class="gr-page" id="main">
+    <header class="gr-head">
+      <p class="gr-kicker" data-i18n="grave.p.kicker">Grave · System 03 of 03</p>
+      <h1 data-i18n="grave.c3.title">A* pathfinding</h1>
+      <p class="gr-lead" data-i18n="grave.p.lead">A custom A* on an 8-directional grid built from scene physics: a search costs what it visits, not the size of the map.</p>
+    </header>
+
+    <figure class="gr-figure">
+      <div class="gr-media" data-sketch="astar" data-video="">
+        <canvas role="img" aria-label="Sketch: a monster cut off by barrels is rejected at once; when the barrels break, the grid refreshes and the monster chases the player around a pillar along a re-planned A* route." data-i18n-attr="aria-label" data-i18n-attr-key="grave.p.canvas"></canvas>
+        <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
+        <span class="gr-hud" aria-hidden="true"></span>
+      </div>
+      <figcaption>
+        <span class="gr-sketch-only" data-i18n="grave.p.cap">Barrels block the gap, then break.</span>
+        <ul class="gr-legend gr-sketch-only">
+          <li><i style="background:#ffb85c"></i><span data-i18n="grave.p.lg.route">route</span></li>
+          <li><i style="background:#2a2c33;outline:1px solid #44464d"></i><span data-i18n="grave.p.lg.visited">visited cells</span></li>
+          <li><i style="background:#8a5f33"></i><span data-i18n="grave.p.lg.barrel">barrels</span></li>
+        </ul>
+      </figcaption>
+    </figure>
+
+    <section class="gr-block" aria-labelledby="p-problem">
+      <h2 id="p-problem" data-i18n="grave.d.problem">Problem</h2>
+      <p class="gr-problem" data-i18n="grave.p.problem">Enemies re-plan several times a second on a 200×200 map full of obstacles. A naive A* allocates and clears map-sized arrays on every search, and an unreachable target means searching the whole map — every frame.</p>
+    </section>
+
+    <section class="gr-block" aria-labelledby="p-how">
+      <h2 id="p-how" data-i18n="grave.d.how">How it works</h2>
+      <ol class="gr-steps">
+        <li><b data-i18n="grave.p.s1.t">A grid from physics</b><span data-i18n="grave.p.s1.d"><code>Physics2D.OverlapCircle</code> in every cell with a 1-element buffer — no allocations in the loop — into a flat <code>bool[]</code>.</span></li>
+        <li><b data-i18n="grave.p.s2.t">The core</b><span data-i18n="grave.p.s2.d">8 directions, octile heuristic × 1.001 against equal-cost plateaus, no corner cutting, a custom binary heap with lazy deletion.</span></li>
+        <li><b data-i18n="grave.p.s3.t">Version stamping</b><span data-i18n="grave.p.s3.d">Nothing is cleared per search: each cell remembers the last search that touched it, so cost follows visited cells.</span></li>
+        <li><b data-i18n="grave.p.s4.t">Safeguards</b><span data-i18n="grave.p.s4.d">Region ids reject unreachable targets in O(1); past a 4,000-node budget the agent walks toward the closest point found.</span></li>
+      </ol>
+    </section>
+
+    <section class="gr-block" aria-labelledby="p-num">
+      <h2 id="p-num" data-i18n="grave.d.numbers">In numbers</h2>
+      <div>
+        <ul class="gr-stats">
+          <li><b data-i18n="grave.p.n1.v">4,000</b><span data-i18n="grave.p.n1">nodes — the hard budget for one search</span></li>
+          <li><b data-i18n="grave.p.n2.v">40,000</b><span data-i18n="grave.p.n2">grid cells (200×200)</span></li>
+          <li><b>O(1)</b><span data-i18n="grave.p.n3">rejecting an unreachable target (comparing region ids)</span></li>
+          <li><b data-i18n="grave.p.n4.v">0.25 <small>/ 0.75 s</small></b><span data-i18n="grave.p.n4">re-plan interval / cooldown after a failed search</span></li>
+        </ul>
+        <p class="gr-note" data-i18n="grave.p.note">Checked by hand in play: enemies avoid obstacles, don’t cut corners, and a target sealed off by two barrels doesn’t freeze the game.</p>
+      </div>
+    </section>
+
+    <section class="gr-deeper" aria-labelledby="p-more">
+      <h2 class="gr-label" id="p-more" data-i18n="grave.d.more">Go deeper</h2>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.full">More detail</span></summary>
+        <div class="gr-more-body">
+          <ol class="gr-list">
+            <li data-i18n="grave.p.f1"><b>The grid.</b> One <code>Physics2D.OverlapCircle</code> per cell centre, ignoring triggers, stored in a flat <code>bool[]</code> rather than <code>Node[,]</code>.</li>
+            <li data-i18n="grave.p.f2"><b>The heap.</b> A node can be pushed again at a lower cost; the stale copy is skipped when it’s popped (lazy deletion).</li>
+            <li data-i18n="grave.p.f3"><b>Buffers</b> are cached per grid in a <code>ConditionalWeakTable</code>, so nothing leaks once the scene is released.</li>
+            <li data-i18n="grave.p.f4"><b>Walls at either end.</b> A start or target inside a wall is moved to the nearest free cell.</li>
+            <li data-i18n="grave.p.f5"><b>Integration.</b> Strategy (<code>IMovementStrategy</code>: <code>PathfindingMovement</code> / <code>SimpleDirectMovement</code>) and narrow capability interfaces (ISP): <code>IPathStatusProvider</code>, <code>IWalkabilityProbe</code>, <code>IMovementArrivalTolerance</code> — the enemy doesn’t know how it moves.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.diagram">Diagram</span><span class="gr-more-sub" data-i18n="grave.p.dg.sub">who talks to whom</span></summary>
+        <div class="gr-more-body">
+          <ol class="gr-chain">
+            <li><code>EnemyBase</code></li>
+            <li class="is-iface" data-rel="uses" data-i18n-attr="data-rel" data-i18n-attr-key="grave.p.rel.uses"><code>IMovementStrategy</code></li>
+            <li data-rel="implemented by" data-i18n-attr="data-rel" data-i18n-attr-key="grave.p.rel.impl"><code>PathfindingMovement</code></li>
+            <li data-rel="calls" data-i18n-attr="data-rel" data-i18n-attr-key="grave.p.rel.calls"><code>AStarPathfinder</code> <small>static</small></li>
+            <li data-rel="reads" data-i18n-attr="data-rel" data-i18n-attr-key="grave.p.rel.reads"><code>PathfindingGrid</code></li>
+          </ol>
+          <div class="gr-matrix-wrap">
+            <table class="gr-matrix">
+              <thead>
+                <tr><th data-i18n="grave.p.mx.h">Interface</th><th>PathfindingMovement</th><th>SimpleDirectMovement</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>IMovementStrategy</code></td><td class="gr-yes">■</td><td class="gr-yes">■</td></tr>
+                <tr><td><code>IMovementArrivalTolerance</code></td><td class="gr-yes">■</td><td class="gr-yes">■</td></tr>
+                <tr><td><code>IPathStatusProvider</code></td><td class="gr-yes">■</td><td class="gr-no">·</td></tr>
+                <tr><td><code>IWalkabilityProbe</code></td><td class="gr-yes">■</td><td class="gr-no">·</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="gr-diagram-cap" data-i18n="grave.p.dg.cap">The enemy depends on <code>IMovementStrategy</code> and on narrow capability interfaces, never on a concrete movement class; <code>SimpleDirectMovement</code> implements only two of the four.</p>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.code">Code</span><span class="gr-more-sub" data-i18n="grave.p.code.sub">O(1) rejection, the search loop, a partial route</span></summary>
+        <div class="gr-more-body">
+          <p class="gr-code-file">Assets/Scripts/Pathfinding/AStarPathfinder.cs · <span data-i18n="grave.p.code.l">lines 114–116 and 142–195, shortened</span></p>
+          <pre><code class="language-csharp">// Different connected regions can never be joined by a path. O(1) instead of exploring
+// every reachable cell only to fail.
+if (grid.GetRegionId(startX, startY) != grid.GetRegionId(targetX, targetY)) return false;
+// …
+while (scratch.HeapCount &gt; 0)
+{
+    int current = HeapPop(scratch);
+    if (closed[current]) continue; // stale duplicate left over from a cheaper re-push
+    closed[current] = true;
+    if (current == target)
+        return ReconstructPath(grid, parent, start, target, result);
+    if (++explored &gt;= maxExploredNodes) break;
+    // …
+        // No corner cutting: a diagonal step needs both orthogonal neighbours free,
+        // otherwise the agent would clip through the corner where two walls meet.
+        if (diagonal &amp;&amp; (!grid.IsWalkable(nextX, y) || !grid.IsWalkable(x, nextY))) continue;
+    // …
+        if (stamp[next] == searchId &amp;&amp; tentativeG &gt;= gScore[next]) continue;
+        Touch(scratch, next, searchId);
+    // …
+}
+// Out of budget or out of reachable cells: hand back the route to whatever came closest,
+// so the agent still makes progress this frame.
+if (bestIndex != start)
+    ReconstructPath(grid, parent, start, bestIndex, result);</code></pre>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.trivia">Worth knowing</span></summary>
+        <div class="gr-more-body">
+          <ul class="gr-list">
+            <li data-i18n="grave.p.t1"><b>The world changes:</b> <code>PathfindingGrid.RefreshArea(Bounds)</code> re-samples only a slice of cells and recomputes the regions when a barrel is destroyed or moved. Without it, a smashed barrel in a doorway stayed a “wall” forever, and whatever was behind it stayed unreachable for enemies.</li>
+            <li data-i18n="grave.p.t2"><b>Why the flood fill is 4-directional:</b> to agree with A*’s no-corner-cutting rule — two areas that touch only at a corner really aren’t passable.</li>
+            <li data-i18n="grave.p.t3"><b>One bad target mustn’t kill the frame rate:</b> hence a separate, longer cooldown after a failure — retrying an unreachable target every frame was a sure way to tank it.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.files">Files in the repository</span></summary>
+        <div class="gr-more-body">
+          <ul class="gr-files">
+            <li><a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Pathfinding/AStarPathfinder.cs" target="_blank" rel="noopener noreferrer">Assets/Scripts/Pathfinding/AStarPathfinder.cs</a></li>
+            <li><a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Pathfinding/PathfindingGrid.cs" target="_blank" rel="noopener noreferrer">Assets/Scripts/Pathfinding/PathfindingGrid.cs</a></li>
+            <li><a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Movement/PathfindingMovement.cs" target="_blank" rel="noopener noreferrer">Assets/Scripts/Movement/PathfindingMovement.cs</a></li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <nav class="gr-next" aria-label="Next" data-i18n-attr="aria-label" data-i18n-attr-key="grave.d.nextNav">
+      <a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Pathfinding/AStarPathfinder.cs" target="_blank" rel="noopener noreferrer"><small data-i18n="grave.d.code.link">Code on GitHub ↗</small><strong>AStarPathfinder.cs</strong></a>
+      <a href="grave.html"><small data-i18n="grave.d.backHub">Back to Grave →</small><strong data-i18n="grave.foot.all">All three systems</strong></a>
+    </nav>
+  </main>
+
+  <footer class="gr-foot">
+    <p data-i18n="grave.foot">Team project (4 people). I only show the systems I wrote myself.</p>
+    <p class="gr-foot-links">
+      <a href="grave.html" data-i18n="grave.foot.all">All three systems</a>
+      <a href="https://github.com/dbarans/engineering-project" target="_blank" rel="noopener noreferrer" data-i18n="grave.foot.repo">Repository ↗</a>
+    </p>
+  </footer>
+
+  <script src="js/i18n-grave.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+  <script src="js/grave-sketches.js" defer></script>
+</body>
+</html>

@@ -215,6 +215,18 @@
       'luggage.footer.githubProfile': 'My GitHub Profile',
 
 
+      'index.isl.grave.role': 'Team of 4 · engineering project 2026',
+      'index.isl.grave.hook': 'You only see what’s lit. The dungeon is new every run.',
+      'index.isl.grave.lead': 'A finished 2D top-down survival horror, built by a team of four as our engineering project. I wrote three of its systems: the vision cone, the dungeon generator and A* pathfinding.',
+      'index.isl.grave.p1': 'Vision cone — outside the light, monsters disappear from view.',
+      'index.isl.grave.p2': 'Procedural dungeons — the same seed rebuilds the identical dungeon.',
+      'index.isl.grave.p3': 'A* pathfinding — monsters chase you without stalling the game.',
+      'index.isl.grave.s1v': '0 / 200',
+      'index.isl.grave.s1l': 'failed generations',
+      'index.isl.grave.s2v': '48 / 48',
+      'index.isl.grave.s2l': 'unit tests green',
+      'index.isl.grave.cta': 'See the three systems →',
+      'index.isl.grave.deeper': 'A shader light mask, a seeded generator and A* — with code and diagrams.',
 
 
 
@@ -504,6 +516,18 @@
       'luggage.footer.githubProfile': 'Mój profil GitHub',
 
 
+      'index.isl.grave.role': 'Zespół 4 osób · projekt inżynierski 2026',
+      'index.isl.grave.hook': 'Widzisz tylko to, co oświetlone. Loch jest nowy w każdej grze.',
+      'index.isl.grave.lead': 'Ukończony survival horror 2D z widokiem z góry, zrobiony w czteroosobowym zespole jako projekt inżynierski. Napisałem trzy jego systemy: stożek widzenia, generator lochów i pathfinding A*.',
+      'index.isl.grave.p1': 'Stożek widzenia — poza światłem potwory znikają z widoku.',
+      'index.isl.grave.p2': 'Proceduralne lochy — to samo ziarno odtwarza identyczny loch.',
+      'index.isl.grave.p3': 'Pathfinding A* — potwory gonią cię i nie zawieszają gry.',
+      'index.isl.grave.s1v': '0 / 200',
+      'index.isl.grave.s1l': 'błędnych generacji',
+      'index.isl.grave.s2v': '48 / 48',
+      'index.isl.grave.s2l': 'zielonych testów jednostkowych',
+      'index.isl.grave.cta': 'Zobacz trzy systemy →',
+      'index.isl.grave.deeper': 'Maska światła w shaderze, generator z ziarnem i A* — z kodem i diagramami.',
 
 
 
@@ -584,6 +608,15 @@
     },
   };
 
+  // A page can ship its own strings as window.I18N_PAGE = { pl: {...} } in a script loaded
+  // before this one. Its markup is the English text, so English falls back to the original HTML.
+  const pageStrings = window.I18N_PAGE || {};
+  Object.keys(pageStrings).forEach((lang) => {
+    translations[lang] = Object.assign({}, translations[lang], pageStrings[lang]);
+  });
+  const originalHtml = new WeakMap();
+  const originalAttr = new WeakMap();
+
   const toggleBtn = document.getElementById('lang-toggle');
 
   const detectInitialLang = () => {
@@ -607,8 +640,11 @@
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
       if (!key) return;
+      if (!originalHtml.has(el)) originalHtml.set(el, el.innerHTML);
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
         el.innerHTML = dict[key];
+      } else if (lang === 'en') {
+        el.innerHTML = originalHtml.get(el);
       }
     });
 
@@ -616,8 +652,11 @@
       const attr = el.getAttribute('data-i18n-attr');
       const key = el.getAttribute('data-i18n-attr-key');
       if (!attr || !key) return;
+      if (!originalAttr.has(el)) originalAttr.set(el, el.getAttribute(attr));
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
         el.setAttribute(attr, dict[key]);
+      } else if (lang === 'en' && originalAttr.get(el) !== null) {
+        el.setAttribute(attr, originalAttr.get(el));
       }
     });
 

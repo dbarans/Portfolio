@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Procedural dungeons — Grave — Dominik Barański</title>
+  <meta name="description" content="A deterministic 200×200 dungeon generator for Grave (Unity 6, C#): one seed builds the whole layout; 0 of 200 seeds failed validation, 48 of 48 unit tests green." />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/grave-dungeon.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Procedural dungeons — Grave" />
+  <meta property="og:description" content="A deterministic 200×200 dungeon generator for Grave (Unity 6, C#): one seed builds the whole layout; 0 of 200 seeds failed validation, 48 of 48 unit tests green." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/grave-dungeon.html" />
+  <meta name="twitter:card" content="summary" />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/grave.css" />
+</head>
+<body class="page-grave">
+  <a class="gr-skip" href="#main" data-i18n="grave.skipMain">Skip to content</a>
+  <header class="gr-top">
+    <a class="gr-back" href="grave.html">← Grave</a>
+    <nav class="gr-sysnav" aria-label="Systems" data-i18n-attr="aria-label" data-i18n-attr-key="grave.sysnav">
+      <a href="grave-vision.html"><span>01</span><span data-i18n="grave.c1.title">Vision cone</span></a>
+      <a href="grave-dungeon.html" aria-current="page"><span>02</span><span data-i18n="grave.nav.dungeon">Dungeons</span></a>
+      <a href="grave-pathfinding.html"><span>03</span><span>A*</span></a>
+    </nav>
+    <button id="lang-toggle" type="button" class="gr-lang" aria-label="Switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="grave.lang">PL</button>
+  </header>
+
+  <main class="gr-page" id="main">
+    <header class="gr-head">
+      <p class="gr-kicker" data-i18n="grave.g.kicker">Grave · System 02 of 03</p>
+      <h1 data-i18n="grave.c2.title">Procedural dungeons</h1>
+      <p class="gr-lead" data-i18n="grave.g.lead">One seed builds the whole 200×200 dungeon — rooms, looping corridors, treasure rooms, exit and key — so a save stores only the seed.</p>
+    </header>
+
+    <figure class="gr-figure">
+      <div class="gr-media" data-sketch="dungeon" data-video="">
+        <canvas role="img" aria-label="Sketch: dungeons built stage by stage from seeds — rooms, a graph of links with loops, carving, room roles; a repeated seed rebuilds the same layout." data-i18n-attr="aria-label" data-i18n-attr-key="grave.g.canvas"></canvas>
+        <span class="gr-media-note" data-i18n="grave.sketch">Browser sketch · not game footage</span>
+        <span class="gr-hud" aria-hidden="true"></span>
+      </div>
+      <figcaption>
+        <span class="gr-sketch-only" data-i18n="grave.g.cap">Watch for a seed coming back.</span>
+        <ul class="gr-legend">
+          <li><i style="background:#5b8fd6"></i><span data-i18n="grave.role.hub">hub</span></li>
+          <li><i style="background:#c262b4"></i><span data-i18n="grave.role.treasure">treasure</span></li>
+          <li><i style="background:#58b56f"></i><span data-i18n="grave.role.exit">exit</span></li>
+          <li><i style="background:#ffb85c"></i><span data-i18n="grave.role.key">key</span></li>
+        </ul>
+      </figcaption>
+    </figure>
+
+    <section class="gr-block" aria-labelledby="g-problem">
+      <h2 id="g-problem" data-i18n="grave.d.problem">Problem</h2>
+      <p class="gr-problem" data-i18n="grave.g.problem">Every run needs a new, playable layout — key, exit, dead-end treasure rooms — with loops so you can shake off a chase. Loading a save must rebuild the identical dungeon on any machine.</p>
+    </section>
+
+    <section class="gr-block" aria-labelledby="g-how">
+      <h2 id="g-how" data-i18n="grave.d.how">How it works</h2>
+      <ol class="gr-steps">
+        <li><b data-i18n="grave.g.s1.t">A 9-stage pipeline</b><span data-i18n="grave.g.s1.d">Rejection-sampled rooms, Kruskal’s MST plus loops from the shortest rejected edges, then carving, doors, roles, interiors, chokepoints.</span></li>
+        <li><b data-i18n="grave.g.s2.t">Generate and validate</b><span data-i18n="grave.g.s2.d">Each attempt is checked for traversability; a failure retries on a fresh random stream (up to 160) and falls back to the best result, never a crash.</span></li>
+        <li><b data-i18n="grave.g.s3.t">Deterministic by design</b><span data-i18n="grave.g.s3.d">A custom PRNG (xorshift128 + FNV-1a) instead of <code>UnityEngine.Random</code>; one stream per stage, so changing one stage doesn’t shift the rest.</span></li>
+        <li><b data-i18n="grave.g.s4.t">Testable without a scene</b><span data-i18n="grave.g.s4.d">Plain C#, no <code>MonoBehaviour</code>, in its own <code>Grave.Generation.Layout</code> asmdef; the scene side is <code>DungeonBuilder</code> → <code>DungeonPainter</code> → <code>DungeonPopulator</code>.</span></li>
+      </ol>
+    </section>
+
+    <section class="gr-block" aria-labelledby="g-num">
+      <h2 id="g-num" data-i18n="grave.d.numbers">In numbers</h2>
+      <div>
+        <ul class="gr-stats">
+          <li><b>0 / 200</b><span data-i18n="grave.g.n1">layouts rejected by validation (3 needed a retry)</span></li>
+          <li><b data-i18n="grave.g.n2.v">≈104 ms</b><span data-i18n="grave.g.n2">average per 200×200 layout (200 seeds in ≈21 s)</span></li>
+          <li><b>4 × 200</b><span data-i18n="grave.g.n3">the series run four times — identical results</span></li>
+          <li><b>48 / 48</b><span data-i18n="grave.g.n4">unit tests green (edit mode, 4.6 s)</span></li>
+        </ul>
+        <p class="gr-note" data-i18n="grave.g.note">A series of 200 seeds, production settings.</p>
+      </div>
+    </section>
+
+    <section class="gr-deeper" aria-labelledby="g-more">
+      <h2 class="gr-label" id="g-more" data-i18n="grave.d.more">Go deeper</h2>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.full">More detail</span></summary>
+        <div class="gr-more-body">
+          <ol class="gr-list">
+            <li data-i18n="grave.g.f1"><b>Why rejection sampling, not BSP:</b> it leaves a margin of solid rock between rooms, which keeps the corridors readable.</li>
+            <li data-i18n="grave.g.f2"><b>Why not the built-ins:</b> <code>UnityEngine.Random</code> is global state and <code>string.GetHashCode()</code> isn’t stable between environments. Each stage takes its own stream, e.g. <code>Derive("rooms")</code>.</li>
+            <li data-i18n="grave.g.f3"><b>Decoration driven by measurement.</b> The generator computes (recursive shadowcasting) how much of a room is visible from its entrances and adds pillars and partitions in batches until visibility drops below a threshold that depends on the room’s area.</li>
+            <li data-i18n="grave.g.f4"><b>Scene side.</b> <code>DungeonPainter</code> draws the Tilemap; <code>DungeonPopulator</code> runs on the <code>Built</code> event.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.diagram">Diagram</span><span class="gr-more-sub" data-i18n="grave.g.dg.sub">9 stages and the validation loop</span></summary>
+        <div class="gr-more-body">
+          <ol class="gr-pipe">
+            <li><code>PlaceRooms</code><span data-i18n="grave.g.p1">rooms · rejection sampling</span></li>
+            <li><code>ConnectRooms</code><span data-i18n="grave.g.p2">graph · MST + loops</span></li>
+            <li><code>CarveRooms</code><span data-i18n="grave.g.p3">carve the rooms</span></li>
+            <li><code>DetailOutlines</code><span data-i18n="grave.g.p4">room outlines</span></li>
+            <li><code>CorridorCarver</code><span data-i18n="grave.g.p5">carve the corridors</span></li>
+            <li><code>DoorwayNormalizer</code><span data-i18n="grave.g.p6">doorways</span></li>
+            <li><code>AssignRoomRoles</code><span data-i18n="grave.g.p7">hub, treasure, exit, key</span></li>
+            <li><code>RoomInteriorDecorator</code><span data-i18n="grave.g.p8">interiors</span></li>
+            <li><code>Chokepoints</code><span data-i18n="grave.g.p9">chokepoints</span></li>
+          </ol>
+          <div class="gr-check">
+            <div data-i18n="grave.g.c1"><b>✓</b>Traversability check passed → the layout</div>
+            <div data-i18n="grave.g.c2"><b>✗</b>Failed → retry on a new random stream, up to 160 attempts</div>
+            <div data-i18n="grave.g.c3"><b>✗ ×160</b>→ the best result instead of a crash</div>
+          </div>
+          <p class="gr-diagram-cap" data-i18n="grave.g.dg.cap">Each stage gets its own stream — <code>random.Derive("rooms")</code>, <code>Derive("links")</code> … — so one stage drawing more numbers can’t move the others.</p>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.code">Code</span><span class="gr-more-sub" data-i18n="grave.g.code.sub">the whole pipeline in one method</span></summary>
+        <div class="gr-more-body">
+          <p class="gr-code-file">Assets/Scripts/Generation/Layout/RoomCorridorGenerator.cs · <span data-i18n="grave.g.code.l">lines 70–92</span></p>
+          <pre><code class="language-csharp">private static DungeonLayout BuildOnce(string seed, LayoutParams p, DeterministicRandom random)
+{
+    List&lt;Room&gt; rooms = PlaceRooms(p, random.Derive("rooms"), out int hubIndex,
+        out List&lt;int&gt; treasurePlots);
+    List&lt;RoomLink&gt; links = ConnectRooms(rooms, treasurePlots, hubIndex, p, random.Derive("links"));
+
+    var layout = new DungeonLayout(seed, p.MapWidth, p.MapHeight, rooms, links);
+
+    CarveRooms(layout, rooms);
+    DetailOutlines(layout, rooms, hubIndex, p, random.Derive("outlines"));
+    CorridorCarver.CarveAll(layout, rooms, links, hubIndex, p, random.Derive("corridors"));
+    DoorwayNormalizer.Apply(layout, rooms, p.DoorwayWidth);
+
+    // Roles are assigned before the interior pass because that pass reads them: the
+    // start room and the hub are deliberately left legible, and it cannot know which
+    // they are until the graph has been walked.
+    AssignRoomRoles(layout, rooms, links, hubIndex, treasurePlots, p);
+
+    RoomInteriorDecorator.Decorate(layout, p, random.Derive("interiors"));
+    Chokepoints.Detect(layout);
+
+    return layout;
+}</code></pre>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.trivia">Worth knowing</span></summary>
+        <div class="gr-more-body">
+          <ul class="gr-list">
+            <li data-i18n="grave.g.t1"><b>Tests of invariants, not values:</b> e.g. <code>SameSeedProducesIdenticalLayout</code>, <code>EveryWalkableCellIsReachableFromSpawn</code>, <code>ImpossibleSettingsDegradeInsteadOfCrashing</code> — over many seeds (20–500 per test), because a test like “seed 7 has 16 rooms” breaks whenever the order of random draws changes.</li>
+            <li data-i18n="grave.g.t2"><b>An editor tool,</b> <code>Tools ▸ Dungeon ▸ Layout Preview</code>: an ASCII preview and “Measure N seeds” (rooms, corridors, retries, ms) — the parameters are tuned on a statistical sample, not on one map.</li>
+            <li data-i18n="grave.g.t3"><b>A real bug:</b> the navigation grid is configured only after the <code>Built</code> event. Before that, the furniture had no colliders yet and enemies planned routes through tables.</li>
+            <li data-i18n="grave.g.t4">Ties in Kruskal are broken by room index, because <code>List.Sort</code> isn’t stable — without it an engine update could silently change the layout for the same seed.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="gr-more">
+        <summary><span data-i18n="grave.d.files">Files in the repository</span></summary>
+        <div class="gr-more-body">
+          <ul class="gr-files">
+            <li><a href="https://github.com/dbarans/engineering-project/tree/dev/Assets/Scripts/Generation/Layout" target="_blank" rel="noopener noreferrer">Assets/Scripts/Generation/Layout/</a><small data-i18n="grave.g.files13">13 files</small></li>
+            <li><a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Generation/DungeonBuilder.cs" target="_blank" rel="noopener noreferrer">Assets/Scripts/Generation/DungeonBuilder.cs</a></li>
+            <li><a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Editor/DungeonLayoutPreviewWindow.cs" target="_blank" rel="noopener noreferrer">Assets/Scripts/Editor/DungeonLayoutPreviewWindow.cs</a></li>
+            <li><a href="https://github.com/dbarans/engineering-project/tree/dev/Assets/Tests/EditMode" target="_blank" rel="noopener noreferrer">Assets/Tests/EditMode/</a></li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <nav class="gr-next" aria-label="Next" data-i18n-attr="aria-label" data-i18n-attr-key="grave.d.nextNav">
+      <a href="https://github.com/dbarans/engineering-project/blob/dev/Assets/Scripts/Generation/Layout/RoomCorridorGenerator.cs" target="_blank" rel="noopener noreferrer"><small data-i18n="grave.d.code.link">Code on GitHub ↗</small><strong>RoomCorridorGenerator.cs</strong></a>
+      <a href="grave-pathfinding.html"><small data-i18n="grave.d.next">Next system →</small><strong data-i18n="grave.c3.title">A* pathfinding</strong></a>
+    </nav>
+  </main>
+
+  <footer class="gr-foot">
+    <p data-i18n="grave.foot">Team project (4 people). I only show the systems I wrote myself.</p>
+    <p class="gr-foot-links">
+      <a href="grave.html" data-i18n="grave.foot.all">All three systems</a>
+      <a href="https://github.com/dbarans/engineering-project" target="_blank" rel="noopener noreferrer" data-i18n="grave.foot.repo">Repository ↗</a>
+    </p>
+  </footer>
+
+  <script src="js/i18n-grave.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+  <script src="js/grave-sketches.js" defer></script>
+</body>
+</html>
