@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="cin-body">
+  <a class="cin-skip" href="#main" data-i18n="index.skip">Skip to content</a>
+
+  <header class="cin-header" id="cin-header">
+    <a href="../../index.html" class="cin-brand">
+      <span class="cin-brand-mark" aria-hidden="true"></span>
+      <span class="cin-brand-text">Dominik Barański</span>
+    </a>
+    <nav class="cin-nav" aria-label="Main" data-i18n-attr="aria-label" data-i18n-attr-key="index.nav.aria">
+      <a href="#projects" class="cin-nav-link" data-i18n="index.nav.projects">Projects</a>
+      <a href="#contact" class="cin-nav-link" data-i18n="index.nav.contact">Contact</a>
+      <a href="https://github.com/dbarans" class="cin-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" class="cin-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+    </nav>
+    <button id="lang-toggle" type="button" class="cin-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ================= HERO — "Chapter 00" ================= -->
+    <section class="cin-hero" aria-labelledby="hero-heading">
+      <p class="cin-hero-kicker" aria-hidden="true">FEATURE PRESENTATION</p>
+
+      <h1 id="hero-heading" class="cin-hero-title">Dominik Barański: <span class="cin-hero-role">Unity developer</span></h1>
+
+      <div class="cin-hero-panel">
+        <p class="cin-hero-lead" data-i18n="index.hero.lead">I build game systems in Unity and C# with a focus on performance and testable code. My work ranges from a multithreaded simulation engine in an Android game with 15,000+ downloads on Google Play to enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project. As an intern at Rubens Games, I also built gameplay systems in a studio team, alongside the studio's artists. I'm looking for a junior/mid Unity developer role.</p>
+        <p class="cin-hero-stack" data-i18n="index.hero.stack">Unity · C# · Burst / Job System · URP shaders · Android</p>
+        <a href="#projects" class="cin-hero-cta">
+          <span data-i18n="index.hero.cta">View projects</span>
+          <span class="cin-hero-cta-icon" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <!-- Purely decorative repeat of the tech stack already stated above (index.hero.stack).
+           No new claims; not translated on purpose since it's a visual flourish, not content. -->
+      <div class="cin-ticker" aria-hidden="true">
+        <div class="cin-ticker-track">
+          <span class="cin-ticker-group">
+            <span>UNITY</span><span class="cin-ticker-dot">●</span>
+            <span>C#</span><span class="cin-ticker-dot">●</span>
+            <span>BURST / JOB SYSTEM</span><span class="cin-ticker-dot">●</span>
+            <span>URP SHADERS</span><span class="cin-ticker-dot">●</span>
+            <span>ANDROID</span><span class="cin-ticker-dot">●</span>
+          </span>
+          <span class="cin-ticker-group">
+            <span>UNITY</span><span class="cin-ticker-dot">●</span>
+            <span>C#</span><span class="cin-ticker-dot">●</span>
+            <span>BURST / JOB SYSTEM</span><span class="cin-ticker-dot">●</span>
+            <span>URP SHADERS</span><span class="cin-ticker-dot">●</span>
+            <span>ANDROID</span><span class="cin-ticker-dot">●</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECT CHAPTERS ================= -->
+    <section id="projects" class="cin-projects" aria-label="Projects">
+
+      <!-- ---- Chapter 01 — Game of Life ---- -->
+      <article class="cin-chapter cin-chapter--gol" id="chapter-01" aria-labelledby="proj-gol-h">
+        <div class="cin-bg cin-bg--glow" aria-hidden="true"></div>
+        <div class="cin-media cin-media--contain" aria-hidden="true">
+          <img class="cin-scale" src="../../images/game-of-life/logo.png" width="540" height="540" loading="lazy" alt="" />
+        </div>
+        <div class="cin-scrim cin-scrim--left" aria-hidden="true"></div>
+        <span class="cin-chapnum" aria-hidden="true">01</span>
+
+        <div class="cin-panel">
+          <div class="cin-panel-inner">
+            <p class="cin-kicker">CHAPTER 01</p>
+            <p class="cin-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</p>
+            <h2 class="cin-title" id="proj-gol-h">Game of Life</h2>
+            <p class="cin-lead-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
+            <a class="cin-link" href="../../game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- Chapter 02 — Grave (scroll-scrubbed clip, real frames) ---- -->
+      <div class="cin-pinwrap cin-chapter--grave" id="chapter-02" data-scrub-src="../../images/grave/visibility-frames/f" data-scrub-count="112">
+        <article class="cin-chapter cin-pin" aria-labelledby="proj-grave-h">
+          <div class="cin-media cin-media--cover" aria-hidden="true">
+            <img class="cin-scrub-poster" src="../../images/grave/visibility-poster.webp" width="800" height="600" loading="lazy" alt="" />
+            <canvas class="cin-scrub-canvas" width="800" height="600" aria-hidden="true"></canvas>
+          </div>
+          <div class="cin-scrim cin-scrim--left" aria-hidden="true"></div>
+          <span class="cin-chapnum" aria-hidden="true">02</span>
+
+          <div class="cin-panel">
+            <div class="cin-panel-inner">
+              <p class="cin-kicker">CHAPTER 02</p>
+              <p class="cin-meta" data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</p>
+              <h2 class="cin-title" id="proj-grave-h">Grave</h2>
+              <p class="cin-lead-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
+              <a class="cin-link" href="../../grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
+              <p class="cin-scrub-hint" aria-hidden="true">Keep scrolling — this clip plays frame by frame as you go</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ---- Chapter 03 — Luggage Please ---- -->
+      <article class="cin-chapter cin-chapter--lp" id="chapter-03" aria-labelledby="proj-lp-h">
+        <div class="cin-media cin-media--cover" aria-hidden="true">
+          <img class="cin-scale" src="../../images/luggage-please/key-art.webp" width="2388" height="1668" loading="lazy" alt="" />
+        </div>
+        <div class="cin-scrim cin-scrim--left" aria-hidden="true"></div>
+        <span class="cin-chapnum" aria-hidden="true">03</span>
+
+        <div class="cin-panel">
+          <div class="cin-panel-inner">
+            <p class="cin-kicker">CHAPTER 03</p>
+            <p class="cin-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games</p>
+            <h2 class="cin-title" id="proj-lp-h">Luggage Please</h2>
+            <p class="cin-lead-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
+            <a class="cin-link" href="../../luggage-please.html"><span data-i18n="index.project.lp.cta">See how they work →</span></a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ================= CONTACT — end card ================= -->
+    <section id="contact" class="cin-contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="cin-contact-title" data-i18n="index.section.contact">Contact</h2>
+      <p class="cin-contact-lead" data-i18n="index.contact.lead">Happy to walk through the code behind these projects in an interview.</p>
+      <ul class="cin-contact-list">
+        <li>
+          <a class="cin-contact-row" href="mailto:baranskidominik109@gmail.com">
+            <span class="cin-contact-label" data-i18n="index.contact.email.label">Email:</span>
+            <span class="cin-contact-value">baranskidominik109@gmail.com</span>
+          </a>
+        </li>
+        <li>
+          <a class="cin-contact-row" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">
+            <span class="cin-contact-label" data-i18n="index.contact.linkedin.label">LinkedIn:</span>
+            <span class="cin-contact-value">linkedin.com/in/baranskidominik</span>
+          </a>
+        </li>
+        <li>
+          <a class="cin-contact-row" href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">
+            <span class="cin-contact-label" data-i18n="index.contact.github.label">GitHub:</span>
+            <span class="cin-contact-value">github.com/dbarans</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="cin-footer">
+    <p>© 2026 Dominik Barański</p>
+    <p class="cin-footer-tag" aria-hidden="true">END</p>
+  </footer>
+
+  <script src="../../js/i18n.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

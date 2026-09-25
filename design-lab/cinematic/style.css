@@ -1,0 +1,489 @@
+/* =========================================================================
+   Dominik Barański — Portfolio home page, "CINEMATIC SCROLL" design exploration.
+   A game-trailer take on the home page: full-viewport "chapters", one per
+   project, huge type over real footage/art, scroll-driven scale/parallax,
+   and — reusing the idea the owner liked in grave.html's .cs-scrolly — the
+   Grave chapter scrubs real gameplay frames as the visitor scrolls through it.
+
+   Dark ground, ONE strong accent per chapter (reusing the hues already used
+   on the case-study pages: red / amber / teal), huge confident type, hard
+   edges, no blur/glass — bold and punchy, not a muted technical dashboard.
+
+   Fonts: Anton (display), Space Grotesk (UI/body), JetBrains Mono (labels).
+   ========================================================================= */
+
+:root {
+  --bg: #0a0a0c;
+  --ink: #050506;
+  --paper: #f5f4ef;
+  --muted: #a9a79e;
+  --line: rgba(245, 244, 239, 0.16);
+
+  --accent: #e8452b;
+  --accent-rgb: 232, 69, 43;
+
+  --f-display: 'Anton', 'Arial Narrow', sans-serif;
+  --f-body: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  overflow-x: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body.cin-body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--bg);
+  background-image: radial-gradient(rgba(245, 244, 239, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--paper);
+  font-family: var(--f-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.cin-body :focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.9);
+}
+
+/* ---------- Skip link ---------- */
+.cin-skip {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+.cin-skip:focus { left: 16px; }
+#main:focus { outline: none; }
+
+/* ---------- Header: fixed overlay across every chapter ---------- */
+.cin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: linear-gradient(180deg, rgba(5, 5, 6, 0.82) 0%, rgba(5, 5, 6, 0.55) 70%, transparent 100%);
+}
+.cin-header.is-solid { background: rgba(5, 5, 6, 0.88); border-bottom: 1px solid var(--line); }
+
+.cin-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+.cin-brand-mark { width: 10px; height: 10px; background: var(--accent); flex-shrink: 0; }
+
+.cin-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); flex-wrap: wrap; }
+.cin-nav-link {
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.cin-nav-link:hover, .cin-nav-link:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+.cin-lang {
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--line);
+  padding: 6px 11px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.cin-lang:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Shared full-viewport chapter shell ---------- */
+.cin-hero,
+.cin-chapter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cin-bg { position: absolute; inset: 0; z-index: 0; }
+.cin-media { position: absolute; inset: 0; z-index: 0; }
+.cin-media--contain { display: flex; align-items: center; justify-content: center; }
+.cin-media--cover { overflow: hidden; }
+.cin-media--cover img,
+.cin-media--cover .cin-scrub-poster { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+
+.cin-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cin-scrim--left {
+  background:
+    linear-gradient(0deg, rgba(5, 5, 6, 0.95) 0%, rgba(5, 5, 6, 0.35) 42%, rgba(5, 5, 6, 0.05) 62%, transparent 78%),
+    linear-gradient(90deg, rgba(5, 5, 6, 0.65) 0%, transparent 55%);
+}
+
+/* Ghost chapter numeral: decorative only, no new claim. */
+.cin-chapnum {
+  position: absolute;
+  top: clamp(70px, 10vw, 108px);
+  right: clamp(16px, 4vw, 44px);
+  z-index: 1;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: clamp(3.4rem, 11vw, 8rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 244, 239, 0.32);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cin-panel {
+  position: relative;
+  z-index: 2;
+  padding: clamp(20px, 5vw, 56px);
+  padding-top: clamp(90px, 14vw, 140px);
+}
+.cin-panel-inner {
+  max-width: 700px;
+  background: rgba(5, 5, 6, 0.5);
+  border-left: 4px solid var(--accent);
+  padding: clamp(18px, 3vw, 30px) clamp(18px, 3vw, 32px);
+}
+
+.cin-kicker {
+  margin: 0 0 10px;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cin-meta {
+  margin: 0 0 10px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cin-title {
+  margin: 0 0 14px;
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  line-height: 0.94;
+  letter-spacing: 0.005em;
+  color: var(--paper);
+}
+.cin-lead-body {
+  margin: 0 0 18px;
+  max-width: 46em;
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  line-height: 1.6;
+  color: var(--paper);
+}
+.cin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 3px;
+  transition: color 0.15s;
+}
+.cin-link:hover, .cin-link:focus-visible { color: var(--accent); }
+
+/* ---------- Hero ---------- */
+.cin-hero-kicker {
+  position: absolute;
+  top: clamp(80px, 12vw, 120px);
+  left: clamp(16px, 5vw, 56px);
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cin-hero-title {
+  margin: 0 clamp(16px, 5vw, 56px) 0;
+  padding-top: clamp(114px, 15vw, 160px);
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2.6rem, 12vw, 7.2rem);
+  line-height: 0.88;
+  letter-spacing: 0.005em;
+  color: var(--paper);
+}
+.cin-hero-role { display: block; color: var(--accent); }
+
+.cin-hero-panel {
+  margin: clamp(24px, 4vw, 40px) clamp(16px, 5vw, 56px) 0;
+  max-width: 52em;
+}
+.cin-hero-lead {
+  margin: 0 0 16px;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  line-height: 1.62;
+  color: var(--paper);
+}
+.cin-hero-stack {
+  margin: 0 0 20px;
+  font-family: var(--f-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.cin-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.85rem 1.4rem;
+  background: var(--accent);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cin-hero-cta:hover, .cin-hero-cta:focus-visible { background: var(--paper); }
+.cin-hero-cta-icon { font-size: 1.05rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .cin-hero-cta-icon { animation: cin-bob 1.6s ease-in-out infinite; }
+}
+@keyframes cin-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Decorative tech ticker: fully aria-hidden, not translated on purpose. */
+.cin-ticker {
+  margin-top: auto;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+}
+.cin-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: cin-marquee 24s linear infinite;
+}
+.cin-ticker-group { display: flex; align-items: center; }
+.cin-ticker-group span {
+  padding: 0.8rem 0.9rem;
+  white-space: nowrap;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: clamp(0.78rem, 1.5vw, 1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cin-ticker-dot { color: var(--muted) !important; font-size: 0.55rem !important; }
+@keyframes cin-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cin-ticker-track { animation: none; }
+  .cin-ticker-group:nth-child(2) { display: none; }
+}
+
+/* ---------- Chapter media specifics ---------- */
+.cin-bg--glow {
+  background:
+    radial-gradient(58% 58% at 50% 44%, rgba(var(--accent-rgb), 0.28) 0%, transparent 72%),
+    var(--bg);
+}
+.cin-media--contain img {
+  width: min(52vh, 58vw, 480px);
+  height: auto;
+  filter: drop-shadow(0 30px 70px rgba(0, 0, 0, 0.7));
+}
+
+/* Scroll-linked scale/parallax (script.js sets --focus 0..1 per element, peaking
+   when the chapter is centred in the viewport). Defaults to 0 without JS or
+   under prefers-reduced-motion, so the image simply sits still — no motion. */
+.cin-scale {
+  transform: scale(calc(1 + var(--focus, 0) * 0.12));
+  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cin-scale { transition: transform 0.05s linear; }
+}
+
+/* Chapter-specific accents, reusing the hues already used on the case-study
+   pages (main red / grave amber / luggage teal) so the two feel like one site. */
+.cin-chapter--grave { --accent: #ffb85c; --accent-rgb: 255, 184, 92; }
+.cin-chapter--lp { --accent: #2fd3c4; --accent-rgb: 47, 211, 196; }
+
+/* ---------- Chapter 02 — Grave: scroll-scrubbed clip ----------
+   Reuses the idea from grave.html's .cs-scrolly: scroll position through an
+   extra-tall wrapper picks the frame, drawn into a canvas over a poster
+   image (the no-JS fallback). The wrapper's extra height is the "scrub
+   travel"; the chapter itself stays pinned full-viewport while it plays. */
+.cin-pinwrap { position: relative; height: 240vh; }
+.cin-pin {
+  position: sticky;
+  top: 0;
+  /* Fixed (not min-) height, so the sticky box always matches the viewport
+     exactly; overflow-y is a safety net for very short viewports where the
+     text panel alone would otherwise be taller than the screen. */
+  height: 100vh;
+  height: 100svh;
+  overflow-y: auto;
+}
+.cin-scrub-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  opacity: 0;
+}
+.cin-pinwrap.is-ready .cin-scrub-canvas { opacity: 1; }
+.cin-scrub-hint {
+  margin: 14px 0 0;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- Contact: a short, quick-to-reach end card, not another
+   full-viewport chapter, so a recruiter never has to hunt for it. ---------- */
+.cin-contact {
+  position: relative;
+  padding: clamp(56px, 10vw, 110px) clamp(16px, 5vw, 56px) clamp(40px, 8vw, 72px);
+  border-top: 1px solid var(--line);
+}
+.cin-contact-title {
+  margin: 0 0 16px;
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.9;
+  color: var(--paper);
+}
+.cin-contact-lead {
+  margin: 0 0 32px;
+  max-width: 50em;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--muted);
+}
+.cin-contact-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.cin-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  padding: clamp(16px, 3vw, 24px) 4px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--paper);
+  transition: color 0.15s;
+}
+.cin-contact-row:hover, .cin-contact-row:focus-visible { color: var(--accent); }
+.cin-contact-label {
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-width: 6.5rem;
+  color: var(--muted);
+}
+.cin-contact-value {
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.05rem, 3vw, 1.7rem);
+  word-break: break-word;
+}
+
+/* ---------- Footer ---------- */
+.cin-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.1rem clamp(16px, 5vw, 56px);
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cin-footer p { margin: 0; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .cin-pinwrap { height: 200vh; }
+  .cin-panel { padding-top: clamp(76px, 22vw, 110px); }
+  .cin-chapnum { top: clamp(58px, 16vw, 90px); font-size: clamp(2.6rem, 18vw, 4.6rem); }
+  .cin-media--contain img { width: min(48vh, 68vw, 340px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cin-nav-link, .cin-lang, .cin-link, .cin-contact-row, .cin-hero-cta { transition: none; }
+}
