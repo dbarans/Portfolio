@@ -1,0 +1,474 @@
+/* ============================================================================
+   MODULAR GRID — home page concept for Dominik Barański's portfolio.
+   Design language: a strict bento/module grid, Swiss-precision spacing,
+   one idea per tile. Dark "control room" canvas, bright paper/accent tiles
+   punching through, hairline grid lines acting as the drafting frame that
+   holds every module in place.
+   Palette: near-black graphite canvas + warm paper tiles + one signal-orange
+   accent. Type: Schibsted Grotesk (display/body) + DM Mono (labels, values,
+   meta) — the same pairing already used across the case-study pages, kept
+   here so the jump from home into a case study feels like one system.
+   ============================================================================ */
+
+:root {
+  --bg: #0b0c0e;
+  --line: #2a2e34;
+  --tile: #15171b;
+  --tile-2: #1b1e23;
+  --paper: #f4f1ea;
+  --paper-2: #ffffff;
+  --ink: #f4f1ea;
+  --ink-strong: #ffffff;
+  --ink-on-paper: #14140f;
+  --muted: #a9adb4;
+  --muted-on-paper: #56544c;
+  --accent: #ff5a1f;
+  --accent-ink: #0b0c0e;
+
+  --font-display: 'Schibsted Grotesk', 'Inter', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, Consolas, monospace;
+
+  --gap: 1px;
+  --pad: clamp(18px, 2.4vw, 32px);
+}
+
+* , *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  scroll-padding-top: 5.5rem;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display);
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { max-width: 100vw; }
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* ---------- Focus ---------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 2000;
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+main:focus { outline: none; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 16px clamp(16px, 4vw, 40px);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.site-header.site-header--hidden { transform: translateY(-100%); }
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+.site-brand-mark { width: 10px; height: 10px; flex-shrink: 0; background: var(--accent); }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+.site-nav-link {
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.site-nav-link:hover,
+.site-nav-link:focus-visible { color: var(--accent); }
+
+.site-header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.lang-toggle {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  border-radius: 0;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  padding: 7px 11px;
+  min-width: 40px;
+}
+.lang-toggle:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* ============================================================================
+   THE GRID
+   ============================================================================ */
+main { display: block; padding: var(--gap) clamp(8px, 2vw, 20px) 0; }
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  background: var(--line);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.subgrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  background: var(--line);
+}
+
+.bento > .tile--wrap { grid-column: 1 / -1; background: var(--line); }
+
+/* Utility spans (12-column desktop grid) */
+.span-12 { grid-column: 1 / -1; }
+.span-8  { grid-column: span 8; }
+.span-7  { grid-column: span 7; }
+.span-5  { grid-column: span 5; }
+.span-4  { grid-column: span 4; }
+.span-3  { grid-column: span 3; }
+
+/* ---------- Base tile ---------- */
+.tile {
+  position: relative;
+  background: var(--tile);
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.tile-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tile-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+/* ---------- M.00 Identity ---------- */
+.tile--hero {
+  grid-column: span 8;
+  grid-row: span 2;
+  justify-content: center;
+  gap: 1.1rem;
+}
+.hero-title {
+  margin: 0;
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  color: var(--ink-strong);
+}
+.hero-title .hero-role { color: var(--accent); }
+.hero-lead {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+}
+
+/* ---------- M.01 Stack ---------- */
+.tile--stack { background: var(--tile-2); justify-content: center; }
+.stack-line {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+/* ---------- M.02 CTA ---------- */
+.tile--cta {
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  justify-content: space-between;
+  transition: filter 0.15s ease;
+}
+.tile--cta:hover,
+.tile--cta:focus-visible { filter: brightness(1.08); }
+.tile-eyebrow--on-accent { color: rgba(11, 12, 14, 0.65); }
+.cta-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cta-text {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+.cta-arrow {
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.tile--cta:hover .cta-arrow { transform: translateY(3px); }
+
+/* ---------- Section label bar ---------- */
+.tile--label {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  background: var(--bg);
+  padding-top: calc(var(--pad) * 0.6);
+  padding-bottom: calc(var(--pad) * 0.6);
+}
+.section-eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ---------- Key numbers ---------- */
+.tile--stat { gap: 0.5rem; }
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  color: var(--ink-strong);
+  overflow-wrap: break-word;
+}
+.stat-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.stat-ctx {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ---------- Project tiles ---------- */
+.tile--project { justify-content: flex-start; }
+.project-meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.project-title {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: 1.6rem;
+  color: var(--ink-strong);
+}
+.project-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  flex: 1;
+}
+.project-link {
+  align-self: flex-start;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+/* Whole tile is clickable via a stretched overlay tied to the visible link text,
+   while the focus ring still hugs the link itself, not the invisible overlay. */
+.project-link::after { content: ""; position: absolute; inset: 0; }
+.tile--project:hover,
+.tile--project:has(.project-link:focus-visible) {
+  background: var(--tile-2);
+}
+
+/* ---------- Visual / media tiles ---------- */
+.tile--visual {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  min-height: 220px;
+}
+.tile--visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile--placeholder {
+  padding: var(--pad);
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px dashed var(--line);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--tile) 0 10px,
+    var(--tile-2) 10px 20px
+  );
+}
+.placeholder-tag {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.placeholder-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+.tile--label-alt { background: var(--paper-2); }
+.section-eyebrow--on-paper,
+.section-index--on-paper { color: var(--muted-on-paper); }
+
+.tile--paper {
+  background: var(--paper);
+  color: var(--ink-on-paper);
+}
+.contact-lead {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--ink-on-paper);
+}
+.contact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; justify-content: center; height: 100%; }
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-on-paper);
+  margin-right: 0.5em;
+}
+.contact-list a {
+  text-decoration: none;
+  color: var(--ink-on-paper);
+  border-bottom: 1px solid var(--accent);
+  overflow-wrap: break-word;
+}
+.contact-list a:hover { color: var(--accent); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.75rem clamp(16px, 4vw, 40px) 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+.site-footer p { margin: 0; }
+
+/* ============================================================================
+   RESPONSIVE — bento reflows in two steps: 12 cols -> 4 cols -> 1 col
+   ============================================================================ */
+@media (max-width: 960px) {
+  .bento, .subgrid { grid-template-columns: repeat(4, 1fr); }
+  .tile--hero { grid-column: 1 / -1; grid-row: auto; }
+  .tile--stack, .tile--cta { grid-column: span 2; }
+  .span-8, .span-7, .span-5 { grid-column: 1 / -1; }
+  .span-4, .span-3 { grid-column: span 2; }
+  .tile--visual { min-height: 260px; }
+}
+
+@media (max-width: 640px) {
+  .bento, .subgrid { grid-template-columns: 1fr; }
+  .tile--hero,
+  .tile--stack,
+  .tile--cta,
+  .span-8, .span-7, .span-5, .span-4, .span-3, .span-12 {
+    grid-column: 1 / -1;
+  }
+  .tile--hero { grid-row: auto; }
+  .site-nav { order: 3; flex: 1 1 100%; justify-content: center; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+  .tile--label { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+}
+
+/* ---------- Motion & contrast preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .site-header, .tile--cta, .cta-arrow { transition: none; }
+  .tile--cta:hover .cta-arrow { transform: none; }
+}

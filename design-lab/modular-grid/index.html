@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-modgrid">
+  <a class="skip-link" href="#main" data-i18n="index.skip">Skip to content</a>
+
+  <header class="site-header">
+    <a href="../../index.html" class="site-brand">
+      <span class="site-brand-mark" aria-hidden="true"></span>
+      <span class="site-brand-text">Dominik Barański</span>
+    </a>
+    <nav class="site-nav" aria-label="Main" data-i18n-attr="aria-label" data-i18n-attr-key="index.nav.aria">
+      <a href="#projects" class="site-nav-link" data-i18n="index.nav.projects">Projects</a>
+      <a href="#contact" class="site-nav-link" data-i18n="index.nav.contact">Contact</a>
+      <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
+    </nav>
+    <div class="site-header-actions">
+      <button id="lang-toggle" type="button" class="lang-toggle" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="bento">
+
+      <!-- M.00 — Identity -->
+      <article class="tile tile--hero" aria-labelledby="hero-heading">
+        <p class="tile-eyebrow">Portfolio — Unity developer</p>
+        <h1 id="hero-heading" class="hero-title">Dominik Barański: <span class="hero-role">Unity developer</span></h1>
+        <p class="hero-lead" data-i18n="index.hero.lead">I build game systems in Unity and C# with a focus on performance and testable code. My work ranges from a multithreaded simulation engine in an Android game with 15,000+ downloads on Google Play to enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project. As an intern at Rubens Games, I also built gameplay systems in a studio team, alongside the studio's artists. I'm looking for a junior/mid Unity developer role.</p>
+      </article>
+
+      <!-- M.01 — Stack -->
+      <div class="tile tile--stack">
+        <p class="tile-eyebrow">Stack</p>
+        <p class="stack-line" data-i18n="index.hero.stack">Unity · C# · Burst / Job System · URP shaders · Android</p>
+      </div>
+
+      <!-- M.02 — Start here -->
+      <a href="#projects" class="tile tile--cta">
+        <span class="tile-eyebrow tile-eyebrow--on-accent">Start here</span>
+        <span class="cta-row">
+          <span class="cta-text" data-i18n="index.hero.cta">View projects</span>
+          <span class="cta-arrow" aria-hidden="true">↓</span>
+        </span>
+      </a>
+
+      <!-- Key numbers -->
+      <section class="tile--wrap" id="numbers" aria-labelledby="numbers-h">
+        <div class="subgrid">
+          <div class="tile tile--label span-12">
+            <h2 id="numbers-h" class="section-eyebrow" data-i18n="case.keynums">Key numbers</h2>
+            <span class="section-index" aria-hidden="true">§ 01</span>
+          </div>
+
+          <div class="tile tile--stat span-3">
+            <span class="tile-tag" aria-hidden="true">01</span>
+            <b class="stat-value" data-i18n="gol.kn1.value">15,000+</b>
+            <span class="stat-label" data-i18n="gol.kn1.label">Downloads on Google Play</span>
+            <span class="stat-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
+          </div>
+
+          <div class="tile tile--stat span-3">
+            <span class="tile-tag" aria-hidden="true">02</span>
+            <b class="stat-value">48</b>
+            <span class="stat-label" data-i18n="grave.kn1.label">EditMode unit tests</span>
+            <span class="stat-ctx" data-i18n="grave.kn1.ctx">All cover the dungeon generator, which runs without a scene; many sweep dozens to hundreds of seeds.</span>
+          </div>
+
+          <div class="tile tile--stat span-3">
+            <span class="tile-tag" aria-hidden="true">03</span>
+            <b class="stat-value" data-i18n="grave.kn2.value">4,000</b>
+            <span class="stat-label" data-i18n="grave.kn2.label">Node cap per A* search</span>
+            <span class="stat-ctx" data-i18n="grave.kn2.ctx">A design limit, not a benchmark: past it, the search returns the best partial path instead of stalling the frame.</span>
+          </div>
+
+          <div class="tile tile--stat span-3">
+            <span class="tile-tag" aria-hidden="true">04</span>
+            <b class="stat-value" data-i18n="gol.kn2.value">64 → 141 gen/s</b>
+            <span class="stat-label" data-i18n="gol.kn2.label">Speed-up from direct chunk copies</span>
+            <span class="stat-ctx" data-i18n="gol.kn2.ctx">Random pattern of 275k live cells on a Pixel 6 Pro: per-generation replay vs whole-chunk copies (system 2).</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="tile--wrap" id="projects" aria-labelledby="projects-heading">
+        <div class="subgrid">
+          <div class="tile tile--label span-12">
+            <h2 id="projects-heading" class="section-eyebrow" data-i18n="index.section.projects">Projects</h2>
+            <span class="section-index" aria-hidden="true">§ 02</span>
+          </div>
+
+          <!-- Game of Life -->
+          <article class="tile tile--project span-7" aria-labelledby="proj-gol-h">
+            <span class="tile-tag" aria-hidden="true">01</span>
+            <p class="project-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</p>
+            <h3 class="project-title" id="proj-gol-h">Game of Life</h3>
+            <p class="project-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
+            <a class="project-link" href="../../game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
+          </article>
+          <figure class="tile tile--visual span-5">
+            <img src="../../images/game-of-life/logo.png" alt="Game of Life logo: a glider" width="540" height="540" loading="lazy" />
+          </figure>
+
+          <!-- Grave (no production art yet: placeholder) -->
+          <div class="tile tile--visual tile--placeholder span-5" aria-hidden="true">
+            <p class="placeholder-tag">PLACEHOLDER</p>
+            <p class="placeholder-desc">Insert gameplay clip/GIF here: top-down dungeon room, lit only inside the player's view cone, enemies visible only where the light reaches.</p>
+          </div>
+          <article class="tile tile--project span-7" aria-labelledby="proj-grave-h">
+            <span class="tile-tag" aria-hidden="true">02</span>
+            <p class="project-meta" data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</p>
+            <h3 class="project-title" id="proj-grave-h">Grave</h3>
+            <p class="project-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
+            <a class="project-link" href="../../grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
+          </article>
+
+          <!-- Luggage Please -->
+          <article class="tile tile--project span-7" aria-labelledby="proj-lp-h">
+            <span class="tile-tag" aria-hidden="true">03</span>
+            <p class="project-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games, July–September 2024</p>
+            <h3 class="project-title" id="proj-lp-h">Luggage Please</h3>
+            <p class="project-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
+            <a class="project-link" href="../../luggage-please.html"><span data-i18n="index.project.lp.cta">See how they work →</span></a>
+          </article>
+          <figure class="tile tile--visual span-5">
+            <img src="../../images/luggage-please/key-art.webp" width="2388" height="1668" loading="lazy" data-i18n-attr="alt" data-i18n-attr-key="lp.hero.alt" alt="The Luggage Please key art: a cartoon open suitcase packed with clothes and a rubber duck, surrounded by a pistol, a knife, a goldfish and an open book, above the game's title." />
+          </figure>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="tile--wrap" id="contact" aria-labelledby="contact-heading">
+        <div class="subgrid">
+          <div class="tile tile--label tile--label-alt span-12">
+            <h2 id="contact-heading" class="section-eyebrow section-eyebrow--on-paper" data-i18n="index.section.contact">Contact</h2>
+            <span class="section-index section-index--on-paper" aria-hidden="true">§ 03</span>
+          </div>
+          <div class="tile tile--paper span-5">
+            <p class="contact-lead" data-i18n="index.contact.lead">Happy to walk through the code behind these projects in an interview.</p>
+          </div>
+          <div class="tile tile--paper span-7">
+            <ul class="contact-list">
+              <li><span class="contact-label" data-i18n="index.contact.email.label">Email:</span> <a href="mailto:baranskidominik109@gmail.com">baranskidominik109@gmail.com</a></li>
+              <li><span class="contact-label" data-i18n="index.contact.linkedin.label">LinkedIn:</span> <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">linkedin.com/in/baranskidominik</a></li>
+              <li><span class="contact-label" data-i18n="index.contact.github.label">GitHub:</span> <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">github.com/dbarans</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Dominik Barański</p>
+  </footer>
+
+  <script src="../../js/header-scroll.js" defer></script>
+  <script src="../../js/i18n.js" defer></script>
+</body>
+</html>
