@@ -163,23 +163,35 @@ return false;</code></pre>
           <span class="cs-system-num" aria-hidden="true">02</span>
           <h2 id="sys-2-h" data-i18n="grave.sys2.title">Visibility system: a light mask rendered by a second camera and custom shaders</h2>
         </div>
-        <div class="cs-part cs-part--problem">
-          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
-          <p data-i18n="grave.sys2.problem">Everything outside the player's line of sight, enemies included, has to be hidden, and light from several sources (the player's view cone, lamps) must blend smoothly. An earlier version used the stencil buffer, which stores a simple on/off flag per pixel. Sprites were cut off sharply at the edge of the light, and two lights couldn't blend smoothly.</p>
+        <div class="cs-scrolly" data-scrub-src="images/grave/visibility-frames/f" data-scrub-count="112">
+          <figure class="cs-media cs-scrolly-media">
+            <div class="cs-media-frame cs-media-frame--standard cs-media-frame--filled">
+              <img src="images/grave/visibility-poster.webp" width="800" height="600" loading="lazy" alt="" />
+              <canvas width="800" height="600" aria-hidden="true"></canvas>
+            </div>
+            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the clip, frame by frame</p>
+            <figcaption class="cs-media-caption" data-i18n="grave.sys2.caption">The player turns in a room with pillars: each pillar cuts a sharp shadow into the view cone, and the enemy is visible only while it stands inside the light.</figcaption>
+          </figure>
+          <div class="cs-scrolly-text">
+            <div class="cs-part cs-part--problem">
+              <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+              <p data-i18n="grave.sys2.problem">Everything outside the player's line of sight, enemies included, has to be hidden, and light from several sources (the player's view cone, lamps) must blend smoothly. An earlier version used the stencil buffer, which stores a simple on/off flag per pixel. Sprites were cut off sharply at the edge of the light, and two lights couldn't blend smoothly.</p>
+            </div>
+            <div class="cs-part cs-part--how">
+              <span class="cs-part-label" data-i18n="case.how">How it works</span>
+              <p data-i18n="grave.sys2.how">The player's view cone and every lamp go through one shared mesh builder. Where two neighbouring rays hit different surfaces, a binary search between them finds the exact edge, so outlines stay sharp without casting more rays. Max blending lets overlapping lights take the brighter value instead of adding up. The mask keeps light level in alpha and light colour in RGB, so one texture both dims and tints the scene, and sprite shaders hide whatever no light reaches.</p>
+            </div>
+            <div class="cs-part cs-part--what">
+              <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+              <p data-i18n="grave.sys2.what">Working with Unity's rendering beyond ready-made components: an extra camera, render layers, a RenderTexture, blend modes and custom URP shaders, plus replacing an architecture once it hit its limits. It also shows profiling. The cone used to cast a full circle of rays at full density just to draw a small ring of vision around the player; sampling that ring more coarsely, with other fixes in the same pass including per-grid A* buffer caching, took the frame from ~30 ms to ~12 ms (measured in the editor).</p>
+            </div>
+            <p class="cs-source">
+              <span class="cs-source-label" data-i18n="case.source">Source</span>
+              <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Vision" target="_blank" rel="noopener noreferrer">Assets/Scripts/Vision</a>,
+              <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Shaders" target="_blank" rel="noopener noreferrer">Assets/Shaders</a>
+            </p>
+          </div>
         </div>
-        <div class="cs-part cs-part--how">
-          <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="grave.sys2.how">The player's view cone and every lamp go through one shared mesh builder. Where two neighbouring rays hit different surfaces, a binary search between them finds the exact edge, so outlines stay sharp without casting more rays. Max blending lets overlapping lights take the brighter value instead of adding up. The mask keeps light level in alpha and light colour in RGB, so one texture both dims and tints the scene, and sprite shaders hide whatever no light reaches.</p>
-        </div>
-        <div class="cs-part cs-part--what">
-          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="grave.sys2.what">Working with Unity's rendering beyond ready-made components: an extra camera, render layers, a RenderTexture, blend modes and custom URP shaders, plus replacing an architecture once it hit its limits. It also shows profiling. The cone used to cast a full circle of rays at full density just to draw a small ring of vision around the player; sampling that ring more coarsely, with other fixes in the same pass including per-grid A* buffer caching, took the frame from ~30 ms to ~12 ms (measured in the editor).</p>
-        </div>
-        <p class="cs-source">
-          <span class="cs-source-label" data-i18n="case.source">Source</span>
-          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Scripts/Vision" target="_blank" rel="noopener noreferrer">Assets/Scripts/Vision</a>,
-          <a href="https://github.com/dbarans/engineering-project/tree/main/Assets/Shaders" target="_blank" rel="noopener noreferrer">Assets/Shaders</a>
-        </p>
 
         <figure class="cs-diagram" role="group" aria-labelledby="grave-diag2-cap">
           <div class="cs-diagram-scroll">
@@ -217,16 +229,6 @@ return false;</code></pre>
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="grave-diag2-cap" data-i18n="grave.diag2.cap">Four stages of the mask pipeline, from casting rays to hiding whatever no light reaches.</figcaption>
-        </figure>
-
-        <figure class="cs-media">
-          <div class="cs-media-frame cs-media-frame--standard cs-media-frame--filled">
-            <video autoplay muted loop playsinline preload="metadata" width="960" height="720" poster="images/grave/visibility-poster.webp" aria-hidden="true">
-              <source src="images/grave/visibility.webm" type="video/webm" />
-              <source src="images/grave/visibility.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption class="cs-media-caption" data-i18n="grave.sys2.caption">The player turns in a room with pillars: each pillar cuts a sharp shadow into the view cone, and the enemy is visible only while it stands inside the light.</figcaption>
         </figure>
       </article>
 
