@@ -58,7 +58,7 @@
 
       <div class="cs-hero-grid">
         <div>
-          <p class="cs-kicker" data-i18n="case.kicker.gol">Solo · Unity 2022.3 · published on Google Play</p>
+          <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
           <h1>Game of Life</h1>
           <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
           <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
@@ -99,7 +99,7 @@
           <span class="cs-keynum-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
         </div>
         <div class="cs-keynum">
-          <b>64 → 141 gen/s</b>
+          <b data-i18n="gol.kn2.value">64 → 141 gen/s</b>
           <span class="cs-keynum-label" data-i18n="gol.kn2.label">Speed-up from direct chunk copies</span>
           <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern of 275k live cells on a Pixel 6 Pro: per-generation replay vs whole-chunk copies (system 2).</span>
         </div>
@@ -154,7 +154,7 @@
         </div>
         <div class="cs-code">
           <p class="cs-code-file">BitmaskGenerationSolver.cs · Step()</p>
-          <pre tabindex="0" aria-label="Code excerpt from BitmaskGenerationSolver.cs, the Step method: building the candidate set and scheduling the Burst job chain"><code class="language-csharp">private void Step(bool allowBirth, List&lt;Vector3Int&gt; bornOut, List&lt;Vector3Int&gt; diedOut, bool emitCellDelta)
+          <pre tabindex="0" aria-label="Code excerpt from BitmaskGenerationSolver.cs, the Step method: building the candidate set and scheduling the Burst job chain" data-i18n-attr="aria-label" data-i18n-attr-key="gol.sys1.code.aria"><code class="language-csharp">private void Step(bool allowBirth, List&lt;Vector3Int&gt; bornOut, List&lt;Vector3Int&gt; diedOut, bool emitCellDelta)
 {
     // …
     // Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
@@ -205,35 +205,35 @@
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API (a producer–consumer design with explicit lock discipline), and tracking down a counter-intuitive regression. Switching to whole-chunk copies took a 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro.</p>
+          <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API: a producer–consumer design with explicit lock discipline. Two locks, one guarding the board state and one guarding the counters behind the zoomed-out density view (system 3), are always taken in the same order, which rules out deadlock. It also shows tracking down a counter-intuitive regression: switching to whole-chunk copies took a 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro.</p>
         </div>
 
         <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag2-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
-            <svg viewBox="0 0 880 320" role="img" aria-label="Two lanes: calculation thread above, main thread below. Below the animation threshold, a Burst-jobs box feeds a delta ring buffer straddling both lanes, and the main thread replays one generation per frame with animations. Above the threshold, a separate Burst-jobs box feeds, still inside the calculation-thread lane, a box that copies whole changed chunks; that copy reaches a displayed cell set straddling both lanes, and the main thread only renders, independent of simulation speed.">
+            <svg viewBox="0 0 880 340" role="img" aria-label="Two lanes: calculation thread above, main thread below. Below the animation threshold, a Burst-jobs box feeds a delta ring buffer straddling both lanes, and the main thread replays one generation per frame with animations. Above the threshold, a separate Burst-jobs box feeds, still inside the calculation-thread lane, a box that copies whole changed chunks; that copy reaches a displayed cell set straddling both lanes, and the main thread only renders, independent of simulation speed." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria">
               <defs>
                 <marker id="gol2-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
                 </marker>
               </defs>
               <rect x="10" y="30" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
-              <rect x="10" y="185" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
+              <rect x="10" y="205" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
               <text x="24" y="48" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneCalc">CALCULATION THREAD</text>
-              <text x="24" y="203" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
+              <text x="24" y="223" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
               <text x="190" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathA">BELOW ANIMATION THRESHOLD</text>
               <text x="630" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathB">ABOVE THRESHOLD</text>
 
               <rect x="20" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
               <text x="80" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
 
-              <rect x="190" y="100" width="220" height="95" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="300" y="140" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.ring">Delta ring buffer</text>
-              <text x="300" y="163" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
+              <rect x="190" y="120" width="220" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="300" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.ring">Delta ring buffer</text>
+              <text x="300" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
 
-              <rect x="190" y="208" width="220" height="74" class="cs-i-box" aria-hidden="true" />
-              <text x="300" y="236" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.replay">Replays one gen/frame</text>
-              <text x="300" y="258" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.withAnim">With animations</text>
+              <rect x="190" y="228" width="220" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="300" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.replay">One generation per frame</text>
+              <text x="300" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.withAnim">With animations</text>
 
               <rect x="450" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
               <text x="510" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
@@ -241,22 +241,22 @@
               <rect x="610" y="54" width="230" height="44" class="cs-i-box" aria-hidden="true" />
               <text x="725" y="81" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.copies">Copies changed chunks</text>
 
-              <rect x="610" y="100" width="230" height="95" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="725" y="140" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.displayed">Displayed cell set</text>
-              <text x="725" y="163" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.shared">shared state</text>
+              <rect x="610" y="120" width="230" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="725" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.displayed">Displayed cell set</text>
+              <text x="725" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.shared">shared state</text>
 
-              <rect x="610" y="208" width="230" height="74" class="cs-i-box" aria-hidden="true" />
-              <text x="725" y="236" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.renders">Renders only</text>
-              <text x="725" y="258" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
+              <rect x="610" y="228" width="230" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="725" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.renders">Renders only</text>
+              <text x="725" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
 
-              <path d="M140,76 L188,147" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M300,195 L300,206" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M140,76 L188,167" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M300,215 L300,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
               <path d="M570,76 L608,76" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M725,98 L725,99" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M725,195 L725,206" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,98 L725,118" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,215 L725,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
             </svg>
           </div>
-          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Two locks, always taken in one fixed order: lodLock (LOD density counters), then gridLock (board state). A fixed order rules out deadlock.</figcaption>
+          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Two ways to deliver results, chosen by simulation speed: below the animation threshold the main thread replays each generation with animations; above it the calculation thread copies changed chunks itself and the main thread only renders.</figcaption>
         </figure>
       </article>
 
@@ -315,13 +315,13 @@
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, verified from the command line without opening the editor.</p>
+          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, in three concrete techniques. Differential testing checks every generation against a brute-force reference, not just the final state, so an error shows up in the generation that caused it. A golden-hash regression check proves that a refactor changed nothing. A negative control proves that the headless Burst check is able to fail. All of it runs from the command line, without opening the editor.</p>
         </div>
 
         <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag4-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
-            <svg viewBox="0 0 820 380" role="img" aria-label="The same solver source branches into two build targets: the Android store build, and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A separate, unconnected BurstProbe check compiles the same jobs for ARM64 with a negative control.">
+            <svg viewBox="0 0 820 380" role="img" aria-label="The same solver source branches into the Android store build and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A BurstProbe check compiles the same five jobs for ARM64, with a negative control that must fail to compile." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag4.aria">
               <defs>
                 <marker id="gol4-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
@@ -334,6 +334,7 @@
 
               <path d="M240,155 L336,72" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
               <path d="M240,195 L336,200" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <path d="M180,220 L440,268" class="cs-i-line-dashed" marker-end="url(#gol4-arrow)" aria-hidden="true" />
 
               <rect x="340" y="40" width="220" height="60" class="cs-i-box" aria-hidden="true" />
               <text x="450" y="65" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.android">Android store build</text>
@@ -352,7 +353,7 @@
 
               <rect x="330" y="270" width="240" height="80" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
               <text x="450" y="295" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.probe">BurstProbe: ARM64 compile</text>
-              <text x="450" y="313" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative"><tspan x="450" dy="0">Negative control —</tspan><tspan x="450" dy="15">separate, not from source</tspan></text>
+              <text x="450" y="313" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative">Negative control</text>
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="gol-diag4-cap" data-i18n="gol.diag4.cap">Both branches compile the same files, so the tests are never a stale copy of the engine.</figcaption>
@@ -370,7 +371,7 @@
       </div>
     </section>
 
-    <nav class="cs-next" aria-label="Next case study">
+    <nav class="cs-next" aria-label="Next case study" data-i18n-attr="aria-label" data-i18n-attr-key="case.next.aria">
       <a href="grave.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Grave →</strong></a>
     </nav>
   </main>

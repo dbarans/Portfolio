@@ -34,9 +34,9 @@
         <span class="site-brand-mark" aria-hidden="true"></span>
         <span class="site-brand-text">Dominik Barański</span>
       </a>
-      <nav class="site-nav" aria-label="Main">
-        <a href="#contact" class="site-nav-link" data-i18n="index.nav.contact">Contact</a>
+      <nav class="site-nav" aria-label="Main" data-i18n-attr="aria-label" data-i18n-attr-key="index.nav.aria">
         <a href="#projects" class="site-nav-link" data-i18n="index.nav.projects">Projects</a>
+        <a href="#contact" class="site-nav-link" data-i18n="index.nav.contact">Contact</a>
         <a href="https://github.com/dbarans" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.github">GitHub</a>
         <a href="https://www.linkedin.com/in/baranskidominik/" class="site-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="index.nav.linkedin">LinkedIn</a>
       </nav>
@@ -58,23 +58,23 @@
         <div class="project-grid">
           <article class="project-card" aria-labelledby="proj-gol-h">
             <span class="project-card-num" aria-hidden="true">01</span>
-            <p class="project-card-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · published on Google Play · 15,000+ downloads</p>
+            <p class="project-card-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</p>
             <h3 class="project-card-title" id="proj-gol-h">Game of Life</h3>
             <p class="project-card-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
             <a class="project-card-link" href="game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
           </article>
           <article class="project-card" aria-labelledby="proj-grave-h">
             <span class="project-card-num" aria-hidden="true">02</span>
-            <p class="project-card-meta" data-i18n="index.project.grave.meta">Unity 6 · URP 2D · team of 4 · engineering thesis</p>
+            <p class="project-card-meta" data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</p>
             <h3 class="project-card-title" id="proj-grave-h">Grave</h3>
             <p class="project-card-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
             <a class="project-card-link" href="grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
           </article>
           <article class="project-card" aria-labelledby="proj-lp-h">
             <span class="project-card-num" aria-hidden="true">03</span>
-            <p class="project-card-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 · URP · studio team · internship at Rubens Games</p>
+            <p class="project-card-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games, July–September 2024</p>
             <h3 class="project-card-title" id="proj-lp-h">Luggage Please</h3>
-            <p class="project-card-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is open, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
+            <p class="project-card-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
             <a class="project-card-link" href="luggage-please.html"><span data-i18n="index.project.lp.cta">See how they work →</span></a>
           </article>
         </div>

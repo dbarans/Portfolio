@@ -9,6 +9,7 @@
     pl: {
       // ---------- Shared: header / nav (index.html) ----------
       'index.skip': 'Przejdź do treści',
+      'index.nav.aria': 'Menu główne',
       'index.nav.contact': 'Kontakt',
       'index.nav.projects': 'Projekty',
       'index.nav.github': 'GitHub',
@@ -25,17 +26,17 @@
 
       // ---------- index.html: projects ----------
       'index.section.projects': 'Projekty',
-      'index.project.gol.meta': 'Android · Unity 2022.3 · solo · opublikowana w Google Play · 15 000+ pobrań',
+      'index.project.gol.meta': 'Android · Unity 2022.3 · solo · 15 000+ pobrań w Google Play',
       'index.project.gol.body':
         'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek. Najważniejsza praca kryje się w silniku: obliczenia na bitach w Burst i Job System, wątek symulacji, który nie blokuje renderowania, i renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca.',
       'index.project.gol.cta': 'Zobacz, jak działa silnik →',
-      'index.project.grave.meta': 'Unity 6 · URP 2D · zespół 4 osób · praca inżynierska',
+      'index.project.grave.meta': 'PC · Unity 6 URP 2D · zespół 4 osób · praca inżynierska',
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
       'index.project.grave.cta': 'Zobacz systemy →',
-      'index.project.lp.meta': 'PC · Unity 2022.3 · URP · zespół studia · staż w Rubens Games',
+      'index.project.lp.meta': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024',
       'index.project.lp.body':
-        'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko wtedy, gdy walizka jest otwarta, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
+        'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
       'index.project.lp.cta': 'Zobacz, jak działają →',
 
       // ---------- index.html: contact ----------
@@ -58,12 +59,13 @@
       'case.takeaway': 'Wnioski',
       'case.source': 'Kod',
       'case.next': 'Następny projekt',
+      'case.next.aria': 'Następne studium przypadku',
       'case.foot.linkedin': 'LinkedIn',
       'case.foot.email': 'E-mail',
       'case.foot.repo': 'Repozytorium ↗',
-      'case.kicker.gol': 'Solo · Unity 2022.3 · opublikowana w Google Play',
-      'case.kicker.grave': 'Zespół 4 osób · praca inżynierska, 2026',
-      'case.kicker.lp': 'PC · Unity 2022.3 · zespół studia · staż w Rubens Games',
+      'case.kicker.gol': 'Android · Unity 2022.3 · solo · opublikowana w Google Play',
+      'case.kicker.grave': 'PC · Unity 6 URP 2D · zespół 4 osób · praca inżynierska, 2026',
+      'case.kicker.lp': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024',
       'case.foot.gol':
         'Projekt solo. Repozytorium jest prywatne — fragmenty kodu są powyżej, a resztę chętnie pokażę na rozmowie.',
       'case.foot.grave': 'Projekt zespołowy (4 osoby). Pokazuję tylko systemy, które zbudowałem sam.',
@@ -74,7 +76,7 @@
         'Symulator gry w życie na Androida zbudowany tak, by radzić sobie z wzorcami liczącymi setki tysięcy żywych komórek: bitowo-równoległy silnik na Burst/Job System, zweryfikowany poza Unity. 15 000+ pobrań w Google Play.',
       'case.meta.grave.title': 'Grave — studium przypadku — Dominik Barański',
       'case.meta.grave.description':
-        'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry zrobionego w 4-osobowym zespole w Unity 6: pathfinding A*, maska światła renderowana przez drugą kamerę, generator lochów z 48 testami jednostkowymi i AI przeciwników z komponentów.',
+        'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry, zrobionego w 4-osobowym zespole w Unity 6: pathfinding A*, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów oparty na seedzie, pokryty 48 testami jednostkowymi, oraz AI przeciwników złożone z komponentów.',
       'case.meta.lp.title': 'Luggage Please — studium przypadku — Dominik Barański',
       'case.meta.lp.description':
         'Systemy zbudowane podczas stażu w Rubens Games: fizyka walizki i przedmiotów, skaner rentgenowski złożony z warstw i renderer features URP oraz kontekstowe koło interakcji.',
@@ -93,6 +95,7 @@
       'gol.kn1.value': '15 000+',
       'gol.kn1.label': 'Pobrań w Google Play',
       'gol.kn1.ctx': 'Strona gry w Google Play; projekt solo.',
+      'gol.kn2.value': '64 → 141 gen./s',
       'gol.kn2.label': 'Zysk z kopiowania całych chunków',
       'gol.kn2.ctx':
         'Losowy wzorzec z 275 tys. żywych komórek na Pixelu 6 Pro: odtwarzanie generacja po generacji vs kopiowanie całych chunków (system 2).',
@@ -128,6 +131,8 @@
         'Plansza jest podzielona na chunki 64×64 zapisane jako maski bitowe (jedna 64-bitowa liczba na wiersz, jeden bit na komórkę). Każdy krok przelicza tylko chunki sąsiadujące z tymi, które zmieniły się w poprzednim kroku, liczy sąsiadów 64 komórek naraz arytmetyką bitową i działa jako łańcuch pięciu jobów Burst na pamięci natywnej. Burst kompiluje ograniczony podzbiór C# do zoptymalizowanego kodu natywnego, a Job System rozkłada tę pracę na wątki robocze.',
       'gol.sys1.what':
         'Projektowanie zorientowane na dane z użyciem Burst i Job System oraz profilowanie na urządzeniu docelowym. Zrównoleglenie samego rdzenia obliczeń dało wyraźny zysk w edytorze, ale na telefonie nie dało mierzalnej różnicy, bo prawdziwym wąskim gardłem było szeregowe zbieranie danych wokół niego. Wersja w sklepie uruchamia cały pipeline jako joby: na gęstym losowym wzorcu cztery wątki robocze dają 1,96 raza więcej generacji na sekundę niż jeden (pomiar na telefonie).',
+      'gol.sys1.code.aria':
+        'Fragment kodu z BitmaskGenerationSolver.cs, metoda Step: budowa zbioru kandydatów i planowanie łańcucha jobów Burst',
 
       // ---------- game-of-life.html: system 2 ----------
       'gol.sys2.title': 'Symulacja w wątku w tle, z dwoma sposobami przekazywania wyników',
@@ -136,15 +141,17 @@
       'gol.sys2.how':
         'Poniżej prędkości, przy której animacje i tak się wyłączają, zmiany każdej generacji (narodzone i obumarłe komórki) trafiają do bufora pierścieniowego, czyli kolejki o stałym rozmiarze, która ponownie używa swoich slotów. Dzięki temu wątek obliczeniowy może liczyć z wyprzedzeniem. Powyżej tej prędkości nie ma czego animować, więc wątek obliczeniowy sam kopiuje całe zmienione chunki do wyświetlanego stanu, a główny wątek tylko renderuje.',
       'gol.sys2.what':
-        'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku (model producent–konsument z jawną dyscypliną locków), i wytropienie nieintuicyjnej regresji. Przejście na kopiowanie całych chunków podniosło tempo losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro.',
+        'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku: model producent–konsument z jawną dyscypliną locków. Dwa locki, jeden chroniący stan planszy, a drugi liczniki, z których powstaje widok gęstości przy dużym oddaleniu (system 3), są zawsze brane w tej samej kolejności, co wyklucza zakleszczenie. Do tego wytropienie nieintuicyjnej regresji: przejście na kopiowanie całych chunków podniosło tempo losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro.',
+      'gol.diag2.aria':
+        'Dwa tory: u góry wątek obliczeniowy, na dole główny wątek. Poniżej progu animacji blok jobów Burst zasila bufor pierścieniowy zmian, leżący na granicy obu torów, a główny wątek odtwarza jedną generację na klatkę, z animacjami. Powyżej progu osobny blok jobów Burst zasila, nadal na torze wątku obliczeniowego, blok kopiujący całe zmienione chunki; kopia trafia do wyświetlanego zbioru komórek na granicy obu torów, a główny wątek tylko renderuje, niezależnie od tempa symulacji.',
       'gol.diag2.laneCalc': 'WĄTEK OBLICZENIOWY',
       'gol.diag2.laneMain': 'WĄTEK GŁÓWNY',
       'gol.diag2.pathA': 'PONIŻEJ PROGU ANIMACJI',
       'gol.diag2.pathB': 'POWYŻEJ PROGU',
       'gol.diag2.burst': 'Joby Burst',
-      'gol.diag2.ring': 'Bufor pierścieniowy delt',
-      'gol.diag2.ringSub': 'delty, nie migawki',
-      'gol.diag2.replay': 'Odtwarza gen./klatkę',
+      'gol.diag2.ring': 'Bufor pierścieniowy zmian',
+      'gol.diag2.ringSub': 'zmiany, nie migawki',
+      'gol.diag2.replay': 'Jedna generacja na klatkę',
       'gol.diag2.withAnim': 'Z animacjami',
       'gol.diag2.copies': 'Kopiuje zmienione chunki',
       'gol.diag2.displayed': 'Wyświetlany zbiór komórek',
@@ -152,7 +159,7 @@
       'gol.diag2.renders': 'Tylko renderuje',
       'gol.diag2.fpsIndep': 'FPS niezależny od tempa',
       'gol.diag2.cap':
-        'Dwa locki, zawsze brane w tej samej kolejności: najpierw lodLock (liczniki gęstości LOD), potem gridLock (stan planszy). Stała kolejność wyklucza zakleszczenie.',
+        'Dwa sposoby przekazywania wyników, wybierane zależnie od tempa symulacji: poniżej progu animacji główny wątek odtwarza każdą generację z animacjami; powyżej niego wątek obliczeniowy sam kopiuje zmienione chunki, a główny wątek tylko renderuje.',
 
       // ---------- game-of-life.html: system 3 ----------
       'gol.sys3.title': 'Koszt renderowania zależny od ekranu, a nie od wzorca',
@@ -174,7 +181,9 @@
       'gol.sys4.how':
         'Konsolowy harness .NET kompiluje te same pliki źródłowe solvera, które trafiają do wersji w sklepie, a mały shim zastępuje kolekcje, Jobs i Burst z Unity. Każda generacja każdego scenariusza (glidery przekraczające granice chunków i wchodzące w ujemne współrzędne, pusta plansza) jest porównywana komórka po komórce z naiwną implementacją referencyjną. Cały przebieg daje też jeden hash wzorcowy, który refaktor przenoszący tylko kod musi odtworzyć bajt w bajt. Uruchamiana bez edytora kompilacja wszystkich pięciu jobów kompilatorem Burst pod ARM64 zawiera kontrolę negatywną, czyli kod, który musi się nie skompilować, więc czysty wynik faktycznie coś dowodzi.',
       'gol.sys4.what':
-        'Dyscyplinę testowania kluczowej logiki gry, sprawdzanej z linii poleceń bez otwierania edytora.',
+        'Dyscyplinę testowania kluczowej logiki gry w trzech konkretnych technikach. Testy różnicowe sprawdzają każdą generację względem implementacji brute-force, a nie tylko stan końcowy, więc błąd wychodzi w tej generacji, w której powstał. Test regresji oparty na hashu wzorcowym dowodzi, że refaktor niczego nie zmienił. Kontrola negatywna dowodzi, że sprawdzanie Burst bez edytora w ogóle potrafi zgłosić błąd. Wszystko działa z linii poleceń, bez otwierania edytora.',
+      'gol.diag4.aria':
+        'To samo źródło solvera trafia do builda Android do sklepu i do harnessu testowego .NET, który porównuje każdą generację z naiwną implementacją referencyjną i sprowadza każdy przebieg do jednego hasha wzorcowego. BurstProbe kompiluje te same pięć jobów pod ARM64, z kontrolą negatywną, która musi się nie skompilować.',
       'gol.diag4.source': 'To samo źródło solvera',
       'gol.diag4.android': 'Build Android do sklepu',
       'gol.diag4.androidSub': 'gra w sklepie',
@@ -185,8 +194,7 @@
       'gol.diag4.hash': 'Hash wzorcowy',
       'gol.diag4.hashSub': 'bajt w bajt',
       'gol.diag4.probe': 'BurstProbe: kompilacja ARM64',
-      'gol.diag4.negative':
-        '<tspan x="450" dy="0">Kontrola negatywna —</tspan><tspan x="450" dy="15">osobno, nie ze źródła</tspan>',
+      'gol.diag4.negative': 'Kontrola negatywna',
       'gol.diag4.cap':
         'Obie gałęzie kompilują te same pliki, więc testy nigdy nie są nieaktualną kopią silnika.',
 
@@ -250,6 +258,8 @@
         'Collidery poziomu są próbkowane do płaskiej siatki, która dla każdego pola zapisuje, czy da się po nim przejść; po zniszczeniu przeszkody siatka jest aktualizowana lokalnie. Flood fill dzieli ją na spójne regiony, więc nieosiągalny cel odpada w O(1), zanim wyszukiwanie w ogóle ruszy. Wyszukiwanie korzysta z kopca binarnego, czyli kolejki priorytetowej, która zwraca najtańszy węzeł w O(log n). Bufory są używane ponownie między wyszukiwaniami, a zamiast je czyścić, unieważnia się je numerem wersji nadawanym każdemu wyszukiwaniu. Liczba odwiedzonych węzłów ma limit, a po jego przekroczeniu zwracana jest najlepsza częściowa ścieżka, więc gra się nie zawiesza.',
       'grave.sys1.what':
         'Przerobienie algorytmu z podręcznika na taki, którego koszt na klatkę jest ograniczony, przy czym przygotowanie zależy od przeszukanego obszaru, a nie od rozmiaru mapy. Ruch jest wymiennym komponentem-strategią za wąskimi interfejsami, więc logika przeciwnika nie zależy od pathfindera, a A* można zastąpić prostym ruchem bezpośrednim.',
+      'grave.sys1.code.aria':
+        'Fragment kodu z AStarPathfinder.cs, metoda FindPath: odrzucenie celu po regionie, pętla wyszukiwania na kopcu, limit węzłów i awaryjny zwrot częściowej ścieżki',
 
       // ---------- grave.html: system 2 ----------
       'grave.sys2.title': 'System widoczności: maska światła renderowana przez drugą kamerę i własne shadery',
@@ -271,6 +281,8 @@
       'grave.diag2.b4a': 'Nakładka ciemności',
       'grave.diag2.b4b': '+ shadery sprite’ów',
       'grave.diag2.cap': 'Cztery etapy maski, od rzucania promieni po ukrycie tego, czego nie sięga światło.',
+      'grave.diag2.aria':
+        "Czteroetapowy pipeline, od góry do dołu. Pierwszy: wachlarz promieni dla każdego światła znajduje krawędzie i buduje mesh za pomocą OcclusionMeshBuilder, wspólnego dla gracza i lamp. Drugi: kamera maski renderuje te meshe do RenderTexture z blendingiem typu max, więc wygrywa jaśniejsze światło; działa na warstwie VisionMask. Trzeci: wynik jest udostępniany jako globalna tekstura _VisionMask. Czwarty: nakładka ciemności i shadery sprite'ów próbkują tę teksturę, żeby przyciemnić scenę i ukryć wszystko, do czego nie dociera światło.",
 
       // ---------- grave.html: system 3 ----------
       'grave.sys3.title': 'Generator lochów: z seeda, walidowany, przetestowany',
@@ -281,6 +293,8 @@
       'grave.sys3.what':
         'Zastosowanie algorytmów grafowych do realnego problemu w grze i architekturę przygotowaną do testowania. Generator nie potrzebuje sceny, więc pokrywa go 48 testów jednostkowych EditMode. Wiele z nich sprawdza dziesiątki lub setki seedów; w jednym z testów każdy z 500 losowych seedów musi przejść walidację i dać unikalny układ.',
       'grave.sys3.tests.label': 'testy:',
+      'grave.sys3.code.aria':
+        'Fragment kodu z RoomCorridorGenerator.cs, metoda BuildOnce: cały pipeline generowania, jeden etap na linię, każdy z własnym strumieniem losowości',
 
       // ---------- grave.html: system 4 ----------
       'grave.sys4.title':
@@ -288,9 +302,9 @@
       'grave.sys4.problem':
         'W wygenerowanym lochu jest wielu przeciwników. Każdy uruchamia maszynę stanów (patrol, pościg, sprawdzanie tropu) i kilka razy na sekundę pełne wyszukiwanie A*, choć większość z nich jest daleko od gracza. Typy przeciwników różnią się też tym, jak wyczuwają gracza, a dodanie nowego typu nie powinno wymagać zmian we wspólnej klasie bazowej.',
       'grave.sys4.how':
-        'EnemyBase wyszukuje swoje komponenty po interfejsach i nie wie, jakie klasy za nimi stoją. Odpytuje wszystkie podpięte detektory, a każdy z nich może potwierdzić obecność gracza. Słuch to osobny kanał zasilany przez szynę zdarzeń hałasu: usłyszany hałas każe przeciwnikowi sprawdzić miejsce, ale nie oznacza wykrycia, bo to tylko podejrzenie. Strefy aktualizacji z diagramu są liczone od zasięgu zmysłów konkretnego przeciwnika, więc budżet dopasowuje się do jego typu. Losowy rozrzut sprawia, że grupy przeciwników nie aktualizują się w tej samej klatce, a uśpieni przeciwnicy zwalniają zapamiętane ścieżki.',
+        '<code>EnemyBase</code> wyszukuje swoje komponenty po interfejsach i nie wie, jakie klasy za nimi stoją. Odpytuje wszystkie podpięte detektory, a każdy z nich może potwierdzić obecność gracza. Słuch to osobny kanał zasilany przez szynę zdarzeń hałasu: usłyszany hałas każe przeciwnikowi sprawdzić miejsce, ale nie oznacza wykrycia, bo to tylko podejrzenie. Strefy aktualizacji z diagramu są liczone od zasięgu zmysłów konkretnego przeciwnika, więc budżet dopasowuje się do jego typu. Losowy rozrzut sprawia, że grupy przeciwników nie aktualizują się w tej samej klatce, a uśpieni przeciwnicy zwalniają zapamiętane ścieżki.',
       'grave.sys4.what':
-        'Kompozycję zamiast dziedziczenia w praktyce. „Ślepy” typ przeciwnika to podklasa licząca 16 linii, której jedyną realną treścią jest [RequireComponent(typeof(SoundPlayerDetector))]: ślepota oznacza po prostu, że jego prefab nie ma VisionPlayerDetector. Ten typ doszedł bez żadnych zmian w klasie bazowej. Do tego budżetowanie kosztu AI na dużym poziomie bez pogorszenia reakcji przeciwników w pobliżu gracza.',
+        'Kompozycję zamiast dziedziczenia w praktyce. „Ślepy” typ przeciwnika, <code>BlindListenerEnemy</code>, to podklasa, której jedyną realną treścią jest <code>[RequireComponent(typeof(SoundPlayerDetector))]</code>: ślepota oznacza po prostu, że jego prefab nie ma <code>VisionPlayerDetector</code>. Ten typ doszedł bez żadnych zmian w <code>EnemyBase</code>. Do tego budżetowanie kosztu AI na dużym poziomie bez pogorszenia reakcji przeciwników w pobliżu gracza.',
       'grave.diag4.senses': 'ZMYSŁY',
       'grave.diag4.stateMachine': 'maszyna stanów',
       'grave.diag4.sight': 'Wykrycie: wzrok',
@@ -301,6 +315,12 @@
       'grave.diag4.noSight': 'Brak komponentu wzroku',
       'grave.diag4.blind':
         '„Ślepy” typ przeciwnika to ten sam hub bez szprychy wzroku — dodany bez zmiany ani jednej linii we wspólnej klasie bazowej.',
+      'grave.diag4hub.aria':
+        "EnemyBase stoi w środku huba. Przez interfejsy odpytuje dwa komponenty zmysłów, z których każdy łączy się z konkretnym punktem na krawędzi huba: IPlayerDetector, implementowany przez VisionPlayerDetector, odpowiada za wzrok, a INoiseSensor, implementowany przez SoundPlayerDetector i zasilany z NoiseEvents, za słuch, który wzbudza tylko podejrzenie, a nie wykrycie. Osobna, przerywana szprycha prowadzi w dół do IMovementStrategy, implementowanego przez PathfindingMovement albo SimpleDirectMovement — ruch nie jest zmysłem. Panel z boku, połączony z hubem własną linią, pokazuje ten sam hub bez szprychy wzroku: ślepy typ przeciwnika.",
+      'grave.diag4ringsWide.aria':
+        'Koncentryczne pierścienie wokół gracza, z legendą obok. Najbardziej wewnętrzny krąg jest aktualizowany co klatkę, a jego promień to zasięg zmysłów plus margines. Środkowy pas aktualizuje się co interwał, z losowym rozrzutem. Zewnętrzny pas jest uśpiony i zwalnia zapamiętaną ścieżkę. Dwa bliskie okręgi na granicy uśpienia oznaczają histerezę — linia wybudzenia leży tuż wewnątrz linii uśpienia — a dolny próg bezpieczeństwa gwarantuje, że przeciwnik, który mógłby jeszcze wyczuć gracza, nigdy nie zostanie uśpiony.',
+      'grave.diag4ringsTall.aria':
+        'Koncentryczne pierścienie wokół gracza, z legendą pod spodem. Najbardziej wewnętrzny krąg jest aktualizowany co klatkę, a jego promień to zasięg zmysłów plus margines. Środkowy pas aktualizuje się co interwał, z losowym rozrzutem. Zewnętrzny pas jest uśpiony i zwalnia zapamiętaną ścieżkę. Dwa bliskie okręgi na granicy uśpienia oznaczają histerezę — linia wybudzenia leży tuż wewnątrz linii uśpienia — a dolny próg bezpieczeństwa gwarantuje, że przeciwnik, który mógłby jeszcze wyczuć gracza, nigdy nie zostanie uśpiony.',
       'grave.diag4.part1': 'Zmysły jako komponenty za interfejsami — hub, nie pipeline',
       'grave.diag4.part2': 'Budżet aktualizacji zależny od odległości od gracza',
       'grave.diag4.player': 'Gracz',
@@ -312,7 +332,7 @@
       'grave.diag4.safety.d': 'nigdy w zasięgu zmysłów',
       'grave.diag4.hysteresis': 'Histereza: uśpienie / wybudzenie',
       'grave.diag4.zonecap':
-        'Podłoga bezpieczeństwa gwarantuje, że nigdy nie zostanie zaparkowany przeciwnik, który mógłby wyczuć gracza; histereza nie pozwala tym na granicy przełączać się tam i z powrotem.',
+        'Dolny próg bezpieczeństwa sprawia, że przeciwnik, który mógłby jeszcze wyczuć gracza, nigdy nie zostaje uśpiony; histereza nie pozwala przeciwnikom na granicy przełączać się tam i z powrotem.',
 
       // ---------- grave.html: takeaway ----------
       'grave.takeaway':
@@ -326,6 +346,8 @@
       'lp.hero.alt':
         'Grafika tytułowa Luggage Please: rysunkowa otwarta walizka z ubraniami i gumową kaczką, a wokół niej pistolet, nóż, złota rybka i otwarta książka; pod spodem tytuł gry.',
       'lp.hero.credit': 'Grafika: Rubens Games.',
+      'lp.meta.ogImageAlt':
+        'Grafika tytułowa Luggage Please na czarnym tle: rysunkowa otwarta walizka ze złożonymi ubraniami i gumową kaczką, a wokół niej złota rybka, pistolet, nóż i otwarta książka; pod spodem tytuł gry.',
 
       // ---------- luggage-please.html: at a glance ----------
       'lp.glance.team.t': 'Zespół',
@@ -335,13 +357,13 @@
         'trzy zbudowane przeze mnie systemy: fizykę walizki i przedmiotów, skaner rentgenowski, kontekstowe koło interakcji',
       'lp.glance.engine.t': 'Silnik',
       'lp.glance.platform.t': 'Platforma',
-      'lp.glance.status.d': 'projekt ze stażu, niewydany',
+      'lp.glance.status.d': 'projekt ze stażu (lipiec–wrzesień 2024), niewydany',
       'lp.glance.tech.t': 'Kluczowe technologie (w tych systemach)',
       'lp.glance.tech.d':
-        'C#, fizyka Rigidbody, zapytania fizyczne (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), culling mask, RenderTexture, uGUI, TextMeshPro',
+        'C#, fizyka Rigidbody, zapytania fizyczne (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), Shader Graph, culling mask, RenderTexture, uGUI, TextMeshPro',
       'lp.glance.code.t': 'Kod',
       'lp.glance.code.d':
-        'projekt studia, niepubliczny; fragmenty kodu na tej stronie pokazuję za zgodą Rubens Games',
+        'projekt studia, niepubliczny; cały pokazany tu kod napisałem sam w czasie stażu, a pokazuję go za zgodą Rubens Games',
 
       // ---------- luggage-please.html: systems on this page ----------
       'lp.toc1.skills': 'Siły Rigidbody · zapytania fizyczne · przełączanie w tryb kinematyczny',
@@ -349,22 +371,24 @@
       'lp.toc3.skills': 'uGUI · UI oddzielone od logiki gry · korutyny',
 
       // ---------- luggage-please.html: system 1 ----------
-      'lp.sys1.title': 'Fizyka przedmiotów działająca tylko w otwartej walizce',
+      'lp.sys1.title': 'Fizyka przedmiotów działająca tylko w trakcie kontroli',
       'lp.sys1.problem':
         'Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.',
       'lp.sys1.how':
-        'Fizyka przedmiotów działa tylko wtedy, gdy walizka jest otwarta do kontroli. Po zamknięciu wieka sprawdzenie granic walizki (OverlapBox) ustala, co znalazło się w środku. Te przedmioty stają się dziećmi walizki i przechodzą w tryb kinematyczny, czyli poruszają się tylko razem z rodzicem, a ich collidery się wyłączają. Zamknięta walizka porusza się więc jak jedno ciało, bez fizyki poszczególnych przedmiotów, a to, co zostało na zewnątrz, zostaje na miejscu. Przy otwartej walizce chwycony przedmiot jest przyciągany do kursora siłami, a nie teleportowany, więc nadal odpycha inne przedmioty. Prawy przycisk myszy przełącza na obracanie, a jeden klawisz przywraca pierwotną orientację przedmiotu. Przytrzymanie klawisza podczas przeciągania pokazuje, gdzie przedmiot wyląduje: półprzezroczystą kopię bez kolizji, na osobnej warstwie. Rysuje ją renderer feature URP typu RenderObjects, czyli ta sama technika, na której opiera się skaner z systemu 2. Krokowy BoxCast, czyli rzut prostopadłościanu uwzględniający rozmiar przedmiotu, opuszcza kopię na pierwszą powierzchnię pod spodem. Podczas zamykania wieka co klatkę działa OverlapBox wokół niego, a każdy przedmiot na jego drodze sprawia, że wieko otwiera się z powrotem.',
+        'Fizyka przedmiotów działa tylko w trakcie kontroli: włącza się, gdy gracz zaczyna kontrolę otwartej walizki. Gdy kontrola się kończy, sprawdzenie granic walizki (<code>OverlapBox</code>) ustala, które przedmioty są w środku, zanim fizyka znów się wyłączy. Te przedmioty stają się dziećmi walizki i przechodzą w tryb kinematyczny, czyli poruszają się tylko razem z rodzicem, a to, co zostało na zewnątrz, zostaje na miejscu. Dzięki temu zamknięta walizka porusza się jak jedno ciało. Chwycony przedmiot jest przyciągany do kursora siłami, a nie teleportowany, więc nadal odpycha inne przedmioty, a reset obrotu przywraca tylko jego orientację. Podczas przeciągania półprzezroczysta kopia bez kolizji pokazuje, gdzie przedmiot wyląduje: rysuje ją renderer feature URP typu RenderObjects, a krokowy <code>BoxCast</code>, czyli rzut promienia w kształcie prostopadłościanu, opuszcza ją na pierwszą powierzchnię pod spodem. Podczas zamykania wieka co klatkę działa osobny <code>OverlapBox</code> wokół niego, a każdy przedmiot na jego drodze sprawia, że wieko otwiera się z powrotem.',
       'lp.sys1.what':
-        'Projektowanie interakcji fizycznych wokół tego, kiedy symulacja jest naprawdę potrzebna: przedmioty są symulowane tylko wtedy, gdy gracz może ich dotknąć, a stan zmieniają w dwóch wyraźnych momentach, przy otwarciu i zamknięciu wieka. Do tego zapytania fizyczne użyte jako logika gry. Wieko jest animowane obrotem, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, co klatkę samo sprawdza, czy coś stoi mu na drodze.',
+        'Projektowanie interakcji fizycznych wokół tego, kiedy symulacja jest naprawdę potrzebna: przedmioty są symulowane tylko wtedy, gdy gracz może ich dotknąć, a stan zmieniają w dwóch wyraźnych momentach: na początku i na końcu kontroli. Do tego zapytania fizyczne użyte jako logika gry. Wieko jest animowane obrotem, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, co klatkę samo sprawdza, czy coś stoi mu na drodze.',
       'lp.sys1.caption':
-        'Otwarta walizka: dopóki wieko jest podniesione, każdy przedmiot w środku jest osobnym obiektem fizycznym, który można chwycić, obrócić i spakować z powrotem.',
+        'Otwarta walizka w trakcie kontroli: każdy przedmiot w środku jest osobnym obiektem fizycznym, który można chwycić, obrócić i spakować z powrotem.',
+      'lp.sys1.code.aria':
+        'Fragment kodu z Assets/Scripts/Inspection/Luggage Animator.cs, metoda CheckCollisions: OverlapBox wokół collidera wieka, ograniczony maską do warstw przedmiotów, przy trafieniu otwiera wieko z powrotem',
 
       // ---------- luggage-please.html: system 2 ----------
       'lp.sys2.title': 'Skaner rentgenowski zbudowany z warstw i renderer features URP',
       'lp.sys2.problem':
         'Skaner pokazuje na żywo prześwietlony obraz walizki przejeżdżającej przez maszynę. Przedmioty mają kolory według kategorii materiału (metal, organiczne, inne), żeby gracz mógł wypatrzyć podejrzaną zawartość. Modele przedmiotów przygotowali artyści studia, a część z nich łączy kilka materiałów, więc kolorowanie nie może opierać się na kodzie pisanym osobno dla każdego przedmiotu.',
       'lp.sys2.how':
-        'Podział na kolory to konfiguracja, a nie kod C#. Każda część modelu przedmiotu leży na jednej z czterech warstw rentgena: inne, metal, organiczne i skorupa walizki. Ortograficzna kamera skanera widzi tylko te warstwy i renderuje do RenderTexture, wyświetlanej na modelu ekranu konsoli. Cztery renderer features typu RenderObjects, po jednym na warstwę, rysują te obiekty z materiałem nadpisującym. Renderer features to dodatkowe przebiegi renderowania ustawiane w assecie renderera URP. Materiał nadpisujący to jeden shader fresnela w innym kolorze dla każdej kategorii. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury. Krótki skrypt przesuwa kamerę skanera razem z walizką, gdy taśma przewozi ją przez maszynę.',
+        'Podział na kolory to konfiguracja, a nie kod C#. Każda część modelu przedmiotu leży na jednej z czterech warstw rentgena: inne, metal, organiczne i skorupa walizki. Ortograficzna kamera skanera widzi tylko te warstwy i renderuje do RenderTexture, wyświetlanej na modelu ekranu konsoli. Cztery renderer features typu RenderObjects, po jednym na warstwę, rysują te obiekty z materiałem nadpisującym. Renderer features to dodatkowe przebiegi renderowania ustawiane w assecie renderera URP. Wszystkie cztery materiały nadpisujące korzystają z jednego shadera fresnela, który zrobiłem w Shader Graph; każdy ma własny kolor. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury. Krótki skrypt przesuwa kamerę skanera razem z walizką, gdy taśma przewozi ją przez maszynę.',
       'lp.sys2.what':
         'Użycie gotowych elementów URP zamiast pisania kodu renderowania: warstwy, culling mask, renderer features RenderObjects z materiałami nadpisującymi i RenderTexture na ekranie w świecie gry. Rozwiązanie skaluje się też z zawartością. Skaner obsługuje 27 prefabów przedmiotów, a rekwizyt z kilku materiałów, np. dron, ma kilka kolorów, bo każda jego część leży na własnej warstwie. Dodanie przedmiotu nie wymaga kodu, tylko właściwych warstw w jego prefabie.',
       'lp.sys2.caption':
@@ -379,6 +403,8 @@
       'lp.diag2.b5a': 'Materiał ekranu konsoli',
       'lp.diag2.cap':
         'Pięć etapów od warstw przedmiotu do ekranu skanera; każdy z nich to konfiguracja, a nie kod pisany dla pojedynczego przedmiotu.',
+      'lp.diag2.aria':
+        'Pięcioetapowy pipeline, od góry do dołu. Pierwszy: części modeli przedmiotów leżą na czterech warstwach rentgena — inne, metal, organiczne, skorupa walizki. Drugi: ortograficzna kamera skanera z culling mask ustawioną tylko na warstwy rentgena podąża za walizką. Trzeci: cztery renderer features typu RenderObjects rysują obiekty z osobnym materiałem nadpisującym dla każdej warstwy — jeden shader fresnela w czterech kolorach. Czwarty: wynik trafia do RenderTexture. Piąty: ta tekstura jest materiałem ekranu konsoli.',
 
       // ---------- luggage-please.html: system 3 ----------
       'lp.sys3.title': 'Koło interakcji, którego opcje zależą od stanowiska pasażera',
@@ -390,6 +416,8 @@
         'Komponent UI oddzielony od logiki gry. Koło dostaje listę identyfikatorów, rozmieszcza tyle segmentów, ile otrzyma, i zwraca wybór, a wszystkie reguły lotniska zostają w kodzie NPC. Koło samo zarządza też trybem sterowania w OnEnable/OnDisable: otwarcie zamraża rozglądanie się i ruch oraz odblokowuje kursor, a zamknięcie przywraca jedno i drugie, więc żaden wywołujący nie musi o tym pamiętać.',
       'lp.sys3.caption':
         'Trzy opcje, więc każda zajmuje jedną trzecią okręgu; po najechaniu kursorem na opcję jej nazwa pojawia się w środku.',
+      'lp.sys3.code.aria':
+        'Fragment kodu z Assets/Scripts/DialogWheel/DialogWheel.cs: ustawianie segmentu koła i obliczanie jego pozycji wyłącznie na podstawie liczby opcji',
 
       // ---------- luggage-please.html: video facades ----------
       'lp.video1.title': 'Fizyka walizki — Luggage Please',
@@ -402,7 +430,7 @@
 
       // ---------- luggage-please.html: takeaway ----------
       'lp.takeaway':
-        'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób. Skaner i podgląd lądowania składają się z warstw i renderer features URP, a nie z kodu renderowania, więc nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy. Koło dostaje od wywołującego listę identyfikatorów opcji i nie musi wiedzieć, skąd się wzięły. Warstwy sięgają nawet fizyki: sprawdzanie, czy coś blokuje wieko, używa warstw przedmiotów z rentgena jako maski, więc jeden układ warstw obsługuje i renderowanie, i fizykę.',
+        'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób. Skaner i podgląd lądowania składają się z warstw i renderer features URP, a nie z kodu renderowania, więc nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy. Koło dostaje od wywołującego listę identyfikatorów opcji i nie musi wiedzieć, skąd się wzięły. Warstwy sięgają nawet fizyki: sprawdzanie, czy coś blokuje wieko, używa warstw przedmiotów z rentgena jako maski, więc jeden układ warstw obsługuje i renderowanie, i fizykę. Ceną jest sprzężenie obu systemów: przedmiot bez warstwy rentgena nie pojawiłby się w skanerze i nie zablokowałby też wieka.',
     },
   };
 

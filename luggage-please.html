@@ -16,12 +16,14 @@
   <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/luggage-please/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Luggage Please key art on a black background: a cartoon open suitcase with folded clothes and a rubber duck, surrounded by a goldfish, a pistol, a knife and an open book, above the game's title." data-i18n-attr="content" data-i18n-attr-key="lp.meta.ogImageAlt" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Luggage Please — Case Study — Dominik Barański" />
   <meta name="twitter:description" content="Systems built during an internship at Rubens Games: suitcase and item physics, an X-ray scanner made from URP layers and renderer features, and a contextual interaction wheel." />
   <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/luggage-please/og.jpg" />
+  <meta name="twitter:image:alt" content="Luggage Please key art on a black background: a cartoon open suitcase with folded clothes and a rubber duck, surrounded by a goldfish, a pistol, a knife and an open book, above the game's title." data-i18n-attr="content" data-i18n-attr-key="lp.meta.ogImageAlt" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -40,7 +42,7 @@
     <header class="cs-hero">
       <div class="cs-hero-grid">
         <div>
-          <p class="cs-kicker" data-i18n="case.kicker.lp">PC · Unity 2022.3 · studio team · internship at Rubens Games</p>
+          <p class="cs-kicker" data-i18n="case.kicker.lp">PC · Unity 2022.3 URP · studio team · internship at Rubens Games, July–September 2024</p>
           <h1>Luggage Please</h1>
           <p class="cs-tagline" data-i18n="lp.tagline">Systems I built during my internship at Rubens Games: suitcase physics, an X-ray scanner made of URP renderer features, and a contextual interaction wheel.</p>
           <p class="cs-intro" data-i18n="lp.intro">Luggage Please is a first-person airport security game made by a studio team at Rubens Games, where I was an intern. The studio's artists made the art. This case study covers three systems I built during the internship: suitcase and item physics, an X-ray scanner that tells materials apart, and a contextual interaction wheel for talking to passengers.</p>
@@ -60,16 +62,16 @@
         <div><dt data-i18n="lp.glance.covered.t">Covered here</dt><dd data-i18n="lp.glance.covered.d">three systems I built: suitcase and item physics, the X-ray scanner, the contextual interaction wheel</dd></div>
         <div><dt data-i18n="lp.glance.engine.t">Engine</dt><dd data-i18n="lp.glance.engine.d">Unity 2022.3, URP</dd></div>
         <div><dt data-i18n="lp.glance.platform.t">Platform</dt><dd data-i18n="lp.glance.platform.d">PC</dd></div>
-        <div><dt data-i18n="lp.glance.status.t">Status</dt><dd data-i18n="lp.glance.status.d">internship project, not released</dd></div>
-        <div><dt data-i18n="lp.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="lp.glance.tech.d">C#, Rigidbody physics, physics queries (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), culling masks, RenderTexture, uGUI, TextMeshPro</dd></div>
-        <div><dt data-i18n="lp.glance.code.t">Code</dt><dd data-i18n="lp.glance.code.d">studio project, not public; the snippets on this page are shown with Rubens Games' permission</dd></div>
+        <div><dt data-i18n="lp.glance.status.t">Status</dt><dd data-i18n="lp.glance.status.d">internship project (July–September 2024), not released</dd></div>
+        <div><dt data-i18n="lp.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="lp.glance.tech.d">C#, Rigidbody physics, physics queries (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), Shader Graph, culling masks, RenderTexture, uGUI, TextMeshPro</dd></div>
+        <div><dt data-i18n="lp.glance.code.t">Code</dt><dd data-i18n="lp.glance.code.d">studio project, not public; all code shown here is my own, written during the internship, and appears with Rubens Games' permission</dd></div>
       </dl>
     </section>
 
     <nav class="cs-toc" aria-labelledby="toc-h">
       <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
       <ol class="cs-toc-list">
-        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="lp.sys1.title">Suitcase physics that runs only while the case is open</span><span class="cs-toc-skills" data-i18n="lp.toc1.skills">Rigidbody forces · physics queries · kinematic switching</span></a></li>
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="lp.sys1.title">Suitcase physics that runs only during inspection</span><span class="cs-toc-skills" data-i18n="lp.toc1.skills">Rigidbody forces · physics queries · kinematic switching</span></a></li>
         <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="lp.sys2.title">An X-ray scanner built from layers and URP renderer features</span><span class="cs-toc-skills" data-i18n="lp.toc2.skills">URP RenderObjects · culling masks · RenderTexture</span></a></li>
         <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="lp.sys3.title">An interaction wheel whose options follow the passenger's checkpoint</span><span class="cs-toc-skills" data-i18n="lp.toc3.skills">uGUI · UI separate from game logic · coroutines</span></a></li>
       </ol>
@@ -80,7 +82,7 @@
       <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
         <div class="cs-system-head">
           <span class="cs-system-num" aria-hidden="true">01</span>
-          <h2 id="sys-1-h" data-i18n="lp.sys1.title">Suitcase physics that runs only while the case is open</h2>
+          <h2 id="sys-1-h" data-i18n="lp.sys1.title">Suitcase physics that runs only during inspection</h2>
         </div>
         <div class="cs-part cs-part--problem">
           <span class="cs-part-label" data-i18n="case.problem">Problem</span>
@@ -88,11 +90,11 @@
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="lp.sys1.how">Item physics runs only while the case is open for inspection. Once the lid shuts, a bounds check (OverlapBox) decides what ended up inside. Those items become children of the case and turn kinematic, which means they move only with their parent, and their colliders switch off. A closed case therefore moves as one body with no per-item physics, and anything left outside stays behind. While the case is open, a grabbed item is pulled toward the cursor by forces rather than teleported, so it still pushes other items aside. The right mouse button switches to rotating it, and a key restores its original orientation. Holding a key while dragging shows where the item will land: a translucent, non-colliding copy on its own layer. A URP RenderObjects feature draws it, the same technique behind the scanner in system 2. A stepped BoxCast, a box-shaped raycast that accounts for the item's size, lowers the copy onto the first surface below. While the lid closes, an OverlapBox around it runs every frame, and any item in its path sends the lid back open.</p>
+          <p data-i18n="lp.sys1.how">Item physics runs only during inspection: it switches on when the player starts inspecting an open case. When inspection ends, a bounds check (<code>OverlapBox</code>) decides which items are inside the case before physics switches off again. Those items become children of the case and turn kinematic, so they move only with their parent, and anything left outside stays behind. A closed case therefore moves as one body. A grabbed item is pulled toward the cursor by forces rather than teleported, so it still pushes other items aside, and a rotation reset restores its orientation only. While dragging, a translucent, non-colliding copy previews the landing spot: a URP RenderObjects feature draws it, and a stepped <code>BoxCast</code>, a box-shaped raycast, lowers it onto the first surface below. While the lid closes, a separate <code>OverlapBox</code> around it runs every frame, and any item in its path sends the lid back open.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="lp.sys1.what">Physics interaction designed around when simulation is actually needed: items simulate only while the player can touch them, and they change state at two clear points, lid open and lid shut. It also shows physics queries used as game logic. The lid is animated by rotation, not simulated, so instead of waiting for collision events it checks every frame whether anything is in its way.</p>
+          <p data-i18n="lp.sys1.what">Physics interaction designed around when simulation is actually needed: items simulate only while the player can touch them, and they change state at two clear points, when inspection starts and when it ends. It also shows physics queries used as game logic. The lid is animated by rotation, not simulated, so instead of waiting for collision events it checks every frame whether anything is in its way.</p>
         </div>
 
         <figure class="cs-media">
@@ -102,13 +104,13 @@
               <span class="cs-video-btn-label" data-i18n="lp.video1.label">Play video: suitcase physics</span>
             </button>
           </div>
-          <figcaption class="cs-media-caption" data-i18n="lp.sys1.caption">An open case: while the lid is up, every item inside is its own physics object that can be grabbed, turned and repacked.</figcaption>
+          <figcaption class="cs-media-caption" data-i18n="lp.sys1.caption">An open case during inspection: every item inside is its own physics object that can be grabbed, turned and repacked.</figcaption>
         </figure>
         <p class="cs-video-alt"><a href="https://www.youtube.com/watch?v=j2EKQQgl6fg" target="_blank" rel="noopener noreferrer" data-i18n="lp.watchYoutube">Watch on YouTube ↗</a></p>
 
         <div class="cs-code">
           <p class="cs-code-file">LuggageAnimator.CheckCollisions()</p>
-          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/Inspection/Luggage Animator.cs, the CheckCollisions method: an OverlapBox around the lid's collider, masked to item layers, reopens the lid on a hit"><code class="language-csharp">void CheckCollisions()
+          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/Inspection/Luggage Animator.cs, the CheckCollisions method: an OverlapBox around the lid's collider, masked to item layers, reopens the lid on a hit" data-i18n-attr="aria-label" data-i18n-attr-key="lp.sys1.code.aria"><code class="language-csharp">void CheckCollisions()
 {
     if (boxCollider == null) return;
 
@@ -137,7 +139,7 @@
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="lp.sys2.how">The colour separation is configuration, not C#. Every item's mesh parts sit on one of four X-ray layers: other, metal, organic, and the case shell. An orthographic scan camera sees only those layers and renders into a RenderTexture, which is shown on the console's screen model. Four RenderObjects renderer features draw those objects with an override material, one feature per layer. Renderer features are extra render passes set up in URP's renderer asset. The override material is one fresnel shader in a different colour for each category. Fresnel brightens surfaces that face sideways to the camera, so items read as glowing outlines. A short script slides the scan camera along with the case as the belt carries it through.</p>
+          <p data-i18n="lp.sys2.how">The colour separation is configuration, not C#. Every item's mesh parts sit on one of four X-ray layers: other, metal, organic, and the case shell. An orthographic scan camera sees only those layers and renders into a RenderTexture, which is shown on the console's screen model. Four RenderObjects renderer features draw those objects with an override material, one feature per layer. Renderer features are extra render passes set up in URP's renderer asset. All four override materials share one fresnel shader that I made in Shader Graph, each with its own colour. Fresnel brightens surfaces that face sideways to the camera, so items read as glowing outlines. A short script slides the scan camera along with the case as the belt carries it through.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
@@ -147,7 +149,7 @@
         <figure class="cs-diagram" role="group" aria-labelledby="lp-diag2-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
-            <svg viewBox="0 0 700 740" role="img" aria-label="A five-step pipeline, top to bottom. One: item mesh parts sit on four X-ray layers — other, metal, organic, case shell. Two: an orthographic scan camera, culling mask set to X-ray layers only, follows the case. Three: four RenderObjects renderer features draw with an override material per layer, one fresnel shader in four colours. Four: the result renders into a RenderTexture. Five: that texture is the console screen's material.">
+            <svg viewBox="0 0 700 740" role="img" aria-label="A five-step pipeline, top to bottom. One: item mesh parts sit on four X-ray layers — other, metal, organic, case shell. Two: an orthographic scan camera, culling mask set to X-ray layers only, follows the case. Three: four RenderObjects renderer features draw with an override material per layer, one fresnel shader in four colours. Four: the result renders into a RenderTexture. Five: that texture is the console screen's material." data-i18n-attr="aria-label" data-i18n-attr-key="lp.diag2.aria">
               <defs>
                 <marker id="lp-vis-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
@@ -229,7 +231,7 @@
 
         <div class="cs-code">
           <p class="cs-code-file">DialogWheel.PositionDialogSegment() · CalculateSegmentPosition()</p>
-          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/DialogWheel/DialogWheel.cs: positioning a wheel segment and computing its position from the option count alone"><code class="language-csharp">private void PositionDialogSegment(GameObject segment, int index, int totalSegments)
+          <pre tabindex="0" aria-label="Code excerpt from Assets/Scripts/DialogWheel/DialogWheel.cs: positioning a wheel segment and computing its position from the option count alone" data-i18n-attr="aria-label" data-i18n-attr-key="lp.sys3.code.aria"><code class="language-csharp">private void PositionDialogSegment(GameObject segment, int index, int totalSegments)
 {
     float angleStep = 360f / totalSegments;
     float angleStart = angleStep * index;
@@ -260,10 +262,10 @@ private Vector2 CalculateSegmentPosition(float angleStart, float angleEnd)
 
     <section class="cs-takeaway">
       <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
-      <p data-i18n="lp.takeaway">All three are built so that other people's work can plug in. The scanner and the drop preview are made of layers and URP renderer features rather than rendering code, so a new item model shows up on the scanner in its category colour once its parts are on the right layers. The wheel takes a list of option IDs from its caller and doesn't need to know why they were chosen. The layers even reach into physics: the lid's obstruction check uses the X-ray item layers as its mask, so one layer scheme serves both rendering and physics.</p>
+      <p data-i18n="lp.takeaway">All three are built so that other people's work can plug in. The scanner and the drop preview are made of layers and URP renderer features rather than rendering code, so a new item model shows up on the scanner in its category colour once its parts are on the right layers. The wheel takes a list of option IDs from its caller and doesn't need to know why they were chosen. The layers even reach into physics: the lid's obstruction check uses the X-ray item layers as its mask, so one layer scheme serves both rendering and physics. The trade-off is coupling: an item missing its X-ray layer would not appear on the scanner and would not block the lid either.</p>
     </section>
 
-    <nav class="cs-next" aria-label="Next case study">
+    <nav class="cs-next" aria-label="Next case study" data-i18n-attr="aria-label" data-i18n-attr-key="case.next.aria">
       <a href="game-of-life.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Game of Life →</strong></a>
     </nav>
   </main>
