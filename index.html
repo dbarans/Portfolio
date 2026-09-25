@@ -3,13 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dominik Barański - Game Dev Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title data-i18n="index.meta.title">Dominik Barański — Game Programmer (Unity &amp; C#)</title>
+  <meta name="description" content="Portfolio of Dominik Barański, a Unity &amp; C# game programmer: a solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship at Rubens Games." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="theme-color" content="#edeef0" />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Dominik Barański — Game Programmer (Unity &amp; C#)" />
+  <meta property="og:description" content="A solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dominik Barański — Game Programmer (Unity &amp; C#)" />
+  <meta name="twitter:description" content="A solo-built Android game with 15,000+ Google Play downloads, a survival horror built in a team of four, and mechanics shipped during a studio internship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/islands.css" />
   <link rel="stylesheet" href="css/home.css" />
 </head>
 <body class="page-home">
+  <a class="skip-link" href="#main" data-i18n="index.skip">Skip to content</a>
   <div class="site">
     <header class="site-header">
       <a href="index.html" class="site-brand">
@@ -27,28 +43,44 @@
       </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-heading">
-        <canvas class="hero-field" aria-hidden="true"></canvas>
         <div class="hero-grid">
           <div class="hero-copy">
             <h1 id="hero-heading" class="hero-title">
-              <span class="hero-title-line text-gradient" data-i18n="index.hero.line1">Game programmer</span>
-              <span class="hero-title-line hero-title-line--plain" data-i18n="index.hero.line2">15,000+ downloads on Google Play — built solo.</span>
+              <span class="hero-title-line text-gradient" data-i18n="index.hero.line1"><span class="hero-name">Dominik Barański</span><span class="hero-sep"> · </span><span class="hero-role">Game programmer</span></span>
+              <span class="hero-title-line hero-title-line--plain" data-i18n="index.hero.line2">15,000+ downloads on Google&nbsp;Play&nbsp;— built solo.</span>
             </h1>
-            <p class="hero-lead" data-i18n="index.hero.lead">
-              Unity &amp; C# — gameplay systems, tools, and performance work, from a solo Android release to a studio internship.
-            </p>
+            <p class="hero-lead" data-i18n="index.hero.lead">Unity &amp; C# — a solo Android release, a survival horror built in a team of four, and mechanics shipped during a studio internship.</p>
             <a href="#projects" class="hero-cta">
               <span data-i18n="index.hero.cta">View my work</span>
               <span class="hero-cta-icon" aria-hidden="true">→</span>
             </a>
           </div>
           <div class="hero-visual">
-            <div class="hero-glow" aria-hidden="true"></div>
-            <div class="hero-placeholder">
-              <span class="hero-placeholder-initials" aria-hidden="true">DB</span>
-              <span class="hero-placeholder-hint" data-i18n="index.hero.photoHint">Photo coming soon</span>
+            <div class="hero-card">
+              <p class="hero-card-head" data-i18n="index.hero.card.title">At a glance</p>
+              <dl class="hero-facts">
+                <div class="hero-fact">
+                  <dt data-i18n="index.hero.card.stack">Stack</dt>
+                  <dd>Unity&nbsp;· C#&nbsp;· Burst/Jobs&nbsp;· Android</dd>
+                </div>
+                <div class="hero-fact">
+                  <dt data-i18n="index.hero.card.released">Released</dt>
+                  <dd><a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Game of Life<span aria-hidden="true"> ↗</span></a>&nbsp;· Google&nbsp;Play</dd>
+                </div>
+                <div class="hero-fact">
+                  <dt data-i18n="index.hero.card.internship">Internship</dt>
+                  <dd><a href="luggage-please.html">Luggage Please</a>&nbsp;· Rubens&nbsp;Games</dd>
+                </div>
+                <div class="hero-fact">
+                  <dt data-i18n="index.hero.card.profiles">Profiles</dt>
+                  <dd>
+                    <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+                    <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">LinkedIn<span aria-hidden="true"> ↗</span></a>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -56,7 +88,6 @@
 
       <section id="projects" class="islands" aria-labelledby="projects-heading">
         <div class="islands-stage">
-          <canvas class="islands-bg" aria-hidden="true"></canvas>
           <h2 id="projects-heading" class="islands-title" data-i18n="index.section.projects">Selected projects</h2>
           <div class="islands-rail" aria-hidden="true">
             <span class="islands-rail-label" data-i18n="index.isl.rail">Project</span>
@@ -71,10 +102,10 @@
                 <span class="island-count" data-i18n="index.isl.count1">Project 01 of 03</span>
               </div>
               <h3 class="island-title" id="isl-gol-title">Game of Life</h3>
-              <p class="island-hook" data-step="2" data-i18n="index.isl.gol.hook">A board without edges that never slows down.</p>
+              <p class="island-hook" data-step="2" data-i18n="index.isl.gol.hook">An edgeless board that only computes what moves.</p>
               <p class="island-lead" data-step="3" data-i18n="index.isl.gol.lead">An Android simulator: you draw living cells with your finger, and they are born and die by four simple rules. I built all of it myself — the engine, gameplay, interface and the store release.</p>
               <ul class="island-points" data-step="4">
-                <li data-i18n="index.isl.gol.p1">Zoom out to hundreds of thousands of cells — still smooth, even on an older phone.</li>
+                <li data-i18n="index.isl.gol.p1">Zoom out to hundreds of thousands of cells — still smooth on weaker phones too.</li>
                 <li data-i18n="index.isl.gol.p2">An experimental turbo mode leaps thousands of generations per frame.</li>
                 <li data-i18n="index.isl.gol.p3">A pattern library, save slots and a tutorial that teaches the rules through drawing.</li>
               </ul>
@@ -137,7 +168,6 @@
               <div class="island-foot" data-step="5">
                 <div class="island-stats">
                   <div class="island-stat"><b data-i18n="index.isl.luggage.s1v">3 systems</b><span data-i18n="index.isl.luggage.s1l">in the studio’s game</span></div>
-                  <div class="island-stat"><b data-i18n="index.isl.luggage.s2v">Internship</b><span data-i18n="index.isl.luggage.s2l">joining an existing project</span></div>
                 </div>
                 <div class="island-actions">
                   <a class="island-cta" href="luggage-please.html" data-i18n="index.isl.luggage.cta">See details →</a>
@@ -160,8 +190,8 @@
                 <img src="images/neon/neon.jpg" alt="" class="project-thumb" />
               </div>
               <div class="project-info">
-                <div class="project-title">NeON</div>
-                <div class="project-role" data-i18n="index.role.neon">Unity · game jam</div>
+                <h3 class="project-title">NeON</h3>
+                <div class="project-role" data-i18n="index.role.neon">Unity · Game Jam</div>
               </div>
               <img src="images/unity.svg" alt="" class="tech-icon" />
               <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
@@ -173,14 +203,28 @@
                 <img src="images/gothic-smithy/logo.svg" alt="" class="project-thumb" />
               </div>
               <div class="project-info">
-                <div class="project-title">Gothic Smithy</div>
-                <div class="project-role" data-i18n="index.role.gothic">Unity · FPS Crafting (Solo)</div>
+                <h3 class="project-title">Gothic Smithy</h3>
+                <div class="project-role" data-i18n="index.role.gothic">Unity · Crafting Prototype · Solo</div>
               </div>
               <img src="images/unity.svg" alt="" class="tech-icon" />
               <img src="images/c_sharp_logo.png" alt="" class="tech-icon" />
             </a>
           </li>
         </ul>
+      </section>
+
+      <section id="contact" class="home-contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section-title" data-i18n="index.contact.title">Contact</h2>
+        <div class="home-contact-body">
+          <p class="home-contact-lead" data-i18n="index.contact.lead">I’m happy to walk through the code behind these projects in an interview.</p>
+          <div class="home-contact-actions">
+            <a class="hero-cta" href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="index.contact.cta">Message me on LinkedIn</span>
+              <span class="hero-cta-icon" aria-hidden="true">↗</span>
+            </a>
+            <a class="home-contact-alt" href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer" data-i18n="index.contact.github">GitHub profile</a>
+          </div>
+        </div>
       </section>
 
       <footer class="site-footer">

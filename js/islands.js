@@ -1,186 +1,234 @@
-// Project "islands": cards float up over a two-layer parallax cell field while the page
-// scrolls through a sticky stage. The field is one generator (cell size, spacing, density,
-// light cone, scan bands) and its parameters blend from one project's preset to the next.
-// Motion is transform / opacity only; the scroll handler just schedules one rAF.
+// Project "islands": three project cards rise, rest and leave one after another while the page
+// scrolls through a sticky stage. The page around them stays neutral; each card carries a hint of
+// its own project's world — a texture drawn once with js/cellfield.js in that project's palette.
+// Motion is transform / opacity only; the scroll handler just schedules one rAF, and nothing is
+// written to the DOM while the stage is off screen.
 (function () {
   const root = document.querySelector('.islands');
   if (!root) return;
 
   const stage = root.querySelector('.islands-stage');
-  const canvas = root.querySelector('.islands-bg');
-  const ctx = canvas.getContext('2d');
   const islands = Array.from(root.querySelectorAll('.island'));
+  const steps = islands.map((el) => Array.from(el.querySelectorAll('[data-step]')));
   const railNum = root.querySelector('[data-rail-num]');
   const railFill = root.querySelector('.islands-rail-fill');
   const hint = root.querySelector('.islands-hint');
+  const LAST = islands.length - 1;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const inv = (v, a, b) => clamp((v - a) / (b - a), 0, 1);
   const lerp = (a, b, u) => a + (b - a) * u;
-  const smooth = (u) => u * u * (3 - 2 * u);
+  const easeOut = (u) => 1 - (1 - u) * (1 - u);
+  const easeIn = (u) => u * u;
 
-  // Timeline, in the design's units: island i is centred on t = i * STEP.
+  // Timeline, in the design's units: island i rests around t = i * STEP.
   const STEP = 130;
   const T_MIN = -40;
-  const T_MAX = 380;
-  const REVEAL = [12, 26, 42, 62]; // data-step 2..5
+  const T_MAX = LAST * STEP + 90; // the last island is still resting when the stage unsticks
+  const REST_A = 6; // local t where an island reaches its resting place…
+  const REST_B = 84; // …and where it starts to leave
+  const REVEAL_AT = -30; // an entering island reveals its content while it rises
   const DESIGN_W = 1280;
   const DESIGN_H = 820;
+  const NARROW = 960; // below this there is no room for the side rail next to a card
 
   const SKIN = [
     { left: 350, restY: 84 },
     { left: 250, restY: 96 },
     { left: 410, restY: 70 },
   ];
+  const skin = (i) => SKIN[i] || SKIN[0];
 
+  // Each card's world, drawn behind its content: one cellfield preset in the project's own palette
+  // (darkest → brightest). 01 its cells, 02 a lit cone in the dark, 03 x-ray scan bands.
   const Field = window.CellField;
-  // One preset per project: cell grid, cone in the dark, x-ray bands.
-  const BG = [Field.PRESETS.grid, Field.PRESETS.cone, Field.PRESETS.bands];
+  const WORLDS = Field ? [
+    { p: Field.PRESETS.grid, pal: ['#141413', '#1d1d1b', '#2b2b27', '#44443c'], seed: 7, dim: 1 },
+    { p: Field.PRESETS.cone, pal: ['#14120e', '#1d1912', '#2c2417', '#3d301c'], seed: 991, dim: 0 },
+    { p: Field.PRESETS.bands, pal: ['#0a1416', '#0d1e20', '#12292b', '#1a4341'], seed: 31, dim: 0, scan: '#3dd6cb' },
+  ] : [];
 
   const HINTS = {
-    en: ['Scroll down', 'Keep scrolling', 'Next: more projects'],
-    pl: ['Przewiń w dół', 'Przewiń dalej', 'Dalej: pozostałe projekty'],
+    en: { start: 'Scroll down', next: 'Next: ' },
+    pl: { start: 'Przewiń w dół', next: 'Dalej: ' },
   };
 
   let live = false;
+  let narrow = false;
   let W = 0;
   let H = 0;
-  let dpr = 1;
   let pxPerT = 10;
   let sectionTop = 0;
   let cardH = [];
+  let cardW = [];
   let lastT = null;
   let queued = false;
+  // Last values written to the DOM, so a frame only touches what changed
+  let shownState = [];
+  let revealState = [];
+  const texSize = [];
 
-  function blend(t) {
-    let ia = 0, ib = 0, u = 0;
-    if (t > 84 && t < 136) { ia = 0; ib = 1; u = smooth(inv(t, 84, 136)); }
-    else if (t >= 136 && t <= 214) { ia = 1; ib = 1; }
-    else if (t > 214 && t < 266) { ia = 1; ib = 2; u = smooth(inv(t, 214, 266)); }
-    else if (t >= 266) { ia = 2; ib = 2; }
-    return Field.mix(BG[ia], BG[ib], u);
+  // Full-bleed sections use 100vw, which includes a classic (non-overlay) scrollbar.
+  function setScrollbarVar() {
+    const sbw = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+    document.documentElement.style.setProperty('--sbw', sbw + 'px');
   }
 
-  function drawField(p, fw, fh, scale, off, seed, dim, g) {
-    Field.draw(g || ctx, p, fw, fh, scale, off, seed, dim);
-  }
-
-  function drawBackground(t, scrollPx, fw, fh) {
-    const p = blend(t);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = '#070708';
-    ctx.fillRect(0, 0, fw, fh);
-    drawField(p, fw, fh, 1.7, -scrollPx * 0.22, 991, 1); // far layer, 0.22x
-    drawField(p, fw, fh, 1.0, -scrollPx * 0.62, 7, 0); // near layer, 0.62x
-    if (p.band > 0.01) {
-      ctx.globalAlpha = p.band * 0.5;
-      ctx.fillStyle = '#7E7E74';
-      ctx.fillRect(0, Math.round((t * 3.2 * (fh / DESIGN_H)) % fh), fw, 3);
-      ctx.globalAlpha = 1;
-    }
-  }
-
-  function sizeCanvas(fw, fh) {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(fw * dpr);
-    canvas.height = Math.round(fh * dpr);
+  function paintTextures() {
+    islands.forEach((el, i) => {
+      const world = WORLDS[i];
+      const card = el.querySelector('.island-card');
+      if (!world || !card) return;
+      let cv = card.querySelector('.island-tex');
+      if (!cv) {
+        cv = document.createElement('canvas');
+        cv.className = 'island-tex';
+        cv.setAttribute('aria-hidden', 'true');
+        card.insertBefore(cv, card.firstChild);
+      }
+      const fw = card.clientWidth;
+      const fh = card.clientHeight;
+      const r = Math.min(window.devicePixelRatio || 1, 2);
+      const size = fw + 'x' + fh + '@' + r;
+      if (!fw || !fh || texSize[i] === size) return;
+      texSize[i] = size;
+      cv.width = Math.round(fw * r);
+      cv.height = Math.round(fh * r);
+      const g = cv.getContext('2d');
+      g.setTransform(r, 0, 0, r, 0, 0);
+      g.clearRect(0, 0, fw, fh);
+      Field.draw(g, world.p, fw, fh, fw < 480 ? 0.75 : 1, 0, world.seed, world.dim, world.pal);
+      if (world.scan) {
+        // one scanner line across the "monitor"
+        g.globalAlpha = 0.16;
+        g.fillStyle = world.scan;
+        g.fillRect(0, Math.round(fh * 0.36), fw, 2);
+        g.globalAlpha = 1;
+      }
+    });
   }
 
   function measure() {
+    setScrollbarVar();
     W = stage.clientWidth;
-    H = window.innerHeight;
-    pxPerT = Math.max(7, H * 0.011);
+    narrow = W < NARROW;
+    root.classList.toggle('is-narrow', narrow);
     if (live) {
-      root.style.height = Math.round(H + (T_MAX - 0) * pxPerT) + 'px';
-      sizeCanvas(W, H);
+      // The stage is 100svh tall, so this stays put while mobile toolbars slide in and out
+      // (window.innerHeight would change and make the islands jump mid-scroll).
+      H = stage.clientHeight || window.innerHeight;
+      pxPerT = Math.max(7, H * 0.011);
+      root.style.height = Math.round(H + T_MAX * pxPerT) + 'px';
     } else {
+      H = window.innerHeight;
       root.style.height = '';
-      sizeCanvas(stage.clientWidth, stage.clientHeight);
     }
-    const rect = root.getBoundingClientRect();
-    sectionTop = rect.top + window.scrollY;
+    sectionTop = root.getBoundingClientRect().top + window.scrollY;
     cardH = islands.map((el) => el.offsetHeight);
+    cardW = islands.map((el) => el.offsetWidth);
+    paintTextures();
     lastT = null;
   }
 
-  function islandLeft(i, w) {
-    if (W < 860) return Math.round((W - w) / 2);
-    const scaled = SKIN[i].left * (W / DESIGN_W);
+  function islandLeft(i) {
+    const w = cardW[i];
+    if (narrow) return Math.round((W - w) / 2);
+    const scaled = skin(i).left * (W / DESIGN_W);
     return Math.round(clamp(scaled, 210, W - w - 40));
+  }
+
+  // Where island i sits while resting: [top at REST_A, top at REST_B] in stage pixels.
+  function restRange(i) {
+    const k = H / DESIGN_H;
+    const ch = cardH[i];
+    const padTop = narrow ? 44 : 24; // room for the big project number
+    const padBottom = narrow ? 52 : 24; // on narrow stages the rail sits at the bottom
+    const lowest = H - ch - padBottom;
+    // Taller than the screen: travel through the card while it rests.
+    if (ch > H - padTop - padBottom) return [padTop, lowest];
+    const end = clamp((H - ch) / 2 + (skin(i).restY - 84) * k, padTop, lowest);
+    return [Math.min(end + 34 * k, lowest), end];
+  }
+
+  // Cards stay fully opaque (a dark card fading over the light page turns into a grey slab):
+  // they slide in from below the stage and out above it, the next one passing over the last.
+  function place(i, t) {
+    const local = t - i * STEP;
+    const [rs, re] = restRange(i);
+    // The first island is already in place when the stage scrolls into view, so the fold
+    // shows a project rather than an empty stage.
+    if (i === 0 && local < REST_A) return rs;
+    if (local < -40) return null;
+    if (local < REST_A) return lerp(H + 24, rs, easeOut(inv(local, -40, REST_A)));
+    // The last island stays until the stage unsticks and scrolls away with the page.
+    if (local < REST_B || i === LAST) return lerp(rs, re, inv(local, REST_A, REST_B));
+    if (local < 120) return lerp(re, -cardH[i] - 80, easeIn(inv(local, REST_B, 120)));
+    return null;
+  }
+
+  function nextName(i) {
+    if (i < LAST) {
+      const title = islands[i + 1].querySelector('.island-title');
+      return title ? title.textContent.trim() : '';
+    }
+    return Array.from(document.querySelectorAll('.section-projects--more .project-title'))
+      .map((n) => n.textContent.trim())
+      .join(', ');
+  }
+
+  function updateHint(t) {
+    if (!hint) return;
+    const h = HINTS[document.documentElement.lang === 'pl' ? 'pl' : 'en'];
+    let text = h.start;
+    if (t >= 12) {
+      const name = nextName(clamp(Math.floor((t + 20) / STEP), 0, LAST));
+      if (name) text = h.next + name + ' ↓';
+    }
+    if (hint.textContent !== text) hint.textContent = text;
   }
 
   function renderLive() {
     queued = false;
-    const scrollPx = window.scrollY - sectionTop;
-    const t = clamp(scrollPx / pxPerT, T_MIN, T_MAX);
+    const t = clamp((window.scrollY - sectionTop) / pxPerT, T_MIN, T_MAX);
     if (lastT !== null && Math.abs(t - lastT) < 0.01) return;
     lastT = t;
 
-    drawBackground(t, Math.max(scrollPx, T_MIN * pxPerT), W, H);
-
-    const k = H / DESIGN_H;
     islands.forEach((el, i) => {
       const local = t - i * STEP;
-      let op;
-      if (local < -40) op = 0;
-      else if (local < -6) op = inv(local, -40, -6);
-      else if (local < 92) op = 1;
-      else op = 1 - inv(local, 92, 120);
-
-      if (op <= 0.02) {
-        el.classList.remove('is-shown');
-        el.style.opacity = '0';
-        return;
+      const y = place(i, t);
+      const shown = y !== null && y < H && y + cardH[i] > -60;
+      if (shownState[i] !== shown) {
+        el.classList.toggle('is-shown', shown);
+        el.style.opacity = shown ? '1' : '0';
+        shownState[i] = shown;
       }
-
-      const ch = cardH[i];
-      const padTop = W < 860 ? 44 : 24; // room for the big project number
-      const padBottom = W < 860 ? 52 : 24; // on phones the rail sits at the bottom
-      let restStart, restEnd;
-      if (ch > H - padTop - padBottom) {
-        // Taller than the screen: travel through the card while it rests.
-        restStart = padTop;
-        restEnd = H - ch - padBottom;
-      } else {
-        restEnd = clamp((H - ch) / 2 + (SKIN[i].restY - 84) * k, padTop, H - ch - padBottom);
-        restStart = restEnd + 34 * k;
+      if (shown) {
+        el.style.transform = 'translate3d(' + islandLeft(i) + 'px,' + Math.round(y) + 'px,0)';
+        el.style.zIndex = local >= REST_B && i !== LAST ? '1' : '2';
       }
-
-      let y;
-      if (local < 6) y = lerp(H * 0.8, restStart, inv(local, -40, 6));
-      else if (local < 84) y = lerp(restStart, restEnd, inv(local, 6, 84));
-      else y = lerp(restEnd, -ch - 80, inv(local, 84, 120));
-
-      const x = islandLeft(i, el.offsetWidth);
-      el.classList.add('is-shown');
-      el.style.opacity = op.toFixed(3);
-      el.style.transform = 'translate3d(' + x + 'px,' + Math.round(y) + 'px,0)';
-      el.style.zIndex = local >= 84 ? '1' : '2';
-
-      el.querySelectorAll('[data-step]').forEach((node) => {
-        const step = Number(node.getAttribute('data-step'));
-        node.classList.toggle('is-in', local >= REVEAL[step - 2]);
-      });
+      const reveal = i === 0 || local >= REVEAL_AT;
+      if (revealState[i] !== reveal) {
+        steps[i].forEach((node) => node.classList.toggle('is-in', reveal));
+        revealState[i] = reveal;
+      }
     });
 
     const idx = clamp(Math.floor((t + 20) / STEP) + 1, 1, islands.length);
-    if (railNum) railNum.textContent = '0' + idx;
+    const num = (idx < 10 ? '0' : '') + idx;
+    if (railNum && railNum.textContent !== num) railNum.textContent = num;
     if (railFill) {
-      const u = inv(t, 0, 350);
-      railFill.style.transform = W < 860 ? 'scaleX(' + u + ')' : 'scaleY(' + u + ')';
+      const u = inv(t, 0, T_MAX);
+      railFill.style.transform = narrow ? 'scaleX(' + u + ')' : 'scaleY(' + u + ')';
     }
-    if (hint) {
-      const lang = document.documentElement.lang === 'pl' ? 'pl' : 'en';
-      hint.textContent = HINTS[lang][t < 12 ? 0 : (t > 360 ? 2 : 1)];
-    }
+    updateHint(t);
   }
 
-  function renderStatic() {
-    const fw = stage.clientWidth;
-    const fh = stage.clientHeight;
-    drawBackground(0, 0, fw, fh);
+  function render() {
+    if (!live) return;
+    lastT = null;
+    renderLive();
   }
 
   function schedule() {
@@ -192,61 +240,62 @@
   function setMode() {
     live = !reduceMotion.matches;
     root.classList.toggle('is-live', live);
+    shownState = [];
+    revealState = [];
     if (!live) {
       islands.forEach((el) => {
         el.style.transform = '';
         el.style.opacity = '';
         el.style.zIndex = '';
+        el.classList.remove('is-shown');
       });
     }
     measure();
-    if (live) renderLive();
-    else renderStatic();
+    render();
   }
 
-  // The hero sits on the same field (first preset, dimmed so the headline stays readable),
-  // so the page reads as one board the islands later float over.
-  const heroCanvas = document.querySelector('.hero-field');
-  function drawHero() {
-    if (!heroCanvas) return;
-    const g = heroCanvas.getContext('2d');
-    const fw = heroCanvas.clientWidth;
-    const fh = heroCanvas.clientHeight;
-    const r = Math.min(window.devicePixelRatio || 1, 2);
-    heroCanvas.width = Math.round(fw * r);
-    heroCanvas.height = Math.round(fh * r);
-    g.setTransform(r, 0, 0, r, 0, 0);
-    g.fillStyle = '#070708';
-    g.fillRect(0, 0, fw, fh);
-    drawField(BG[0], fw, fh, 1.7, 0, 991, 1, g);
-    drawField(BG[0], fw, fh, 1.0, 0, 7, 1, g);
+  // Keyboard: Tab can reach a link in an island that is currently transparent. Scroll the page
+  // to the point of the timeline where that island rests with the link on screen.
+  function onFocusIn(e) {
+    if (!live) return;
+    const i = islands.findIndex((el) => el.contains(e.target));
+    if (i < 0) return;
+    const el = islands[i];
+    const tr = e.target.getBoundingClientRect();
+    if (Number(el.style.opacity) > 0.98 && tr.top >= 0 && tr.bottom <= window.innerHeight) return;
+    const rel = tr.top - el.getBoundingClientRect().top;
+    const [rs, re] = restRange(i);
+    const y = clamp(H / 2 - rel - tr.height / 2, Math.min(rs, re), Math.max(rs, re));
+    const u = rs === re ? 0.5 : (rs - y) / (rs - re);
+    const local = lerp(REST_A + 2, REST_B - 2, clamp(u, 0, 1));
+    window.scrollTo(0, Math.round(sectionTop + (i * STEP + local) * pxPerT));
+    render();
   }
 
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', drawHero);
   window.addEventListener('resize', () => {
     measure();
-    if (live) renderLive();
-    else renderStatic();
+    render();
   });
   if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', setMode);
+  root.addEventListener('focusin', onFocusIn);
 
-  // Card heights change with the language toggle and when fonts finish loading.
+  // Card heights change with the language toggle and when fonts finish loading; the hero's
+  // height moves the section's top.
   if ('ResizeObserver' in window) {
     const ro = new ResizeObserver(() => {
       measure();
-      if (live) renderLive();
-      else renderStatic();
+      render();
     });
     islands.forEach((el) => ro.observe(el));
+    const hero = document.querySelector('.hero');
+    if (hero) ro.observe(hero);
   }
   document.addEventListener('click', (e) => {
     if (e.target && e.target.id === 'lang-toggle') {
-      lastT = null;
-      window.requestAnimationFrame(() => (live ? renderLive() : renderStatic()));
+      window.requestAnimationFrame(render); // the hint text follows the language
     }
   });
 
   setMode();
-  drawHero();
 })();
