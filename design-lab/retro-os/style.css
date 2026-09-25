@@ -1,0 +1,580 @@
+/* ==========================================================================
+   Dominik Barański — Portfolio home page, RETRO OS / DESKTOP variant.
+   Design lab draft. Windows 95/98-style desktop: teal wallpaper, beige
+   chrome windows with navy title bars, a left icon rail and a bottom
+   taskbar with a Start button and a clock. Bright, high-contrast, playful —
+   not the dark "hacker" retro-tech look.
+
+   Layout model (important for a11y — see index.html comments too):
+   - Without JS: every window is already open and stacked in normal
+     document flow. Nothing required is ever hidden behind an interaction.
+   - With JS ("js-on" on <html>): windows sit in a responsive grid (not
+     absolute/overlapping) so nothing ever gets covered by another window;
+     dragging only nudges a window with a CSS transform relative to its
+     grid slot, purely as a bonus, and never removes it from the layout.
+   - Below 880px ("phone" per the brief) windows are always a single
+     stacked column and dragging is disabled entirely, per the brief.
+
+   Fonts: Pixelify Sans (headings / title bars / buttons), Press Start 2P
+   (tiny chrome: Start button glyph row, taskbar clock, icon labels),
+   IBM Plex Mono (body copy — monospace but comfortable at 16px/1.65,
+   fits the "Notepad" framing without sacrificing readability).
+   ========================================================================== */
+
+:root {
+  --teal: #048484;
+  --teal-dark: #016060;
+  --chrome: #c8c8c8;
+  --chrome-light: #ffffff;
+  --chrome-dark: #7f7f7f;
+  --chrome-darker: #4a4a4a;
+  --ink: #101010;
+  --paper: #fdfdf5;
+  --navy: #000a78;
+  --navy-2: #0b3d91;
+  --accent: #ffd400;
+  --accent-2: #ff5a1f;
+  --link: #003a9e;
+  --focus-ring: #ffd400;
+
+  --font-display: 'Pixelify Sans', 'Press Start 2P', system-ui, sans-serif;
+  --font-pixel: 'Press Start 2P', 'Pixelify Sans', system-ui, sans-serif;
+  --font-body: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --taskbar-h: 52px;
+  --icon-rail-w: 112px;
+  --bevel-w: 2px;
+}
+
+* , *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--teal);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  padding-bottom: var(--taskbar-h);
+}
+
+a { color: var(--link); }
+img { max-width: 100%; display: block; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--focus-ring);
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 3000;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  border: 2px solid var(--paper);
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 12px; }
+main:focus { outline: none; }
+
+/* ==========================================================================
+   Desktop shell
+   ========================================================================== */
+.desktop {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--teal);
+  background-image:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0 2px, transparent 2px 26px);
+  padding: 20px 20px 40px calc(var(--icon-rail-w) + 24px);
+}
+
+.desktop-watermark {
+  position: fixed;
+  right: 14px;
+  bottom: calc(var(--taskbar-h) + 10px);
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- Desktop icon rail ---------- */
+.desktop-icons {
+  position: fixed;
+  top: 16px;
+  left: 8px;
+  width: var(--icon-rail-w);
+  max-height: calc(100vh - var(--taskbar-h) - 32px);
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.icon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 8px 4px;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  color: #fff;
+}
+.icon:hover,
+.icon:focus-visible {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.12);
+}
+.icon-glyph {
+  font-size: 30px;
+  line-height: 1;
+  filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.5));
+}
+.icon-label {
+  font-family: var(--font-pixel);
+  font-size: 9.5px;
+  line-height: 1.4;
+  text-align: center;
+  color: #fff;
+  background: var(--navy);
+  padding: 3px 5px;
+  border-radius: 1px;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   Windows — shared "98" chrome
+   ========================================================================== */
+.win {
+  background: var(--chrome);
+  border: var(--bevel-w) solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  box-shadow:
+    inset 1px 1px 0 var(--chrome-light),
+    inset -1px -1px 0 var(--chrome-dark),
+    4px 4px 0 rgba(0, 0, 0, 0.35);
+  margin-bottom: 20px;
+}
+
+.win-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 6px 6px 10px;
+  background: linear-gradient(90deg, var(--navy), var(--navy-2));
+  color: #fff;
+  cursor: default;
+}
+.js-on .win-titlebar { cursor: move; }
+
+.win-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win-controls {
+  display: flex;
+  gap: 4px;
+  flex: none;
+}
+.win-btn {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--chrome);
+  border: 1px solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  box-shadow: inset 1px 1px 0 var(--chrome-light);
+  cursor: pointer;
+}
+.win-btn:active { box-shadow: inset -1px -1px 0 var(--chrome-light); }
+.win-close:hover { background: #b83a10; color: #fff; }
+
+.win-menubar {
+  display: flex;
+  gap: 16px;
+  padding: 4px 12px;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--chrome-dark);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--chrome-darker);
+}
+
+.win-body {
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(16px, 3vw, 28px);
+  border-top: 1px solid var(--chrome-dark);
+}
+
+.win-body :is(h1, h2, h3) { font-family: var(--font-display); }
+
+.win-body > *:first-child { margin-top: 0; }
+.win-body > *:last-child { margin-bottom: 0; }
+
+.hero-title {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+.hero-role { color: var(--teal-dark); }
+.hero-lead {
+  max-width: 62ch;
+  font-size: 1rem;
+  margin: 0 0 16px;
+}
+.hero-stack {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: var(--chrome-darker);
+  margin: 0 0 20px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--accent);
+  padding: 10px 18px;
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.6);
+}
+.hero-cta:hover { background: #b83a10; color: #fff; }
+.hero-cta:active { box-shadow: inset -1px -1px 0 rgba(0, 0, 0, 0.3); }
+
+/* ---------- Folder headings (Projects / Contact) ---------- */
+.folder-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--navy);
+  padding: 6px 14px;
+  margin: 8px 0 14px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Project windows ---------- */
+.project-windows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.win-media {
+  margin: 0 0 14px;
+  border: 2px solid;
+  border-color: var(--chrome-darker) var(--chrome-light) var(--chrome-light) var(--chrome-darker);
+  overflow: hidden;
+  background: #000;
+}
+.win-media img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 10; }
+
+.project-card-num {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--teal-dark);
+}
+.project-card-meta {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  color: var(--chrome-darker);
+  margin: 6px 0 10px;
+  line-height: 1.8;
+}
+.project-card-title {
+  font-size: 1.3rem;
+  margin: 0 0 10px;
+}
+.project-card-body {
+  margin: 0 0 16px;
+  max-width: 68ch;
+}
+
+.win-filestrip {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.win-filestrip img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 2px solid;
+  border-color: var(--chrome-darker) var(--chrome-light) var(--chrome-light) var(--chrome-darker);
+}
+
+.win-cta {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--link);
+}
+.win-cta:hover { color: var(--accent-2); }
+
+/* ---------- Contact window ---------- */
+.contact-lead { max-width: 60ch; margin: 0 0 16px; }
+.contact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.contact-list li { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.contact-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.7rem;
+  border-radius: 2px;
+  flex: none;
+}
+.contact-label { font-weight: 700; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: #fff;
+  padding: 18px 0 4px;
+}
+
+/* ==========================================================================
+   Taskbar
+   ========================================================================== */
+.taskbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: var(--taskbar-h);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  background: var(--chrome);
+  border-top: var(--bevel-w) solid var(--chrome-light);
+  box-shadow: 0 -2px 0 var(--chrome-dark) inset;
+}
+
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--chrome);
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  box-shadow: inset 1px 1px 0 var(--chrome-light);
+  flex: none;
+}
+.start-btn:hover { background: #d8d8d8; }
+.start-btn:active { box-shadow: inset -1px -1px 0 var(--chrome-light); }
+.start-btn span[aria-hidden] { color: var(--accent-2); font-size: 1.1rem; }
+
+.taskbar-tasks {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  min-width: 0;
+}
+.task-btn {
+  flex: none;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--chrome);
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  white-space: nowrap;
+}
+.task-btn[aria-pressed="true"] {
+  border-color: var(--chrome-darker) var(--chrome-light) var(--chrome-light) var(--chrome-darker);
+  background: #b6b6b6;
+}
+.task-btn[data-closed="true"] { opacity: 0.6; font-style: italic; }
+
+.taskbar-tray {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: var(--chrome);
+  border: 2px solid;
+  border-color: var(--chrome-darker) var(--chrome-light) var(--chrome-light) var(--chrome-darker);
+}
+
+.lang-toggle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 5px 9px;
+  color: var(--ink);
+  background: var(--chrome);
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-darker) var(--chrome-darker) var(--chrome-light);
+  cursor: pointer;
+}
+.lang-toggle:active { box-shadow: inset -1px -1px 0 var(--chrome-light); }
+
+.clock {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--ink);
+  min-width: 44px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   JS-enhanced desktop mode (>= 880px): grid layout for windows, dragging.
+   Below 880px windows always stack full-width and dragging is disabled,
+   matching the brief's phone requirement regardless of JS state.
+   ========================================================================== */
+@media (min-width: 880px) {
+  .js-on .project-windows {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .js-on .win {
+    margin-bottom: 0;
+  }
+  .js-on .win.is-dragging { z-index: 500; }
+}
+
+/* Only dim inactive title bars once JS is tracking focus/click order —
+   without it every window keeps the same readable navy bar. */
+.js-on .win:not(.is-active) .win-titlebar {
+  background: linear-gradient(90deg, #565656, #6e6e6e);
+}
+
+/* ---------- Minimize / close (JS-enhanced only) ---------- */
+.win.is-minimized .win-menubar,
+.win.is-minimized .win-body {
+  display: none;
+}
+.win.is-closed { display: none; }
+.win.is-maximized {
+  grid-column: 1 / -1 !important;
+}
+
+/* ==========================================================================
+   Phone layout (< 880px): plain stacked column, icon rail becomes a row,
+   no fixed positioning tricks, no dragging.
+   ========================================================================== */
+@media (max-width: 879.98px) {
+  .desktop {
+    padding: 16px 14px 32px;
+  }
+  .desktop-icons {
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 18px;
+  }
+  .icon-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .icon { width: 78px; }
+  .desktop-watermark { display: none; }
+  .taskbar-tasks { justify-content: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .win-titlebar { padding: 5px 4px 5px 8px; }
+  .win-title { font-size: 0.82rem; }
+  .folder-heading { font-size: 0.95rem; padding: 5px 10px; }
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .win { transition: none !important; }
+}

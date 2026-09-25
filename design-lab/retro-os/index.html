@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="theme-color" content="#008080" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="retro">
+  <a class="skip-link" href="#main" data-i18n="index.skip">Skip to content</a>
+
+  <div class="desktop" id="desktop">
+
+    <!-- ============================================================
+         DESKTOP ICONS
+         Real links, keyboard-operable (Enter jumps to / opens the
+         matching window). Single click/Enter is used instead of a
+         literal double-click requirement, for keyboard + a11y parity.
+         ============================================================ -->
+    <nav class="desktop-icons" aria-label="Desktop shortcuts">
+      <ul class="icon-list">
+        <li>
+          <a class="icon" href="#win-about" data-open="win-about">
+            <span class="icon-glyph" aria-hidden="true">🖥️</span>
+            <span class="icon-label">About</span>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#win-gol" data-open="win-gol">
+            <span class="icon-glyph" aria-hidden="true">🧬</span>
+            <span class="icon-label">Game of Life</span>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#win-grave" data-open="win-grave">
+            <span class="icon-glyph" aria-hidden="true">🪦</span>
+            <span class="icon-label">Grave</span>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#win-lp" data-open="win-lp">
+            <span class="icon-glyph" aria-hidden="true">🧳</span>
+            <span class="icon-label">Luggage Please</span>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#win-contact" data-open="win-contact">
+            <span class="icon-glyph" aria-hidden="true">✉️</span>
+            <span class="icon-label">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="desktop-watermark" aria-hidden="true">DB_OS · UNITY DEVELOPER</div>
+
+    <main id="main" tabindex="-1" class="windows">
+
+      <!-- ============================================================
+           ABOUT / README.TXT — open by default, hero copy
+           ============================================================ -->
+      <section class="win win--about" id="win-about" aria-labelledby="win-about-h">
+        <header class="win-titlebar">
+          <span class="win-title"><span aria-hidden="true">🖥️</span> readme.txt — Notepad</span>
+          <div class="win-controls">
+            <button type="button" class="win-btn" data-action="minimize" data-target="win-about" aria-hidden="true" tabindex="-1" aria-label="Minimize About window">_</button>
+            <button type="button" class="win-btn" data-action="maximize" data-target="win-about" aria-hidden="true" tabindex="-1" aria-label="Maximize About window">□</button>
+            <button type="button" class="win-btn win-close" data-action="close" data-target="win-about" aria-hidden="true" tabindex="-1" aria-label="Close About window">✕</button>
+          </div>
+        </header>
+        <div class="win-menubar" aria-hidden="true"><span>File</span><span>Edit</span><span>Search</span><span>Help</span></div>
+        <div class="win-body win-body--about">
+          <h1 id="win-about-h" class="hero-title">Dominik Barański: <span class="hero-role">Unity developer</span></h1>
+          <p class="hero-lead" data-i18n="index.hero.lead">I build game systems in Unity and C# with a focus on performance and testable code. My work ranges from a multithreaded simulation engine in an Android game with 15,000+ downloads on Google Play to enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project. As an intern at Rubens Games, I also built gameplay systems in a studio team, alongside the studio's artists. I'm looking for a junior/mid Unity developer role.</p>
+          <p class="hero-stack" data-i18n="index.hero.stack">Unity · C# · Burst / Job System · URP shaders · Android</p>
+          <a href="#win-gol" class="hero-cta" data-open="win-gol"><span data-i18n="index.hero.cta">View projects</span><span aria-hidden="true"> ↓</span></a>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PROJECTS — folder heading + three project windows
+           ============================================================ -->
+      <section class="projects-group" aria-labelledby="projects-h">
+        <h2 id="projects-h" class="folder-heading"><span aria-hidden="true">📁</span> <span data-i18n="index.section.projects">Projects</span></h2>
+
+        <div class="project-windows">
+
+          <section class="win win--project" id="win-gol" aria-labelledby="proj-gol-h">
+            <header class="win-titlebar">
+              <span class="win-title"><span aria-hidden="true">🧬</span> GAME_OF_LIFE.EXE</span>
+              <div class="win-controls">
+                <button type="button" class="win-btn" data-action="minimize" data-target="win-gol" aria-hidden="true" tabindex="-1" aria-label="Minimize Game of Life window">_</button>
+                <button type="button" class="win-btn" data-action="maximize" data-target="win-gol" aria-hidden="true" tabindex="-1" aria-label="Maximize Game of Life window">□</button>
+                <button type="button" class="win-btn win-close" data-action="close" data-target="win-gol" aria-hidden="true" tabindex="-1" aria-label="Close Game of Life window">✕</button>
+              </div>
+            </header>
+            <div class="win-body">
+              <div class="win-media">
+                <img src="../../images/game-of-life/logo.png" alt="" loading="lazy" width="540" height="540" />
+              </div>
+              <span class="project-card-num" aria-hidden="true">01</span>
+              <p class="project-card-meta" data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</p>
+              <h3 class="project-card-title" id="proj-gol-h">Game of Life</h3>
+              <p class="project-card-body" data-i18n="index.project.gol.body">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone. The work is in the engine: bit-level computation on Burst and the Job System, a simulation thread that doesn't block the frame, and rendering whose cost follows the screen rather than the pattern.</p>
+              <a class="win-cta" href="../../game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
+            </div>
+          </section>
+
+          <section class="win win--project" id="win-grave" aria-labelledby="proj-grave-h">
+            <header class="win-titlebar">
+              <span class="win-title"><span aria-hidden="true">🪦</span> GRAVE.EXE</span>
+              <div class="win-controls">
+                <button type="button" class="win-btn" data-action="minimize" data-target="win-grave" aria-hidden="true" tabindex="-1" aria-label="Minimize Grave window">_</button>
+                <button type="button" class="win-btn" data-action="maximize" data-target="win-grave" aria-hidden="true" tabindex="-1" aria-label="Maximize Grave window">□</button>
+                <button type="button" class="win-btn win-close" data-action="close" data-target="win-grave" aria-hidden="true" tabindex="-1" aria-label="Close Grave window">✕</button>
+              </div>
+            </header>
+            <div class="win-body">
+              <div class="win-media">
+                <img src="../../images/grave/hero.webp" alt="" loading="lazy" width="1440" height="1080" />
+              </div>
+              <span class="project-card-num" aria-hidden="true">02</span>
+              <p class="project-card-meta" data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</p>
+              <h3 class="project-card-title" id="proj-grave-h">Grave</h3>
+              <p class="project-card-body" data-i18n="index.project.grave.body">A top-down 2D survival horror made by a team of four. Four of the systems I built for it: A* pathfinding with a bounded per-frame cost, a light mask rendered by a second camera and custom shaders, a seeded dungeon generator covered by 48 unit tests, and enemy AI assembled from swappable components.</p>
+              <a class="win-cta" href="../../grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
+            </div>
+          </section>
+
+          <section class="win win--project" id="win-lp" aria-labelledby="proj-lp-h">
+            <header class="win-titlebar">
+              <span class="win-title"><span aria-hidden="true">🧳</span> LUGGAGE_PLEASE.EXE</span>
+              <div class="win-controls">
+                <button type="button" class="win-btn" data-action="minimize" data-target="win-lp" aria-hidden="true" tabindex="-1" aria-label="Minimize Luggage Please window">_</button>
+                <button type="button" class="win-btn" data-action="maximize" data-target="win-lp" aria-hidden="true" tabindex="-1" aria-label="Maximize Luggage Please window">□</button>
+                <button type="button" class="win-btn win-close" data-action="close" data-target="win-lp" aria-hidden="true" tabindex="-1" aria-label="Close Luggage Please window">✕</button>
+              </div>
+            </header>
+            <div class="win-body">
+              <div class="win-media">
+                <img src="../../images/luggage-please/key-art.webp" alt="" loading="lazy" width="2388" height="1668" />
+              </div>
+              <span class="project-card-num" aria-hidden="true">03</span>
+              <p class="project-card-meta" data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games</p>
+              <h3 class="project-card-title" id="proj-lp-h">Luggage Please</h3>
+              <p class="project-card-body" data-i18n="index.project.lp.body">A first-person airport security game made by a studio team at Rubens Games, where I was an intern. Three systems I built for it: suitcase physics that runs only while a case is being inspected, an X-ray scanner that colours items by material using URP layers and renderer features with no rendering code, and an interaction wheel whose options follow each passenger's checkpoint.</p>
+              <div class="win-filestrip" aria-hidden="true">
+                <img src="../../images/luggage-please/suitcase_preview.png" alt="" loading="lazy" />
+                <img src="../../images/luggage-please/xray_previev.png" alt="" loading="lazy" />
+                <img src="../../images/luggage-please/wheel_preview.png" alt="" loading="lazy" />
+              </div>
+              <a class="win-cta" href="../../luggage-please.html"><span data-i18n="index.project.lp.cta">See how they work →</span></a>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CONTACT
+           ============================================================ -->
+      <section class="contact-group" aria-labelledby="contact-h">
+        <h2 id="contact-h" class="folder-heading"><span aria-hidden="true">📁</span> <span data-i18n="index.section.contact">Contact</span></h2>
+
+        <section class="win win--contact" id="win-contact">
+          <header class="win-titlebar">
+            <span class="win-title"><span aria-hidden="true">✉️</span> CONTACT.TXT — Address Book</span>
+            <div class="win-controls">
+              <button type="button" class="win-btn" data-action="minimize" data-target="win-contact" aria-hidden="true" tabindex="-1" aria-label="Minimize Contact window">_</button>
+              <button type="button" class="win-btn" data-action="maximize" data-target="win-contact" aria-hidden="true" tabindex="-1" aria-label="Maximize Contact window">□</button>
+              <button type="button" class="win-btn win-close" data-action="close" data-target="win-contact" aria-hidden="true" tabindex="-1" aria-label="Close Contact window">✕</button>
+            </div>
+          </header>
+          <div class="win-body">
+            <p class="contact-lead" data-i18n="index.contact.lead">Happy to walk through the code behind these projects in an interview.</p>
+            <ul class="contact-list">
+              <li><span class="contact-glyph" aria-hidden="true">✉</span> <span class="contact-label" data-i18n="index.contact.email.label">Email:</span> <a href="mailto:baranskidominik109@gmail.com">baranskidominik109@gmail.com</a></li>
+              <li><span class="contact-glyph" aria-hidden="true">in</span> <span class="contact-label" data-i18n="index.contact.linkedin.label">LinkedIn:</span> <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer">linkedin.com/in/baranskidominik</a></li>
+              <li><span class="contact-glyph" aria-hidden="true">&lt;/&gt;</span> <span class="contact-label" data-i18n="index.contact.github.label">GitHub:</span> <a href="https://github.com/dbarans" target="_blank" rel="noopener noreferrer">github.com/dbarans</a></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Dominik Barański</p>
+    </footer>
+  </div>
+
+  <!-- ============================================================
+       TASKBAR — Start, open-window tasks, lang toggle, clock
+       ============================================================ -->
+  <div class="taskbar">
+    <a class="start-btn" href="#win-about" data-open="win-about">
+      <span aria-hidden="true">⊞</span> Start<span class="visually-hidden"> — go to About</span>
+    </a>
+    <div class="taskbar-tasks">
+      <a class="task-btn" href="#win-about" data-task="win-about">readme.txt</a>
+      <a class="task-btn" href="#win-gol" data-task="win-gol">game_of_life.exe</a>
+      <a class="task-btn" href="#win-grave" data-task="win-grave">grave.exe</a>
+      <a class="task-btn" href="#win-lp" data-task="win-lp">luggage_please.exe</a>
+      <a class="task-btn" href="#win-contact" data-task="win-contact">contact.txt</a>
+    </div>
+    <div class="taskbar-tray">
+      <button id="lang-toggle" type="button" class="lang-toggle" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+      <span class="clock" id="clock" aria-hidden="true">--:--</span>
+    </div>
+  </div>
+
+  <script src="../../js/i18n.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
