@@ -1,0 +1,583 @@
+/* DESIGN-LAB DRAFT — restyle of game-of-life.html to look like the Game of Life Android app
+   itself. Not linked from the live site; noindex. Palette and type lifted from the app's own
+   Unity project: strict 1-bit white-on-near-black, one accent (the app's selection yellow),
+   square corners, thin crisp white "button frame" borders, no gradients/blur/rounded corners.
+   Pixelify Sans for headings/labels/nav/numbers (with a decorative pixel-art wink); IBM Plex
+   Mono for long-form body text and in-diagram type, chosen for comfortable reading + guaranteed
+   fit inside the diagram boxes (see report). */
+
+:root {
+  --gol-font-display: 'Pixelify Sans', 'Press Start 2P', monospace;
+  --gol-font-body: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  --gol-bg: #0a0a0d;       /* LabTheme.Fill */
+  --gol-panel: #101014;    /* one step off pure black, for panel fills */
+  --gol-panel-2: #0d0d10;
+  --gol-white: #ffffff;
+  --gol-body: #d9d9dd;     /* slightly dimmed white, long-form reading */
+  --gol-muted: #a9a9b1;    /* AA-safe "muted" (app's Muted is 50% — raised to pass AA) */
+  --gol-line: #ffffff;     /* the app draws borders in flat white, not grey */
+  --gol-accent: #ffd940;   /* LabTheme.Accent — selection colour */
+  --gol-accent-ink: #0a0a0d;
+  --gol-danger: #de544a;   /* reserved, used sparingly */
+  --gol-code-bg: #000000;
+
+  color-scheme: dark;
+}
+
+html { scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--gol-bg);
+  /* A very faint board grid — the same motif as the game's cells, kept subtle so it reads as
+     texture, not decoration competing with content. */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  color: var(--gol-body);
+  font-family: var(--gol-font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gol-accent); outline-offset: 3px; border-radius: 0; }
+
+code {
+  font-family: var(--gol-font-body);
+  font-size: 0.86em;
+  color: var(--gol-white);
+  background: #1a1a1e;
+  padding: 1px 5px;
+  overflow-wrap: anywhere;
+}
+
+p, li, dd, figcaption { overflow-wrap: anywhere; }
+
+/* Decorative pixel-art glyphs lifted straight from the app's UI spritesheet. Always alt="" /
+   aria-hidden in the markup — purely rhythm, never load-bearing for meaning. */
+.gol-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  vertical-align: -3px;
+  flex-shrink: 0;
+}
+.gol-logo { image-rendering: pixelated; vertical-align: -6px; margin-right: 2px; }
+
+/* A strip straight out of the app's tutorial: the five neighbour-count rule diagrams, used here
+   purely as a decorative divider band between the hero and the rest of the page. */
+.gol-rules-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(10px, 3vw, 28px);
+  padding: 18px clamp(16px, 4vw, 40px);
+  border-bottom: 3px solid var(--gol-line);
+  background: var(--gol-panel);
+}
+.gol-rules-strip img {
+  width: clamp(34px, 6vw, 52px);
+  height: clamp(34px, 6vw, 52px);
+  image-rendering: pixelated;
+  opacity: 0.75;
+}
+
+/* ---------- Eyebrow label (Key numbers / At a glance / Systems on this page / Takeaway) ---- */
+.cs-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-family: var(--gol-font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+.cs-eyebrow--accent { color: var(--gol-accent); }
+
+.cs-skip {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  z-index: 50;
+  background: var(--gol-accent);
+  color: var(--gol-accent-ink) !important;
+  font-family: var(--gol-font-display);
+  font-size: 13px;
+  padding: 9px 14px;
+  text-decoration: none;
+  border: 2px solid var(--gol-line);
+}
+.cs-skip:focus { left: 16px; }
+.cs-page:focus { outline: none; }
+
+/* ---------- Top bar: the app's title bar, pixel buttons and all ---------- */
+.cs-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  min-height: 60px;
+  padding: 10px clamp(16px, 4vw, 40px);
+  background: var(--gol-bg);
+  border-bottom: 3px solid var(--gol-line);
+}
+.cs-brand,
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--gol-font-display);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gol-white) !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cs-brand { font-weight: 600; }
+.cs-back {
+  padding: 7px 12px;
+  border: 2px solid var(--gol-line);
+  background: transparent;
+  transition: background-color 0.12s, color 0.12s;
+}
+.cs-brand:hover, .cs-brand:focus-visible { color: var(--gol-accent) !important; }
+.cs-back:hover, .cs-back:focus-visible {
+  background: var(--gol-accent);
+  color: var(--gol-accent-ink) !important;
+}
+.cs-lang {
+  margin-left: auto;
+  border: 2px solid var(--gol-line);
+  background: transparent;
+  color: var(--gol-white);
+  font-family: var(--gol-font-display);
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: background-color 0.12s, color 0.12s;
+}
+.cs-lang:hover { background: var(--gol-accent); color: var(--gol-accent-ink); }
+
+/* ---------- Page column ---------- */
+.cs-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px) 52px;
+}
+
+/* ---------- Hero ---------- */
+.cs-hero {
+  position: relative;
+  padding: clamp(36px, 7vw, 60px) 0 34px;
+  border-bottom: 3px solid var(--gol-line);
+}
+.cs-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 8px clamp(24px, 5vw, 56px);
+  align-items: start;
+}
+.cs-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-family: var(--gol-font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+.cs-kicker::before { content: ""; width: 10px; height: 10px; background: var(--gol-accent); flex-shrink: 0; }
+.cs-hero h1 {
+  margin: 0 0 20px;
+  font-family: var(--gol-font-display);
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: var(--gol-white);
+}
+.cs-tagline {
+  margin: 0 0 18px;
+  max-width: 34em;
+  font-family: var(--gol-font-body);
+  font-size: clamp(1rem, 1.6vw, 1.14rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--gol-white);
+}
+.cs-intro { margin: 0; max-width: 62ch; font-size: 0.97rem; line-height: 1.75; color: var(--gol-body); }
+
+/* The kept, unmodified glider SVG: recoloured to the app's selection yellow, like a pattern the
+   player has just marquee-selected on the board. */
+.cs-hero-motif {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  width: 104px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.cs-hero-motif svg { display: block; width: 100%; height: auto; }
+
+/* ---------- Key numbers: stat cards, framed like the app's HUD panels ---------- */
+.cs-keynums { padding: 32px 0; border-bottom: 3px solid var(--gol-line); }
+.cs-keynums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+.cs-keynum {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 2px solid var(--gol-line);
+  background: var(--gol-panel);
+}
+.cs-keynum b {
+  font-family: var(--gol-font-display);
+  font-size: clamp(1.5rem, 3.2vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: var(--gol-accent);
+}
+.cs-keynum-label { font-family: var(--gol-font-body); font-size: 0.9rem; font-weight: 600; color: var(--gol-white); }
+.cs-keynum-ctx { font-size: 0.8rem; line-height: 1.5; color: var(--gol-muted); }
+
+/* ---------- At a glance ---------- */
+.cs-glance { padding: 32px 0; border-bottom: 3px solid var(--gol-line); }
+.cs-facts { margin: 0; }
+.cs-facts > div {
+  display: grid;
+  grid-template-columns: minmax(150px, 26%) minmax(0, 1fr);
+  gap: 6px 24px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+.cs-facts dt { margin: 0; font-family: var(--gol-font-display); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.4px; color: var(--gol-white); text-transform: uppercase; }
+.cs-facts dd { margin: 0; font-size: 0.9rem; line-height: 1.55; }
+.cs-facts a { color: var(--gol-white); border-bottom: 2px solid var(--gol-accent); text-decoration: none; }
+.cs-facts a:hover { color: var(--gol-accent); }
+
+/* ---------- Systems on this page: a menu list with a marquee-style selection highlight ---- */
+.cs-toc { padding: 32px 0; border-bottom: 3px solid var(--gol-line); }
+.cs-toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cs-toc-list a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 2.4em minmax(0, 1fr);
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 14px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+.cs-toc-list li:last-child a { border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
+.cs-toc-list a:hover,
+.cs-toc-list a:focus-visible {
+  background: rgba(255, 217, 64, 0.12);
+  box-shadow: inset 4px 0 0 var(--gol-accent);
+}
+.gol-toc-icon { grid-row: 1 / 3; align-self: center; width: 16px; height: 16px; opacity: 0.85; }
+.cs-toc-num { font-family: var(--gol-font-display); font-size: 0.95rem; color: var(--gol-accent); }
+.cs-toc-title { grid-column: 3; font-family: var(--gol-font-body); font-size: 0.98rem; font-weight: 600; color: var(--gol-white); }
+.cs-toc-skills { grid-column: 3; font-family: var(--gol-font-body); font-size: 0.76rem; letter-spacing: 0.3px; color: var(--gol-muted); }
+.cs-toc-list a:hover .cs-toc-title,
+.cs-toc-list a:focus-visible .cs-toc-title { color: var(--gol-accent); }
+
+/* ---------- Systems: each one a bordered app panel/dialog, stacked with real gaps ---------- */
+.cs-systems { padding-top: 28px; display: flex; flex-direction: column; gap: 28px; }
+.cs-system {
+  padding: clamp(22px, 4vw, 34px);
+  border: 3px solid var(--gol-line);
+  background: var(--gol-panel);
+  scroll-margin-top: 84px;
+}
+.cs-system-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+.gol-sys-icon { width: 26px; height: 26px; opacity: 0.9; }
+.cs-system-num {
+  font-family: var(--gol-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gol-accent);
+  flex-shrink: 0;
+}
+.cs-system-head h2 {
+  margin: 0;
+  font-family: var(--gol-font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: var(--gol-white);
+}
+
+/* Problem / How it works / What it shows: same shape, colour-coded left border. */
+.cs-part {
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--gol-muted);
+  margin-bottom: 20px;
+}
+.cs-part:last-of-type { margin-bottom: 0; }
+.cs-part-label {
+  display: block;
+  margin: 0 0 8px;
+  font-family: var(--gol-font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+.cs-part p { margin: 0; max-width: 68ch; font-size: 0.96rem; line-height: 1.75; }
+.cs-part--problem { border-left-color: var(--gol-muted); }
+.cs-part--problem .cs-part-label { color: var(--gol-muted); }
+.cs-part--how { border-left-color: var(--gol-white); }
+.cs-part--how .cs-part-label { color: var(--gol-white); }
+.cs-part--what { border-left-color: var(--gol-accent); }
+.cs-part--what .cs-part-label { color: var(--gol-accent); }
+
+/* ---------- Code: a white-bordered console panel ---------- */
+.cs-code { margin: 22px 0 0; }
+.cs-code-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-family: var(--gol-font-body);
+  font-size: 11.5px;
+  color: var(--gol-muted);
+  overflow-wrap: anywhere;
+}
+.gol-icon--save { opacity: 0.85; }
+pre {
+  margin: 0;
+  background: var(--gol-code-bg);
+  border: 2px solid var(--gol-line);
+  color: var(--gol-body);
+  padding: 18px 20px;
+  overflow: auto;
+}
+pre:focus-visible { outline-offset: -3px; }
+pre code {
+  font-family: var(--gol-font-body);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  white-space: pre;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-variant-ligatures: none;
+}
+.hljs-comment { color: var(--gol-muted); font-style: normal; }
+.hljs-keyword, .hljs-built_in { color: var(--gol-white); font-weight: 600; }
+.hljs-type, .hljs-title.class_ { color: var(--gol-accent); }
+.hljs-title.function_ { color: var(--gol-white); font-weight: 600; }
+.hljs-number, .hljs-literal { color: var(--gol-accent); }
+.hljs-string { color: var(--gol-body); }
+.hljs-meta { color: var(--gol-muted); }
+
+/* ---------- Diagrams: same "ink" as the rest of the page, one accent, no extra colours.
+   Titles stay in the mono body font (not the pixel display font) on purpose: the boxes were
+   dimensioned for a monospace title, and IBM Plex Mono's metrics are close enough to the
+   original mono to guarantee the text stays inside its box at every existing font-size. ---- */
+.cs-diagram { margin: 20px 0 0; }
+.cs-diagram-cap { margin: 12px 0 0; font-size: 0.84rem; line-height: 1.6; color: var(--gol-muted); }
+.cs-diagram-scroll { overflow-x: auto; scrollbar-color: var(--gol-muted) transparent; }
+.cs-diagram-hint {
+  display: none;
+  margin: 0 0 8px;
+  font-family: var(--gol-font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--gol-accent);
+}
+.cs-diagram svg { display: block; width: 100%; height: auto; }
+
+.cs-i-lane { fill: var(--gol-panel-2); stroke: rgba(255, 255, 255, 0.4); }
+.cs-i-box { fill: var(--gol-panel); stroke: var(--gol-line); stroke-width: 2; }
+.cs-i-box-dashed { stroke-dasharray: 6 4; }
+.cs-i-box-accent { fill: var(--gol-panel); stroke: var(--gol-accent); stroke-width: 3; }
+.cs-i-line { stroke: var(--gol-accent); stroke-width: 2; fill: none; }
+.cs-i-line-muted { stroke: var(--gol-muted); stroke-width: 2; fill: none; }
+.cs-i-line-dashed { stroke: var(--gol-accent); stroke-width: 2; fill: none; stroke-dasharray: 6 4; }
+.cs-i-dot { fill: var(--gol-accent); }
+.cs-i-title { fill: var(--gol-white); font-family: var(--gol-font-body); font-weight: 600; }
+.cs-i-label { fill: var(--gol-muted); font-family: var(--gol-font-body); }
+.cs-i-accent-text { fill: var(--gol-accent); font-family: var(--gol-font-body); font-weight: 600; }
+
+/* ---------- Media slots: a paused "app screen", not a generic dashed box ---------- */
+.cs-media { margin: 0; }
+.cs-system > * + .cs-media { margin-top: 32px; }
+.cs-hero .cs-media { margin: 4px 0 0; }
+.cs-media-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: var(--gol-panel-2);
+  border: 3px dashed var(--gol-line);
+  text-align: center;
+  overflow: hidden;
+}
+.cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
+.cs-media-frame img,
+.cs-media-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-media-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 30em; }
+.gol-media-icon { width: 40px; height: 40px; opacity: 0.9; }
+.cs-media-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  font-family: var(--gol-font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--gol-accent-ink);
+  background: var(--gol-accent);
+}
+.cs-media-desc { margin: 0; font-size: 0.84rem; line-height: 1.55; color: var(--gol-body); }
+.cs-media-specs {
+  margin: 0;
+  font-family: var(--gol-font-body);
+  font-size: 10.5px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+.cs-media-caption { margin: 10px 0 0; font-size: 0.84rem; line-height: 1.6; color: var(--gol-muted); }
+
+/* ---------- Takeaway ---------- */
+.cs-takeaway { padding: 42px 0 8px; }
+.cs-takeaway > p {
+  margin: 0;
+  padding: 18px 20px;
+  border: 2px solid var(--gol-accent);
+  background: var(--gol-panel);
+  font-family: var(--gol-font-body);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--gol-white);
+}
+.cs-also {
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.cs-also-label {
+  display: block;
+  margin: 0 0 8px;
+  font-family: var(--gol-font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+
+/* ---------- Next project: a big pixel button ---------- */
+.cs-next { margin-top: 44px; }
+.cs-next a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 18px;
+  padding: 20px 22px;
+  background: var(--gol-panel);
+  border: 3px solid var(--gol-line);
+  text-decoration: none;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+.cs-next a:hover, .cs-next a:focus-visible { background: var(--gol-accent); border-color: var(--gol-accent); }
+.cs-next-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--gol-font-display);
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gol-muted);
+}
+.cs-next a:hover .cs-next-label, .cs-next a:focus-visible .cs-next-label { color: var(--gol-accent-ink); }
+.cs-next strong { font-family: var(--gol-font-display); font-size: 1.3rem; font-weight: 700; color: var(--gol-accent); }
+.cs-next a:hover strong, .cs-next a:focus-visible strong { color: var(--gol-accent-ink); }
+
+/* ---------- Footer ---------- */
+.cs-foot {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 26px clamp(16px, 4vw, 40px) 44px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 24px;
+  font-size: 0.85rem;
+  color: var(--gol-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+.cs-foot p { margin: 0; }
+.cs-foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--gol-font-body); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+.cs-foot-links a { color: var(--gol-white) !important; text-decoration: none; border-bottom: 2px solid var(--gol-accent); transition: color 0.12s; }
+.cs-foot-links a:hover { color: var(--gol-accent) !important; }
+
+/* ---------- Responsive: 375px stays scroll-free; diagrams keep their own side-scroller ---- */
+@media (max-width: 720px) {
+  .cs-hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .cs-hero-motif { width: 60px; top: 4px; opacity: 0.7; }
+  .cs-facts > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  pre { margin-left: -14px; margin-right: -14px; border-left: 0; border-right: 0; }
+  .cs-diagram--wide svg { width: 640px; max-width: none; }
+  .cs-diagram--wide .cs-diagram-hint { display: block; }
+  .gol-rules-strip { gap: 10px; }
+}
+@media (max-width: 560px) {
+  .cs-top { gap: 8px 10px; }
+  .cs-system { padding: 20px; }
+  .cs-next a { flex-direction: column; align-items: flex-start; }
+  .cs-toc-list a { grid-template-columns: 18px 2em minmax(0, 1fr); padding: 12px 8px; }
+}
+@media (max-width: 400px) {
+  .gol-rules-strip img:nth-child(4),
+  .gol-rules-strip img:nth-child(5) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-back, .cs-lang, .cs-toc-list a, .cs-next a, .cs-facts a, .cs-foot-links a { transition: none; }
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title data-i18n="case.meta.gol.title">Game of Life — Case Study — Dominik Barański</title>
+  <meta name="description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." data-i18n-attr="content" data-i18n-attr-key="case.meta.gol.description" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/game-of-life.html" />
+  <meta name="theme-color" content="#0a0a0d" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Game of Life — Case Study — Dominik Barański" />
+  <meta property="og:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/game-of-life.html" />
+  <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
+  <meta property="og:image:width" content="540" />
+  <meta property="og:image:height" content="540" />
+  <meta property="og:image:alt" content="Game of Life logo: a glider" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Game of Life — Case Study — Dominik Barański" />
+  <meta name="twitter:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
+  <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-case page-case--gol">
+  <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
+  <header class="cs-top">
+    <a class="cs-brand" href="../../index.html">
+      <img class="gol-logo" src="../../images/game-of-life/logo.png" alt="" aria-hidden="true" width="26" height="26" />
+      <span>Dominik Barański</span>
+    </a>
+    <a class="cs-back" href="../../index.html#projects">
+      <img class="gol-icon gol-icon--menu" src="../../images/game-of-life/ui/ui_menu.png" alt="" aria-hidden="true" />
+      <span data-i18n="case.back">← All projects</span>
+    </a>
+    <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <main class="cs-page" id="main" tabindex="-1">
+
+    <header class="cs-hero">
+      <div class="cs-hero-motif" aria-hidden="true">
+        <svg viewBox="0 0 200 200" focusable="false">
+          <defs>
+            <g id="gol-glider">
+              <rect x="18" y="0" width="18" height="18" />
+              <rect x="36" y="18" width="18" height="18" />
+              <rect x="0" y="36" width="18" height="18" />
+              <rect x="18" y="36" width="18" height="18" />
+              <rect x="36" y="36" width="18" height="18" />
+            </g>
+          </defs>
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(4,4) scale(0.6)" opacity="0.22" />
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(60,60) scale(0.8)" opacity="0.5" />
+          <use href="#gol-glider" class="cs-i-dot" transform="translate(128,128) scale(1)" opacity="1" />
+        </svg>
+      </div>
+
+      <div class="cs-hero-grid">
+        <div>
+          <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
+          <h1>Game of Life</h1>
+          <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
+          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
+        </div>
+
+        <!-- SLOT: hero animation, portrait. Alt/description EN: "A Game of Life pattern of
+             hundreds of thousands of cells, zoomed far out on a phone and drawn as a density
+             texture." Alt/description PL: "Wzorzec gry w życie liczący setki tysięcy komórek,
+             mocno oddalony na ekranie telefonu i narysowany jako tekstura gęstości." -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait">
+            <div class="cs-media-inner">
+              <img class="gol-icon gol-media-icon" src="../../images/game-of-life/ui/ui_play.png" alt="" aria-hidden="true" />
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="gol.hero.shot">Phone screen, zoomed almost all the way out on a very large pattern (~252k cells, e.g. the Universal Turing Machine): the density texture fills the frame, no UI panels in the way.</p>
+              <p class="cs-media-specs">9:16 · loop, 3–5s</p>
+            </div>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">A Game of Life pattern of hundreds of thousands of cells, zoomed far out on a phone and drawn as a density texture.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="../../images/game-of-life/hero.webp" alt="[the figcaption text]" loading="lazy">
+               — or, for footage instead of a still loop: —
+               <video autoplay muted loop playsinline preload="metadata" poster="../../images/game-of-life/hero-poster.jpg">
+                 <source src="../../images/game-of-life/hero.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="../../images/game-of-life/hero-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
+      </div>
+    </header>
+
+    <div class="gol-rules-strip" aria-hidden="true">
+      <img src="../../images/game-of-life/ui/rule-01.png" alt="" loading="lazy" />
+      <img src="../../images/game-of-life/ui/rule-02.png" alt="" loading="lazy" />
+      <img src="../../images/game-of-life/ui/rule-03.png" alt="" loading="lazy" />
+      <img src="../../images/game-of-life/ui/rule-04.png" alt="" loading="lazy" />
+      <img src="../../images/game-of-life/ui/rule-05.png" alt="" loading="lazy" />
+    </div>
+
+    <section class="cs-keynums" aria-labelledby="keynums-h">
+      <h2 class="cs-eyebrow" id="keynums-h">
+        <img class="gol-icon" src="../../images/game-of-life/ui/ui_ff.png" alt="" aria-hidden="true" />
+        <span data-i18n="case.keynums">Key numbers</span>
+      </h2>
+      <div class="cs-keynums-grid">
+        <div class="cs-keynum">
+          <b data-i18n="gol.kn1.value">15,000+</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn1.label">Downloads on Google Play</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
+        </div>
+        <div class="cs-keynum">
+          <b data-i18n="gol.kn2.value">64 → 141 gen/s</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Speed-up from direct chunk copies</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern of 275k live cells on a Pixel 6 Pro: per-generation replay vs whole-chunk copies (system 2).</span>
+        </div>
+        <div class="cs-keynum">
+          <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn3.label">Visible-cell query</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity, a 200×200-cell view with 316k live cells off-screen: chunked query vs the old full scan (system 3).</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-glance" aria-labelledby="glance-h">
+      <h2 class="cs-eyebrow" id="glance-h">
+        <img class="gol-icon" src="../../images/game-of-life/ui/ui_library.png" alt="" aria-hidden="true" />
+        <span data-i18n="case.glance">At a glance</span>
+      </h2>
+      <dl class="cs-facts">
+        <div><dt data-i18n="gol.glance.role.t">Role</dt><dd data-i18n="gol.glance.role.d">solo (engine, gameplay, UI and store release)</dd></div>
+        <div><dt data-i18n="gol.glance.engine.t">Engine</dt><dd data-i18n="gol.glance.engine.d">Unity 2022.3 LTS, built-in render pipeline</dd></div>
+        <div><dt data-i18n="gol.glance.platform.t">Platform</dt><dd data-i18n="gol.glance.platform.d">Android (IL2CPP, ARM64)</dd></div>
+        <div><dt data-i18n="gol.glance.status.t">Status</dt><dd><span data-i18n="gol.glance.status.d1">published on</span> <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a><span aria-hidden="true"> ↗</span><span data-i18n="gol.glance.status.d2">, 15,000+ downloads</span></dd></div>
+        <div><dt data-i18n="gol.glance.tech.t">Key tech</dt><dd data-i18n="gol.glance.tech.d">C#, Burst, Job System, Native Collections, multithreading, custom shaders, Tilemap</dd></div>
+        <div><dt data-i18n="gol.glance.code.t">Code</dt><dd data-i18n="gol.glance.code.d">private repository</dd></div>
+      </dl>
+    </section>
+
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h">
+        <img class="gol-icon" src="../../images/game-of-life/ui/ui_stamp.png" alt="" aria-hidden="true" />
+        <span data-i18n="case.toc">Systems on this page</span>
+      </h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><img class="gol-icon gol-toc-icon" src="../../images/game-of-life/ui/ui_stamp.png" alt="" aria-hidden="true" /><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="gol.sys1.title">An engine that only computes what changes</span><span class="cs-toc-skills" data-i18n="gol.toc1.skills">Burst · Job System · bit-parallel kernel</span></a></li>
+        <li><a href="#sys-2"><img class="gol-icon gol-toc-icon" src="../../images/game-of-life/ui/ui_stamp.png" alt="" aria-hidden="true" /><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
+        <li><a href="#sys-3"><img class="gol-icon gol-toc-icon" src="../../images/game-of-life/ui/ui_stamp.png" alt="" aria-hidden="true" /><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
+        <li><a href="#sys-4"><img class="gol-icon gol-toc-icon" src="../../images/game-of-life/ui/ui_stamp.png" alt="" aria-hidden="true" /><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="cs-systems">
+
+      <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
+        <div class="cs-system-head">
+          <img class="gol-icon gol-sys-icon" src="../../images/game-of-life/ui/ui_ff.png" alt="" aria-hidden="true" />
+          <span class="cs-system-num" aria-hidden="true">01</span>
+          <h2 id="sys-1-h" data-i18n="gol.sys1.title">An engine that only computes what changes</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys1.problem">A straightforward simulation visits every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns grind down even when most of the board isn't moving.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys1.how">The board is split into 64×64 chunks stored as bitmasks (one 64-bit integer per row, one bit per cell). Each step recomputes only the chunks next to ones that changed in the previous step, counts neighbours for 64 cells at once with bitwise arithmetic, and runs as a chain of five Burst jobs on native memory. Burst compiles a restricted subset of C# into optimised native code, and the Job System spreads that work across worker threads.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys1.what">Data-oriented design with Burst and the Job System, and profiling on the target device. Parallelising only the core computation gave a clear gain in the editor but no measurable difference on the phone, because the real bottleneck was the serial data gathering around it. The release build runs the whole pipeline as jobs: on a dense random pattern, four worker threads deliver 1.96× the generations per second of one (measured on a phone).</p>
+        </div>
+        <div class="cs-code">
+          <p class="cs-code-file"><img class="gol-icon gol-icon--save" src="../../images/game-of-life/ui/ui_save.png" alt="" aria-hidden="true" /> BitmaskGenerationSolver.cs · Step()</p>
+          <pre tabindex="0" aria-label="Code excerpt from BitmaskGenerationSolver.cs, the Step method: building the candidate set and scheduling the Burst job chain" data-i18n-attr="aria-label" data-i18n-attr-key="gol.sys1.code.aria"><code class="language-csharp">private void Step(bool allowBirth, List&lt;Vector3Int&gt; bornOut, List&lt;Vector3Int&gt; diedOut, bool emitCellDelta)
+{
+    // …
+    // Candidate chunks: only a chunk within 1 ring of a chunk that changed last step can
+    // change now (neighbourhood adjacency is symmetric), so candidates = N(_lastChanged).
+    // …
+    _candidates.Clear();
+    foreach (long key in _lastChanged)
+    {
+        int cx = ChunkX(key), cy = ChunkY(key);
+        for (int dx = -1; dx &lt;= 1; dx++)
+            for (int dy = -1; dy &lt;= 1; dy++)
+                _candidates.Add(ChunkKey(cx + dx, cy + dy));
+    }
+    // …
+    _candidateList.Clear();
+    foreach (long key in _candidates) _candidateList.Add(key);
+    int count = _candidateList.Count;
+
+    if (count &gt; 0)
+    {
+        // Batch size targets ~2 batches per worker rather than a fixed small constant: with
+        // …
+        int batchSize = System.Math.Max(1, count / (JobWorkerCount * 2));
+        JobHandle gatherHandle = new BitmaskKernel.GatherJob
+        { CandidateKeys = _candidateKeysBuffer, /* … */ }.Schedule(count, batchSize);
+        JobHandle kernelHandle = new BitmaskKernel.ComputeChunksJob
+        { AllNbr = _allNbrBuffer, /* … */ }.Schedule(count, batchSize, gatherHandle);
+        // …
+    }
+
+    (_lastChanged, _newChanged) = (_newChanged, _lastChanged);
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-2" aria-labelledby="sys-2-h">
+        <div class="cs-system-head">
+          <img class="gol-icon gol-sys-icon" src="../../images/game-of-life/ui/ui_play.png" alt="" aria-hidden="true" />
+          <span class="cs-system-num" aria-hidden="true">02</span>
+          <h2 id="sys-2-h" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys2.problem">The simulation must never stall rendering or touch input. At low speed, each generation also has to reach the main thread on its own, because it drives the birth/death animations and haptics. At high speed, that per-generation hand-off became the bottleneck, and a faster engine actually made the frame rate worse.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys2.how">Below the speed at which animations switch off anyway, each generation's changes (born and died cells) pass through a ring buffer, a fixed-size queue that reuses its slots, so the calculation thread can run ahead of the display. Above that speed there is nothing to animate, so the calculation thread copies whole changed chunks into the displayed state itself, and the main thread only renders.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API: a producer–consumer design with explicit lock discipline. Two locks, one guarding the board state and one guarding the counters behind the zoomed-out density view (system 3), are always taken in the same order, which rules out deadlock. It also shows tracking down a counter-intuitive regression: switching to whole-chunk copies took a 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro.</p>
+        </div>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag2-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 880 340" role="img" aria-label="Two lanes: calculation thread above, main thread below. Below the animation threshold, a Burst-jobs box feeds a delta ring buffer straddling both lanes, and the main thread replays one generation per frame with animations. Above the threshold, a separate Burst-jobs box feeds, still inside the calculation-thread lane, a box that copies whole changed chunks; that copy reaches a displayed cell set straddling both lanes, and the main thread only renders, independent of simulation speed." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria">
+              <defs>
+                <marker id="gol2-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+              <rect x="10" y="30" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
+              <rect x="10" y="205" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
+              <text x="24" y="48" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneCalc">CALCULATION THREAD</text>
+              <text x="24" y="223" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
+              <text x="190" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathA">BELOW ANIMATION THRESHOLD</text>
+              <text x="630" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathB">ABOVE THRESHOLD</text>
+
+              <rect x="20" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="80" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+
+              <rect x="190" y="120" width="220" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="300" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.ring">Delta ring buffer</text>
+              <text x="300" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
+
+              <rect x="190" y="228" width="220" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="300" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.replay">One generation per frame</text>
+              <text x="300" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.withAnim">With animations</text>
+
+              <rect x="450" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="510" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+
+              <rect x="610" y="54" width="230" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="725" y="81" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.copies">Copies changed chunks</text>
+
+              <rect x="610" y="120" width="230" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="725" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.displayed">Displayed cell set</text>
+              <text x="725" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.shared">shared state</text>
+
+              <rect x="610" y="228" width="230" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="725" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.renders">Renders only</text>
+              <text x="725" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
+
+              <path d="M140,76 L188,167" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M300,215 L300,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M570,76 L608,76" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,98 L725,118" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M725,215 L725,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Two ways to deliver results, chosen by simulation speed: below the animation threshold the main thread replays each generation with animations; above it the calculation thread copies changed chunks itself and the main thread only renders.</figcaption>
+        </figure>
+      </article>
+
+      <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
+        <div class="cs-system-head">
+          <img class="gol-icon gol-sys-icon" src="../../images/game-of-life/ui/ui_library.png" alt="" aria-hidden="true" />
+          <span class="cs-system-num" aria-hidden="true">03</span>
+          <h2 id="sys-3-h" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys3.problem">Zoomed out, a pattern can put hundreds of thousands of cells on screen, and Unity's Tilemap pays a cost for every tile. Even finding which cells were visible used to mean scanning every live cell. The game slowed down as a pattern grew, including the parts that were off-screen.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys3.how">Live cells are stored in a chunked bitmask structure that answers "what's inside this camera rectangle" in time proportional to the visible area. Up close, the Tilemap receives only each generation's changes. Zoomed far out, it's replaced by one quad textured with cell density (one byte per texel) and drawn by a custom shader in a single draw call. The switch uses hysteresis, with separate thresholds for entering and leaving, so the view doesn't flicker between modes.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys3.what">Rendering optimisation in Unity (draw calls, the limits of a built-in component, level-of-detail switching) and choosing data structures by the queries they have to answer. In a benchmark outside Unity, the on-screen query stays at ~50 µs however many cells live off-screen. The old full scan had grown to 1,035 µs at 316k live cells.</p>
+        </div>
+
+        <!-- SLOT: system animation, portrait (phone gameplay). -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait">
+            <div class="cs-media-inner">
+              <img class="gol-icon gol-media-icon" src="../../images/game-of-life/ui/ui_play.png" alt="" aria-hidden="true" />
+              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
+              <p class="cs-media-desc" data-i18n="gol.sys3.shot">One continuous pinch-zoom from a handful of single cells out to a pattern of hundreds of thousands (~252k cells), FPS counter visible, showing the exact moment the Tilemap hands off to the single-quad density view with no stutter.</p>
+              <p class="cs-media-specs">9:16 · loop, 4–8s</p>
+            </div>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom from single cells out to a pattern of hundreds of thousands, with the FPS counter on: the tiles give way to the single-quad density view without a stutter.</figcaption>
+          <!-- Later, replace the placeholder .cs-media-frame contents above with:
+               <img src="../../images/game-of-life/system-3-zoom.webp" alt="[the figcaption text]" loading="lazy">
+               — or: —
+               <video autoplay muted loop playsinline preload="metadata" poster="../../images/game-of-life/system-3-poster.jpg">
+                 <source src="../../images/game-of-life/system-3-zoom.webm" type="video/webm">
+               </video>
+               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+               <picture><source media="(prefers-reduced-motion: reduce)" srcset="../../images/game-of-life/system-3-still.jpg">
+               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        </figure>
+      </article>
+
+      <article class="cs-system" id="sys-4" aria-labelledby="sys-4-h">
+        <div class="cs-system-head">
+          <img class="gol-icon gol-sys-icon" src="../../images/game-of-life/ui/ui_reset.png" alt="" aria-hidden="true" />
+          <span class="cs-system-num" aria-hidden="true">04</span>
+          <h2 id="sys-4-h" data-i18n="gol.sys4.title">Engine code verified outside Unity</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="gol.sys4.problem">A bug in a stateful, bit-level engine doesn't crash anything. It produces a plausible but wrong pattern, often many generations later, so watching the screen won't catch it.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="gol.sys4.how">A .NET console harness compiles the same solver source files that ship to the store, with a small shim stubbing Unity's collections, Jobs and Burst. Every generation of every scenario (gliders crossing chunk edges and into negative coordinates, an empty board) is compared cell for cell with a naive reference. Each run also folds into a golden hash that a pure refactor must reproduce byte for byte. A headless Burst compile of all five jobs for ARM64 includes a negative control that must fail to compile, so a clean pass proves something.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, in three concrete techniques. Differential testing checks every generation against a brute-force reference, not just the final state, so an error shows up in the generation that caused it. A golden-hash regression check proves that a refactor changed nothing. A negative control proves that the headless Burst check is able to fail. All of it runs from the command line, without opening the editor.</p>
+        </div>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag4-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 820 380" role="img" aria-label="The same solver source branches into the Android store build and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A BurstProbe check compiles the same five jobs for ARM64, with a negative control that must fail to compile." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag4.aria">
+              <defs>
+                <marker id="gol4-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+              <rect x="30" y="130" width="210" height="90" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="135" y="168" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag4.source">Same solver source</text>
+              <text x="135" y="188" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskKernel.cs,</text>
+              <text x="135" y="202" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskGenerationSolver.cs</text>
+
+              <path d="M240,155 L336,72" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <path d="M240,195 L336,200" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <path d="M180,220 L440,268" class="cs-i-line-dashed" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+
+              <rect x="340" y="40" width="220" height="60" class="cs-i-box" aria-hidden="true" />
+              <text x="450" y="65" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.android">Android store build</text>
+              <text x="450" y="83" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.androidSub">the shipped game</text>
+
+              <rect x="340" y="170" width="220" height="60" class="cs-i-box" aria-hidden="true" />
+              <text x="450" y="195" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.harness">.NET test harness</text>
+              <text x="450" y="213" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.harnessSub">compiles the shipped solver</text>
+
+              <path d="M560,200 L586,203" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <rect x="590" y="150" width="210" height="110" class="cs-i-box" aria-hidden="true" />
+              <text x="695" y="180" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.naive">vs naive reference</text>
+              <text x="695" y="200" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.cellByCell">cell by cell</text>
+              <text x="695" y="228" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.hash">Golden hash</text>
+              <text x="695" y="248" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.hashSub">byte for byte</text>
+
+              <rect x="330" y="270" width="240" height="80" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
+              <text x="450" y="295" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.probe">BurstProbe: ARM64 compile</text>
+              <text x="450" y="313" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative">Negative control</text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="gol-diag4-cap" data-i18n="gol.diag4.cap">Both branches compile the same files, so the tests are never a stale copy of the engine.</figcaption>
+        </figure>
+      </article>
+
+    </section>
+
+    <section class="cs-takeaway">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
+      <p data-i18n="gol.takeaway">Measure on the target device, not in the editor: in this project the editor pointed at the wrong bottleneck.</p>
+      <div class="cs-also">
+        <span class="cs-also-label" data-i18n="gol.also.label">Also in the codebase (not in the store build)</span>
+        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and tests against a brute-force reference, but it's switched off in the store build and planned for a future Pro version.</p>
+      </div>
+    </section>
+
+    <nav class="cs-next" aria-label="Next case study" data-i18n-attr="aria-label" data-i18n-attr-key="case.next.aria">
+      <a href="../../grave.html">
+        <span class="cs-next-label">
+          <img class="gol-icon" src="../../images/game-of-life/ui/ui_ff.png" alt="" aria-hidden="true" />
+          <span data-i18n="case.next">Next project</span>
+        </span>
+        <strong>Grave →</strong>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="cs-foot">
+    <p data-i18n="case.foot.gol">Solo project. The repository is private — the excerpts are above, and I'm happy to walk through the rest in an interview.</p>
+    <p class="cs-foot-links">
+      <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.linkedin">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script src="../../js/i18n.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../../js/case-study.js" defer></script>
+</body>
+</html>
