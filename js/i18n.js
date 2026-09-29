@@ -59,7 +59,8 @@
       'index.hero.stat3.tag': 'Luggage Please · lipiec–wrzesień 2024',
       'index.projects.note': 'Każde studium przypadku omawia problem, działanie systemu i kod, który za nim stoi.',
       'index.project.systems': 'Systemy, które zbudowałem',
-      'index.project.gol.media': 'Działo Gospera · generacja 90',
+      'index.project.gol.alt': 'Universal Turing Machine: 252 tys. żywych komórek, mocno oddalona na ekranie telefonu i narysowana jako jedna tekstura gęstości.',
+      'index.project.gol.media': 'Widok gęstości · 252 tys. komórek',
       'index.project.gol.summary': 'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek.',
       'index.project.gol.sys1': 'Obliczenia na bitach w Burst i Job System',
       'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
@@ -120,12 +121,8 @@
         'Symulator automatu komórkowego na Androida, zbudowany tak, żeby telefon radził sobie z wzorcami liczącymi setki tysięcy żywych komórek.',
       'gol.intro':
         'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują, od kilku komórek po wzorce liczące setki tysięcy. Reguły mieszczą się w czterech zdaniach. Trudność techniczna polega na tym, żeby skalowały się na telefonie.',
-      // gol.hero.* and gol.sys3.shot/caption: their figures are parked in SLOT comments in
-      // game-of-life.html until the footage exists.
-      'gol.hero.shot':
-        'Ekran telefonu, niemal całkowicie oddalony widok bardzo dużego wzorca (~252 tys. komórek, np. Universal Turing Machine): tekstura gęstości wypełnia kadr, bez paneli UI zasłaniających wzorzec.',
       'gol.hero.caption':
-        'Wzorzec gry w życie liczący setki tysięcy komórek, mocno oddalony na ekranie telefonu i narysowany jako tekstura gęstości.',
+        'Universal Turing Machine: 252 tys. żywych komórek, ~240 generacji na sekundę na Pixelu 6 Pro. Przy takim oddaleniu cały widok to jedna tekstura gęstości.',
 
       // ---------- game-of-life.html: key numbers ----------
       'gol.kn1.value': '15 000+',
@@ -205,10 +202,8 @@
         'Żywe komórki są przechowywane w strukturze chunków z maskami bitowymi, która odpowiada na pytanie „co jest w tym prostokącie kamery” w czasie proporcjonalnym do widocznego obszaru. Z bliska Tilemapa dostaje tylko zmiany z każdej generacji. Przy dużym oddaleniu zastępuje ją jeden quad z teksturą gęstości komórek (jeden bajt na teksel), rysowany własnym shaderem w jednym draw callu. Przełączanie ma histerezę, czyli osobne progi wejścia i wyjścia, żeby widok nie migotał między trybami.',
       'gol.sys3.what':
         'Optymalizację renderowania w Unity (draw calle, ograniczenia wbudowanego komponentu, przełączanie poziomu szczegółowości, czyli LOD) i dobór struktur danych do zapytań, na które muszą odpowiadać. W benchmarku poza Unity zapytanie o widoczne komórki zajmuje stale ~50 µs, bez względu na to, ile komórek jest poza ekranem. Stare pełne skanowanie dochodziło do 1035 µs przy 316 tys. żywych komórek.',
-      'gol.sys3.shot':
-        'Jeden ciągły pinch-zoom od pojedynczych komórek do wzorca liczącego setki tysięcy (~252 tys.), z widocznym licznikiem FPS — ma być widać moment, w którym Tilemapa ustępuje widokowi gęstości na jednym quadzie, bez zacięć.',
       'gol.sys3.caption':
-        'Jeden płynny pinch-zoom od pojedynczych komórek do wzorca liczącego setki tysięcy komórek, z włączonym licznikiem FPS: kafelki ustępują widokowi gęstości na jednym quadzie bez zacięć.',
+        'Jeden ciągły pinch-zoom na Pixelu 6 Pro, od 13 komórek do liczącej 252 tys. komórek Universal Turing Machine, z włączonym licznikiem FPS z gry: Tilemapa ustępuje widokowi gęstości na jednym quadzie, a licznik utrzymuje się między 56 a 60.',
 
       // ---------- game-of-life.html: system 4 ----------
       'gol.sys4.title': 'Kod silnika weryfikowany poza Unity',
