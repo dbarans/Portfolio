@@ -119,7 +119,7 @@
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 07</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, frame by frame</p>
+            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
@@ -142,43 +142,43 @@
             </p>
             <h3 class="cs-steps-label" data-i18n="grave.footage.label">In the footage</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="board plots" style="--frames: 63">
+              <li class="cs-step" data-phases="board plots">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s1.t">Room plots</h3>
                   <p data-i18n="grave.f1.s1.b">A 200×200-cell board. First the hub’s plot (blue), then the other rooms; the purple ones are vaults. The whole dungeon follows from the seed and the settings.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="tree" style="--frames: 54">
+              <li class="cs-step" data-phases="tree">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s2.t">Spanning tree</h3>
                   <p data-i18n="grave.f1.s2.b">Kruskal’s algorithm joins the rooms along the shortest edges (Manhattan distance) until every room can be reached.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="loops treasure-links" style="--frames: 72">
+              <li class="cs-step" data-phases="loops treasure-links">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s3.t">Loops and vaults</h3>
                   <p data-i18n="grave.f1.s3.b">Some of the rejected edges come back as extra passages, so the dungeon has ways around instead of only dead ends. Each vault gets a single connection.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="carve-rooms corridors doorways" style="--frames: 110">
+              <li class="cs-step" data-phases="carve-rooms corridors doorways">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s4.t">Rooms, corridors, doorways</h3>
                   <p data-i18n="grave.f1.s4.b">Rooms are carved in the order they were placed, with irregular outlines. Corridors are dug along the links, and where they meet a room they become doorways (amber). The link graph fades out: its work is done.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="roles interiors" style="--frames: 60">
+              <li class="cs-step" data-phases="roles interiors">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s5.t">Roles and interiors</h3>
                   <p data-i18n="grave.f1.s5.b">The hub, the vaults, the exit (green) and the room with the exit key. Then pillars, partitions and rubble, room by room.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="chokepoints" style="--frames: 34">
+              <li class="cs-step" data-phases="chokepoints">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s6.t">Chokepoints</h3>
                   <p data-i18n="grave.f1.s6.b">The dungeon’s bottlenecks (red), marked for the systems that come later.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="zoom arrive" style="--frames: 112">
+              <li class="cs-step" data-phases="zoom arrive">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f1.s7.t">The same dungeon in the game</h3>
                   <p data-i18n="grave.f1.s7.b">The plan fades into the game’s graphics and the camera dives to the player in the hub. The footage of the next three systems plays out in another hall of this dungeon, among the pillars from “Roles and interiors”.</p>
@@ -228,7 +228,7 @@
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 13</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, frame by frame</p>
+            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
@@ -250,79 +250,79 @@
             </p>
             <h3 class="cs-steps-label" data-i18n="grave.footage.label">In the footage</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="room" style="--frames: 30">
+              <li class="cs-step" data-phases="room">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s1.t">A colonnade</h3>
                   <p data-i18n="grave.f2.s1.b">An enemy patrols the aisle between two rows of pillars. Remember where it is.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="lights-out dark" style="--frames: 50">
+              <li class="cs-step" data-phases="lights-out dark">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s2.t">Lights out</h3>
                   <p data-i18n="grave.f2.s2.b">Only what the player sees remains. The enemy and the rats vanish, though they are still there.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="walk" style="--frames: 74">
+              <li class="cs-step" data-phases="walk">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s3.t">Walking in</h3>
                   <p data-i18n="grave.f2.s3.b">The player steps into the colonnade. Every pillar leaves a wedge of shadow behind it.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="rays" style="--frames: 42">
+              <li class="cs-step" data-phases="rays">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s4.t">Rays</h3>
                   <p data-i18n="grave.f2.s4.b">Freeze frame. 166 rays: 1° apart in the cone, 4° apart around the player, where that density isn’t needed. The end of a ray says what stopped it: amber is a pillar, blue another obstacle, pale the full range.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="edges" style="--frames: 95">
+              <li class="cs-step" data-phases="edges">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s5.t">Edges</h3>
                   <p data-i18n="grave.f2.s5.b">A pillar’s edge, magnified: angle across, distance up. Neighbouring rays disagree (a different obstacle, or more than 0.5 apart), so the game halves the angle 4 times: from 1° to 1/16°. The white dots are the results of all 11 searches.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="coarse" style="--frames: 48">
+              <li class="cs-step" data-phases="coarse">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s6.t">Without bisection</h3>
                   <p data-i18n="grave.f2.s6.b">A test: the same view built by the game’s code, but with a ray every 4° and no bisection. Blue is shadow where the game sees light, red the other way round. The bright line is the true edge.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="coarse-refined" style="--frames: 48">
+              <li class="cs-step" data-phases="coarse-refined">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s7.t">With bisection</h3>
                   <p data-i18n="grave.f2.s7.b">The same 93 rays and 4 bisection steps on each of the 11 edges: the error all but disappears for 44 extra casts. Without bisection, that accuracy would take 400 rays in the cone alone.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="mask" style="--frames: 78">
+              <li class="cs-step" data-phases="mask">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s8.t">The mask</h3>
                   <p data-i18n="grave.f2.s8.b">The ray ends form a fan of triangles, built in LateUpdate once everything else has moved. A second camera draws it into a texture: alpha is the light’s strength, RGB its colour. The end of the range fades out smoothly.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="unmasked" style="--frames: 36">
+              <li class="cs-step" data-phases="unmasked">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s9.t">No mask on the sprites</h3>
                   <p data-i18n="grave.f2.s9.b">Two things read the mask. Without it on the sprites, the darkness alone only dims to 1/3: the enemy behind a pillar shows through, and so do the crate, the barrels and the glass.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="no-darkness" style="--frames: 36">
+              <li class="cs-step" data-phases="no-darkness">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s10.t">No darkness</h3>
                   <p data-i18n="grave.f2.s10.b">The other way round: without the darkness the floor is lit, and of the enemy only a scrap shows in the light, inside the fan’s outline. The sprite reads the mask itself, pixel by pixel.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="watch" style="--frames: 90">
+              <li class="cs-step" data-phases="watch">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s11.t">Behind the pillars</h3>
                   <p data-i18n="grave.f2.s11.b">The game runs on. The enemy is cut exactly along the mask’s edge: it shows only in the gaps.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="turn" style="--frames: 79">
+              <li class="cs-step" data-phases="turn">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s12.t">Live</h3>
                   <p data-i18n="grave.f2.s12.b">The same in every frame, after the player moves. Under the player: rays · edges · casts this frame, and the time to build the mesh (median of 9 frames, measured in the editor). The white dots jump because the edges are searched afresh.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="enemy" style="--frames: 60">
+              <li class="cs-step" data-phases="enemy">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f2.s13.t">The enemy</h3>
                   <p data-i18n="grave.f2.s13.b">Glass crunches underfoot. Here the enemy’s senses are switched off; in the next footage it hears the step and runs to where it came from, along a route found by A*.</p>
@@ -384,7 +384,7 @@
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 07</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, frame by frame</p>
+            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
@@ -405,43 +405,43 @@
             </p>
             <h3 class="cs-steps-label" data-i18n="grave.footage.label">In the footage</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="noise" style="--frames: 77">
+              <li class="cs-step" data-phases="noise">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s1.t">A step on glass</h3>
                   <p data-i18n="grave.f3.s1.b">The player shifts on the glass. Freeze frame: the noise goes out over an event bus to every listener. The blind enemy hears it because it is in range, and barrels, unlike pillars, don’t block sound.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="grid" style="--frames: 34">
+              <li class="cs-step" data-phases="grid">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s2.t">The grid</h3>
                   <p data-i18n="grave.f3.s2.b">The enemy doesn’t see the room, only a grid: one obstacle query at the centre of each cell, ignoring triggers. Glass leaves the way open, barrels close it, even though sound passes through them.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="search" style="--frames: 124">
+              <li class="cs-step" data-phases="search">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s3.t">A*</h3>
                   <p data-i18n="grave.f3.s3.b">A* takes from the queue (outlines with their f) the cell with the lowest f = g + h: the cost so far plus the octile distance to the goal. It expands every cell cheaper than the route, so on a detour even those behind the enemy. Under the player: cells expanded, out of the budget.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="route" style="--frames: 75">
+              <li class="cs-step" data-phases="route">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s4.t">The route</h3>
                   <p data-i18n="grave.f3.s4.b">Taking the goal off the queue ends the search. The route is read backwards along the parent arrows, from the goal to the enemy. Had the budget run out, the enemy would get a route to the cell closest to the goal instead of standing still.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="corner" style="--frames: 53">
+              <li class="cs-step" data-phases="corner" data-rest="8">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s5.t">No corner cutting</h3>
                   <p data-i18n="grave.f3.s5.b">A diagonal step is allowed only when both neighbouring cells are free. By the barrel one isn’t, so the route takes two straight steps and the enemy doesn’t pass through the corner.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="run" style="--frames: 129">
+              <li class="cs-step" data-phases="run">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s6.t">After the sound</h3>
                   <p data-i18n="grave.f3.s6.b">The game runs on. The player sneaks off the glass: on glass even sneaking can be heard, though only up close; on a plain floor, not at all. The enemy runs round the barrels along the route (amber), recalculated a few times a second.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="arrive" style="--frames: 60">
+              <li class="cs-step" data-phases="arrive">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f3.s7.t">Where the sound came from</h3>
                   <p data-i18n="grave.f3.s7.b">Hearing gives the place of the sound, not of the player. The enemy reaches the glass, looks around and goes back to its patrol, while the player is already outside the dashed circle in which it would sense the player even in silence.</p>
@@ -494,7 +494,7 @@ return false;</code></pre>
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 08</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, frame by frame</p>
+            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
@@ -515,49 +515,49 @@ return false;</code></pre>
             </p>
             <h3 class="cs-steps-label" data-i18n="grave.footage.label">In the footage</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="hear" style="--frames: 18">
+              <li class="cs-step" data-phases="hear">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s1.t">A step that carries</h3>
                   <p data-i18n="grave.f4.s1.b">The player walks at a normal pace, not sneaking. The enemy heading back to its patrol hears it and turns (“?”), and A* again finds the route to where the sound was. Watch the dashed circle round the enemy.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="chase" style="--frames: 18">
+              <li class="cs-step" data-phases="chase">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s2.t">Detected</h3>
                   <p data-i18n="grave.f4.s2.b">Once the player is inside the circle, sound is no longer needed: the enemy detects the player and gives chase (“!”). The player breaks into a run.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="pull" style="--frames: 36">
+              <li class="cs-step" data-phases="pull">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s3.t">One of many</h3>
                   <p data-i18n="grave.f4.s3.b">Freeze frame, and the camera pulls back: the game dissolves into the dungeon plan from the generator footage. The enemy that has just given chase is one of many on it.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="zones" style="--frames: 66">
+              <li class="cs-step" data-phases="zones">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s4.t">Who really updates</h3>
                   <p data-i18n="grave.f4.s4.b">Every enemy is marked by what the game does with it. A solid marker: its AI updates every frame. An outline with a pale centre: on the interval, 0.35 s with jitter. Hollow: not at all, because it is parked. Numbers: how many in each group.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="rings" style="--frames: 66">
+              <li class="cs-step" data-phases="rings">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s5.t">Rings measured from the player</h3>
                   <p data-i18n="grave.f4.s5.b">The full-rate ring follows from the components: a blind enemy has no sight, so its ring is smaller than a sighted one’s. Past the park line the AI doesn’t run; the wake line lies just inside it (hysteresis).</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="cost" style="--frames: 50">
+              <li class="cs-step" data-phases="cost" data-rest="8">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s6.t">What it costs</h3>
                   <p data-i18n="grave.f4.s6.b">The counter: how many AI updates happened in the last second, next to how many there would be with every enemy updating every frame. Below, A* searches: each pays for the cells it visits (a stamp instead of clearing the grid), not for the whole map.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="follow" style="--frames: 148">
+              <li class="cs-step" data-phases="follow">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s7.t">The escape on the map</h3>
                   <p data-i18n="grave.f4.s7.b">The game runs on. The player runs faster than the enemy chases and gets out of its detection range. The enemy hears the running (the thin circle: how far footsteps carry) and stays within the full-rate ring. Stamina runs out and the player slows down.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="behind" style="--frames: 30">
+              <li class="cs-step" data-phases="behind">
                 <div class="cs-step-text">
                   <h3 data-i18n="grave.f4.s8.t">What it means in play</h3>
                   <p data-i18n="grave.f4.s8.b">The walking player’s steps no longer reach the enemy. Outside the ring and out of earshot, it drops to the interval. No enemy near the player reacts any worse for it, and the whole dungeon costs a fraction of what it would without the budget.</p>
