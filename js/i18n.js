@@ -86,7 +86,7 @@
       'case.keynums': 'Najważniejsze liczby',
       'case.glance': 'W skrócie',
       'case.toc': 'Systemy na tej stronie',
-      'case.scrub.hint': 'Przewijaj, aby odtwarzać nagranie klatka po klatce',
+      'case.scrub.hint': 'Przewijaj, aby odtwarzać nagranie etap po etapie',
       'case.diagram.hint': 'Przewiń, aby zobaczyć cały diagram →',
       'case.how': 'Jak działa',
       'case.what': 'Co to pokazuje',

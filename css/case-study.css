@@ -516,7 +516,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
    phone); the scroll position picks the frame (js/grave-footage.js). Every step is as tall as
    its share of the frames, so the footage keeps an even pace. The poster <img> is the no-JS
    fallback; the canvas covers it once the first frames are in. ---------- */
-.cs-scrolly { --cs-frame-px: 7px; display: grid; gap: 24px; margin-top: 8px; }
+.cs-scrolly { --cs-step-top: 30vh; display: grid; gap: 24px; margin-top: 8px; }
 .cs-scrolly-media {
   position: sticky;
   top: var(--cs-sticky-top, 58px);
@@ -585,18 +585,23 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   color: var(--cs-accent);
 }
 .cs-steps { list-style: none; margin: 0; padding: 0; counter-reset: cs-step; }
+/* One step a screen: one scroll moves to the next step, which then plays its stage of the
+   footage at the game's pace (js/grave-footage.js turns snapping on while the steps are read). */
 .cs-step {
   counter-increment: cs-step;
-  min-height: max(calc(var(--frames) * var(--cs-frame-px)), 34vh);
+  min-height: calc(100vh - var(--cs-step-top));
   padding: 14px 0 28px 18px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: var(--cs-step-top);
   border-left: 3px solid var(--cs-line-2);
   transition: border-color 0.2s, opacity 0.2s;
 }
-/* A step's text stays in view while its part of the footage plays, then the next one takes over. */
-.cs-step-text {
-  position: sticky;
-  top: max(calc(var(--cs-sticky-top, 58px) + 24px), 30vh);
-}
+/* Snap stops just outside the steps, so the first scroll past either end leaves them. */
+.cs-steps-edge { height: 1px; scroll-snap-stop: always; }
+.cs-steps-edge--start { scroll-snap-align: end; }
+.cs-steps-edge--end { scroll-snap-align: start; scroll-margin-top: var(--cs-step-top); }
+html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 .cs-step h3 {
   margin: 0 0 6px;
   font-size: 1rem;
@@ -619,7 +624,6 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 
 @media (min-width: 960px) {
   .cs-scrolly {
-    --cs-frame-px: 8px;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: 40px;
     width: min(1160px, calc(100vw - 80px));
@@ -646,9 +650,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   /* A wide, short screen (a tablet on its side): the view takes at most about half its height. */
   .cs-scrolly-media .cs-media-frame { max-width: calc(55vh * 4 / 3); margin: 0 auto; }
   .cs-scrolly-meta { max-width: calc(55vh * 4 / 3); margin-left: auto; margin-right: auto; }
-  .cs-step { min-height: max(calc(var(--frames) * var(--cs-frame-px)), 30vh); }
-  /* Just under the pinned view (its bottom edge is measured by js/grave-footage.js). */
-  .cs-step-text { top: calc(var(--cs-view-bottom, 50vh) + 8px); }
+  /* A step starts just under the pinned view (its bottom edge is measured by js/grave-footage.js). */
+  .cs-scrolly { --cs-step-top: calc(var(--cs-view-bottom, 50vh) + 8px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .cs-step, .cs-scrolly-load { transition: none; }
