@@ -38,7 +38,7 @@
 
   <main class="cs-page" id="main" tabindex="-1">
 
-    <header class="cs-hero">
+    <header class="cs-hero cs-hero--no-media">
       <div class="cs-hero-motif" aria-hidden="true">
         <svg viewBox="0 0 200 200" focusable="false">
           <defs>
@@ -64,29 +64,26 @@
           <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
         </div>
 
-        <!-- SLOT: hero animation, portrait. Alt/description EN: "A Game of Life pattern of
-             hundreds of thousands of cells, zoomed far out on a phone and drawn as a density
-             texture." Alt/description PL: "Wzorzec gry w życie liczący setki tysięcy komórek,
-             mocno oddalony na ekranie telefonu i narysowany jako tekstura gęstości." -->
-        <figure class="cs-media">
-          <div class="cs-media-frame cs-media-frame--portrait">
-            <div class="cs-media-inner">
-              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
-              <p class="cs-media-desc" data-i18n="gol.hero.shot">Phone screen, zoomed almost all the way out on a very large pattern (~252k cells, e.g. the Universal Turing Machine): the density texture fills the frame, no UI panels in the way.</p>
-              <p class="cs-media-specs">9:16 · loop, 3–5s</p>
-            </div>
-          </div>
-          <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">A Game of Life pattern of hundreds of thousands of cells, zoomed far out on a phone and drawn as a density texture.</figcaption>
-          <!-- Later, replace the placeholder .cs-media-frame contents above with:
-               <img src="images/game-of-life/hero.webp" alt="[the figcaption text]" loading="lazy">
-               — or, for footage instead of a still loop: —
+        <!-- SLOT: hero footage (portrait phone loop, 9:16, 3–5 s), hidden until the footage exists.
+             Shot: phone screen zoomed almost all the way out on a very large pattern (~252k cells,
+             e.g. the Universal Turing Machine); the density texture fills the frame, no UI panels.
+             To restore: remove "cs-hero--no-media" from the <header class="cs-hero …"> above and
+             paste this figure here (its i18n keys gol.hero.caption / gol.hero.shot still exist):
+             <figure class="cs-media">
+               <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
+                 <img src="images/game-of-life/hero.webp" alt="[the figcaption text]" loading="lazy">
+               </div>
+               <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">A Game of Life pattern of hundreds of thousands of cells, zoomed far out on a phone and drawn as a density texture.</figcaption>
+             </figure>
+             Caption/alt PL: "Wzorzec gry w życie liczący setki tysięcy komórek, mocno oddalony na
+             ekranie telefonu i narysowany jako tekstura gęstości."
+             For footage instead of a still loop, put this inside the frame instead of the <img>:
                <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/hero-poster.jpg">
                  <source src="images/game-of-life/hero.webm" type="video/webm">
                </video>
-               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/hero-still.jpg">
-               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
-        </figure>
+             An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+             <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/hero-still.jpg">
+             instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
       </div>
     </header>
 
@@ -100,12 +97,12 @@
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn2.value">64 → 141 gen/s</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Speed-up from direct chunk copies</span>
-          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern of 275k live cells on a Pixel 6 Pro: per-generation replay vs whole-chunk copies (system 2).</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">2.2× generations per second at high speed</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">275k-cell random pattern on a Pixel 6 Pro, after taking per-generation replay off the main thread (system 2).</span>
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn3.label">Visible-cell query</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn3.label">~20× faster on-screen cell lookup, flat as the pattern grows</span>
           <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity, a 200×200-cell view with 316k live cells off-screen: chunked query vs the old full scan (system 3).</span>
         </div>
       </div>
@@ -175,8 +172,7 @@
 
     if (count &gt; 0)
     {
-        // Batch size targets ~2 batches per worker rather than a fixed small constant: with
-        // …
+        // Batch size targets ~2 batches per worker rather than a fixed small constant.
         int batchSize = System.Math.Max(1, count / (JobWorkerCount * 2));
         JobHandle gatherHandle = new BitmaskKernel.GatherJob
         { CandidateKeys = _candidateKeysBuffer, /* … */ }.Schedule(count, batchSize);
@@ -278,26 +274,27 @@
           <p data-i18n="gol.sys3.what">Rendering optimisation in Unity (draw calls, the limits of a built-in component, level-of-detail switching) and choosing data structures by the queries they have to answer. In a benchmark outside Unity, the on-screen query stays at ~50 µs however many cells live off-screen. The old full scan had grown to 1,035 µs at 316k live cells.</p>
         </div>
 
-        <!-- SLOT: system animation, portrait (phone gameplay). -->
-        <figure class="cs-media">
-          <div class="cs-media-frame cs-media-frame--portrait">
-            <div class="cs-media-inner">
-              <span class="cs-media-tag">ANIMATION PLACEHOLDER</span>
-              <p class="cs-media-desc" data-i18n="gol.sys3.shot">One continuous pinch-zoom from a handful of single cells out to a pattern of hundreds of thousands (~252k cells), FPS counter visible, showing the exact moment the Tilemap hands off to the single-quad density view with no stutter.</p>
-              <p class="cs-media-specs">9:16 · loop, 4–8s</p>
-            </div>
-          </div>
-          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom from single cells out to a pattern of hundreds of thousands, with the FPS counter on: the tiles give way to the single-quad density view without a stutter.</figcaption>
-          <!-- Later, replace the placeholder .cs-media-frame contents above with:
-               <img src="images/game-of-life/system-3-zoom.webp" alt="[the figcaption text]" loading="lazy">
-               — or: —
+        <!-- SLOT: system 3 zoom footage (portrait phone loop, 9:16, 4–8 s), hidden until the footage exists.
+             Shot: one continuous pinch-zoom from a handful of single cells out to a pattern of
+             hundreds of thousands (~252k cells), FPS counter visible, showing the exact moment the
+             Tilemap hands off to the single-quad density view with no stutter.
+             To restore, paste this figure here (its i18n keys gol.sys3.caption / gol.sys3.shot still exist):
+             <figure class="cs-media">
+               <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
+                 <img src="images/game-of-life/system-3-zoom.webp" alt="[the figcaption text]" loading="lazy">
+               </div>
+               <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom from single cells out to a pattern of hundreds of thousands, with the FPS counter on: the tiles give way to the single-quad density view without a stutter.</figcaption>
+             </figure>
+             Caption PL: "Jeden płynny pinch-zoom od pojedynczych komórek do wzorca liczącego setki
+             tysięcy komórek, z włączonym licznikiem FPS: kafelki ustępują widokowi gęstości na
+             jednym quadzie bez zacięć."
+             For footage instead of a still loop, put this inside the frame instead of the <img>:
                <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/system-3-poster.jpg">
                  <source src="images/game-of-life/system-3-zoom.webm" type="video/webm">
                </video>
-               An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-               <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/system-3-still.jpg">
-               instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
-        </figure>
+             An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
+             <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/system-3-still.jpg">
+             instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
       </article>
 
       <article class="cs-system" id="sys-4" aria-labelledby="sys-4-h">
@@ -315,13 +312,13 @@
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, in three concrete techniques. Differential testing checks every generation against a brute-force reference, not just the final state, so an error shows up in the generation that caused it. A golden-hash regression check proves that a refactor changed nothing. A negative control proves that the headless Burst check is able to fail. All of it runs from the command line, without opening the editor.</p>
+          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, beyond what the editor offers: differential testing that pinpoints the generation where a bug first appears, a golden-hash check that turns "this refactor changed nothing" into a fact, and a Burst check proven able to fail, all run from the command line.</p>
         </div>
 
         <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag4-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
-            <svg viewBox="0 0 820 380" role="img" aria-label="The same solver source branches into the Android store build and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A BurstProbe check compiles the same five jobs for ARM64, with a negative control that must fail to compile." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag4.aria">
+            <svg viewBox="0 0 820 380" role="img" aria-label="The same shipped solver files branch into the Android store build and a .NET test harness that compares every generation against a naive reference and folds each run into a golden hash. A headless Burst compile builds the same five jobs for ARM64, with a negative control that must fail to compile." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag4.aria">
               <defs>
                 <marker id="gol4-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
@@ -329,12 +326,11 @@
               </defs>
               <rect x="30" y="130" width="210" height="90" class="cs-i-box-accent" aria-hidden="true" />
               <text x="135" y="168" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag4.source">Same solver source</text>
-              <text x="135" y="188" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskKernel.cs,</text>
-              <text x="135" y="202" text-anchor="middle" class="cs-i-label" font-size="10">BitmaskGenerationSolver.cs</text>
+              <text x="135" y="192" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.sourceSub">shipped solver files</text>
 
               <path d="M240,155 L336,72" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
               <path d="M240,195 L336,200" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
-              <path d="M180,220 L440,268" class="cs-i-line-dashed" marker-end="url(#gol4-arrow)" aria-hidden="true" />
+              <path d="M180,220 L440,280" class="cs-i-line-dashed" marker-end="url(#gol4-arrow)" aria-hidden="true" />
 
               <rect x="340" y="40" width="220" height="60" class="cs-i-box" aria-hidden="true" />
               <text x="450" y="65" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.android">Android store build</text>
@@ -351,9 +347,9 @@
               <text x="695" y="228" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.hash">Golden hash</text>
               <text x="695" y="248" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.hashSub">byte for byte</text>
 
-              <rect x="330" y="270" width="240" height="80" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
-              <text x="450" y="295" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.probe">BurstProbe: ARM64 compile</text>
-              <text x="450" y="313" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative">Negative control</text>
+              <rect x="300" y="283" width="300" height="76" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
+              <text x="450" y="314" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.headless">Headless Burst compile (ARM64)</text>
+              <text x="450" y="334" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative">Negative control</text>
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="gol-diag4-cap" data-i18n="gol.diag4.cap">Both branches compile the same files, so the tests are never a stale copy of the engine.</figcaption>
@@ -367,7 +363,7 @@
       <p data-i18n="gol.takeaway">Measure on the target device, not in the editor: in this project the editor pointed at the wrong bottleneck.</p>
       <div class="cs-also">
         <span class="cs-also-label" data-i18n="gol.also.label">Also in the codebase (not in the store build)</span>
-        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and tests against a brute-force reference, but it's switched off in the store build and planned for a future Pro version.</p>
+        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and tests against a brute-force reference, but it's switched off in the store build.</p>
       </div>
     </section>
 
@@ -377,7 +373,7 @@
   </main>
 
   <footer class="cs-foot">
-    <p data-i18n="case.foot.gol">Solo project. The repository is private — the excerpts are above, and I'm happy to walk through the rest in an interview.</p>
+    <p data-i18n="case.foot.gol">Solo project. The repository is private — an excerpt is above, and I'm happy to walk through the rest in an interview.</p>
     <p class="cs-foot-links">
       <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
       <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>

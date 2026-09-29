@@ -45,12 +45,12 @@
           <p class="cs-kicker" data-i18n="case.kicker.lp">PC · Unity 2022.3 URP · studio team · internship at Rubens Games, July–September 2024</p>
           <h1>Luggage Please</h1>
           <p class="cs-tagline" data-i18n="lp.tagline">Systems I built during my internship at Rubens Games: suitcase physics, an X-ray scanner made of URP renderer features, and a contextual interaction wheel.</p>
-          <p class="cs-intro" data-i18n="lp.intro">Luggage Please is a first-person airport security game made by a studio team at Rubens Games, where I was an intern. The studio's artists made the art. This case study covers three systems I built during the internship: suitcase and item physics, an X-ray scanner that tells materials apart, and a contextual interaction wheel for talking to passengers.</p>
+          <p class="cs-intro" data-i18n="lp.intro">Luggage Please is a first-person airport security game made by a studio team at Rubens Games, where I was an intern; the art is the studio's.</p>
         </div>
 
         <figure class="cs-hero-shot">
-          <img src="images/luggage-please/key-art.webp" width="2388" height="1668" loading="eager" data-i18n-attr="alt" data-i18n-attr-key="lp.hero.alt" alt="The Luggage Please key art: a cartoon open suitcase packed with clothes and a rubber duck, surrounded by a pistol, a knife, a goldfish and an open book, above the game's title." />
-          <figcaption data-i18n="lp.hero.credit">Key art: Rubens Games.</figcaption>
+          <img src="images/luggage-please/xray_previev.png" width="526" height="480" loading="eager" data-i18n-attr="alt" data-i18n-attr-key="lp.hero.alt" alt="The X-ray scanner I built: suitcase items drawn in colours by material category." />
+          <figcaption data-i18n="lp.hero.credit">The X-ray scanner I built, colouring items by material in real time.</figcaption>
         </figure>
       </div>
     </header>
@@ -59,11 +59,10 @@
       <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
       <dl class="cs-facts">
         <div><dt data-i18n="lp.glance.team.t">Team</dt><dd data-i18n="lp.glance.team.d">studio team at Rubens Games (internship); art by the studio's artists</dd></div>
-        <div><dt data-i18n="lp.glance.covered.t">Covered here</dt><dd data-i18n="lp.glance.covered.d">three systems I built: suitcase and item physics, the X-ray scanner, the contextual interaction wheel</dd></div>
         <div><dt data-i18n="lp.glance.engine.t">Engine</dt><dd data-i18n="lp.glance.engine.d">Unity 2022.3, URP</dd></div>
         <div><dt data-i18n="lp.glance.platform.t">Platform</dt><dd data-i18n="lp.glance.platform.d">PC</dd></div>
         <div><dt data-i18n="lp.glance.status.t">Status</dt><dd data-i18n="lp.glance.status.d">internship project (July–September 2024), not released</dd></div>
-        <div><dt data-i18n="lp.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="lp.glance.tech.d">C#, Rigidbody physics, physics queries (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), Shader Graph, culling masks, RenderTexture, uGUI, TextMeshPro</dd></div>
+        <div><dt data-i18n="lp.glance.tech.t">Key tech (in these systems)</dt><dd data-i18n="lp.glance.tech.d">C#, Rigidbody physics, physics queries (OverlapBox), URP Renderer Features (RenderObjects), Shader Graph, culling masks, RenderTexture, uGUI</dd></div>
         <div><dt data-i18n="lp.glance.code.t">Code</dt><dd data-i18n="lp.glance.code.d">studio project, not public; all code shown here is my own, written during the internship, and appears with Rubens Games' permission</dd></div>
       </dl>
     </section>
@@ -90,11 +89,11 @@
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="lp.sys1.how">Item physics runs only during inspection: it switches on when the player starts inspecting an open case. When inspection ends, a bounds check (<code>OverlapBox</code>) decides which items are inside the case before physics switches off again. Those items become children of the case and turn kinematic, so they move only with their parent, and anything left outside stays behind. A closed case therefore moves as one body. A grabbed item is pulled toward the cursor by forces rather than teleported, so it still pushes other items aside, and a rotation reset restores its orientation only. While dragging, a translucent, non-colliding copy previews the landing spot: a URP RenderObjects feature draws it, and a stepped <code>BoxCast</code>, a box-shaped raycast, lowers it onto the first surface below. While the lid closes, a separate <code>OverlapBox</code> around it runs every frame, and any item in its path sends the lid back open.</p>
+          <p data-i18n="lp.sys1.how">Items simulate only while the case is open on the inspection stand. When inspection ends, an <code>OverlapBox</code> over the case decides which items are inside; those become kinematic children of the case, so a closed case carries, throws and scans as one body, and anything left outside stays behind. A grabbed item is moved toward the cursor by forces, not teleported, so it still pushes its neighbours aside. The lid is animated, not simulated, so instead of waiting for collision events, an <code>OverlapBox</code> around it runs every frame while it closes and reopens the lid if an item is in the way.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="lp.sys1.what">Physics interaction designed around when simulation is actually needed: items simulate only while the player can touch them, and they change state at two clear points, when inspection starts and when it ends. It also shows physics queries used as game logic. The lid is animated by rotation, not simulated, so instead of waiting for collision events it checks every frame whether anything is in its way.</p>
+          <p data-i18n="lp.sys1.what">Deciding when not to simulate: physics is on only while items can be touched, with two explicit hand-over points, and physics queries used as game logic where collision events can't help.</p>
         </div>
 
         <figure class="cs-media">
@@ -139,50 +138,57 @@
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="lp.sys2.how">The colour separation is configuration, not C#. Every item's mesh parts sit on one of four X-ray layers: other, metal, organic, and the case shell. An orthographic scan camera sees only those layers and renders into a RenderTexture, which is shown on the console's screen model. Four RenderObjects renderer features draw those objects with an override material, one feature per layer. Renderer features are extra render passes set up in URP's renderer asset. All four override materials share one fresnel shader that I made in Shader Graph, each with its own colour. Fresnel brightens surfaces that face sideways to the camera, so items read as glowing outlines. A short script slides the scan camera along with the case as the belt carries it through.</p>
+          <p data-i18n="lp.sys2.how">Colour is assigned per mesh part, not per item: each part of a model sits on one of four X-ray layers, so a model the artists built from several materials simply has its parts on different layers. Each layer has its own URP RenderObjects renderer feature, an extra render pass set up in the renderer asset, which draws that layer's objects with an override material. All four override materials share one fresnel shader that I made in Shader Graph, each with its own colour. Fresnel brightens surfaces that face sideways to the camera, so items read as glowing outlines.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="lp.sys2.what">Using URP's building blocks instead of writing rendering code: layers, a culling mask, RenderObjects features with override materials, and a RenderTexture on a screen inside the game world. The setup also scales with content. The scanner covers 27 item prefabs, and a prop made of several materials, such as a drone, shows several colours because each of its parts sits on its own layer. Adding an item takes no code, only the right layers in its prefab.</p>
+          <p data-i18n="lp.sys2.what">Knowing URP's extension points well enough to solve a rendering problem without custom render code, and building it so content scales: the scanner covers 27 item prefabs, a multi-material prop such as the drone shows several colours because each part is on its own layer, and a new item needs only the right layers in its prefab, with no code change.</p>
         </div>
 
-        <figure class="cs-diagram" role="group" aria-labelledby="lp-diag2-cap">
+        <figure class="cs-diagram cs-diagram--wide cs-diagram--pipeline" role="group" aria-labelledby="lp-diag2-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
-            <svg viewBox="0 0 700 740" role="img" aria-label="A five-step pipeline, top to bottom. One: item mesh parts sit on four X-ray layers — other, metal, organic, case shell. Two: an orthographic scan camera, culling mask set to X-ray layers only, follows the case. Three: four RenderObjects renderer features draw with an override material per layer, one fresnel shader in four colours. Four: the result renders into a RenderTexture. Five: that texture is the console screen's material." data-i18n-attr="aria-label" data-i18n-attr-key="lp.diag2.aria">
+            <svg viewBox="0 0 920 190" role="img" aria-label="A five-step pipeline, left to right. One: item mesh parts sit on four X-ray layers — other, metal, organic, case shell. Two: an orthographic scan camera, culling mask set to X-ray layers only, follows the case. Three: four RenderObjects renderer features draw with an override material per layer, one fresnel shader in four colours. Four: the result renders into a RenderTexture. Five: that texture is the console screen's material." data-i18n-attr="aria-label" data-i18n-attr-key="lp.diag2.aria">
               <defs>
                 <marker id="lp-vis-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
                   <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
                 </marker>
               </defs>
 
-              <rect x="60" y="30" width="580" height="110" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="350" y="68" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b1a">Item mesh parts</text>
-              <text x="350" y="92" text-anchor="middle" class="cs-i-accent-text" font-size="12.5" data-i18n="lp.diag2.b1b">4 layers: other · metal · organic · case shell</text>
+              <rect x="10" y="20" width="210" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="115" y="66" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b1a">Item mesh parts</text>
+              <text x="115" y="92" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b1b">4 layers:</text>
+              <text x="115" y="110" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b1c">other · metal ·</text>
+              <text x="115" y="126" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b1d">organic · case shell</text>
 
-              <path d="M350,140 L350,176" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+              <path d="M221,95 L241,95" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
 
-              <rect x="60" y="180" width="580" height="130" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="350" y="215" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b2a">Scan camera (orthographic)</text>
-              <text x="350" y="239" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="lp.diag2.b2b">Culling mask: X-ray layers only</text>
-              <text x="350" y="266" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="lp.diag2.b2c">→ Follows the case</text>
+              <rect x="244" y="20" width="165" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="326.5" y="56" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b2a">Scan camera</text>
+              <text x="326.5" y="73" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b2b">(orthographic)</text>
+              <text x="326.5" y="98" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b2c">Culling mask:</text>
+              <text x="326.5" y="114" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b2d">X-ray layers only</text>
+              <text x="326.5" y="138" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="lp.diag2.b2e">→ Follows the case</text>
 
-              <path d="M350,310 L350,346" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+              <path d="M410,95 L430,95" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
 
-              <rect x="60" y="350" width="580" height="130" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="350" y="385" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b3a">4 × RenderObjects</text>
-              <text x="350" y="409" text-anchor="middle" class="cs-i-accent-text" font-size="13" data-i18n="lp.diag2.b3b">Override material per layer</text>
-              <text x="350" y="436" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="lp.diag2.b3c">One fresnel shader, 4 colours</text>
+              <rect x="433" y="20" width="165" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="515.5" y="57" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b3a">4 × RenderObjects</text>
+              <text x="515.5" y="83" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b3b">Override material</text>
+              <text x="515.5" y="99" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="lp.diag2.b3c">per layer</text>
+              <text x="515.5" y="123" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="lp.diag2.b3d">One fresnel shader,</text>
+              <text x="515.5" y="139" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="lp.diag2.b3e">4 colours</text>
 
-              <path d="M350,480 L350,516" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+              <path d="M599,95 L619,95" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
 
-              <rect x="60" y="520" width="580" height="70" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="350" y="563" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b4a">RenderTexture</text>
+              <rect x="622" y="20" width="120" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="682" y="99" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b4a">RenderTexture</text>
 
-              <path d="M350,590 L350,626" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
+              <path d="M743,95 L763,95" class="cs-i-line" marker-end="url(#lp-vis-arrow)" aria-hidden="true" />
 
-              <rect x="60" y="630" width="580" height="70" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="350" y="673" text-anchor="middle" class="cs-i-title" font-size="15" data-i18n="lp.diag2.b5a">Console screen material</text>
+              <rect x="766" y="20" width="144" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="838" y="90" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b5a">Console screen</text>
+              <text x="838" y="107" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="lp.diag2.b5b">material</text>
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="lp-diag2-cap" data-i18n="lp.diag2.cap">Five stages from item layers to the scanner's screen; each is configuration, not per-item code.</figcaption>
@@ -211,7 +217,7 @@
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="lp.sys3.how">The NPC's interaction code builds a list of option IDs from the passenger's state. Each checkpoint (queue, bag drop, metal detector gate, weighing) has its own set, and an overweight option is added only when that passenger's bag is on the scale. The wheel is built in plain uGUI. It shows only the pre-built segments whose IDs are on the list and uses trigonometry to spread them evenly around a circle, however many there are. Hovering an option shows its name in the centre. The calling coroutine waits until the player picks an option or closes the wheel, then runs the matching action.</p>
+          <p data-i18n="lp.sys3.how">The NPC code builds a list of option IDs from the passenger's current state (which checkpoint they're at, whether their bag is on the scale) and hands it to the wheel. The wheel, in plain uGUI, enables only the pre-built segments on that list and spaces them evenly around the circle for any count. The calling coroutine waits until the player picks an option or closes the wheel, then runs the matching action.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
@@ -262,7 +268,7 @@ private Vector2 CalculateSegmentPosition(float angleStart, float angleEnd)
 
     <section class="cs-takeaway">
       <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
-      <p data-i18n="lp.takeaway">All three are built so that other people's work can plug in. The scanner and the drop preview are made of layers and URP renderer features rather than rendering code, so a new item model shows up on the scanner in its category colour once its parts are on the right layers. The wheel takes a list of option IDs from its caller and doesn't need to know why they were chosen. The layers even reach into physics: the lid's obstruction check uses the X-ray item layers as its mask, so one layer scheme serves both rendering and physics. The trade-off is coupling: an item missing its X-ray layer would not appear on the scanner and would not block the lid either.</p>
+      <p data-i18n="lp.takeaway">All three are built so other people's work can plug in: a new item model appears on the scanner in its category colour once its parts are on the right layers, and the wheel shows whatever option IDs its caller passes in. The trade-off I'd flag: the lid's obstruction check reuses the X-ray item layers as its physics mask, so an item missing its layer would neither show on the scanner nor block the lid.</p>
     </section>
 
     <nav class="cs-next" aria-label="Next case study" data-i18n-attr="aria-label" data-i18n-attr-key="case.next.aria">

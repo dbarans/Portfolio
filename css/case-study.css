@@ -172,6 +172,9 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   color: var(--cs-text);
 }
 .cs-intro { margin: 0; max-width: 38em; font-size: 0.98rem; line-height: 1.7; }
+/* A hero whose media column is waiting for footage (Game of Life): one text column instead of
+   an empty second track. The tagline/intro max-widths above keep the lines a readable length. */
+.cs-hero--no-media .cs-hero-grid { grid-template-columns: minmax(0, 1fr); }
 
 /* A small, confident flourish, not a competing hero image: a real, accurate Game of Life
    glider (not an animation) tucked behind the top-right corner of the hero. */
@@ -756,6 +759,9 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
      (the vertical pipeline, the mobile rings) just scale down with the column — no override. */
   .cs-diagram--wide svg { width: 640px; max-width: none; }
   .cs-diagram--wide .cs-diagram-hint { display: block; }
+  /* A long left-to-right pipeline (Luggage Please's scanner) has smaller type in a wider
+     viewBox, so it needs a wider floor than 640px to stay legible; it scrolls sideways. */
+  .cs-diagram--pipeline svg { width: 780px; }
 }
 @media (max-width: 560px) {
   .cs-top { gap: 6px 12px; }

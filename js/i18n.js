@@ -46,6 +46,39 @@
       'index.contact.linkedin.label': 'LinkedIn:',
       'index.contact.github.label': 'GitHub:',
 
+      // ---------- index.html: redesigned hero / cards (2026-09) ----------
+      'index.hero.kicker': 'Szukam pracy jako junior/mid Unity developer',
+      'index.hero.intro': 'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu.',
+      'index.hero.email': 'Napisz do mnie',
+      'index.hero.stat1.value': '15\u00a0000+',
+      'index.hero.stat1.label': 'pobrań w Google Play',
+      'index.hero.stat1.tag': 'Game of Life · solo',
+      'index.hero.stat2.label': 'testów jednostkowych mojego generatora lochów',
+      'index.hero.stat2.tag': 'Grave · zespół 4 osób',
+      'index.hero.stat3.label': 'staż w zespole studia',
+      'index.hero.stat3.tag': 'Luggage Please · lipiec–wrzesień 2024',
+      'index.projects.note': 'Każde studium przypadku omawia problem, działanie systemu i kod, który za nim stoi.',
+      'index.project.systems': 'Systemy, które zbudowałem',
+      'index.project.gol.media': 'Działo Gospera · generacja 90',
+      'index.project.gol.summary': 'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek.',
+      'index.project.gol.sys1': 'Obliczenia na bitach w Burst i Job System',
+      'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
+      'index.project.gol.sys3': 'Renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca',
+      'index.project.gol.sys4': 'Harness testowy, który porównuje silnik z wersji sklepowej z implementacją referencyjną poza Unity',
+      'index.project.grave.alt': 'Grave z góry: pomieszczenie w lochu oświetlone tylko w stożku widzenia gracza.',
+      'index.project.grave.media': 'System widoczności',
+      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole.',
+      'index.project.grave.sys1': 'Pathfinding A* o ograniczonym koszcie na klatkę',
+      'index.project.grave.sys2': 'Maska światła renderowana przez drugą kamerę i własne shadery',
+      'index.project.grave.sys3': 'Generator lochów z seeda pokryty 48 testami jednostkowymi',
+      'index.project.grave.sys4': 'AI przeciwników składane z wymiennych komponentów',
+      'index.project.lp.alt': 'Luggage Please: ekran skanera rentgenowskiego z zawartością walizki pokolorowaną według materiału.',
+      'index.project.lp.media': 'Skaner rentgenowski',
+      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu.',
+      'index.project.lp.sys1': 'Fizyka walizki działająca tylko w trakcie jej kontroli',
+      'index.project.lp.sys2': 'Skaner rentgenowski zbudowany z renderer features URP i shadera w Shader Graph: nowy przedmiot wymaga tylko właściwych warstw, bez kodu',
+      'index.project.lp.sys3': 'Koło interakcji oddzielone od logiki NPC, która je wypełnia',
+
       // ---------- Shared case-study UI (game-of-life.html, grave.html) ----------
       'case.skip': 'Przejdź do treści',
       'case.back': '← Wszystkie projekty',
@@ -68,7 +101,7 @@
       'case.kicker.grave': 'PC · Unity 6 URP 2D · zespół 4 osób · praca inżynierska, 2026',
       'case.kicker.lp': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024',
       'case.foot.gol':
-        'Projekt solo. Repozytorium jest prywatne — fragmenty kodu są powyżej, a resztę chętnie pokażę na rozmowie.',
+        'Projekt solo. Repozytorium jest prywatne — fragment kodu jest powyżej, a resztę chętnie pokażę na rozmowie.',
       'case.foot.grave': 'Projekt zespołowy (4 osoby). Pokazuję tylko systemy, które zbudowałem sam.',
       'case.foot.lp':
         'Projekt studyjny, niepubliczny. Pokazuję go za zgodą Rubens Games — resztę chętnie omówię na rozmowie.',
@@ -87,6 +120,8 @@
         'Symulator automatu komórkowego na Androida, zbudowany tak, żeby telefon radził sobie z wzorcami liczącymi setki tysięcy żywych komórek.',
       'gol.intro':
         'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują, od kilku komórek po wzorce liczące setki tysięcy. Reguły mieszczą się w czterech zdaniach. Trudność techniczna polega na tym, żeby skalowały się na telefonie.',
+      // gol.hero.* and gol.sys3.shot/caption: their figures are parked in SLOT comments in
+      // game-of-life.html until the footage exists.
       'gol.hero.shot':
         'Ekran telefonu, niemal całkowicie oddalony widok bardzo dużego wzorca (~252 tys. komórek, np. Universal Turing Machine): tekstura gęstości wypełnia kadr, bez paneli UI zasłaniających wzorzec.',
       'gol.hero.caption':
@@ -97,11 +132,11 @@
       'gol.kn1.label': 'Pobrań w Google Play',
       'gol.kn1.ctx': 'Strona gry w Google Play; projekt solo.',
       'gol.kn2.value': '64 → 141 gen./s',
-      'gol.kn2.label': 'Zysk z kopiowania całych chunków',
+      'gol.kn2.label': '2,2× więcej generacji na sekundę przy wysokiej prędkości',
       'gol.kn2.ctx':
-        'Losowy wzorzec z 275 tys. żywych komórek na Pixelu 6 Pro: odtwarzanie generacja po generacji vs kopiowanie całych chunków (system 2).',
+        'Losowy wzorzec z 275 tys. komórek na Pixelu 6 Pro, po zdjęciu z głównego wątku odtwarzania generacja po generacji (system 2).',
       'gol.kn3.value': '~50 µs vs 1035 µs',
-      'gol.kn3.label': 'Zapytanie o widoczne komórki',
+      'gol.kn3.label': '~20× szybsze wyszukiwanie widocznych komórek, niezależne od rozmiaru wzorca',
       'gol.kn3.ctx':
         'Benchmark poza Unity, widok 200×200 komórek i 316 tys. żywych komórek poza ekranem: zapytanie po chunkach vs stare pełne skanowanie (system 3).',
 
@@ -182,10 +217,11 @@
       'gol.sys4.how':
         'Konsolowy harness .NET kompiluje te same pliki źródłowe solvera, które trafiają do wersji w sklepie, a mały shim zastępuje kolekcje, Jobs i Burst z Unity. Każda generacja każdego scenariusza (glidery przekraczające granice chunków i wchodzące w ujemne współrzędne, pusta plansza) jest porównywana komórka po komórce z naiwną implementacją referencyjną. Cały przebieg daje też jeden hash wzorcowy, który refaktor przenoszący tylko kod musi odtworzyć bajt w bajt. Uruchamiana bez edytora kompilacja wszystkich pięciu jobów kompilatorem Burst pod ARM64 zawiera kontrolę negatywną, czyli kod, który musi się nie skompilować, więc czysty wynik faktycznie coś dowodzi.',
       'gol.sys4.what':
-        'Dyscyplinę testowania kluczowej logiki gry w trzech konkretnych technikach. Testy różnicowe sprawdzają każdą generację względem implementacji brute-force, a nie tylko stan końcowy, więc błąd wychodzi w tej generacji, w której powstał. Test regresji oparty na hashu wzorcowym dowodzi, że refaktor niczego nie zmienił. Kontrola negatywna dowodzi, że sprawdzanie Burst bez edytora w ogóle potrafi zgłosić błąd. Wszystko działa z linii poleceń, bez otwierania edytora.',
+        'Dyscyplinę testowania kluczowej logiki gry wykraczającą poza to, co oferuje edytor: testy różnicowe, które wskazują generację, w której błąd pojawia się po raz pierwszy, sprawdzenie hasha wzorcowego, dzięki któremu „ten refaktor niczego nie zmienił” staje się faktem, i sprawdzenie Burst, które, jak dowodzi kontrola negatywna, naprawdę potrafi wykryć błąd. Wszystko działa z linii poleceń.',
       'gol.diag4.aria':
-        'To samo źródło solvera trafia do builda Android do sklepu i do harnessu testowego .NET, który porównuje każdą generację z naiwną implementacją referencyjną i sprowadza każdy przebieg do jednego hasha wzorcowego. BurstProbe kompiluje te same pięć jobów pod ARM64, z kontrolą negatywną, która musi się nie skompilować.',
+        'Te same pliki solvera, które trafiają do sklepu, zasilają build Android do sklepu i harness testowy .NET, który porównuje każdą generację z naiwną implementacją referencyjną i sprowadza każdy przebieg do jednego hasha wzorcowego. Kompilacja Burst uruchamiana bez edytora buduje te same pięć jobów pod ARM64, z kontrolą negatywną, która musi się nie skompilować.',
       'gol.diag4.source': 'To samo źródło solvera',
+      'gol.diag4.sourceSub': 'pliki wysyłanego solvera',
       'gol.diag4.android': 'Build Android do sklepu',
       'gol.diag4.androidSub': 'gra w sklepie',
       'gol.diag4.harness': 'Harness testowy .NET',
@@ -194,7 +230,10 @@
       'gol.diag4.cellByCell': 'komórka po komórce',
       'gol.diag4.hash': 'Hash wzorcowy',
       'gol.diag4.hashSub': 'bajt w bajt',
+      // gol.diag4.probe is no longer on game-of-life.html (replaced by gol.diag4.headless);
+      // kept for later use.
       'gol.diag4.probe': 'BurstProbe: kompilacja ARM64',
+      'gol.diag4.headless': 'Kompilacja Burst bez edytora (ARM64)',
       'gol.diag4.negative': 'Kontrola negatywna',
       'gol.diag4.cap':
         'Obie gałęzie kompilują te same pliki, więc testy nigdy nie są nieaktualną kopią silnika.',
@@ -204,7 +243,7 @@
         'Mierzyć trzeba na urządzeniu docelowym, a nie w edytorze: w tym projekcie edytor wskazał niewłaściwe wąskie gardło.',
       'gol.also.label': 'Również w kodzie (poza wersją sklepową)',
       'gol.also.body':
-        'HashLife (algorytm Gospera), drugi silnik, który zapamiętuje i ponownie wykorzystuje wyniki w drzewie czwórkowym, dzięki czemu powtarzalne wzorce przeskakują tysiące generacji w jednym kroku. Ma budżet pamięci skalowany do RAM-u urządzenia i testy względem implementacji brute-force, ale w wersji w sklepie jest wyłączony i czeka na przyszłą wersję Pro.',
+        'HashLife (algorytm Gospera), drugi silnik, który zapamiętuje i ponownie wykorzystuje wyniki w drzewie czwórkowym, dzięki czemu powtarzalne wzorce przeskakują tysiące generacji w jednym kroku. Ma budżet pamięci skalowany do RAM-u urządzenia i testy względem implementacji brute-force, ale w wersji w sklepie jest wyłączony.',
 
       // ---------- grave.html: intro ----------
       'grave.tagline':
@@ -456,25 +495,22 @@
       'lp.tagline':
         'Systemy, które zbudowałem na stażu w Rubens Games: fizyka walizki, skaner rentgenowski złożony z renderer features URP i kontekstowe koło interakcji.',
       'lp.intro':
-        'Luggage Please to gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Grafikę przygotowali artyści studia. Opisuję tu trzy systemy, które zbudowałem w czasie stażu: fizykę walizki i przedmiotów, skaner rentgenowski rozróżniający materiały i kontekstowe koło interakcji do rozmów z pasażerami.',
+        'Luggage Please to gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu; grafika jest autorstwa studia.',
       'lp.hero.alt':
-        'Grafika tytułowa Luggage Please: rysunkowa otwarta walizka z ubraniami i gumową kaczką, a wokół niej pistolet, nóż, złota rybka i otwarta książka; pod spodem tytuł gry.',
-      'lp.hero.credit': 'Grafika: Rubens Games.',
+        'Zbudowany przeze mnie skaner rentgenowski: przedmioty w walizce narysowane w kolorach według kategorii materiału.',
+      'lp.hero.credit': 'Zbudowany przeze mnie skaner rentgenowski koloruje przedmioty według materiału na żywo.',
       'lp.meta.ogImageAlt':
         'Grafika tytułowa Luggage Please na czarnym tle: rysunkowa otwarta walizka ze złożonymi ubraniami i gumową kaczką, a wokół niej złota rybka, pistolet, nóż i otwarta książka; pod spodem tytuł gry.',
 
       // ---------- luggage-please.html: at a glance ----------
       'lp.glance.team.t': 'Zespół',
       'lp.glance.team.d': 'zespół studia Rubens Games (staż); grafika od artystów studia',
-      'lp.glance.covered.t': 'Opisuję tu',
-      'lp.glance.covered.d':
-        'trzy zbudowane przeze mnie systemy: fizykę walizki i przedmiotów, skaner rentgenowski, kontekstowe koło interakcji',
       'lp.glance.engine.t': 'Silnik',
       'lp.glance.platform.t': 'Platforma',
       'lp.glance.status.d': 'projekt ze stażu (lipiec–wrzesień 2024), niewydany',
       'lp.glance.tech.t': 'Kluczowe technologie (w tych systemach)',
       'lp.glance.tech.d':
-        'C#, fizyka Rigidbody, zapytania fizyczne (OverlapBox, BoxCast), URP Renderer Features (RenderObjects), Shader Graph, culling mask, RenderTexture, uGUI, TextMeshPro',
+        'C#, fizyka Rigidbody, zapytania fizyczne (OverlapBox), URP Renderer Features (RenderObjects), Shader Graph, culling mask, RenderTexture, uGUI',
       'lp.glance.code.t': 'Kod',
       'lp.glance.code.d':
         'projekt studia, niepubliczny; cały pokazany tu kod napisałem sam w czasie stażu, a pokazuję go za zgodą Rubens Games',
@@ -489,9 +525,9 @@
       'lp.sys1.problem':
         'Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.',
       'lp.sys1.how':
-        'Fizyka przedmiotów działa tylko w trakcie kontroli: włącza się, gdy gracz zaczyna kontrolę otwartej walizki. Gdy kontrola się kończy, sprawdzenie granic walizki (<code>OverlapBox</code>) ustala, które przedmioty są w środku, zanim fizyka znów się wyłączy. Te przedmioty stają się dziećmi walizki i przechodzą w tryb kinematyczny, czyli poruszają się tylko razem z rodzicem, a to, co zostało na zewnątrz, zostaje na miejscu. Dzięki temu zamknięta walizka porusza się jak jedno ciało. Chwycony przedmiot jest przyciągany do kursora siłami, a nie teleportowany, więc nadal odpycha inne przedmioty, a reset obrotu przywraca tylko jego orientację. Podczas przeciągania półprzezroczysta kopia bez kolizji pokazuje, gdzie przedmiot wyląduje: rysuje ją renderer feature URP typu RenderObjects, a krokowy <code>BoxCast</code>, czyli rzut promienia w kształcie prostopadłościanu, opuszcza ją na pierwszą powierzchnię pod spodem. Podczas zamykania wieka co klatkę działa osobny <code>OverlapBox</code> wokół niego, a każdy przedmiot na jego drodze sprawia, że wieko otwiera się z powrotem.',
+        'Przedmioty są symulowane tylko wtedy, gdy walizka leży otwarta na stanowisku kontroli. Gdy kontrola się kończy, <code>OverlapBox</code> obejmujący walizkę ustala, które przedmioty są w środku; stają się one kinematycznymi dziećmi walizki, więc zamkniętą walizkę można nieść, rzucić i prześwietlić jak jedno ciało, a to, co zostało na zewnątrz, zostaje na miejscu. Chwycony przedmiot jest przesuwany do kursora siłami, a nie teleportowany, więc nadal odpycha sąsiednie przedmioty. Wieko jest animowane, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, podczas zamykania co klatkę uruchamia wokół siebie <code>OverlapBox</code> i otwiera się z powrotem, jeśli na drodze jest przedmiot.',
       'lp.sys1.what':
-        'Projektowanie interakcji fizycznych wokół tego, kiedy symulacja jest naprawdę potrzebna: przedmioty są symulowane tylko wtedy, gdy gracz może ich dotknąć, a stan zmieniają w dwóch wyraźnych momentach: na początku i na końcu kontroli. Do tego zapytania fizyczne użyte jako logika gry. Wieko jest animowane obrotem, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, co klatkę samo sprawdza, czy coś stoi mu na drodze.',
+        'Decydowanie, kiedy nie symulować: fizyka działa tylko wtedy, gdy przedmiotów można dotknąć, z dwoma wyraźnymi punktami przełączenia, a zapytania fizyczne służą za logikę gry tam, gdzie zdarzenia kolizji nie pomogą.',
       'lp.sys1.caption':
         'Otwarta walizka w trakcie kontroli: każdy przedmiot w środku jest osobnym obiektem fizycznym, który można chwycić, obrócić i spakować z powrotem.',
       'lp.sys1.code.aria':
@@ -502,30 +538,38 @@
       'lp.sys2.problem':
         'Skaner pokazuje na żywo prześwietlony obraz walizki przejeżdżającej przez maszynę. Przedmioty mają kolory według kategorii materiału (metal, organiczne, inne), żeby gracz mógł wypatrzyć podejrzaną zawartość. Modele przedmiotów przygotowali artyści studia, a część z nich łączy kilka materiałów, więc kolorowanie nie może opierać się na kodzie pisanym osobno dla każdego przedmiotu.',
       'lp.sys2.how':
-        'Podział na kolory to konfiguracja, a nie kod C#. Każda część modelu przedmiotu leży na jednej z czterech warstw rentgena: inne, metal, organiczne i skorupa walizki. Ortograficzna kamera skanera widzi tylko te warstwy i renderuje do RenderTexture, wyświetlanej na modelu ekranu konsoli. Cztery renderer features typu RenderObjects, po jednym na warstwę, rysują te obiekty z materiałem nadpisującym. Renderer features to dodatkowe przebiegi renderowania ustawiane w assecie renderera URP. Wszystkie cztery materiały nadpisujące korzystają z jednego shadera fresnela, który zrobiłem w Shader Graph; każdy ma własny kolor. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury. Krótki skrypt przesuwa kamerę skanera razem z walizką, gdy taśma przewozi ją przez maszynę.',
+        'Kolor jest przypisany do części modelu, a nie do całego przedmiotu: każda część leży na jednej z czterech warstw rentgena, więc model, który artyści zbudowali z kilku materiałów, po prostu ma części na różnych warstwach. Każda warstwa ma własny renderer feature URP typu RenderObjects (dodatkowy przebieg renderowania ustawiany w assecie renderera), który rysuje obiekty z tej warstwy materiałem nadpisującym. Wszystkie cztery materiały nadpisujące korzystają z jednego shadera fresnela, który zrobiłem w Shader Graph; każdy ma własny kolor. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury.',
       'lp.sys2.what':
-        'Użycie gotowych elementów URP zamiast pisania kodu renderowania: warstwy, culling mask, renderer features RenderObjects z materiałami nadpisującymi i RenderTexture na ekranie w świecie gry. Rozwiązanie skaluje się też z zawartością. Skaner obsługuje 27 prefabów przedmiotów, a rekwizyt z kilku materiałów, np. dron, ma kilka kolorów, bo każda jego część leży na własnej warstwie. Dodanie przedmiotu nie wymaga kodu, tylko właściwych warstw w jego prefabie.',
+        'Na tyle dobrą znajomość mechanizmów rozszerzania URP, żeby rozwiązać problem renderowania bez własnego kodu renderującego, i budowanie rozwiązania tak, żeby skalowało się z zawartością: skaner obsługuje 27 prefabów przedmiotów, rekwizyt z kilku materiałów, np. dron, ma kilka kolorów, bo każda jego część leży na własnej warstwie, a nowy przedmiot potrzebuje tylko właściwych warstw w prefabie, bez zmian w kodzie.',
       'lp.sys2.caption':
         'Ekran konsoli skanera: przedmioty organiczne, np. owoce, świecą na żółto, metalowe na pomarańczowo, a cała reszta, łącznie ze skorupą walizki, na turkusowo.',
+      // Horizontal pipeline: one key per line of text, in reading order (b2c "Culling mask:",
+      // b3a "4 × RenderObjects" and b4a "RenderTexture" read the same in both languages).
       'lp.diag2.b1a': 'Części modeli przedmiotów',
-      'lp.diag2.b1b': '4 warstwy: inne · metal · organiczne · skorupa walizki',
-      'lp.diag2.b2a': 'Kamera skanera (ortograficzna)',
-      'lp.diag2.b2b': 'Culling mask: tylko warstwy rentgena',
-      'lp.diag2.b2c': '→ Podąża za walizką',
-      'lp.diag2.b3b': 'Materiał nadpisujący na warstwę',
-      'lp.diag2.b3c': 'Jeden shader fresnela, 4 kolory',
-      'lp.diag2.b5a': 'Materiał ekranu konsoli',
+      'lp.diag2.b1b': '4 warstwy:',
+      'lp.diag2.b1c': 'inne · metal ·',
+      'lp.diag2.b1d': 'organiczne · skorupa walizki',
+      'lp.diag2.b2a': 'Kamera skanera',
+      'lp.diag2.b2b': '(ortograficzna)',
+      'lp.diag2.b2d': 'tylko warstwy rentgena',
+      'lp.diag2.b2e': '→ Podąża za walizką',
+      'lp.diag2.b3b': 'Materiał nadpisujący',
+      'lp.diag2.b3c': 'na warstwę',
+      'lp.diag2.b3d': 'Jeden shader fresnela,',
+      'lp.diag2.b3e': '4 kolory',
+      'lp.diag2.b5a': 'Materiał ekranu',
+      'lp.diag2.b5b': 'konsoli',
       'lp.diag2.cap':
         'Pięć etapów od warstw przedmiotu do ekranu skanera; każdy z nich to konfiguracja, a nie kod pisany dla pojedynczego przedmiotu.',
       'lp.diag2.aria':
-        'Pięcioetapowy pipeline, od góry do dołu. Pierwszy: części modeli przedmiotów leżą na czterech warstwach rentgena — inne, metal, organiczne, skorupa walizki. Drugi: ortograficzna kamera skanera z culling mask ustawioną tylko na warstwy rentgena podąża za walizką. Trzeci: cztery renderer features typu RenderObjects rysują obiekty z osobnym materiałem nadpisującym dla każdej warstwy — jeden shader fresnela w czterech kolorach. Czwarty: wynik trafia do RenderTexture. Piąty: ta tekstura jest materiałem ekranu konsoli.',
+        'Pięcioetapowy pipeline, od lewej do prawej. Pierwszy: części modeli przedmiotów leżą na czterech warstwach rentgena — inne, metal, organiczne, skorupa walizki. Drugi: ortograficzna kamera skanera z culling mask ustawioną tylko na warstwy rentgena podąża za walizką. Trzeci: cztery renderer features typu RenderObjects rysują obiekty z osobnym materiałem nadpisującym dla każdej warstwy — jeden shader fresnela w czterech kolorach. Czwarty: wynik trafia do RenderTexture. Piąty: ta tekstura jest materiałem ekranu konsoli.',
 
       // ---------- luggage-please.html: system 3 ----------
       'lp.sys3.title': 'Koło interakcji, którego opcje zależą od stanowiska pasażera',
       'lp.sys3.problem':
         'Pasażer potrzebuje innych akcji zależnie od tego, na jakim etapie odprawy się znajduje: to, co ma sens w kolejce, jest nie na miejscu przy bramce z wykrywaczem metalu. Wybór ma być szybki i nie może wyrywać gracza z widoku gry do pełnoekranowego menu.',
       'lp.sys3.how':
-        'Kod interakcji z NPC buduje listę identyfikatorów opcji na podstawie stanu pasażera. Każde stanowisko (kolejka, nadanie bagażu, bramka z wykrywaczem metalu, ważenie) ma własny zestaw, a opcja nadbagażu dochodzi tylko wtedy, gdy na wadze leży bagaż właśnie tego pasażera. Koło jest zbudowane w czystym uGUI. Pokazuje tylko gotowe segmenty o identyfikatorach z listy i rozkłada je równo na okręgu za pomocą trygonometrii, bez względu na ich liczbę. Po najechaniu kursorem na opcję jej nazwa pojawia się w środku. Wywołująca korutyna czeka, aż gracz wybierze opcję albo zamknie koło, i wtedy uruchamia odpowiednią akcję.',
+        'Kod NPC buduje listę identyfikatorów opcji na podstawie bieżącego stanu pasażera (przy którym stanowisku jest, czy jego bagaż leży na wadze) i przekazuje ją kołu. Koło, zbudowane w czystym uGUI, włącza tylko te gotowe segmenty, które są na liście, i rozkłada je równo na okręgu, bez względu na ich liczbę. Wywołująca korutyna czeka, aż gracz wybierze opcję albo zamknie koło, i wtedy uruchamia odpowiednią akcję.',
       'lp.sys3.what':
         'Komponent UI oddzielony od logiki gry. Koło dostaje listę identyfikatorów, rozmieszcza tyle segmentów, ile otrzyma, i zwraca wybór, a wszystkie reguły lotniska zostają w kodzie NPC. Koło samo zarządza też trybem sterowania w OnEnable/OnDisable: otwarcie zamraża rozglądanie się i ruch oraz odblokowuje kursor, a zamknięcie przywraca jedno i drugie, więc żaden wywołujący nie musi o tym pamiętać.',
       'lp.sys3.caption':
@@ -544,7 +588,7 @@
 
       // ---------- luggage-please.html: takeaway ----------
       'lp.takeaway':
-        'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób. Skaner i podgląd lądowania składają się z warstw i renderer features URP, a nie z kodu renderowania, więc nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy. Koło dostaje od wywołującego listę identyfikatorów opcji i nie musi wiedzieć, skąd się wzięły. Warstwy sięgają nawet fizyki: sprawdzanie, czy coś blokuje wieko, używa warstw przedmiotów z rentgena jako maski, więc jeden układ warstw obsługuje i renderowanie, i fizykę. Ceną jest sprzężenie obu systemów: przedmiot bez warstwy rentgena nie pojawiłby się w skanerze i nie zablokowałby też wieka.',
+        'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób: nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy, a koło pokazuje te opcje, których identyfikatory przekaże mu wywołujący. Kompromis, na który zwróciłbym uwagę: sprawdzanie, czy coś blokuje wieko, używa jako maski fizyki tych samych warstw przedmiotów co rentgen, więc przedmiot bez swojej warstwy ani nie pojawiłby się w skanerze, ani nie zablokowałby wieka.',
     },
   };
 
