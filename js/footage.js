@@ -1,5 +1,5 @@
-// Grave: every system plays its recorded chapter of the game (images/grave/footage/, drawn by
-// js/frame-stream.js) in a game view pinned beside its text. The write-up scrolls by over the
+// Case-study footage: a system with a recorded chapter of its game plays it (from the folder
+// in data-footage-base, drawn by js/frame-stream.js) in a game view pinned beside its text. The write-up scrolls by over the
 // chapter's opening frame; then the steps take one screen each, and one scroll moves exactly
 // one step (scroll snapping, on only while the steps are being read). The step reached plays
 // its stage of the footage at the game's own pace; scrolling back rewinds it.
@@ -8,7 +8,6 @@
   // FrameStream is a class declaration, so a global binding but not a property of window.
   if (!roots.length || typeof FrameStream === 'undefined' || !window.Promise) return;
 
-  var BASE = 'images/grave/footage/';
   var CATCH_UP = 4; // speed through what is left of a stage the reader scrolled on from
   var REWIND = 3;   // speed back through a stage when scrolling up
   var stacked = window.matchMedia('(max-width: 959px)');
@@ -29,11 +28,11 @@
   // A chapter's index (its frames, patches, phases and camera track) is a small script that
   // sets window.STREAMS[name]; it is asked for once, however many times it is opened.
   var streams = {};
-  function loadStream(name) {
+  function loadStream(base, name) {
     if (!streams[name]) {
       streams[name] = new Promise(function (resolve, reject) {
         var script = document.createElement('script');
-        script.src = BASE + 'stream-' + name + '.js';
+        script.src = base + 'stream-' + name + '.js';
         script.onload = function () { resolve(window.STREAMS[name]); };
         script.onerror = function () {
           delete streams[name];
@@ -58,6 +57,7 @@
   function Footage(root) {
     this.root = root;
     this.name = root.getAttribute('data-footage');
+    this.base = root.getAttribute('data-footage-base');
     this.camera = JSON.parse(root.getAttribute('data-camera') || '{}');
     this.media = root.querySelector('.cs-scrolly-media');
     this.canvas = root.querySelector('canvas');
@@ -91,9 +91,9 @@
     var self = this;
     var session = ++this.session;
     this.opening = true;
-    loadStream(this.name).then(function (stream) {
+    loadStream(this.base, this.name).then(function (stream) {
       if (session !== self.session) return;
-      var player = new FrameStream(self.canvas, stream, BASE + stream.chapter + '/', self.camera);
+      var player = new FrameStream(self.canvas, stream, self.base + stream.chapter + '/', self.camera);
       self.player = player;
       self.frames = stream.frames.length;
       self.fps = stream.fps || 30;
@@ -154,6 +154,7 @@
     this.current = 0;
     this.root.classList.remove('is-ready', 'is-waiting', 'is-playing');
     this.steps.forEach(function (step) { step.classList.remove('is-active'); });
+    this.root.dispatchEvent(new CustomEvent('footage:close'));
   };
 
   // The reading line: a step is being read once its top has come up to it.
@@ -237,8 +238,11 @@
     requestAnimationFrame(this.tick);
   };
 
+  // Every frame drawn is announced on the chapter's root ("footage:frame", detail.frame counted
+  // from 0), for a page that draws its own overlays over the footage.
   Footage.prototype.draw = function () {
     this.player.show(this.current);
+    this.root.dispatchEvent(new CustomEvent('footage:frame', { detail: { frame: this.current } }));
     this.root.classList.toggle('is-waiting', this.target > this.player.playable - 1 &&
                                              this.current >= this.player.playable - 1);
     this.bar.style.width = (100 * this.current / (this.frames - 1)) + '%';

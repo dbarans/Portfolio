@@ -650,11 +650,49 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
   /* A wide, short screen (a tablet on its side): the view takes at most about half its height. */
   .cs-scrolly-media .cs-media-frame { max-width: calc(55vh * 4 / 3); margin: 0 auto; }
   .cs-scrolly-meta { max-width: calc(55vh * 4 / 3); margin-left: auto; margin-right: auto; }
-  /* A step starts just under the pinned view (its bottom edge is measured by js/grave-footage.js). */
+  /* A step starts just under the pinned view (its bottom edge is measured by js/footage.js). */
   .cs-scrolly { --cs-step-top: calc(var(--cs-view-bottom, 50vh) + 8px); }
 }
+/* Game of Life: the engine's numbers for the frame on screen (js/gol-footage.js), and the
+   kernel chapter's traced row drawn bit by bit under it. */
+.gol-hud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  max-width: calc(100% - 16px);
+  margin: 0;
+  padding: 3px 8px;
+  border-left: 2px solid #ffd940;
+  background: rgba(10, 10, 13, 0.82);
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  line-height: 1.45;
+  color: #e8e8ec;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cs-scrolly.is-ready .gol-hud.is-on { opacity: 1; }
+/* More specific than the footage's own canvas (.cs-scrolly-media canvas), which fills the frame. */
+.cs-scrolly-media .gol-bits {
+  position: absolute;
+  inset: auto;
+  left: 4%;
+  bottom: 4%;
+  width: 92%;
+  height: 58%;
+  border: 1px solid rgba(255, 217, 64, 0.45);
+  background: rgba(10, 10, 13, 0.92);
+  pointer-events: none;
+  opacity: 0;
+}
+@media (max-width: 480px) {
+  .gol-hud { top: 4px; left: 4px; max-width: calc(100% - 8px); padding: 2px 6px; font-size: 9.5px; }
+  .cs-scrolly-media .gol-bits { left: 2%; bottom: 2%; width: 96%; height: 64%; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .cs-step, .cs-scrolly-load { transition: none; }
+  .cs-step, .cs-scrolly-load, .gol-hud { transition: none; }
 }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
 /* Ready for the real thing: an <img> or <video> dropped inside fills the same frame. */

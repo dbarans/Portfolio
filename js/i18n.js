@@ -166,6 +166,44 @@
         'Projektowanie zorientowane na dane z użyciem Burst i Job System oraz profilowanie na urządzeniu docelowym. Zrównoleglenie samego rdzenia obliczeń dało wyraźny zysk w edytorze, ale na telefonie nie dało mierzalnej różnicy, bo prawdziwym wąskim gardłem było szeregowe zbieranie danych wokół niego. Wersja w sklepie uruchamia cały pipeline jako joby: na gęstym losowym wzorcu cztery wątki robocze dają 1,96 raza więcej generacji na sekundę niż jeden (pomiar na telefonie).',
       'gol.sys1.code.aria':
         'Fragment kodu z BitmaskGenerationSolver.cs, metoda Step: budowa zbioru kandydatów i planowanie łańcucha jobów Burst',
+      // nagrania z edytora (js/gol-footage.js rysuje licznik i panel bitów sam, w obu językach)
+      'gol.footage.label': 'Na nagraniu',
+      'gol.footage.kernel': 'Wewnątrz jednego kroku',
+      'gol.f1.s1.t': 'Prawdziwy silnik, jedna generacja na klatkę',
+      'gol.f1.s1.b':
+        'Wzorzec linecrosser (Dave Greene, 2018) liczony przez solver gry, nagrany w edytorze. Każda klatka nagrania to jedna generacja, a licznik pokazuje dla niej liczby z silnika.',
+      'gol.f1.s2.t': 'Chunki 64×64',
+      'gol.f1.s2.b':
+        'Kamera się oddala i pojawia się siatka chunków. Chunk to 64 wiersze, a każdy wiersz to jedna liczba 64-bitowa: jeden bit na komórkę.',
+      'gol.f1.s3.t': 'Zajęte chunki',
+      'gol.f1.s3.b':
+        'Szare kontury oznaczają chunki z żywymi komórkami: na całej planszy jest ich 143.',
+      'gol.f1.s4.t': 'Przeliczane jest tylko to, co się zmieniło',
+      'gol.f1.s4.b':
+        'Żółte kontury: chunki przeliczane w tej generacji, czyli te, które zmieniły się w poprzedniej, razem z sąsiadami. Żółte wypełnienie: chunki, które faktycznie się zmieniły. Na krok przeliczanych jest około 35 ze 143; reszta śpi i nic nie kosztuje.',
+      'gol.f1.aria':
+        'Nagranie silnika: wzorzec liczony jest generacja po generacji, plansza dzieli się na chunki, a chunki przeliczane i zmienione w każdej generacji się podświetlają. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
+      'gol.f2.s1.t': 'Stop-klatka na jednym kroku',
+      'gol.f2.s1.b':
+        'Gra zatrzymuje się w generacji 399, a kamera zbliża się do jednego z chunków, które zaraz się zmienią, razem z sąsiadami po bokach.',
+      'gol.f2.s2.t': 'Zbieranie sąsiedztwa',
+      'gol.f2.s2.b':
+        '<code>GatherJob</code> kopiuje do jednego płaskiego bufora tylko to, czego potrzebuje jądro: chunk i jego sąsiadów z lewej i prawej w całości, a z trzech chunków nad nim i trzech pod nim tylko graniczący wiersz. To 198 słów 64-bitowych zamiast 576 dla pełnego bloku 3×3.',
+      'gol.f2.s3.t': '64 komórki naraz',
+      'gol.f2.s3.b':
+        'Jeden wiersz chunka (żółta linia), bit po bicie w panelu pod nim. Trzy wywołania <code>AddBits</code> sumują sąsiadów wszystkich 64 komórek naraz, z przesuniętych kopii wierszy: trzy komórki wiersza po jednej stronie, trzy po drugiej, potem dwie obok każdej komórki. Liczba sąsiadów mieści się w trzech płaszczyznach bitowych, a reguły Conwaya to już tylko dwie maski: „dokładnie 2” i „dokładnie 3”.',
+      'gol.f2.s4.t': 'Cały chunk',
+      'gol.f2.s4.b':
+        'Ta sama arytmetyka przechodzi przez wszystkie 64 wiersze chunka. W grze działa równolegle dla wszystkich chunków-kandydatów, jako job Burst.',
+      'gol.f2.s5.t': 'Delta',
+      'gol.f2.s5.b':
+        'XOR starego i nowego stanu daje zmianę bez pętli po komórkach: narodziny na żółto, śmierci na czerwono. Nagrywarka sprawdziła prześledzony wiersz z wynikiem silnika, a planszę po kroku ze śladem.',
+      'gol.f2.s6.t': 'Z powrotem na planszę',
+      'gol.f2.s6.b': 'Delta trafia na planszę, a kamera wraca do widoku siatki chunków.',
+      'gol.f2.aria':
+        'Nagranie jednego kroku jądra: gra się zatrzymuje, kamera zbliża się do jednego chunka, podświetla się sąsiedztwo, które czyta, a jeden wiersz jest pokazany bit po bicie, gdy liczeni są sąsiedzi i stosowane reguły. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
+      'gol.f2.code.aria':
+        'Fragment kodu z BitmaskKernel.cs, metoda Compute: dla każdego wiersza przesunięte słowa sąsiadów, trzy kroki sumatora do trzech płaszczyzn bitowych i reguły jako dwie maski',
 
       // ---------- game-of-life.html: system 2 ----------
       'gol.sys2.title': 'Symulacja w wątku w tle, z dwoma sposobami przekazywania wyników',
@@ -175,6 +213,26 @@
         'Poniżej prędkości, przy której animacje i tak się wyłączają, zmiany każdej generacji (narodzone i obumarłe komórki) trafiają do bufora pierścieniowego, czyli kolejki o stałym rozmiarze, która ponownie używa swoich slotów. Dzięki temu wątek obliczeniowy może liczyć z wyprzedzeniem. Powyżej tej prędkości nie ma czego animować, więc wątek obliczeniowy sam kopiuje całe zmienione chunki do wyświetlanego stanu, a główny wątek tylko renderuje.',
       'gol.sys2.what':
         'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku: model producent–konsument z jawną dyscypliną locków. Dwa locki, jeden chroniący stan planszy, a drugi liczniki, z których powstaje widok gęstości przy dużym oddaleniu (system 3), są zawsze brane w tej samej kolejności, co wyklucza zakleszczenie. Do tego wytropienie nieintuicyjnej regresji: przejście na kopiowanie całych chunków podniosło tempo losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro.',
+      'gol.f3.s1.t': 'Wzorzec, który nie śpi',
+      'gol.f3.s1.b':
+        'Maszyna Turinga Paula Rendella: prawie każdy chunk zmienia się w każdej generacji, około 315 z 327. Pomijanie uśpionych chunków tu nie pomoże, więc liczy się druga połowa projektu: praca poza głównym wątkiem.',
+      'gol.f3.s2.t': 'Wolno: bufor pierścieniowy',
+      'gol.f3.s2.b':
+        'Przy 4 generacjach na sekundę kamera się zbliża. Pasek u dołu to 128 slotów bufora pierścieniowego: wątek obliczeniowy wypełnia je przed wyświetlaniem (żółte), najwyżej 100 generacji do przodu, bo tyle wynosi limit gry.',
+      'gol.f3.s3.t': 'Generacja po generacji',
+      'gol.f3.s3.b':
+        'Główny wątek pobiera z bufora po jednej generacji (biały kursor) i odtwarza ją z animacjami narodzin i śmierci. Zużyte sloty szarzeją, a wątek obliczeniowy znów je wypełnia.',
+      'gol.f3.s4.t': 'Przyspieszanie',
+      'gol.f3.s4.b':
+        'Tempo rośnie do 10 generacji na sekundę, progu, przy którym animacje i tak się wyłączają.',
+      'gol.f3.s5.t': 'Szybko: całe chunki, bezpośrednio',
+      'gol.f3.s5.b':
+        'Powyżej progu bufor zostaje opróżniony i odłożony. Wątek obliczeniowy sam kopiuje całe zmienione chunki do wyświetlanego stanu (żółte wypełnienie), po 512 bajtów każdy, a główny wątek tylko renderuje.',
+      'gol.f3.s6.t': '60 generacji na sekundę',
+      'gol.f3.s6.b':
+        'Dwie generacje na klatkę: około 630 kopii chunków, czyli około 315 KB na klatkę. Te same zmiany jako listy komórek ważyłyby około 635 KB (12 bajtów na zmienioną komórkę).',
+      'gol.f3.aria':
+        'Nagranie dwóch ścieżek przekazywania wyników: ruchliwy wzorzec przy 4 generacjach na sekundę z buforem pierścieniowym narysowanym u dołu, potem przyspieszenie powyżej 10, gdzie całe zmienione chunki są kopiowane bezpośrednio. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       'gol.diag2.aria':
         'Dwa tory: u góry wątek obliczeniowy, na dole główny wątek. Poniżej progu animacji blok jobów Burst zasila bufor pierścieniowy zmian, leżący na granicy obu torów, a główny wątek odtwarza jedną generację na klatkę, z animacjami. Powyżej progu osobny blok jobów Burst zasila, nadal na torze wątku obliczeniowego, blok kopiujący całe zmienione chunki; kopia trafia do wyświetlanego zbioru komórek na granicy obu torów, a główny wątek tylko renderuje, niezależnie od tempa symulacji.',
       'gol.diag2.laneCalc': 'WĄTEK OBLICZENIOWY',
