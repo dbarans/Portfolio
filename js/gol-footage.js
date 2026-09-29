@@ -9,34 +9,38 @@
 
   var COLORS = { accent: '#ffd940', died: '#de544a', live: '#f2f2f4', dead: '#2a2a31', dim: '#8d8d97' };
 
+  // Nouns counted by the counter: [one, many] in English, [one, few, many] in Polish.
   var TEXT = {
     en: {
-      gen: 'gen.', cells: 'live cells', occupied: 'occupied chunks', recomputed: 'recomputed',
-      of: 'of', changed: 'changed', paused: 'paused', words: '198 words instead of 576',
-      row: 'row', born: 'born', died: 'died', gps: 'gen/s', buffer: 'in the buffer',
-      generations: 'generations', copied: 'chunks copied per frame',
-      title: function (row, a, b) { return 'Chunk row ' + row + ', columns ' + a + '–' + b; },
+      gen: 'gen.', paused: 'paused', words: '198 words instead of 576', row: 'row',
+      cells: ['live cell', 'live cells'], occupied: ['occupied chunk', 'occupied chunks'],
+      generations: ['generation', 'generations'],
+      recomputed: 'recomputed', changed: 'changed', born: 'born', died: 'died', gps: 'gen/s',
+      buffer: 'in the buffer', copied: 'chunks copied per frame',
+      title: function (row, a, b) { return 'Chunk row r = ' + row + ', columns ' + a + '–' + b; },
       labels: ['r + 1', 'r', 'r − 1', 'sum', '= 2', '= 3', 'next'],
       ops: ['Row r and its neighbour rows r − 1 and r + 1, 66 bits each',
             'AddBits 1 of 3: the three cells of row r − 1, for all 64 columns at once',
             'AddBits 2 of 3: the three cells of row r + 1',
             'AddBits 3 of 3: the cells left and right in row r',
             'The rules as two masks: exactly 2 neighbours, exactly 3',
-            'Next = (= 3) or (= 2 and alive), equal to the engine’s row']
+            'Next: 3 neighbours, or 2 and alive; matches the engine’s row']
     },
     pl: {
-      gen: 'gen.', cells: 'żywych komórek', occupied: 'zajętych chunków', recomputed: 'przeliczane',
-      of: 'z', changed: 'zmienione', paused: 'pauza', words: '198 słów zamiast 576',
-      row: 'wiersz', born: 'narodziny', died: 'śmierci', gps: 'gen./s', buffer: 'w buforze',
-      generations: 'generacji', copied: 'kopiowanych chunków na klatkę',
-      title: function (row, a, b) { return 'Wiersz chunka ' + row + ', kolumny ' + a + '–' + b; },
+      gen: 'gen.', paused: 'pauza', words: '198 słów zamiast 576', row: 'wiersz',
+      cells: ['żywa komórka', 'żywe komórki', 'żywych komórek'],
+      occupied: ['zajęty chunk', 'zajęte chunki', 'zajętych chunków'],
+      generations: ['generacja', 'generacje', 'generacji'],
+      recomputed: 'przeliczane', changed: 'zmienione', born: 'narodziny', died: 'śmierci', gps: 'gen./s',
+      buffer: 'w buforze', copied: 'kopiowane chunki na klatkę',
+      title: function (row, a, b) { return 'Wiersz chunka r = ' + row + ', kolumny ' + a + '–' + b; },
       labels: ['r + 1', 'r', 'r − 1', 'suma', '= 2', '= 3', 'wynik'],
       ops: ['Wiersz r i sąsiednie wiersze r − 1 i r + 1, po 66 bitów',
             'AddBits 1 z 3: trzy komórki wiersza r − 1, dla 64 kolumn naraz',
             'AddBits 2 z 3: trzy komórki wiersza r + 1',
             'AddBits 3 z 3: komórki z lewej i prawej w wierszu r',
             'Reguły jako dwie maski: dokładnie 2 sąsiadów, dokładnie 3',
-            'Wynik = (= 3) lub (= 2 i żywa), równy wierszowi silnika']
+            'Wynik: 3 sąsiadów albo 2 i żywa; zgodny z wierszem silnika']
     }
   };
 
@@ -44,22 +48,24 @@
   function t() { return TEXT[lang()]; }
   function num(n) { return Math.round(n).toLocaleString(lang() === 'pl' ? 'pl-PL' : 'en-GB'); }
 
+  // "143 occupied chunks", with the noun in the form the number takes.
+  function counted(n, forms) {
+    n = Math.round(n);
+    var form = forms[forms.length - 1];
+    if (n === 1) form = forms[0];
+    else if (forms.length === 3 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) form = forms[1];
+    return num(n) + ' ' + form;
+  }
+
   // --- Reading the manifest ---------------------------------------------------------------
 
-  // A per-frame value of a layer ("f" main, "u" under), or undefined outside the layer.
-  function value(manifest, layer, key, frame) {
-    var data = manifest.perFrame[layer];
+  // A per-frame value, or undefined for a frame the manifest has none for. The published
+  // chapters are one layer each (publish_footage.py trims a chapter's hand-over away).
+  function value(manifest, key, frame) {
+    var data = manifest.perFrame.f;
     if (!data || !data[key]) return undefined;
     var i = frame - data.first;
     return i >= 0 && i < data.count ? data[key][i] : undefined;
-  }
-
-  // The layer on screen: the main one until the crossfade is half way, the under one after.
-  function layerAt(manifest, frame) {
-    var fade = manifest.crossfade;
-    if (!fade || frame < fade.first) return 'f';
-    var i = frame - fade.first;
-    return i < fade.mainOpacity.length && fade.mainOpacity[i] >= 0.5 ? 'f' : 'u';
   }
 
   function phaseAt(manifest, frame) {
@@ -75,44 +81,38 @@
   var HUD = {
     '01-active-chunks': function (m, frame, phase) {
       var s = t();
-      var gen = s.gen + ' ' + value(m, 'f', 'generation', frame);
-      var occupied = value(m, 'f', 'occupiedChunks', frame);
+      var gen = s.gen + ' ' + value(m, 'generation', frame);
+      var occupied = counted(value(m, 'occupiedChunks', frame), s.occupied);
       if (phase === 'active')
-        return gen + ' · ' + s.recomputed + ' ' + num(value(m, 'f', 'recomputedChunks', frame)) + ' ' + s.of + ' ' +
-               num(occupied) + ' ' + s.occupied + ' · ' + s.changed + ' ' + num(value(m, 'f', 'changedChunks', frame));
-      if (phase === 'occupied') return gen + ' · ' + num(occupied) + ' ' + s.occupied;
-      return gen + ' · ' + num(value(m, 'f', 'population', frame)) + ' ' + s.cells;
+        return gen + ' · ' + occupied + ' · ' + s.recomputed + ': ' + num(value(m, 'recomputedChunks', frame)) +
+               ' · ' + s.changed + ': ' + num(value(m, 'changedChunks', frame));
+      if (phase === 'occupied') return gen + ' · ' + occupied;
+      return gen + ' · ' + counted(value(m, 'population', frame), s.cells);
     },
 
     '02-kernel': function (m, frame, phase) {
       var s = t();
-      var gen = s.gen + ' ' + value(m, 'f', 'generation', frame) + ' · ' + s.paused;
+      var gen = s.gen + ' ' + value(m, 'generation', frame) + ' · ' + s.paused;
       if (phase === 'gather' && frame >= m.gather.gatherRevealFrames.haloOutline) return gen + ' · ' + s.words;
-      if (phase === 'sweep') return gen + ' · ' + s.row + ' ' + value(m, 'f', 'sweptRows', frame) + ' / 64';
+      if (phase === 'sweep') return gen + ' · ' + s.row + ' ' + value(m, 'sweptRows', frame) + ' / 64';
       if (phase === 'result' || phase === 'apply')
-        return gen + ' · ' + s.born + ' ' + value(m, 'f', 'bornSoFar', frame) + ' · ' + s.died + ' ' + value(m, 'f', 'diedSoFar', frame);
+        return gen + ' · ' + s.born + ': ' + value(m, 'bornSoFar', frame) + ' · ' + s.died + ': ' + value(m, 'diedSoFar', frame);
       return gen;
     },
 
     '03-connector': function (m, frame, phase) {
       var s = t();
-      var layer = layerAt(m, frame);
-      var gen = s.gen + ' ' + value(m, layer, 'generation', frame);
-      if (layer === 'f')
-        return gen + ' · ' + s.recomputed + ' ' + num(value(m, 'f', 'recomputedChunks', frame)) + ' ' + s.of + ' ' +
-               num(value(m, 'f', 'occupiedChunks', frame)) + ' ' + s.occupied;
-      var speed = value(m, 'u', 'generationsPerSecond', frame);
-      var rate = num(speed) + ' ' + s.gps;
-      if (value(m, 'u', 'path', frame) === 'buffered')
-        return rate + ' · ' + s.buffer + ' ' + num(value(m, 'u', 'waitingInBuffer', frame)) + ' ' + s.generations;
-      // Before the demonstration of the paths: how much of the machine changes.
-      if (phase === 'crossfade' || phase === 'all-busy' || phase === 'diagram-out')
-        return gen + ' · ' + s.changed + ' ' + num(value(m, 'u', 'changedChunks', frame)) + ' ' + s.of + ' ' +
-               num(value(m, 'u', 'occupiedChunks', frame)) + ' ' + s.occupied;
+      // Before the two paths are shown: how much of the machine changes.
+      if (phase === 'all-busy' || phase === 'diagram-out')
+        return s.gen + ' ' + value(m, 'generation', frame) + ' · ' + counted(value(m, 'occupiedChunks', frame), s.occupied) +
+               ' · ' + s.changed + ': ' + num(value(m, 'changedChunks', frame));
+      var rate = num(value(m, 'generationsPerSecond', frame)) + ' ' + s.gps;
+      if (value(m, 'path', frame) === 'buffered')
+        return rate + ' · ' + s.buffer + ': ' + counted(value(m, 'waitingInBuffer', frame), s.generations);
       // A frame with no generation of its own copies nothing: show the last frame that did.
       for (var f = frame; f >= 1; f--) {
-        var chunks = value(m, 'u', 'chunksPublishedThisFrame', f);
-        if (chunks) return rate + ' · ' + num(chunks) + ' ' + s.copied + ' (' + num(value(m, 'u', 'bytesPublishedThisFrame', f) / 1024) + ' KB)';
+        var chunks = value(m, 'chunksPublishedThisFrame', f);
+        if (chunks) return rate + ' · ' + s.copied + ': ' + num(chunks) + ' (' + num(value(m, 'bytesPublishedThisFrame', f) / 1024) + ' KB)';
       }
       return rate;
     }
@@ -205,11 +205,20 @@
     ctx.textBaseline = 'middle';
     ctx.font = '500 ' + font + 'px "DM Mono", monospace';
 
-    // Title and the operation of this stage.
-    ctx.fillStyle = COLORS.live;
-    ctx.fillText(s.title(this.row, this.from - 1, this.from + 14), pad, pad + font * 0.6);
-    ctx.fillStyle = COLORS.accent;
-    ctx.fillText(s.ops[stage], pad, pad + font * 1.9);
+    // Title and the operation of this stage, each shrunk to the panel's width if need be.
+    function line(text, color, y) {
+      var size = font;
+      ctx.font = '500 ' + size + 'px "DM Mono", monospace';
+      while (ctx.measureText(text).width > w - 2 * pad && size > 6.5) {
+        size -= 0.5;
+        ctx.font = '500 ' + size + 'px "DM Mono", monospace';
+      }
+      ctx.fillStyle = color;
+      ctx.fillText(text, pad, y);
+      ctx.font = '500 ' + font + 'px "DM Mono", monospace';
+    }
+    line(s.title(this.row, this.from - 1, this.from + 14), COLORS.live, pad + font * 0.6);
+    line(s.ops[stage], COLORS.accent, pad + font * 1.9);
 
     var top = pad + font * 3;
     var labelW = Math.max(font * 4.2, w * 0.13);

@@ -61,7 +61,7 @@
           <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
           <h1>Game of Life</h1>
           <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
-          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
+          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in three lines (below). The engineering is in making them scale on a phone.</p>
         </div>
 
         <!-- Recorded on a Pixel 6 Pro (Play release 1.11.0). MP4 comes first: the WebM is VP8 and
@@ -77,6 +77,19 @@
         </figure>
       </div>
     </header>
+
+    <section class="cs-primer" aria-labelledby="primer-h">
+      <h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2>
+      <div class="cs-primer-body">
+        <p data-i18n="gol.primer.lead">A grid of cells, each alive or dead. At every step, called a generation, all cells change at once, each looking only at its eight neighbours:</p>
+        <ul class="gol-rules">
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r1"><b>Birth:</b> a dead cell with exactly 3 live neighbours comes alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r2"><b>Survival:</b> a live cell with 2 or 3 live neighbours stays alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=""></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r3"><b>Death:</b> every other live cell dies, of loneliness (0–1 neighbours) or overcrowding (4 or more).</span></li>
+        </ul>
+        <p data-i18n="gol.primer.end">There are no turns and no opponent: you draw a starting pattern and watch what grows from it. These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video. The hard part, and the subject of this page, is running that fast on a phone.</p>
+      </div>
+    </section>
 
     <section class="cs-keynums" aria-labelledby="keynums-h">
       <h2 class="cs-eyebrow" id="keynums-h" data-i18n="case.keynums">Key numbers</h2>
@@ -135,7 +148,7 @@
               <canvas role="img" aria-label="Recorded footage of the engine: a pattern runs one generation a frame, the board is split into chunks, and the chunks recomputed and changed in each generation light up. Scrolling plays it; the steps beside it describe each stage." data-i18n-attr="aria-label" data-i18n-attr-key="gol.f1.aria"></canvas>
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
-            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 04</span><span class="cs-scrolly-bar"><i></i></span></p>
+            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 03</span><span class="cs-scrolly-bar"><i></i></span></p>
             <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
@@ -159,22 +172,16 @@
                   <p data-i18n="gol.f1.s1.b">The linecrosser pattern (Dave Greene, 2018) running in the game’s own solver, recorded in the editor. Each frame of the footage is one generation; the counter reads the engine’s numbers for it.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="pull-back chunk-grid">
+              <li class="cs-step" data-phases="pull-back chunk-grid occupied">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f1.s2.t">64×64 chunks</h3>
-                  <p data-i18n="gol.f1.s2.b">The camera pulls back and the chunk grid appears. A chunk is 64 rows, and each row is one 64-bit integer: one bit per cell.</p>
-                </div>
-              </li>
-              <li class="cs-step" data-phases="occupied">
-                <div class="cs-step-text">
-                  <h3 data-i18n="gol.f1.s3.t">Occupied chunks</h3>
-                  <p data-i18n="gol.f1.s3.b">Grey outlines mark the chunks that hold live cells: 143 across the whole board.</p>
+                  <p data-i18n="gol.f1.s2.b">The camera pulls back. The board is split into 64×64 chunks: a chunk is 64 rows, and each row is one 64-bit integer, one bit per cell. Grey outlines mark the 143 chunks that hold live cells.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="active">
                 <div class="cs-step-text">
-                  <h3 data-i18n="gol.f1.s4.t">Only what changed is recomputed</h3>
-                  <p data-i18n="gol.f1.s4.b">Yellow outlines: the chunks recomputed in this generation, the ones that changed in the previous generation and their neighbours. Yellow fill: the chunks that actually changed. About 35 of the 143 are recomputed per step; the rest sleep and cost nothing.</p>
+                  <h3 data-i18n="gol.f1.s3.t">Only what changed is recomputed</h3>
+                  <p data-i18n="gol.f1.s3.b">Yellow outlines: the chunks recomputed in this generation, the ones that changed in the previous one plus their neighbours, empty or not. Yellow fill: the chunks that actually changed. About 35 chunks are recomputed per step; over a hundred of the 143 occupied ones sleep and cost nothing.</p>
                 </div>
               </li>
             </ol>
@@ -222,28 +229,28 @@
               <canvas role="img" aria-label="Recorded footage of one step of the kernel: the game freezes, the camera closes in on one chunk, the neighbourhood it reads is highlighted, and one row is shown bit by bit as its neighbours are counted and the rules applied. Scrolling plays it; the steps beside it describe each stage." data-i18n-attr="aria-label" data-i18n-attr-key="gol.f2.aria"></canvas>
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
-            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 06</span><span class="cs-scrolly-bar"><i></i></span></p>
+            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 05</span><span class="cs-scrolly-bar"><i></i></span></p>
             <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
             <h3 class="cs-steps-label" data-i18n="gol.footage.kernel">Inside one step</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="freeze zoom-to-block">
+              <li class="cs-step" data-phases="freeze">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s1.t">Freeze on one step</h3>
-                  <p data-i18n="gol.f2.s1.b">The game stops at generation 399 and the camera closes in on one of the chunks about to change, with its neighbours on either side.</p>
+                  <p data-i18n="gol.f2.s1.b">The game stops at generation 399, with the chunks of the footage above still marked.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="gather">
+              <li class="cs-step" data-phases="zoom-to-block gather">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s2.t">Gathering the neighbourhood</h3>
-                  <p data-i18n="gol.f2.s2.b"><code>GatherJob</code> copies what the kernel needs into one flat buffer: the chunk and its left and right neighbours in full, and only the one bordering row of the three chunks above and of the three below. That is 198 64-bit words instead of the 576 of a full 3×3 block.</p>
+                  <p data-i18n="gol.f2.s2.b">The camera closes in on one chunk the next step recomputes, and the chunks around it. <code>GatherJob</code> copies what the kernel needs into one flat buffer: the chunk and its left and right neighbours in full, and only the one bordering row of the three chunks above and of the three below. That is 198 64-bit words instead of the 576 of a full 3×3 block: two thirds less memory written per chunk, about 9 MB a generation at 3,000 chunks.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="zoom-to-chunk one-row">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s3.t">64 cells in one go</h3>
-                  <p data-i18n="gol.f2.s3.b">One row of the chunk (the yellow line), bit by bit in the panel under it. Three <code>AddBits</code> calls add up the neighbours of all 64 cells at once, from shifted copies of the rows: the three cells of the row on one side, of the row on the other, then the two beside each cell. The count lives in three bit-planes; Conway’s rules are then two masks, “exactly 2” and “exactly 3”.</p>
+                  <p data-i18n="gol.f2.s3.b">One row (the yellow line), bit by bit in the panel, for 16 of its 64 columns. Three <code>AddBits</code> calls count the neighbours of all 64 cells at once, from shifted copies of rows r − 1, r + 1 and r. The counts sit in three words, one per bit of the count (bit-planes), so Conway’s rules become two masks, “exactly 2” and “exactly 3”. In the panel’s last row, yellow is born and red dies.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="sweep">
@@ -252,16 +259,10 @@
                   <p data-i18n="gol.f2.s4.b">The same arithmetic runs through all 64 rows of the chunk. In the game it runs for every candidate chunk in parallel, as a Burst job.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="result">
+              <li class="cs-step" data-phases="result" data-rest="60">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s5.t">The delta</h3>
-                  <p data-i18n="gol.f2.s5.b">XOR of the old and new state gives the change without a loop over cells: births in yellow, deaths in red. The recorder checked the traced row against the engine’s own result, and the board after the step against the trace.</p>
-                </div>
-              </li>
-              <li class="cs-step" data-phases="apply zoom-out">
-                <div class="cs-step-text">
-                  <h3 data-i18n="gol.f2.s6.t">Back to the board</h3>
-                  <p data-i18n="gol.f2.s6.b">The delta goes onto the board, and the camera pulls back out to the chunk grid.</p>
+                  <p data-i18n="gol.f2.s5.b">Births and deaths come from two bit operations per row, new AND NOT old and old AND NOT new, 64 cells at a time with no loop over cells: births in yellow, deaths in red. The recording tool compared the traced row with the engine’s own result and would not export on any difference.</p>
                 </div>
               </li>
             </ol>
@@ -269,27 +270,39 @@
         </div>
         <div class="cs-code">
           <p class="cs-code-file">BitmaskKernel.cs · Compute()</p>
-          <pre tabindex="0" aria-label="Code excerpt from BitmaskKernel.cs, the Compute method: for each row, shifted neighbour words, three adder steps into three bit-planes, and the rules as two masks" data-i18n-attr="aria-label" data-i18n-attr-key="gol.f2.code.aria"><code class="language-csharp">for (int r = 1; r &lt;= ChunkSize; r++)
+          <pre tabindex="0" aria-label="Code excerpt from BitmaskKernel.cs, the Compute method: a sliding window of three rows, shifted neighbour words, three adder steps into three bit-planes, and the rules as two masks" data-i18n-attr="aria-label" data-i18n-attr-key="gol.f2.code.aria"><code class="language-csharp">// Three-deep sliding window over the halo-assembled rows. Each row is assembled once
+// and read at r-1, r and r+1 …
+AssembleHaloRow(nbr, 0, out ulong prev0, out ulong prev1);
+AssembleHaloRow(nbr, 1, out ulong cur0, out ulong cur1);
+
+for (int r = 1; r &lt;= ChunkSize; r++)
 {
-    NeighborWords(rows0[r - 1], rows1[r - 1], out ulong aboveL0, out ulong aboveR0, out ulong aboveL1, out ulong aboveR1);
-    NeighborWords(rows0[r + 1], rows1[r + 1], out ulong belowL0, out ulong belowR0, out ulong belowL1, out ulong belowR1);
-    NeighborWords(rows0[r], rows1[r], out ulong selfL0, out ulong selfR0, out ulong selfL1, out ulong selfR1);
+    AssembleHaloRow(nbr, r + 1, out ulong nxt0, out ulong nxt1);
+
+    NeighborWords(prev0, prev1, out ulong aboveL0, out ulong aboveR0, out ulong aboveL1, out ulong aboveR1);
+    NeighborWords(nxt0, nxt1, out ulong belowL0, out ulong belowR0, out ulong belowL1, out ulong belowR1);
+    NeighborWords(cur0, cur1, out ulong selfL0, out ulong selfR0, out ulong selfL1, out ulong selfR1);
 
     ulong b0_0 = 0, b1_0 = 0, b2_0 = 0;
-    // … (word1, columns 64..65, the same way)
+    // … (word1, columns 64..65, the same way throughout)
 
-    FullAdder(aboveL0, rows0[r - 1], aboveR0, out ulong aS0, out ulong aC0);
+    FullAdder(aboveL0, prev0, aboveR0, out ulong aS0, out ulong aC0);
     AddBits(ref b0_0, ref b1_0, ref b2_0, aS0, aC0);
-    FullAdder(belowL0, rows0[r + 1], belowR0, out ulong bS0, out ulong bC0);
+
+    FullAdder(belowL0, nxt0, belowR0, out ulong bS0, out ulong bC0);
     AddBits(ref b0_0, ref b1_0, ref b2_0, bS0, bC0);
+
     HalfAdder(selfL0, selfR0, out ulong sS0, out ulong sC0);
     AddBits(ref b0_0, ref b1_0, ref b2_0, sS0, sC0);
 
     ulong eq2_0 = (~b0_0) &amp; b1_0 &amp; (~b2_0);
     ulong eq3_0 = b0_0 &amp; b1_0 &amp; (~b2_0);
-    ulong isAlive0 = rows0[r];
+    ulong isAlive0 = cur0;
     ulong next0 = (isAlive0 &amp; (eq2_0 | eq3_0)) | (~isAlive0 &amp; birthMask &amp; eq3_0);
     // …
+
+    prev0 = cur0; prev1 = cur1;
+    cur0 = nxt0; cur1 = nxt1;
 }</code></pre>
         </div>
       </article>
@@ -306,7 +319,7 @@
               <canvas role="img" aria-label="Recorded footage of the two delivery paths: a busy pattern at 4 generations a second with the ring buffer drawn along the bottom, then speeding up past 10, where whole changed chunks are copied straight across. Scrolling plays it; the steps beside it describe each stage." data-i18n-attr="aria-label" data-i18n-attr-key="gol.f3.aria"></canvas>
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
-            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 06</span><span class="cs-scrolly-bar"><i></i></span></p>
+            <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 04</span><span class="cs-scrolly-bar"><i></i></span></p>
             <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
           </figure>
           <div class="cs-scrolly-text">
@@ -324,40 +337,28 @@
             </div>
             <h3 class="cs-steps-label" data-i18n="gol.footage.label">In the footage</h3>
             <ol class="cs-steps">
-              <li class="cs-step" data-phases="handoff crossfade all-busy">
+              <li class="cs-step" data-phases="all-busy">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f3.s1.t">A pattern that never sleeps</h3>
-                  <p data-i18n="gol.f3.s1.b">Paul Rendell’s Turing machine: nearly every chunk changes in every generation, about 315 of 327. Skipping idle chunks can’t help here, so the other half of the design matters: keeping the work off the main thread.</p>
+                  <p data-i18n="gol.f3.s1.b">Recorded in the editor, like the footage above. Paul Rendell’s original Turing machine, about 36,000 cells (not the 252,000-cell universal one in the video at the top): nearly every chunk changes in every generation, about 315 of 327. Skipping idle chunks can’t help here, so the other half of the design matters: keeping the work off the main thread.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="diagram-out buffered-zoom-in">
+              <li class="cs-step" data-phases="diagram-out buffered-zoom-in buffered-slow">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f3.s2.t">Slow: a ring buffer</h3>
-                  <p data-i18n="gol.f3.s2.b">At 4 generations a second the camera closes in. The strip along the bottom is the ring buffer’s 128 slots: the calculation thread fills them ahead of the display (yellow), up to the game’s cap of 100 generations ahead.</p>
-                </div>
-              </li>
-              <li class="cs-step" data-phases="buffered-slow">
-                <div class="cs-step-text">
-                  <h3 data-i18n="gol.f3.s3.t">One generation at a time</h3>
-                  <p data-i18n="gol.f3.s3.b">The main thread takes one generation at a time from the buffer (the white cursor) and plays it with the birth and death animations. Slots it has used turn grey, and the calculation thread fills them again.</p>
+                  <p data-i18n="gol.f3.s2.b">At 4 generations a second the camera closes in. Along the bottom are the ring buffer’s 128 slots, one bar per generation (its height: the cells that changed). The calculation thread fills them ahead of the display (yellow), at most 100 generations ahead; the main thread takes one at a time (the white cursor) and plays it with the birth and death animations. The slots, the cap and each generation’s changes are the game’s; how fast the strip fills at first is set by the recording, which steps the engine itself.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="buffered-ramp">
                 <div class="cs-step-text">
-                  <h3 data-i18n="gol.f3.s4.t">Speeding up</h3>
-                  <p data-i18n="gol.f3.s4.b">The speed rises to 10 generations a second, where the animations switch off anyway.</p>
+                  <h3 data-i18n="gol.f3.s3.t">Speeding up</h3>
+                  <p data-i18n="gol.f3.s3.b">The speed rises to 10 generations a second, the fastest setting that still animates; above it the animations switch off anyway.</p>
                 </div>
               </li>
-              <li class="cs-step" data-phases="switch-zoom-out direct-ramp">
+              <li class="cs-step" data-phases="switch-zoom-out direct-ramp direct-fast fills-out" data-rest="12">
                 <div class="cs-step-text">
-                  <h3 data-i18n="gol.f3.s5.t">Fast: whole chunks, straight across</h3>
-                  <p data-i18n="gol.f3.s5.b">Above that threshold the buffer is drained and set aside. The calculation thread copies whole changed chunks into the displayed state itself (yellow fill), 512 bytes each, and the main thread only renders.</p>
-                </div>
-              </li>
-              <li class="cs-step" data-phases="direct-fast fills-out">
-                <div class="cs-step-text">
-                  <h3 data-i18n="gol.f3.s6.t">60 generations a second</h3>
-                  <p data-i18n="gol.f3.s6.b">Two generations a frame: about 630 chunk copies, some 315 KB, per frame. The same changes as lists of cells would come to about 635 KB (12 bytes per changed cell).</p>
+                  <h3 data-i18n="gol.f3.s4.t">Fast: whole chunks, straight across</h3>
+                  <p data-i18n="gol.f3.s4.b">Above 10 the buffer is emptied and set aside, and each changed chunk crosses whole: its 64 rows, 512 bytes, copied by the calculation thread into the displayed state (yellow fill), while the main thread only renders. At 60 generations a second the 30 fps footage gets two generations a frame, about 630 chunk copies (315 KB). As lists of cells, the same change would be about 54,000 cells to pull out of the bits and replay on the main thread. On a phone, this switch took a 275k-cell random pattern from 64 to 141 gen/s.</p>
                 </div>
               </li>
             </ol>
@@ -412,7 +413,7 @@
               <path d="M725,215 L725,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
             </svg>
           </div>
-          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Two ways to deliver results, chosen by simulation speed: below the animation threshold the main thread replays each generation with animations; above it the calculation thread copies changed chunks itself and the main thread only renders.</figcaption>
+          <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Which thread does what on each path.</figcaption>
         </figure>
       </article>
 

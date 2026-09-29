@@ -190,6 +190,20 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 
 /* ---------- Key numbers: bold stat callouts with an honest context line ---------- */
 .cs-keynums { padding: 30px 0; border-bottom: 1px solid var(--cs-line); }
+/* Game of Life: the rules for readers who have never met the game, each with a 3×3 picture of
+   the middle cell's neighbours before and its fate after (the neighbours dimmed there). */
+.cs-primer { padding: 30px 0; border-bottom: 1px solid var(--cs-line); }
+.cs-primer-body { max-width: 44em; }
+.cs-primer-body p { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.7; }
+.cs-primer-body p:last-child { margin-bottom: 0; }
+.gol-rules { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
+.gol-rules li { display: flex; align-items: center; gap: 10px; font-size: 0.93rem; line-height: 1.5; }
+.gol-rules b { color: var(--cs-text); }
+.gol-mini { display: inline-grid; flex: none; grid-template-columns: repeat(3, 11px); gap: 2px; }
+.gol-mini i { width: 11px; height: 11px; border: 1px solid #3a3a44; }
+.gol-mini i.on { background: #f2f2f4; border-color: #f2f2f4; }
+.gol-mini i.nb { opacity: 0.3; }
+.gol-mini-arrow { flex: none; color: var(--cs-muted); font-size: 0.8rem; }
 .cs-keynums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

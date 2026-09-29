@@ -120,7 +120,7 @@
       'gol.tagline':
         'Symulator automatu komórkowego na Androida, zbudowany tak, żeby telefon radził sobie z wzorcami liczącymi setki tysięcy żywych komórek.',
       'gol.intro':
-        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują, od kilku komórek po wzorce liczące setki tysięcy. Reguły mieszczą się w czterech zdaniach. Trudność techniczna polega na tym, żeby skalowały się na telefonie.',
+        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują, od kilku komórek po wzorce liczące setki tysięcy. Reguły mieszczą się w trzech linijkach (poniżej). Trudność techniczna polega na tym, żeby skalowały się na telefonie.',
       'gol.hero.caption':
         'Universal Turing Machine: 252 tys. żywych komórek, ~240 generacji na sekundę na Pixelu 6 Pro. Przy takim oddaleniu cały widok to jedna tekstura gęstości.',
 
@@ -157,6 +157,16 @@
       'gol.toc4.skills': 'Testy różnicowe · Burst sprawdzany bez edytora',
 
       // ---------- game-of-life.html: system 1 ----------
+      // wprowadzenie dla osób, które nie znają gry
+      'gol.primer.title': 'Gra w życie w 30 sekund',
+      'gol.primer.lead':
+        'Siatka komórek, każda żywa albo martwa. W każdym kroku, zwanym generacją, wszystkie komórki zmieniają się naraz, a każda patrzy tylko na swoich ośmiu sąsiadów:',
+      'gol.primer.r1': '<b>Narodziny:</b> martwa komórka z dokładnie 3 żywymi sąsiadami ożywa.',
+      'gol.primer.r2': '<b>Przetrwanie:</b> żywa komórka z 2 lub 3 żywymi sąsiadami żyje dalej.',
+      'gol.primer.r3':
+        '<b>Śmierć:</b> każda inna żywa komórka umiera, z samotności (0–1 sąsiadów) albo z tłoku (4 i więcej).',
+      'gol.primer.end':
+        'Nie ma tur ani przeciwnika: rysuje się wzorzec startowy i patrzy, co z niego wyrośnie. Z tych trzech reguł powstają kształty, które wędrują po planszy, działa, które je wystrzeliwują, i wzorce tak duże, że liczą, jak maszyna Turinga z filmu. Trudność, o której jest ta strona, polega na tym, żeby to wszystko działało szybko na telefonie.',
       'gol.sys1.title': 'Silnik, który liczy tylko to, co się zmienia',
       'gol.sys1.problem':
         'Prosta symulacja w każdej generacji odwiedza każdą żywą komórkę, więc jej koszt rośnie razem z całym wzorcem. Na telefonie przy dużych wzorcach symulacja zaczyna się dławić, nawet gdy większość planszy się nie zmienia.',
@@ -174,36 +184,31 @@
         'Wzorzec linecrosser (Dave Greene, 2018) liczony przez solver gry, nagrany w edytorze. Każda klatka nagrania to jedna generacja, a licznik pokazuje dla niej liczby z silnika.',
       'gol.f1.s2.t': 'Chunki 64×64',
       'gol.f1.s2.b':
-        'Kamera się oddala i pojawia się siatka chunków. Chunk to 64 wiersze, a każdy wiersz to jedna liczba 64-bitowa: jeden bit na komórkę.',
-      'gol.f1.s3.t': 'Zajęte chunki',
+        'Kamera się oddala. Plansza dzieli się na chunki 64×64: chunk to 64 wiersze, a każdy wiersz to jedna liczba 64-bitowa, jeden bit na komórkę. Szare kontury oznaczają 143 chunki z żywymi komórkami.',
+      'gol.f1.s3.t': 'Przeliczane jest tylko to, co się zmieniło',
       'gol.f1.s3.b':
-        'Szare kontury oznaczają chunki z żywymi komórkami: na całej planszy jest ich 143.',
-      'gol.f1.s4.t': 'Przeliczane jest tylko to, co się zmieniło',
-      'gol.f1.s4.b':
-        'Żółte kontury: chunki przeliczane w tej generacji, czyli te, które zmieniły się w poprzedniej, razem z sąsiadami. Żółte wypełnienie: chunki, które faktycznie się zmieniły. Na krok przeliczanych jest około 35 ze 143; reszta śpi i nic nie kosztuje.',
-      'gol.f1.aria':
-        'Nagranie silnika: wzorzec liczony jest generacja po generacji, plansza dzieli się na chunki, a chunki przeliczane i zmienione w każdej generacji się podświetlają. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
+        'Żółte kontury: chunki przeliczane w tej generacji, czyli te, które zmieniły się w poprzedniej, razem z sąsiadami, także pustymi. Żółte wypełnienie: chunki, które faktycznie się zmieniły. Na krok przeliczanych jest około 35 chunków; ponad sto ze 143 zajętych śpi i nic nie kosztuje.',
       'gol.f2.s1.t': 'Stop-klatka na jednym kroku',
       'gol.f2.s1.b':
-        'Gra zatrzymuje się w generacji 399, a kamera zbliża się do jednego z chunków, które zaraz się zmienią, razem z sąsiadami po bokach.',
+        'Gra zatrzymuje się w generacji 399, z chunkami oznaczonymi jak w nagraniu powyżej.',
       'gol.f2.s2.t': 'Zbieranie sąsiedztwa',
       'gol.f2.s2.b':
-        '<code>GatherJob</code> kopiuje do jednego płaskiego bufora tylko to, czego potrzebuje jądro: chunk i jego sąsiadów z lewej i prawej w całości, a z trzech chunków nad nim i trzech pod nim tylko graniczący wiersz. To 198 słów 64-bitowych zamiast 576 dla pełnego bloku 3×3.',
+        'Kamera zbliża się do chunka, który następny krok przeliczy, i do chunków wokół niego. <code>GatherJob</code> kopiuje do jednego płaskiego bufora tylko to, czego potrzebuje jądro: chunk i jego sąsiadów z lewej i prawej w całości, a z trzech chunków nad nim i trzech pod nim tylko graniczący wiersz. To 198 słów 64-bitowych zamiast 576 dla pełnego bloku 3×3: o dwie trzecie mniej zapisów do pamięci na chunk, około 9 MB na generację przy 3000 chunków.',
       'gol.f2.s3.t': '64 komórki naraz',
       'gol.f2.s3.b':
-        'Jeden wiersz chunka (żółta linia), bit po bicie w panelu pod nim. Trzy wywołania <code>AddBits</code> sumują sąsiadów wszystkich 64 komórek naraz, z przesuniętych kopii wierszy: trzy komórki wiersza po jednej stronie, trzy po drugiej, potem dwie obok każdej komórki. Liczba sąsiadów mieści się w trzech płaszczyznach bitowych, a reguły Conwaya to już tylko dwie maski: „dokładnie 2” i „dokładnie 3”.',
+        'Jeden wiersz (żółta linia), w panelu bit po bicie, dla 16 z jego 64 kolumn. Trzy wywołania <code>AddBits</code> liczą sąsiadów wszystkich 64 komórek naraz, z przesuniętych kopii wierszy r − 1, r + 1 i r. Liczby sąsiadów zajmują trzy słowa, po jednym na każdy bit liczby (płaszczyzny bitowe), więc reguły Conwaya to dwie maski: „dokładnie 2” i „dokładnie 3”. W ostatnim wierszu panelu żółte się rodzą, a czerwone giną.',
       'gol.f2.s4.t': 'Cały chunk',
       'gol.f2.s4.b':
         'Ta sama arytmetyka przechodzi przez wszystkie 64 wiersze chunka. W grze działa równolegle dla wszystkich chunków-kandydatów, jako job Burst.',
       'gol.f2.s5.t': 'Delta',
       'gol.f2.s5.b':
-        'XOR starego i nowego stanu daje zmianę bez pętli po komórkach: narodziny na żółto, śmierci na czerwono. Nagrywarka sprawdziła prześledzony wiersz z wynikiem silnika, a planszę po kroku ze śladem.',
-      'gol.f2.s6.t': 'Z powrotem na planszę',
-      'gol.f2.s6.b': 'Delta trafia na planszę, a kamera wraca do widoku siatki chunków.',
+        'Narodziny i śmierci wynikają z dwóch operacji na bitach w każdym wierszu, „nowy AND NOT stary” i „stary AND NOT nowy”, po 64 komórki naraz, bez pętli po komórkach: narodziny na żółto, śmierci na czerwono. Narzędzie nagrywające porównało prześledzony wiersz z wynikiem silnika i przy jakiejkolwiek różnicy nie wyeksportowałoby nagrania.',
+      'gol.f1.aria':
+        'Nagranie silnika: wzorzec liczony jest generacja po generacji, plansza dzieli się na chunki, a chunki przeliczane i zmienione w każdej generacji się podświetlają. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       'gol.f2.aria':
         'Nagranie jednego kroku jądra: gra się zatrzymuje, kamera zbliża się do jednego chunka, podświetla się sąsiedztwo, które czyta, a jeden wiersz jest pokazany bit po bicie, gdy liczeni są sąsiedzi i stosowane reguły. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       'gol.f2.code.aria':
-        'Fragment kodu z BitmaskKernel.cs, metoda Compute: dla każdego wiersza przesunięte słowa sąsiadów, trzy kroki sumatora do trzech płaszczyzn bitowych i reguły jako dwie maski',
+        'Fragment kodu z BitmaskKernel.cs, metoda Compute: przesuwane okno trzech wierszy, przesunięte słowa sąsiadów, trzy kroki sumatora do trzech płaszczyzn bitowych i reguły jako dwie maski',
 
       // ---------- game-of-life.html: system 2 ----------
       'gol.sys2.title': 'Symulacja w wątku w tle, z dwoma sposobami przekazywania wyników',
@@ -215,22 +220,16 @@
         'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku: model producent–konsument z jawną dyscypliną locków. Dwa locki, jeden chroniący stan planszy, a drugi liczniki, z których powstaje widok gęstości przy dużym oddaleniu (system 3), są zawsze brane w tej samej kolejności, co wyklucza zakleszczenie. Do tego wytropienie nieintuicyjnej regresji: przejście na kopiowanie całych chunków podniosło tempo losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro.',
       'gol.f3.s1.t': 'Wzorzec, który nie śpi',
       'gol.f3.s1.b':
-        'Maszyna Turinga Paula Rendella: prawie każdy chunk zmienia się w każdej generacji, około 315 z 327. Pomijanie uśpionych chunków tu nie pomoże, więc liczy się druga połowa projektu: praca poza głównym wątkiem.',
+        'Nagranie z edytora, jak powyżej. Oryginalna maszyna Turinga Paula Rendella, około 36 tys. komórek (nie uniwersalna z 252 tys. z filmu na górze strony): prawie każdy chunk zmienia się w każdej generacji, około 315 z 327. Pomijanie uśpionych chunków tu nie pomoże, więc liczy się druga część rozwiązania: praca poza głównym wątkiem.',
       'gol.f3.s2.t': 'Wolno: bufor pierścieniowy',
       'gol.f3.s2.b':
-        'Przy 4 generacjach na sekundę kamera się zbliża. Pasek u dołu to 128 slotów bufora pierścieniowego: wątek obliczeniowy wypełnia je przed wyświetlaniem (żółte), najwyżej 100 generacji do przodu, bo tyle wynosi limit gry.',
-      'gol.f3.s3.t': 'Generacja po generacji',
+        'Przy 4 generacjach na sekundę kamera się zbliża. U dołu jest 128 slotów bufora pierścieniowego, jeden słupek na generację (jego wysokość to liczba zmienionych komórek). Wątek obliczeniowy wypełnia je z wyprzedzeniem (żółte), najwyżej 100 generacji do przodu; główny wątek pobiera po jednej (biały kursor) i odtwarza ją z animacjami narodzin i śmierci. Sloty, limit i zmiany każdej generacji pochodzą z gry; tempo, w jakim pasek zapełnia się na początku, ustawia nagranie, bo to ono samo wywołuje kolejne kroki silnika.',
+      'gol.f3.s3.t': 'Przyspieszanie',
       'gol.f3.s3.b':
-        'Główny wątek pobiera z bufora po jednej generacji (biały kursor) i odtwarza ją z animacjami narodzin i śmierci. Zużyte sloty szarzeją, a wątek obliczeniowy znów je wypełnia.',
-      'gol.f3.s4.t': 'Przyspieszanie',
+        'Tempo rośnie do 10 generacji na sekundę, najwyższego, przy którym gra jeszcze animuje; powyżej animacje i tak się wyłączają.',
+      'gol.f3.s4.t': 'Szybko: całe chunki, bezpośrednio',
       'gol.f3.s4.b':
-        'Tempo rośnie do 10 generacji na sekundę, progu, przy którym animacje i tak się wyłączają.',
-      'gol.f3.s5.t': 'Szybko: całe chunki, bezpośrednio',
-      'gol.f3.s5.b':
-        'Powyżej progu bufor zostaje opróżniony i odłożony. Wątek obliczeniowy sam kopiuje całe zmienione chunki do wyświetlanego stanu (żółte wypełnienie), po 512 bajtów każdy, a główny wątek tylko renderuje.',
-      'gol.f3.s6.t': '60 generacji na sekundę',
-      'gol.f3.s6.b':
-        'Dwie generacje na klatkę: około 630 kopii chunków, czyli około 315 KB na klatkę. Te same zmiany jako listy komórek ważyłyby około 635 KB (12 bajtów na zmienioną komórkę).',
+        'Powyżej 10 bufor zostaje opróżniony i odłożony, a każdy zmieniony chunk przechodzi w całości: 64 wiersze, 512 bajtów, kopiowane przez wątek obliczeniowy do wyświetlanego stanu (żółte wypełnienie), a główny wątek tylko renderuje. Przy 60 generacjach na sekundę nagranie (30 kl./s) dostaje dwie generacje na klatkę, czyli około 630 kopii chunków (315 KB). Jako listy komórek ta sama zmiana to około 54 tys. komórek do wyciągnięcia z bitów i odtworzenia w głównym wątku. Na telefonie ta zmiana podniosła tempo losowego wzorca z 275 tys. komórek z 64 do 141 gen./s.',
       'gol.f3.aria':
         'Nagranie dwóch ścieżek przekazywania wyników: ruchliwy wzorzec przy 4 generacjach na sekundę z buforem pierścieniowym narysowanym u dołu, potem przyspieszenie powyżej 10, gdzie całe zmienione chunki są kopiowane bezpośrednio. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       'gol.diag2.aria':
@@ -250,7 +249,7 @@
       'gol.diag2.renders': 'Tylko renderuje',
       'gol.diag2.fpsIndep': 'FPS niezależny od tempa',
       'gol.diag2.cap':
-        'Dwa sposoby przekazywania wyników, wybierane zależnie od tempa symulacji: poniżej progu animacji główny wątek odtwarza każdą generację z animacjami; powyżej niego wątek obliczeniowy sam kopiuje zmienione chunki, a główny wątek tylko renderuje.',
+        'Który wątek co robi na każdej ścieżce.',
 
       // ---------- game-of-life.html: system 3 ----------
       'gol.sys3.title': 'Koszt renderowania zależny od ekranu, a nie od wzorca',
