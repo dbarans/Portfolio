@@ -254,19 +254,9 @@
   object-position: 50% 50%;
   transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+.page-home .pcard--gol .pcard-media img { object-position: 50% 60%; }
 .page-home .pcard--grave .pcard-media img { object-position: 30% 50%; }
 .page-home .pcard--lp .pcard-media img { object-position: 50% 45%; }
-.page-home .pcard-media--pattern { background: #000; }
-.page-home .pcard-pattern {
-  position: absolute;
-  top: 6%;
-  left: 6%;
-  width: 88%;
-  height: 76%;
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.page-home .pcard-pattern-gun { fill: var(--h-text); }
-.page-home .pcard-pattern-gliders { fill: var(--acc-gol); }
 .page-home .pcard-media-tag {
   position: absolute;
   left: 0;
@@ -360,8 +350,7 @@
 }
 .page-home .pcard:hover .pcard-title { color: var(--acc); }
 .page-home .pcard:hover .pcard-media img,
-.page-home .pcard:hover .pcard-media video,
-.page-home .pcard:hover .pcard-pattern { transform: scale(1.04); }
+.page-home .pcard:hover .pcard-media video { transform: scale(1.04); }
 
 /* Tablet: one card per row, image beside the text */
 @media (min-width: 700px) and (max-width: 1023.98px) {
@@ -437,6 +426,5 @@
   .page-home *::after { transition: none !important; }
   .page-home .pcard:hover .pcard-media img,
   .page-home .pcard:hover .pcard-media video,
-  .page-home .pcard:hover .pcard-pattern,
   .page-home .contact-row:hover .contact-arrow { transform: none; }
 }

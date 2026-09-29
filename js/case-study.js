@@ -40,6 +40,14 @@
     document.querySelectorAll('.cs-media-frame video[autoplay]').forEach(function (v) {
       v.removeAttribute('autoplay');
       v.pause();
+      // A data-still picked for reduced motion replaces the poster; reloading brings the poster
+      // back even if playback had already started.
+      var still = v.getAttribute('data-still');
+      if (still) {
+        v.poster = still;
+        v.load();
+        return;
+      }
       try { v.currentTime = 0; } catch (e) {}
     });
   }

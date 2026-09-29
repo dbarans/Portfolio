@@ -38,7 +38,7 @@
 
   <main class="cs-page" id="main" tabindex="-1">
 
-    <header class="cs-hero cs-hero--no-media">
+    <header class="cs-hero">
       <div class="cs-hero-motif" aria-hidden="true">
         <svg viewBox="0 0 200 200" focusable="false">
           <defs>
@@ -64,26 +64,17 @@
           <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in four sentences. The engineering is in making them scale on a phone.</p>
         </div>
 
-        <!-- SLOT: hero footage (portrait phone loop, 9:16, 3–5 s), hidden until the footage exists.
-             Shot: phone screen zoomed almost all the way out on a very large pattern (~252k cells,
-             e.g. the Universal Turing Machine); the density texture fills the frame, no UI panels.
-             To restore: remove "cs-hero--no-media" from the <header class="cs-hero …"> above and
-             paste this figure here (its i18n keys gol.hero.caption / gol.hero.shot still exist):
-             <figure class="cs-media">
-               <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
-                 <img src="images/game-of-life/hero.webp" alt="[the figcaption text]" loading="lazy">
-               </div>
-               <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">A Game of Life pattern of hundreds of thousands of cells, zoomed far out on a phone and drawn as a density texture.</figcaption>
-             </figure>
-             Caption/alt PL: "Wzorzec gry w życie liczący setki tysięcy komórek, mocno oddalony na
-             ekranie telefonu i narysowany jako tekstura gęstości."
-             For footage instead of a still loop, put this inside the frame instead of the <img>:
-               <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/hero-poster.jpg">
-                 <source src="images/game-of-life/hero.webm" type="video/webm">
-               </video>
-             An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-             <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/hero-still.jpg">
-             instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        <!-- Recorded on a Pixel 6 Pro (Play release 1.11.0). MP4 comes first: the WebM is VP8 and
+             visibly softer. js/case-study.js pauses the loop under prefers-reduced-motion. -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/hero-poster.jpg" data-still="images/game-of-life/hero-still.jpg">
+              <source src="images/game-of-life/hero.mp4" type="video/mp4">
+              <source src="images/game-of-life/hero.webm" type="video/webm">
+            </video>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">The Universal Turing Machine, 252k live cells, running at ~240 generations per second on a Pixel 6 Pro. This far out, the view is a single density texture.</figcaption>
+        </figure>
       </div>
     </header>
 
@@ -274,27 +265,17 @@
           <p data-i18n="gol.sys3.what">Rendering optimisation in Unity (draw calls, the limits of a built-in component, level-of-detail switching) and choosing data structures by the queries they have to answer. In a benchmark outside Unity, the on-screen query stays at ~50 µs however many cells live off-screen. The old full scan had grown to 1,035 µs at 316k live cells.</p>
         </div>
 
-        <!-- SLOT: system 3 zoom footage (portrait phone loop, 9:16, 4–8 s), hidden until the footage exists.
-             Shot: one continuous pinch-zoom from a handful of single cells out to a pattern of
-             hundreds of thousands (~252k cells), FPS counter visible, showing the exact moment the
-             Tilemap hands off to the single-quad density view with no stutter.
-             To restore, paste this figure here (its i18n keys gol.sys3.caption / gol.sys3.shot still exist):
-             <figure class="cs-media">
-               <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
-                 <img src="images/game-of-life/system-3-zoom.webp" alt="[the figcaption text]" loading="lazy">
-               </div>
-               <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom from single cells out to a pattern of hundreds of thousands, with the FPS counter on: the tiles give way to the single-quad density view without a stutter.</figcaption>
-             </figure>
-             Caption PL: "Jeden płynny pinch-zoom od pojedynczych komórek do wzorca liczącego setki
-             tysięcy komórek, z włączonym licznikiem FPS: kafelki ustępują widokowi gęstości na
-             jednym quadzie bez zacięć."
-             For footage instead of a still loop, put this inside the frame instead of the <img>:
-               <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/system-3-poster.jpg">
-                 <source src="images/game-of-life/system-3-zoom.webm" type="video/webm">
-               </video>
-             An animated WebP/GIF can't be paused for prefers-reduced-motion — pair one with a
-             <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/game-of-life/system-3-still.jpg">
-             instead of a plain <img>. A <video> is paused automatically by js/case-study.js. -->
+        <!-- The FPS counter is the game's own (Settings > Show FPS/GPS); the simulation is paused
+             during the zoom. Under reduced motion the still (the whole machine) replaces frame 0. -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/system-3-poster.jpg" data-still="images/game-of-life/system-3-still.jpg">
+              <source src="images/game-of-life/system-3-zoom.mp4" type="video/mp4">
+              <source src="images/game-of-life/system-3-zoom.webm" type="video/webm">
+            </video>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom on a Pixel 6 Pro, from 13 cells out to the 252k-cell Universal Turing Machine, with the game's FPS counter on: the Tilemap gives way to the single-quad density view and the counter stays between 56 and 60.</figcaption>
+        </figure>
       </article>
 
       <article class="cs-system" id="sys-4" aria-labelledby="sys-4-h">
