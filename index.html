@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="index.meta.title">Dominik Barański — Unity Developer</title>
-  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project, plus gameplay systems built as an intern at Rubens Games." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
+  <meta name="description" content="Dominik Barański builds game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads; enemy AI, pathfinding, visibility and procedural dungeons for a 2D team project; and gameplay systems from an internship at Rubens Games." data-i18n-attr="content" data-i18n-attr-key="index.meta.description" />
   <meta name="theme-color" content="#0b0c0e" />
   <meta name="color-scheme" content="dark" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Dominik Barański" />
   <meta property="og:title" content="Dominik Barański — Unity Developer" />
-  <meta property="og:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project, plus gameplay systems built as an intern at Rubens Games." />
+  <meta property="og:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads; enemy AI, pathfinding, visibility and procedural dungeons for a 2D team project; and gameplay systems from an internship at Rubens Games." />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/" />
   <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/home/og.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -22,7 +22,7 @@
   <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Dominik Barański — Unity Developer" />
-  <meta name="twitter:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads, and enemy AI, pathfinding, visibility and procedural dungeons in a 2D team project, plus gameplay systems built as an intern at Rubens Games." />
+  <meta name="twitter:description" content="Game systems in Unity and C#: a multithreaded simulation engine behind an Android game with 15,000+ downloads; enemy AI, pathfinding, visibility and procedural dungeons for a 2D team project; and gameplay systems from an internship at Rubens Games." />
   <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/home/og.jpg" />
   <meta name="twitter:image:alt" content="Dominik Barański: Unity developer, with images from Game of Life, Grave and Luggage Please." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +52,7 @@
 
     <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-heading">
-        <p class="hero-kicker" data-i18n="index.hero.kicker">Looking for a junior/mid Unity developer role</p>
+        <p class="hero-kicker" data-i18n="index.hero.kicker">Looking for a Unity developer role</p>
         <h1 id="hero-heading" class="hero-title">Dominik Barański: <span class="hero-role">Unity developer</span></h1>
         <div class="hero-grid">
           <div class="hero-main">
@@ -71,7 +71,7 @@
             </li>
             <li class="hero-stat hero-stat--grave">
               <span class="hero-stat-value">48</span>
-              <span class="hero-stat-label" data-i18n="index.hero.stat2.label">unit tests on my dungeon generator</span>
+              <span class="hero-stat-label" data-i18n="index.hero.stat2.label">unit tests for my dungeon generator</span>
               <span class="hero-stat-tag" data-i18n="index.hero.stat2.tag">Grave · team of 4</span>
             </li>
             <li class="hero-stat hero-stat--lp">
@@ -89,40 +89,40 @@
           <p class="section-note" data-i18n="index.projects.note">Each case study walks through the problem, how the system works and the code behind it.</p>
         </div>
         <div class="pgrid">
-          <article class="pcard pcard--gol" aria-labelledby="proj-gol-h">
+          <article class="pcard pcard--gol" aria-labelledby="proj-gol-h" data-prefetch-base="images/game-of-life/footage/" data-prefetch-chapters="01-active-chunks 02-kernel 03-connector" data-prefetch-extra="manifest.json">
             <div class="pcard-media">
               <img src="images/game-of-life/hero-poster.jpg" width="720" height="1280" decoding="async" alt="The Universal Turing Machine, 252k live cells, zoomed far out on a phone and drawn as one density texture." data-i18n-attr="alt" data-i18n-attr-key="index.project.gol.alt" />
               <span class="pcard-media-tag" data-i18n="index.project.gol.media">Density view · 252k cells</span>
             </div>
             <div class="pcard-body">
-              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">01</span><span data-i18n="index.project.gol.meta">Android · Unity 2022.3 · solo · 15,000+ downloads on Google Play</span></p>
+              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">01</span><span class="pcard-seg">Android</span> <span class="pcard-seg">Unity 2022.3</span> <span class="pcard-seg">solo</span> <span class="pcard-seg" data-i18n="index.project.gol.meta4">15,000+ downloads on Google Play</span></p>
               <h3 class="pcard-title" id="proj-gol-h">Game of Life</h3>
               <p class="pcard-summary" data-i18n="index.project.gol.summary">A Game of Life simulator that has to handle hundreds of thousands of live cells on a phone.</p>
               <p class="pcard-list-label" data-i18n="index.project.systems">Systems I built</p>
               <ul class="pcard-list">
-                <li data-i18n="index.project.gol.sys1">Bit-level simulation on Burst and the Job System</li>
+                <li data-i18n="index.project.gol.sys1">A simulation engine that recomputes only what changed (Burst, Job System)</li>
                 <li data-i18n="index.project.gol.sys2">A simulation thread that doesn't block the frame</li>
-                <li data-i18n="index.project.gol.sys3">Rendering whose cost follows the screen, not the pattern</li>
-                <li data-i18n="index.project.gol.sys4">A test harness that checks the shipped engine against a reference implementation outside Unity</li>
+                <li data-i18n="index.project.gol.sys3">Rendering whose cost scales with the screen, not the pattern</li>
+                <li data-i18n="index.project.gol.sys4">Tests that run the shipped engine outside Unity and compare every generation with a simple reference version</li>
               </ul>
               <a class="pcard-link" href="game-of-life.html"><span data-i18n="index.project.gol.cta">See how the engine works →</span></a>
             </div>
           </article>
 
-          <article class="pcard pcard--grave" aria-labelledby="proj-grave-h">
+          <article class="pcard pcard--grave" aria-labelledby="proj-grave-h" data-prefetch-base="images/grave/footage/" data-prefetch-chapters="01-generator 02-visibility 03-astar 04-ai">
             <div class="pcard-media">
-              <img src="images/grave/og.jpg" width="1200" height="630" decoding="async" alt="Grave, seen from above: a dungeon room lit only inside the player's view cone." data-i18n-attr="alt" data-i18n-attr-key="index.project.grave.alt" />
+              <img src="images/grave/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Grave, seen from above: a dungeon room lit only inside the player's view cone." data-i18n-attr="alt" data-i18n-attr-key="index.project.grave.alt" />
               <span class="pcard-media-tag" data-i18n="index.project.grave.media">Visibility system</span>
             </div>
             <div class="pcard-body">
-              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">02</span><span data-i18n="index.project.grave.meta">PC · Unity 6 URP 2D · team of 4 · engineering thesis</span></p>
+              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">02</span><span class="pcard-seg">PC</span> <span class="pcard-seg">Unity 6 URP 2D</span> <span class="pcard-seg" data-i18n="index.project.grave.meta3">team of 4</span> <span class="pcard-seg" data-i18n="index.project.grave.meta4">engineering thesis</span></p>
               <h3 class="pcard-title" id="proj-grave-h">Grave</h3>
-              <p class="pcard-summary" data-i18n="index.project.grave.summary">A top-down 2D survival horror made by a team of four.</p>
+              <p class="pcard-summary" data-i18n="index.project.grave.summary">A top-down 2D survival horror game made by a team of four, where the player sees only what light reaches. I built the systems that generate the dungeon, hide it and send enemies through it.</p>
               <p class="pcard-list-label" data-i18n="index.project.systems">Systems I built</p>
               <ul class="pcard-list">
-                <li data-i18n="index.project.grave.sys1">A* pathfinding with a bounded per-frame cost</li>
-                <li data-i18n="index.project.grave.sys2">A light mask rendered by a second camera and custom shaders</li>
-                <li data-i18n="index.project.grave.sys3">A seeded dungeon generator covered by 48 unit tests</li>
+                <li data-i18n="index.project.grave.sys1">A seeded dungeon generator covered by 48 unit tests</li>
+                <li data-i18n="index.project.grave.sys2">Line-of-sight lighting: only what the player can see is visible (second camera, custom shaders)</li>
+                <li data-i18n="index.project.grave.sys3">A* pathfinding with a capped cost per search</li>
                 <li data-i18n="index.project.grave.sys4">Enemy AI assembled from swappable components</li>
               </ul>
               <a class="pcard-link" href="grave.html"><span data-i18n="index.project.grave.cta">See the systems →</span></a>
@@ -131,18 +131,18 @@
 
           <article class="pcard pcard--lp" aria-labelledby="proj-lp-h">
             <div class="pcard-media">
-              <img src="images/luggage-please/xray_previev.png" width="526" height="480" decoding="async" alt="Luggage Please: the X-ray scanner screen, with a suitcase's contents coloured by material." data-i18n-attr="alt" data-i18n-attr-key="index.project.lp.alt" />
+              <img src="images/luggage-please/xray_previev.png" width="526" height="480" loading="lazy" decoding="async" alt="Luggage Please: the X-ray scanner screen, with a suitcase's contents coloured by material." data-i18n-attr="alt" data-i18n-attr-key="index.project.lp.alt" />
               <span class="pcard-media-tag" data-i18n="index.project.lp.media">X-ray scanner</span>
             </div>
             <div class="pcard-body">
-              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">03</span><span data-i18n="index.project.lp.meta">PC · Unity 2022.3 URP · studio team · internship at Rubens Games</span></p>
+              <p class="pcard-meta"><span class="pcard-num" aria-hidden="true">03</span><span class="pcard-seg">PC</span> <span class="pcard-seg">Unity 2022.3 URP</span> <span class="pcard-seg" data-i18n="index.project.lp.meta3">studio team</span> <span class="pcard-seg" data-i18n="index.project.lp.meta4">internship at Rubens Games</span></p>
               <h3 class="pcard-title" id="proj-lp-h">Luggage Please</h3>
-              <p class="pcard-summary" data-i18n="index.project.lp.summary">A first-person airport security game made by a studio team at Rubens Games, where I was an intern.</p>
+              <p class="pcard-summary" data-i18n="index.project.lp.summary">A first-person airport security game made by the studio team at Rubens Games. As an intern I built three of its systems, which the studio's art and NPC code plug into.</p>
               <p class="pcard-list-label" data-i18n="index.project.systems">Systems I built</p>
               <ul class="pcard-list">
                 <li data-i18n="index.project.lp.sys1">Suitcase physics that runs only while a case is being inspected</li>
-                <li data-i18n="index.project.lp.sys2">An X-ray scanner built from URP renderer features and a Shader Graph shader: a new item needs only the right layers, no code</li>
-                <li data-i18n="index.project.lp.sys3">An interaction wheel decoupled from the NPC logic that fills it</li>
+                <li data-i18n="index.project.lp.sys2">An X-ray scanner that colours items by material, built from URP renderer features: a new item needs no code</li>
+                <li data-i18n="index.project.lp.sys3">A radial action menu whose options change at each checkpoint, kept separate from the passenger logic</li>
               </ul>
               <a class="pcard-link" href="luggage-please.html"><span data-i18n="index.project.lp.cta">See how they work →</span></a>
             </div>
@@ -169,5 +169,6 @@
   </div>
   <script src="js/header-scroll.js" defer></script>
   <script src="js/i18n.js" defer></script>
+  <script src="js/footage-prefetch.js" defer></script>
 </body>
 </html>

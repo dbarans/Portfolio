@@ -58,6 +58,8 @@ main:focus { outline: none; }
   will-change: transform;
 }
 .site-header.site-header--hidden { transform: translateY(-100%); }
+/* Tabbing into the hidden header must show it (js/header-scroll.js also drops the class). */
+.site-header:has(:focus-visible) { transform: none; }
 @media (prefers-reduced-motion: reduce) { .site-header { transition: none; } }
 
 .site-brand {

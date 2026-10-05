@@ -21,6 +21,11 @@
     lastY = y;
   }
 
+  // Tabbing into the hidden header (it slides away on scroll down) brings it back.
+  header.addEventListener('focusin', function () {
+    header.classList.remove('site-header--hidden');
+  });
+
   let ticking = false;
   window.addEventListener(
     'scroll',

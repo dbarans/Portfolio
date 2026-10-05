@@ -26,19 +26,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/case-study.css" />
+  <link rel="stylesheet" href="css/case-study.css?v=20261005f" />
 </head>
 <body class="page-case page-case--gol">
   <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
   <header class="cs-top">
     <a class="cs-brand" href="index.html">Dominik Barański</a>
     <a class="cs-back" href="index.html#projects" data-i18n="case.back">← All projects</a>
+    <a class="cs-mail" href="mailto:baranskidominik109@gmail.com" data-i18n="case.top.email">Email</a>
     <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
   </header>
 
+  <!-- Section rail: a fixed axis beside the page (wide screens only) with a stop per part of
+       the page; js/case-study.js lights the part on screen, js/footage.js makes the jumps. -->
+  <nav class="cs-rail" aria-label="Sections of this page" data-i18n-attr="aria-label" data-i18n-attr-key="case.rail.aria">
+    <ol class="cs-rail-list">
+        <li><a href="#overview"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="case.rail.top">Overview</span></a></li>
+        <li><a href="#sys-1"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">01</span><span class="cs-rail-label" data-i18n="gol.rail.1">Engine</span></a></li>
+        <li><a href="#sys-2"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">02</span><span class="cs-rail-label" data-i18n="gol.rail.2">Threading</span></a></li>
+        <li><a href="#sys-3"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">03</span><span class="cs-rail-label" data-i18n="gol.rail.3">Rendering</span></a></li>
+        <li><a href="#sys-4"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">04</span><span class="cs-rail-label" data-i18n="gol.rail.4">Testing</span></a></li>
+        <li><a href="#takeaway"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="case.takeaway">Takeaway</span></a></li>
+    </ol>
+  </nav>
+
   <main class="cs-page" id="main" tabindex="-1">
 
-    <header class="cs-hero">
+    <header class="cs-hero" id="overview">
       <div class="cs-hero-motif" aria-hidden="true">
         <svg viewBox="0 0 200 200" focusable="false">
           <defs>
@@ -61,7 +75,7 @@
           <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
           <h1>Game of Life</h1>
           <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
-          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve, from a handful of cells to patterns hundreds of thousands of cells large. The rules fit in three lines (below). The engineering is in making them scale on a phone.</p>
+          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve. The rules fit in three lines (below); the engineering is in making them scale on a phone.</p>
         </div>
 
         <!-- Recorded on a Pixel 6 Pro (Play release 1.11.0). MP4 comes first: the WebM is VP8 and
@@ -72,24 +86,12 @@
               <source src="images/game-of-life/hero.mp4" type="video/mp4">
               <source src="images/game-of-life/hero.webm" type="video/webm">
             </video>
+            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
           </div>
           <figcaption class="cs-media-caption" data-i18n="gol.hero.caption">The Universal Turing Machine, 252k live cells, running at ~240 generations per second on a Pixel 6 Pro. This far out, the view is a single density texture.</figcaption>
         </figure>
       </div>
     </header>
-
-    <section class="cs-primer" aria-labelledby="primer-h">
-      <h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2>
-      <div class="cs-primer-body">
-        <p data-i18n="gol.primer.lead">A grid of cells, each alive or dead. At every step, called a generation, all cells change at once, each looking only at its eight neighbours:</p>
-        <ul class="gol-rules">
-          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r1"><b>Birth:</b> a dead cell with exactly 3 live neighbours comes alive.</span></li>
-          <li><span class="gol-mini" aria-hidden="true"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r2"><b>Survival:</b> a live cell with 2 or 3 live neighbours stays alive.</span></li>
-          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=""></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r3"><b>Death:</b> every other live cell dies, of loneliness (0–1 neighbours) or overcrowding (4 or more).</span></li>
-        </ul>
-        <p data-i18n="gol.primer.end">There are no turns and no opponent: you draw a starting pattern and watch what grows from it. These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video. The hard part, and the subject of this page, is running that fast on a phone.</p>
-      </div>
-    </section>
 
     <section class="cs-keynums" aria-labelledby="keynums-h">
       <h2 class="cs-eyebrow" id="keynums-h" data-i18n="case.keynums">Key numbers</h2>
@@ -101,7 +103,7 @@
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn2.value">64 → 141 gen/s</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn2.label">2.2× generations per second at high speed</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">2.2× the generations per second at high speed</span>
           <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">275k-cell random pattern on a Pixel 6 Pro, after taking per-generation replay off the main thread (system 2).</span>
         </div>
         <div class="cs-keynum">
@@ -116,6 +118,7 @@
       <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
       <dl class="cs-facts">
         <div><dt data-i18n="gol.glance.role.t">Role</dt><dd data-i18n="gol.glance.role.d">solo (engine, gameplay, UI and store release)</dd></div>
+        <div><dt data-i18n="gol.glance.time.t">Timeline</dt><dd data-i18n="gol.glance.time.d">Feb 2025 – present; on Google Play since Aug 2025 and updated since launch</dd></div>
         <div><dt data-i18n="gol.glance.engine.t">Engine</dt><dd data-i18n="gol.glance.engine.d">Unity 2022.3 LTS, built-in render pipeline</dd></div>
         <div><dt data-i18n="gol.glance.platform.t">Platform</dt><dd data-i18n="gol.glance.platform.d">Android (IL2CPP, ARM64)</dd></div>
         <div><dt data-i18n="gol.glance.status.t">Status</dt><dd><span data-i18n="gol.glance.status.d1">published on</span> <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a><span aria-hidden="true"> ↗</span><span data-i18n="gol.glance.status.d2">, 15,000+ downloads</span></dd></div>
@@ -124,12 +127,25 @@
       </dl>
     </section>
 
+    <section class="cs-primer" aria-labelledby="primer-h">
+      <h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2>
+      <div class="cs-primer-body">
+        <p data-i18n="gol.primer.lead">A grid of cells, each alive or dead. At every step, called a generation, all cells change at once, each looking only at its eight neighbours:</p>
+        <ul class="gol-rules">
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r1"><b>Birth:</b> a dead cell with exactly 3 live neighbours comes alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r2"><b>Survival:</b> a live cell with 2 or 3 live neighbours stays alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=""></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r3"><b>Death:</b> every other live cell dies, of loneliness (0–1 neighbours) or overcrowding (4 or more).</span></li>
+        </ul>
+        <p data-i18n="gol.primer.end">These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video.</p>
+      </div>
+    </section>
+
     <nav class="cs-toc" aria-labelledby="toc-h">
       <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
       <ol class="cs-toc-list">
         <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="gol.sys1.title">An engine that only computes what changes</span><span class="cs-toc-skills" data-i18n="gol.toc1.skills">Burst · Job System · bit-parallel kernel</span></a></li>
         <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
-        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that scales with the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
         <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
       </ol>
     </nav>
@@ -149,27 +165,30 @@
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 03</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
+            <div class="cs-scrolly-aux">
+              <p class="cs-scrolly-hint" aria-hidden="true"><span class="cs-hint-pointer" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</span><span class="cs-hint-touch" data-i18n="case.scrub.hint.touch">Swipe up to play the footage, one step at a time</span></p>
+              <a class="cs-scrolly-skip" href="#after-footage-1" data-i18n="case.scrub.skip">Skip footage ↓</a>
+            </div>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
               <span class="cs-part-label" data-i18n="case.problem">Problem</span>
-              <p data-i18n="gol.sys1.problem">A straightforward simulation visits every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns grind down even when most of the board isn't moving.</p>
+              <p data-i18n="gol.sys1.problem">A straightforward simulation visits every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns slow to a crawl even when most of the board isn't changing.</p>
             </div>
             <div class="cs-part cs-part--how">
               <span class="cs-part-label" data-i18n="case.how">How it works</span>
-              <p data-i18n="gol.sys1.how">The board is split into 64×64 chunks stored as bitmasks (one 64-bit integer per row, one bit per cell). Each step recomputes only the chunks next to ones that changed in the previous step, counts neighbours for 64 cells at once with bitwise arithmetic, and runs as a chain of five Burst jobs on native memory. Burst compiles a restricted subset of C# into optimised native code, and the Job System spreads that work across worker threads.</p>
+              <p data-i18n="gol.sys1.how">The board is split into 64×64 chunks stored as bitmasks. Each step recomputes only the chunks that changed in the previous step and their neighbours, counting the live neighbours of 64 cells at once with bitwise arithmetic. The whole pipeline, not just the core computation, runs as Burst jobs on native memory: on a dense random pattern, four worker threads give 1.96× the generations per second of one (measured on a phone).</p>
             </div>
             <div class="cs-part cs-part--what">
               <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-              <p data-i18n="gol.sys1.what">Data-oriented design with Burst and the Job System, and profiling on the target device. Parallelising only the core computation gave a clear gain in the editor but no measurable difference on the phone, because the real bottleneck was the serial data gathering around it. The release build runs the whole pipeline as jobs: on a dense random pattern, four worker threads deliver 1.96× the generations per second of one (measured on a phone).</p>
+              <p data-i18n="gol.sys1.what">Profiling on the target device: parallelising only the core computation gave a clear gain in the editor but no measurable difference on the phone, because the real bottleneck was the serial data gathering around it. And allocation discipline on the hot path: removing two temporary NativeArrays per chunk cut about 6,000 native alloc/free pairs per generation at around 3,000 chunks, and once warmed up the solver itself allocates nothing per generation.</p>
             </div>
             <h3 class="cs-steps-label" data-i18n="gol.footage.label">In the footage</h3>
             <ol class="cs-steps">
               <li class="cs-step" data-phases="close-up">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f1.s1.t">The real engine, one generation a frame</h3>
-                  <p data-i18n="gol.f1.s1.b">The linecrosser pattern (Dave Greene, 2018) running in the game’s own solver, recorded in the editor. Each frame of the footage is one generation; the counter reads the engine’s numbers for it.</p>
+                  <p data-i18n="gol.f1.s1.b">The linecrosser pattern (Dave Greene, 2018) running in the game's own solver, recorded in the editor. Each frame of the footage is one generation, and the counter shows the engine's figures for that generation.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="pull-back chunk-grid occupied">
@@ -187,7 +206,7 @@
             </ol>
           </div>
         </div>
-        <div class="cs-code">
+        <div class="cs-code cs-skip-target" id="after-footage-1" tabindex="-1">
           <p class="cs-code-file">BitmaskGenerationSolver.cs · Step()</p>
           <pre tabindex="0" aria-label="Code excerpt from BitmaskGenerationSolver.cs, the Step method: building the candidate set and scheduling the Burst job chain" data-i18n-attr="aria-label" data-i18n-attr-key="gol.sys1.code.aria"><code class="language-csharp">private void Step(bool allowBirth, List&lt;Vector3Int&gt; bornOut, List&lt;Vector3Int&gt; diedOut, bool emitCellDelta)
 {
@@ -230,7 +249,10 @@
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 05</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
+            <div class="cs-scrolly-aux">
+              <p class="cs-scrolly-hint" aria-hidden="true"><span class="cs-hint-pointer" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</span><span class="cs-hint-touch" data-i18n="case.scrub.hint.touch">Swipe up to play the footage, one step at a time</span></p>
+              <a class="cs-scrolly-skip" href="#after-footage-2" data-i18n="case.scrub.skip">Skip footage ↓</a>
+            </div>
           </figure>
           <div class="cs-scrolly-text">
             <h3 class="cs-steps-label" data-i18n="gol.footage.kernel">Inside one step</h3>
@@ -238,19 +260,19 @@
               <li class="cs-step" data-phases="freeze">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s1.t">Freeze on one step</h3>
-                  <p data-i18n="gol.f2.s1.b">The game stops at generation 399, with the chunks of the footage above still marked.</p>
+                  <p data-i18n="gol.f2.s1.b">The game stops at generation 399, with the chunks from the footage above still marked.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="zoom-to-block gather">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s2.t">Gathering the neighbourhood</h3>
-                  <p data-i18n="gol.f2.s2.b">The camera closes in on one chunk the next step recomputes, and the chunks around it. <code>GatherJob</code> copies what the kernel needs into one flat buffer: the chunk and its left and right neighbours in full, and only the one bordering row of the three chunks above and of the three below. That is 198 64-bit words instead of the 576 of a full 3×3 block: two thirds less memory written per chunk, about 9 MB a generation at 3,000 chunks.</p>
+                  <p data-i18n="gol.f2.s2.b">The camera closes in on one of the chunks the next step will recompute, and on the chunks around it. <code>GatherJob</code> copies what the kernel needs into one flat buffer: the chunk and its left and right neighbours in full, but only the adjacent row of each of the three chunks above and the three below. That is 198 64-bit words instead of the 576 of a full 3×3 block: two thirds less memory written per chunk, which saves about 9 MB a generation at 3,000 chunks.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="zoom-to-chunk one-row">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s3.t">64 cells in one go</h3>
-                  <p data-i18n="gol.f2.s3.b">One row (the yellow line), bit by bit in the panel, for 16 of its 64 columns. Three <code>AddBits</code> calls count the neighbours of all 64 cells at once, from shifted copies of rows r − 1, r + 1 and r. The counts sit in three words, one per bit of the count (bit-planes), so Conway’s rules become two masks, “exactly 2” and “exactly 3”. In the panel’s last row, yellow is born and red dies.</p>
+                  <p data-i18n="gol.f2.s3.b">One row (the yellow line), shown bit by bit in the panel for 16 of its 64 columns. Three <code>AddBits</code> calls count the neighbours of all 64 cells at once, from shifted copies of rows r − 1, r + 1 and r. The counts sit in three words, one per bit of the count (bit-planes), so Conway's rules become two masks, "exactly 2" and "exactly 3". In the panel's last row, yellow cells are born and red ones die.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="sweep">
@@ -262,13 +284,13 @@
               <li class="cs-step" data-phases="result" data-rest="60">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f2.s5.t">The delta</h3>
-                  <p data-i18n="gol.f2.s5.b">Births and deaths come from two bit operations per row, new AND NOT old and old AND NOT new, 64 cells at a time with no loop over cells: births in yellow, deaths in red. The recording tool compared the traced row with the engine’s own result and would not export on any difference.</p>
+                  <p data-i18n="gol.f2.s5.b">Births and deaths come from two bit operations per row, new AND NOT old and old AND NOT new, 64 cells at a time with no loop over cells: births in yellow, deaths in red. The recording tool compared the traced row with the engine's own result and refused to export if the two differed at all.</p>
                 </div>
               </li>
             </ol>
           </div>
         </div>
-        <div class="cs-code">
+        <div class="cs-code cs-skip-target" id="after-footage-2" tabindex="-1">
           <p class="cs-code-file">BitmaskKernel.cs · Compute()</p>
           <pre tabindex="0" aria-label="Code excerpt from BitmaskKernel.cs, the Compute method: a sliding window of three rows, shifted neighbour words, three adder steps into three bit-planes, and the rules as two masks" data-i18n-attr="aria-label" data-i18n-attr-key="gol.f2.code.aria"><code class="language-csharp">// Three-deep sliding window over the halo-assembled rows. Each row is assembled once
 // and read at r-1, r and r+1 …
@@ -320,7 +342,10 @@ for (int r = 1; r &lt;= ChunkSize; r++)
               <span class="cs-scrolly-load" aria-hidden="true"><i></i></span>
             </div>
             <p class="cs-scrolly-meta" aria-hidden="true"><span class="cs-scrolly-count">01 / 04</span><span class="cs-scrolly-bar"><i></i></span></p>
-            <p class="cs-scrolly-hint" aria-hidden="true" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</p>
+            <div class="cs-scrolly-aux">
+              <p class="cs-scrolly-hint" aria-hidden="true"><span class="cs-hint-pointer" data-i18n="case.scrub.hint">Scroll to play the footage, one step at a time</span><span class="cs-hint-touch" data-i18n="case.scrub.hint.touch">Swipe up to play the footage, one step at a time</span></p>
+              <a class="cs-scrolly-skip" href="#after-footage-3" data-i18n="case.scrub.skip">Skip footage ↓</a>
+            </div>
           </figure>
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
@@ -329,7 +354,7 @@ for (int r = 1; r &lt;= ChunkSize; r++)
             </div>
             <div class="cs-part cs-part--how">
               <span class="cs-part-label" data-i18n="case.how">How it works</span>
-              <p data-i18n="gol.sys2.how">Below the speed at which animations switch off anyway, each generation's changes (born and died cells) pass through a ring buffer, a fixed-size queue that reuses its slots, so the calculation thread can run ahead of the display. Above that speed there is nothing to animate, so the calculation thread copies whole changed chunks into the displayed state itself, and the main thread only renders.</p>
+              <p data-i18n="gol.sys2.how">Below the speed at which animations switch off anyway, each generation's changes (births and deaths) pass through a ring buffer, a fixed-size queue that reuses its slots, so the calculation thread can run ahead of the display. Above that speed there is nothing to animate, so the calculation thread itself copies whole changed chunks into the displayed state, and the main thread only renders.</p>
             </div>
             <div class="cs-part cs-part--what">
               <span class="cs-part-label" data-i18n="case.what">What it shows</span>
@@ -340,13 +365,13 @@ for (int r = 1; r &lt;= ChunkSize; r++)
               <li class="cs-step" data-phases="all-busy">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f3.s1.t">A pattern that never sleeps</h3>
-                  <p data-i18n="gol.f3.s1.b">Recorded in the editor, like the footage above. Paul Rendell’s original Turing machine, about 36,000 cells (not the 252,000-cell universal one in the video at the top): nearly every chunk changes in every generation, about 315 of 327. Skipping idle chunks can’t help here, so the other half of the design matters: keeping the work off the main thread.</p>
+                  <p data-i18n="gol.f3.s1.b">Recorded in the editor, like the footage above. Paul Rendell's original Turing machine, about 36,000 cells (not the 252,000-cell universal one in the video at the top): nearly every chunk changes in every generation, about 315 of 327. Skipping idle chunks can't help here, so the other half of the design matters: keeping the work off the main thread.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="diagram-out buffered-zoom-in buffered-slow">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f3.s2.t">Slow: a ring buffer</h3>
-                  <p data-i18n="gol.f3.s2.b">At 4 generations a second the camera closes in. Along the bottom are the ring buffer’s 128 slots, one bar per generation (its height: the cells that changed). The calculation thread fills them ahead of the display (yellow), at most 100 generations ahead; the main thread takes one at a time (the white cursor) and plays it with the birth and death animations. The slots, the cap and each generation’s changes are the game’s; how fast the strip fills at first is set by the recording, which steps the engine itself.</p>
+                  <p data-i18n="gol.f3.s2.b">At 4 generations a second the camera closes in. Along the bottom are the ring buffer's 128 slots, one bar per generation (bar height: how many cells changed). The calculation thread fills them ahead of the display (yellow), at most 100 generations ahead; the main thread takes one at a time (the white cursor) and plays it with the birth and death animations. The slots, the cap and each generation's changes come from the game; how fast the strip fills at first is set by the recording, which steps the engine itself.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="buffered-ramp">
@@ -358,14 +383,14 @@ for (int r = 1; r &lt;= ChunkSize; r++)
               <li class="cs-step" data-phases="switch-zoom-out direct-ramp direct-fast fills-out" data-rest="12">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f3.s4.t">Fast: whole chunks, straight across</h3>
-                  <p data-i18n="gol.f3.s4.b">Above 10 the buffer is emptied and set aside, and each changed chunk crosses whole: its 64 rows, 512 bytes, copied by the calculation thread into the displayed state (yellow fill), while the main thread only renders. At 60 generations a second the 30 fps footage gets two generations a frame, about 630 chunk copies (315 KB). As lists of cells, the same change would be about 54,000 cells to pull out of the bits and replay on the main thread. On a phone, this switch took a 275k-cell random pattern from 64 to 141 gen/s.</p>
+                  <p data-i18n="gol.f3.s4.b">Above 10 the buffer is emptied and set aside, and each changed chunk is copied across in one piece: its 64 rows, 512 bytes, written by the calculation thread into the displayed state (yellow fill) while the main thread only renders. At 60 generations a second the 30 fps footage gets two generations a frame, about 630 chunk copies (315 KB). As lists of cells, the same change would be about 54,000 cells to extract from the bits and replay on the main thread.</p>
                 </div>
               </li>
             </ol>
           </div>
         </div>
 
-        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag2-cap">
+        <figure class="cs-diagram cs-diagram--wide cs-skip-target" id="after-footage-3" tabindex="-1" role="group" aria-labelledby="gol-diag2-cap">
           <div class="cs-diagram-scroll">
             <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
             <svg viewBox="0 0 880 340" role="img" aria-label="Two lanes: calculation thread above, main thread below. Below the animation threshold, a Burst-jobs box feeds a delta ring buffer straddling both lanes, and the main thread replays one generation per frame with animations. Above the threshold, a separate Burst-jobs box feeds, still inside the calculation-thread lane, a box that copies whole changed chunks; that copy reaches a displayed cell set straddling both lanes, and the main thread only renders, independent of simulation speed." data-i18n-attr="aria-label" data-i18n-attr-key="gol.diag2.aria">
@@ -376,41 +401,41 @@ for (int r = 1; r &lt;= ChunkSize; r++)
               </defs>
               <rect x="10" y="30" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
               <rect x="10" y="205" width="860" height="110" class="cs-i-lane" aria-hidden="true" />
-              <text x="24" y="48" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneCalc">CALCULATION THREAD</text>
-              <text x="24" y="223" class="cs-i-label" font-size="11" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
-              <text x="190" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathA">BELOW ANIMATION THRESHOLD</text>
-              <text x="630" y="20" class="cs-i-accent-text" font-size="10.5" letter-spacing="1.2" data-i18n="gol.diag2.pathB">ABOVE THRESHOLD</text>
+              <text x="24" y="50" class="cs-i-label" font-size="12.5" letter-spacing="1.5" data-i18n="gol.diag2.laneCalc">CALCULATION THREAD</text>
+              <text x="24" y="225" class="cs-i-label" font-size="12.5" letter-spacing="1.5" data-i18n="gol.diag2.laneMain">MAIN THREAD</text>
+              <text x="180" y="20" class="cs-i-accent-text" font-size="12.5" letter-spacing="1.2" data-i18n="gol.diag2.pathA">BELOW ANIMATION THRESHOLD</text>
+              <text x="600" y="20" class="cs-i-accent-text" font-size="12.5" letter-spacing="1.2" data-i18n="gol.diag2.pathB">ABOVE THRESHOLD</text>
 
-              <rect x="20" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
-              <text x="80" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+              <rect x="20" y="62" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="80" y="89" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.burst">Burst jobs</text>
 
-              <rect x="190" y="120" width="220" height="95" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="300" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.ring">Delta ring buffer</text>
-              <text x="300" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
+              <rect x="170" y="120" width="260" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="300" y="160" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.ring">Delta ring buffer</text>
+              <text x="300" y="185" text-anchor="middle" class="cs-i-label" font-size="12.5" data-i18n="gol.diag2.ringSub">deltas, not snapshots</text>
 
-              <rect x="190" y="228" width="220" height="74" class="cs-i-box" aria-hidden="true" />
-              <text x="300" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.replay">One generation per frame</text>
-              <text x="300" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.withAnim">With animations</text>
+              <rect x="170" y="228" width="260" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="300" y="258" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.replay">One generation per frame</text>
+              <text x="300" y="282" text-anchor="middle" class="cs-i-accent-text" font-size="12.5" data-i18n="gol.diag2.withAnim">With animations</text>
 
-              <rect x="450" y="54" width="120" height="44" class="cs-i-box" aria-hidden="true" />
-              <text x="510" y="81" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.burst">Burst jobs</text>
+              <rect x="460" y="62" width="120" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="520" y="89" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.burst">Burst jobs</text>
 
-              <rect x="610" y="54" width="230" height="44" class="cs-i-box" aria-hidden="true" />
-              <text x="725" y="81" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.copies">Copies changed chunks</text>
+              <rect x="600" y="62" width="260" height="44" class="cs-i-box" aria-hidden="true" />
+              <text x="730" y="89" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.copies">Copies changed chunks</text>
 
-              <rect x="610" y="120" width="230" height="95" class="cs-i-box-accent" aria-hidden="true" />
-              <text x="725" y="160" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag2.displayed">Displayed cell set</text>
-              <text x="725" y="183" text-anchor="middle" class="cs-i-label" font-size="10.5" data-i18n="gol.diag2.shared">shared state</text>
+              <rect x="600" y="120" width="260" height="95" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="730" y="160" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.displayed">Displayed cell set</text>
+              <text x="730" y="185" text-anchor="middle" class="cs-i-label" font-size="12.5" data-i18n="gol.diag2.shared">shared state</text>
 
-              <rect x="610" y="228" width="230" height="74" class="cs-i-box" aria-hidden="true" />
-              <text x="725" y="256" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag2.renders">Renders only</text>
-              <text x="725" y="278" text-anchor="middle" class="cs-i-accent-text" font-size="10.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
+              <rect x="600" y="228" width="260" height="74" class="cs-i-box" aria-hidden="true" />
+              <text x="730" y="258" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag2.renders">Renders only</text>
+              <text x="730" y="282" text-anchor="middle" class="cs-i-accent-text" font-size="12.5" data-i18n="gol.diag2.fpsIndep">FPS independent of speed</text>
 
-              <path d="M140,76 L188,167" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M140,84 L168,167" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
               <path d="M300,215 L300,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M570,76 L608,76" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M725,98 L725,118" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
-              <path d="M725,215 L725,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M580,84 L598,84" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M730,106 L730,118" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
+              <path d="M730,215 L730,226" class="cs-i-line" marker-end="url(#gol2-arrow)" aria-hidden="true" />
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="gol-diag2-cap" data-i18n="gol.diag2.cap">Which thread does what on each path.</figcaption>
@@ -420,11 +445,11 @@ for (int r = 1; r &lt;= ChunkSize; r++)
       <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
         <div class="cs-system-head">
           <span class="cs-system-num" aria-hidden="true">03</span>
-          <h2 id="sys-3-h" data-i18n="gol.sys3.title">Rendering cost that follows the screen, not the pattern</h2>
+          <h2 id="sys-3-h" data-i18n="gol.sys3.title">Rendering cost that scales with the screen, not the pattern</h2>
         </div>
         <div class="cs-part cs-part--problem">
           <span class="cs-part-label" data-i18n="case.problem">Problem</span>
-          <p data-i18n="gol.sys3.problem">Zoomed out, a pattern can put hundreds of thousands of cells on screen, and Unity's Tilemap pays a cost for every tile. Even finding which cells were visible used to mean scanning every live cell. The game slowed down as a pattern grew, including the parts that were off-screen.</p>
+          <p data-i18n="gol.sys3.problem">Zoomed out, a pattern can put hundreds of thousands of cells on screen, and Unity's Tilemap pays a cost for every tile. Even finding which cells were visible used to mean scanning every live cell, so the game slowed down as a pattern grew, even when the growth was off-screen.</p>
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
@@ -439,12 +464,13 @@ for (int r = 1; r &lt;= ChunkSize; r++)
              during the zoom. Under reduced motion the still (the whole machine) replaces frame 0. -->
         <figure class="cs-media">
           <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
-            <video autoplay muted loop playsinline preload="metadata" poster="images/game-of-life/system-3-poster.jpg" data-still="images/game-of-life/system-3-still.jpg">
+            <video muted loop playsinline preload="none" poster="images/game-of-life/system-3-poster.jpg" data-still="images/game-of-life/system-3-still.jpg">
               <source src="images/game-of-life/system-3-zoom.mp4" type="video/mp4">
               <source src="images/game-of-life/system-3-zoom.webm" type="video/webm">
             </video>
+            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
           </div>
-          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom on a Pixel 6 Pro, from 13 cells out to the 252k-cell Universal Turing Machine, with the game's FPS counter on: the Tilemap gives way to the single-quad density view and the counter stays between 56 and 60.</figcaption>
+          <figcaption class="cs-media-caption" data-i18n="gol.sys3.caption">One continuous pinch-zoom on a Pixel 6 Pro with the simulation paused, so only rendering is measured: from 13 cells out to the 252k-cell Universal Turing Machine, the Tilemap gives way to the single-quad density view and the game's FPS counter stays between 56 and 60.</figcaption>
         </figure>
       </article>
 
@@ -459,11 +485,11 @@ for (int r = 1; r &lt;= ChunkSize; r++)
         </div>
         <div class="cs-part cs-part--how">
           <span class="cs-part-label" data-i18n="case.how">How it works</span>
-          <p data-i18n="gol.sys4.how">A .NET console harness compiles the same solver source files that ship to the store, with a small shim stubbing Unity's collections, Jobs and Burst. Every generation of every scenario (gliders crossing chunk edges and into negative coordinates, an empty board) is compared cell for cell with a naive reference. Each run also folds into a golden hash that a pure refactor must reproduce byte for byte. A headless Burst compile of all five jobs for ARM64 includes a negative control that must fail to compile, so a clean pass proves something.</p>
+          <p data-i18n="gol.sys4.how">A .NET console harness compiles the same solver source files that ship to the store, with a small shim stubbing Unity's collections, Jobs and Burst. Every generation of every scenario (gliders crossing chunk edges and into negative coordinates, an empty board) is compared cell for cell with a naive reference. Each run is also folded into a golden hash that a pure refactor must reproduce byte for byte. A headless Burst compile of all five jobs for ARM64 includes a negative control that must fail to compile, so a clean pass actually means something.</p>
         </div>
         <div class="cs-part cs-part--what">
           <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, beyond what the editor offers: differential testing that pinpoints the generation where a bug first appears, a golden-hash check that turns "this refactor changed nothing" into a fact, and a Burst check proven able to fail, all run from the command line.</p>
+          <p data-i18n="gol.sys4.what">Testing discipline for core game logic, beyond what the editor offers: differential testing that pinpoints the generation where a bug first appears, a golden-hash check that turns "this refactor changed nothing" into a fact, and a Burst check that is known to fail when it should, all run from the command line.</p>
         </div>
 
         <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="gol-diag4-cap">
@@ -477,30 +503,30 @@ for (int r = 1; r &lt;= ChunkSize; r++)
               </defs>
               <rect x="30" y="130" width="210" height="90" class="cs-i-box-accent" aria-hidden="true" />
               <text x="135" y="168" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="gol.diag4.source">Same solver source</text>
-              <text x="135" y="192" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.sourceSub">shipped solver files</text>
+              <text x="135" y="193" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="gol.diag4.sourceSub">shipped solver files</text>
 
               <path d="M240,155 L336,72" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
               <path d="M240,195 L336,200" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
               <path d="M180,220 L440,280" class="cs-i-line-dashed" marker-end="url(#gol4-arrow)" aria-hidden="true" />
 
               <rect x="340" y="40" width="220" height="60" class="cs-i-box" aria-hidden="true" />
-              <text x="450" y="65" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.android">Android store build</text>
-              <text x="450" y="83" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.androidSub">the shipped game</text>
+              <text x="450" y="66" text-anchor="middle" class="cs-i-title" font-size="13.5" data-i18n="gol.diag4.android">Android store build</text>
+              <text x="450" y="86" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="gol.diag4.androidSub">the shipped game</text>
 
               <rect x="340" y="170" width="220" height="60" class="cs-i-box" aria-hidden="true" />
-              <text x="450" y="195" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="gol.diag4.harness">.NET test harness</text>
-              <text x="450" y="213" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.harnessSub">compiles the shipped solver</text>
+              <text x="450" y="196" text-anchor="middle" class="cs-i-title" font-size="13.5" data-i18n="gol.diag4.harness">.NET test harness</text>
+              <text x="450" y="216" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="gol.diag4.harnessSub">compiles the shipped solver</text>
 
               <path d="M560,200 L586,203" class="cs-i-line" marker-end="url(#gol4-arrow)" aria-hidden="true" />
               <rect x="590" y="150" width="210" height="110" class="cs-i-box" aria-hidden="true" />
-              <text x="695" y="180" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.naive">vs naive reference</text>
-              <text x="695" y="200" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.cellByCell">cell by cell</text>
-              <text x="695" y="228" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.hash">Golden hash</text>
-              <text x="695" y="248" text-anchor="middle" class="cs-i-label" font-size="10" data-i18n="gol.diag4.hashSub">byte for byte</text>
+              <text x="695" y="179" text-anchor="middle" class="cs-i-title" font-size="13.5" data-i18n="gol.diag4.naive">vs naive reference</text>
+              <text x="695" y="200" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="gol.diag4.cellByCell">cell by cell</text>
+              <text x="695" y="230" text-anchor="middle" class="cs-i-title" font-size="13.5" data-i18n="gol.diag4.hash">Golden hash</text>
+              <text x="695" y="251" text-anchor="middle" class="cs-i-label" font-size="12" data-i18n="gol.diag4.hashSub">byte for byte</text>
 
-              <rect x="300" y="283" width="300" height="76" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
-              <text x="450" y="314" text-anchor="middle" class="cs-i-title" font-size="12.5" data-i18n="gol.diag4.headless">Headless Burst compile (ARM64)</text>
-              <text x="450" y="334" text-anchor="middle" class="cs-i-accent-text" font-size="10" data-i18n="gol.diag4.negative">Negative control</text>
+              <rect x="260" y="283" width="380" height="76" class="cs-i-box cs-i-box-dashed" aria-hidden="true" />
+              <text x="450" y="314" text-anchor="middle" class="cs-i-title" font-size="13.5" data-i18n="gol.diag4.headless">Headless Burst compile (ARM64)</text>
+              <text x="450" y="338" text-anchor="middle" class="cs-i-accent-text" font-size="12" data-i18n="gol.diag4.negative">Negative control</text>
             </svg>
           </div>
           <figcaption class="cs-diagram-cap" id="gol-diag4-cap" data-i18n="gol.diag4.cap">Both branches compile the same files, so the tests are never a stale copy of the engine.</figcaption>
@@ -509,12 +535,12 @@ for (int r = 1; r &lt;= ChunkSize; r++)
 
     </section>
 
-    <section class="cs-takeaway">
+    <section class="cs-takeaway" id="takeaway">
       <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
       <p data-i18n="gol.takeaway">Measure on the target device, not in the editor: in this project the editor pointed at the wrong bottleneck.</p>
       <div class="cs-also">
         <span class="cs-also-label" data-i18n="gol.also.label">Also in the codebase (not in the store build)</span>
-        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and tests against a brute-force reference, but it's switched off in the store build.</p>
+        <p data-i18n="gol.also.body">HashLife (Gosper's algorithm), a second engine that caches and reuses results in a quadtree, so repetitive patterns jump thousands of generations in one step. It has a memory budget scaled to the device's RAM and is tested against a brute-force reference.</p>
       </div>
     </section>
 
@@ -524,7 +550,7 @@ for (int r = 1; r &lt;= ChunkSize; r++)
   </main>
 
   <footer class="cs-foot">
-    <p data-i18n="case.foot.gol">Solo project. The repository is private — an excerpt is above, and I'm happy to walk through the rest in an interview.</p>
+    <p data-i18n="case.foot.gol">Solo project. The repository is private; the excerpts above come from it, and I'm happy to walk through the rest in an interview.</p>
     <p class="cs-foot-links">
       <a href="https://play.google.com/store/apps/details?id=com.dbarans.gameoflife" target="_blank" rel="noopener noreferrer">Google Play</a>
       <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
@@ -535,8 +561,8 @@ for (int r = 1; r &lt;= ChunkSize; r++)
   <script src="js/i18n.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/case-study.js" defer></script>
-  <script src="js/frame-stream.js" defer></script>
-  <script src="js/footage.js" defer></script>
+  <script src="js/frame-stream.js?v=20261005f" defer></script>
+  <script src="js/footage.js?v=20261005i" defer></script>
   <script src="js/gol-footage.js" defer></script>
 </body>
 </html>

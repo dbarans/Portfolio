@@ -60,7 +60,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   font-family: var(--cs-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 2.2px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
@@ -90,13 +90,14 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 20px;
-  min-height: 58px;
+  min-height: 56px;
   padding: 10px clamp(16px, 4vw, 40px);
   background: var(--cs-bg);
   border-bottom: 1px solid var(--cs-line);
 }
 .cs-brand,
-.cs-back {
+.cs-back,
+.cs-mail {
   font-family: var(--cs-mono);
   font-size: 11px;
   letter-spacing: 2px;
@@ -108,9 +109,12 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 }
 .cs-brand { color: var(--cs-text) !important; font-weight: 700; }
 .cs-brand:hover, .cs-brand:focus-visible,
-.cs-back:hover, .cs-back:focus-visible { color: var(--cs-accent) !important; }
+.cs-back:hover, .cs-back:focus-visible,
+.cs-mail:hover, .cs-mail:focus-visible { color: var(--cs-accent) !important; }
+/* The e-mail link and the language toggle sit together at the right end of the bar. */
+.cs-mail { margin-left: auto; }
 .cs-lang {
-  margin-left: auto;
+  margin-left: 0;
   border: 1px solid var(--cs-line-2);
   background: transparent;
   color: var(--cs-text);
@@ -144,16 +148,17 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 }
 .cs-kicker {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin: 0 0 18px;
   font-family: var(--cs-mono);
   font-size: 11px;
-  letter-spacing: 2.2px;
+  line-height: 1.5;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
-.cs-kicker::before { content: ""; width: 9px; height: 9px; background: var(--cs-accent); flex-shrink: 0; }
+.cs-kicker::before { content: ""; width: 9px; height: 9px; margin-top: 0.32em; background: var(--cs-accent); flex-shrink: 0; }
 .cs-hero h1 {
   margin: 0 0 18px;
   font-size: clamp(3rem, 8.5vw, 5.4rem);
@@ -187,6 +192,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   pointer-events: none;
 }
 .cs-hero-motif svg { display: block; width: 100%; height: auto; }
+/* A hero that has real footage doesn't also need the flourish (it would sit half-hidden behind it). */
+.cs-hero:has(.cs-media) .cs-hero-motif { display: none; }
 
 /* ---------- Key numbers: bold stat callouts with an honest context line ---------- */
 .cs-keynums { padding: 30px 0; border-bottom: 1px solid var(--cs-line); }
@@ -210,9 +217,18 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   gap: 22px 28px;
 }
 .cs-keynum { display: flex; flex-direction: column; gap: 6px; }
+/* Value, label and context line sit on three shared rows, so the rows line up across the cards
+   whatever each one's text length (browsers without subgrid keep the plain column above). */
+@supports (grid-template-rows: subgrid) {
+  .cs-keynum { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 6px; }
+}
+/* Wide enough for the longest value ("~50 µs vs 1,035 µs") to stay on one line in a three-card row. */
+@media (min-width: 880px) {
+  .cs-keynum b { white-space: nowrap; }
+}
 .cs-keynum b {
   font-family: var(--cs-mono);
-  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  font-size: clamp(1.3rem, 2.4vw, 1.4rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.05;
@@ -237,7 +253,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-facts a:hover { color: var(--cs-accent); }
 
 /* ---------- Systems on this page: a TOC built from the curator's skill tags ---------- */
-.cs-toc { padding: 30px 0; border-bottom: 1px solid var(--cs-line); }
+.cs-toc { padding: 30px 0 22px; border-bottom: 1px solid var(--cs-line); }
 .cs-toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .cs-toc-list a {
   position: relative;
@@ -250,7 +266,6 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   text-decoration: none;
   color: inherit;
 }
-.cs-toc-list li:last-child a { border-bottom: 1px solid var(--cs-line); }
 .cs-toc-num { font-family: var(--cs-mono); font-size: 0.85rem; color: var(--cs-accent); }
 .cs-toc-title { grid-column: 2; font-size: 0.98rem; font-weight: 700; color: var(--cs-text); }
 .cs-toc-skills { grid-column: 2; font-family: var(--cs-mono); font-size: 0.76rem; letter-spacing: 0.3px; color: var(--cs-muted); }
@@ -297,13 +312,13 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   display: block;
   margin: 0 0 6px;
   font-family: var(--cs-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
-.cs-part p { margin: 0; font-size: 0.97rem; line-height: 1.65; }
+.cs-part p { margin: 0; max-width: 38em; font-size: 0.97rem; line-height: 1.65; }
 /* A long unbroken identifier (a namespaced class name, a file path) must never be the reason
    the whole page gains a horizontal scrollbar on a narrow phone. */
 .page-case p, .page-case li, .page-case dd, .page-case figcaption { overflow-wrap: anywhere; }
@@ -325,8 +340,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 }
 .cs-source-label {
   font-family: var(--cs-mono);
-  font-size: 10.5px;
-  letter-spacing: 1.6px;
+  font-size: 11px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
@@ -383,8 +398,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-diagram-row-label {
   margin: 0 0 10px;
   font-family: var(--cs-mono);
-  font-size: 10.5px;
-  letter-spacing: 1.6px;
+  font-size: 11px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
@@ -396,20 +411,21 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   display: none;
   margin: 0 0 8px;
   font-family: var(--cs-mono);
-  font-size: 10px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 2px;
   color: var(--cs-muted);
 }
 .cs-diagram svg { display: block; width: 100%; height: auto; }
 
 /* Grave's rings diagram ships as two markups (same data-i18n keys, so both stay in sync):
    a wide one with the legend beside the rings, and a tall one with the legend below, for
-   screens too narrow for the wide layout to stay readable. */
-.cs-rings-wide { display: block; }
-.cs-rings-tall { display: none; }
+   screens too narrow for the wide layout to stay readable. The selectors are as specific as
+   `.cs-diagram svg` above, otherwise its `display: block` would show both at once. */
+.cs-diagram svg.cs-rings-wide { display: block; }
+.cs-diagram svg.cs-rings-tall { display: none; }
 @media (max-width: 640px) {
-  .cs-rings-wide { display: none; }
-  .cs-rings-tall { display: block; }
+  .cs-diagram svg.cs-rings-wide { display: none; }
+  .cs-diagram svg.cs-rings-tall { display: block; }
 }
 
 /* Shared SVG "ink" so every diagram matches the page's theme and the accent swaps per project */
@@ -473,7 +489,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(6, 6, 7, 0.12) 0%, rgba(6, 6, 7, 0.82) 100%);
+  background: linear-gradient(180deg, rgba(6, 6, 7, 0.35) 0%, rgba(6, 6, 7, 0.85) 100%);
 }
 .cs-video-btn:focus-visible { outline-offset: -3px; }
 .cs-video-icon {
@@ -497,6 +513,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   position: relative;
   z-index: 1;
   max-width: 22em;
+  padding: 5px 10px;
+  background: rgba(11, 12, 14, 0.88);
   font-size: 0.86rem;
   font-weight: 700;
   text-align: center;
@@ -531,6 +549,11 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
    its share of the frames, so the footage keeps an even pace. The poster <img> is the no-JS
    fallback; the canvas covers it once the first frames are in. ---------- */
 .cs-scrolly { --cs-step-top: 30vh; display: grid; gap: 24px; margin-top: 8px; }
+/* A custom property can't carry a fallback declaration, so the small-viewport unit is behind
+   @supports: on a phone `svh` is the height with the browser bars showing (no jump as they hide). */
+@supports (height: 1svh) {
+  .cs-scrolly { --cs-step-top: 30svh; }
+}
 .cs-scrolly-media {
   position: sticky;
   top: var(--cs-sticky-top, 58px);
@@ -577,22 +600,57 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-scrolly.is-ready .cs-scrolly-meta { visibility: visible; }
 .cs-scrolly-bar { flex: 1; height: 2px; background: var(--cs-line-2); }
 .cs-scrolly-bar i { display: block; width: 0; height: 100%; background: var(--cs-accent); }
-.cs-scrolly-hint {
-  display: none;
+/* Under the progress bar: how to play it (once the footage is ready, until the steps start) and,
+   from the first paint, a plain link past the whole footage for readers who don't want 35 steps. */
+.cs-scrolly-aux {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 20px;
   margin: 10px 0 0;
+}
+.cs-scrolly-hint {
+  display: block;
+  visibility: hidden; /* takes its room from the first paint, so nothing shifts when the footage is ready */
+  margin: 0;
   font-family: var(--cs-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-accent);
 }
+.cs-hint-touch { display: none; }
+@media (hover: none) {
+  .cs-hint-pointer { display: none; }
+  .cs-hint-touch { display: inline; }
+}
+/* Shown as soon as the footage is ready and only hidden (not removed) once it is playing, so the
+   pinned view keeps its height and the steps stay where they were measured to start (js/footage.js). */
+.cs-scrolly.is-ready:not(.is-playing) .cs-scrolly-hint { visibility: visible; }
+.cs-scrolly-skip {
+  order: -1; /* first in the row, so it stays put when the hint comes and goes */
+  font-family: var(--cs-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--cs-muted) !important;
+  text-decoration: underline;
+  text-decoration-color: var(--cs-line-2);
+  text-underline-offset: 4px;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.cs-scrolly-skip:hover,
+.cs-scrolly-skip:focus-visible { color: var(--cs-accent) !important; text-decoration-color: var(--cs-accent); }
+/* The element a skip link lands on: below the sticky bar, and not outlined when focused by the link. */
+.cs-skip-target { scroll-margin-top: calc(var(--cs-sticky-top, 56px) + 16px); }
+.cs-skip-target:focus { outline: none; }
 .cs-scrolly-text > .cs-part:last-of-type { margin-bottom: 16px; }
 
 /* The steps: one per stage of the recording, in the same three-part ink as the write-up. */
 .cs-steps-label {
   margin: 36px 0 4px;
   font-family: var(--cs-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -604,6 +662,7 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-step {
   counter-increment: cs-step;
   min-height: calc(100vh - var(--cs-step-top));
+  min-height: calc(100svh - var(--cs-step-top));
   padding: 14px 0 28px 18px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -616,6 +675,10 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-steps-edge--start { scroll-snap-align: end; }
 .cs-steps-edge--end { scroll-snap-align: start; scroll-margin-top: var(--cs-step-top); }
 html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
+/* While a swipe the page cannot stop runs into a stopping place (js/footage.js), the page holds still
+   until the swipe has died down; the gutter keeps the scrollbar's room, so nothing shifts sideways. */
+html { scrollbar-gutter: stable; }
+html.cs-hold { overflow: hidden; }
 .cs-step h3 {
   margin: 0 0 6px;
   font-size: 1rem;
@@ -633,13 +696,18 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 }
 .cs-step p { margin: 0; max-width: 34em; font-size: 0.95rem; line-height: 1.65; }
 /* While the footage plays, the step on screen is the one lit; without it, all read alike. */
-.cs-scrolly.is-ready .cs-step { opacity: 0.42; }
+/* The footage will not play (data saver, a network error): the steps read as plain text, set only
+   once that is decided so a normal load does not shift. */
+.cs-scrolly.is-static .cs-step { min-height: 0; }
+.cs-scrolly.is-ready .cs-step { opacity: 0.62; }
 .cs-scrolly.is-ready .cs-step.is-active { opacity: 1; border-left-color: var(--cs-accent); }
 
 @media (min-width: 960px) {
+  /* The view gets the larger share; the step text keeps at least 400px (it would drop to ~330px
+     at 960px wide on a plain 1.6fr / 1fr split). */
   .cs-scrolly {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 40px;
+    grid-template-columns: minmax(0, 1.6fr) minmax(400px, 1fr);
+    gap: 32px;
     width: min(1160px, calc(100vw - 80px));
     margin-left: calc(50% - min(580px, 50vw - 40px));
   }
@@ -654,18 +722,26 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
   /* The game view never taller than the screen below the top bar leaves room for. */
   .cs-scrolly-media .cs-media-frame { max-width: calc((100vh - var(--cs-sticky-top, 58px) - 90px) * 4 / 3); }
   /* Until the steps start, a word on how to play it. */
-  .cs-scrolly.is-ready:not(.is-playing) .cs-scrolly-hint { display: block; }
+  .cs-scrolly.is-playing .cs-scrolly-hint { display: none; }
   /* Room after the last step, so it plays to its end while the view is still pinned. */
   .cs-scrolly-text { padding: 20px 0 45vh; }
 }
 @media (max-width: 959px) {
   /* A phone: the view pinned on top at the width of the column, the text scrolling under it. */
   .cs-scrolly-media { padding: 8px 0 10px; }
-  /* A wide, short screen (a tablet on its side): the view takes at most about half its height. */
+  /* A wide, short screen (a tablet on its side, a phone on its side): the view takes at most about
+     40% of its height (55vh where svh isn't known). */
   .cs-scrolly-media .cs-media-frame { max-width: calc(55vh * 4 / 3); margin: 0 auto; }
-  .cs-scrolly-meta { max-width: calc(55vh * 4 / 3); margin-left: auto; margin-right: auto; }
+  .cs-scrolly-media .cs-media-frame { max-width: calc(40svh * 4 / 3); }
+  .cs-scrolly-meta, .cs-scrolly-aux { max-width: calc(55vh * 4 / 3); margin-left: auto; margin-right: auto; }
+  .cs-scrolly-meta, .cs-scrolly-aux { max-width: calc(40svh * 4 / 3); }
   /* A step starts just under the pinned view (its bottom edge is measured by js/footage.js). */
   .cs-scrolly { --cs-step-top: calc(var(--cs-view-bottom, 50vh) + 8px); }
+}
+@supports (height: 1svh) {
+  @media (max-width: 959px) {
+    .cs-scrolly { --cs-step-top: calc(var(--cs-view-bottom, 50svh) + 8px); }
+  }
 }
 /* Game of Life: the engine's numbers for the frame on screen (js/gol-footage.js), and the
    kernel chapter's traced row drawn bit by bit under it. */
@@ -702,13 +778,16 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
   opacity: 0;
 }
 @media (max-width: 480px) {
-  .gol-hud { top: 4px; left: 4px; max-width: calc(100% - 8px); padding: 2px 6px; font-size: 9.5px; }
+  .gol-hud { top: 4px; left: 4px; max-width: calc(100% - 8px); padding: 2px 6px; font-size: 11px; }
   .cs-scrolly-media .gol-bits { left: 2%; bottom: 2%; width: 96%; height: 64%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cs-step, .cs-scrolly-load, .gol-hud { transition: none; }
 }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
+/* In the two-column hero the video starts at its column's edge, like the caption under it; the
+   hero stacks at 720px and there both are centred again (see Responsive). */
+.cs-hero .cs-media-frame--portrait { margin: 0; }
 /* Ready for the real thing: an <img> or <video> dropped inside fills the same frame. */
 .cs-media-frame img,
 .cs-media-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -728,36 +807,82 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 .cs-media-specs {
   margin: 0;
   font-family: var(--cs-mono);
-  font-size: 10px;
-  letter-spacing: 0.6px;
+  font-size: 11px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
 .cs-media-caption { margin: 10px 0 0; font-size: 0.85rem; line-height: 1.6; color: var(--cs-muted); }
 
+/* Pause / play for a looping video (js/case-study.js): bottom right of its frame, shown on hover
+   and keyboard focus, and always on a touch screen (no hover there); gone under reduced motion,
+   where the loops don't play at all. */
+.cs-media-pause {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 2;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid var(--cs-line-2);
+  background: rgba(11, 12, 14, 0.88);
+  color: var(--cs-text);
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, border-color 0.15s, color 0.15s;
+}
+.cs-media-pause::before { content: "❚❚"; content: "❚❚" / ""; margin-right: 8px; font-size: 9px; letter-spacing: -1px; }
+.cs-media-pause.is-paused::before { content: "▶"; content: "▶" / ""; letter-spacing: 0; }
+/* Both labels are in the markup (each translated); the one for the next action shows. */
+.cs-media-pause .cs-pp-play,
+.cs-media-pause.is-paused .cs-pp-pause { display: none; }
+.cs-media-pause.is-paused .cs-pp-play { display: inline; }
+.cs-media-frame:hover .cs-media-pause,
+.cs-media-pause:focus-visible { opacity: 1; }
+.cs-media-pause:hover { border-color: var(--cs-accent); color: var(--cs-accent); }
+@media (hover: none) {
+  .cs-media-pause { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-media-pause { display: none; }
+}
+
 /* ---------- Takeaway ---------- */
 .cs-takeaway { padding: 40px 0 8px; }
 .cs-takeaway p {
   margin: 0;
+  max-width: 40em;
   padding-left: 18px;
   border-left: 3px solid var(--cs-accent);
   font-size: 1.02rem;
   line-height: 1.7;
   color: var(--cs-text);
 }
+/* "Also in the codebase": a quiet aside under the takeaway, not a second takeaway. */
 .cs-also {
-  margin: 18px 0 0 18px;
-  padding-left: 18px;
+  margin: 22px 0 0;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid var(--cs-line-2);
+}
+.cs-takeaway .cs-also p {
+  margin: 0;
+  max-width: 40em;
+  padding-left: 0;
+  border-left: 0;
   font-size: 0.92rem;
   line-height: 1.65;
+  color: var(--cs-body);
 }
 .cs-also-label {
   display: block;
   margin: 0 0 6px;
   font-family: var(--cs-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 1.6px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
@@ -779,8 +904,8 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 .cs-next a:hover { border-color: var(--cs-accent); }
 .cs-next-label {
   font-family: var(--cs-mono);
-  font-size: 10.5px;
-  letter-spacing: 1.8px;
+  font-size: 11px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cs-muted);
 }
@@ -807,23 +932,194 @@ html.cs-snap { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 @media (max-width: 720px) {
   .cs-hero-grid { grid-template-columns: minmax(0, 1fr); }
   .cs-hero-motif { width: 64px; top: 4px; }
+  .cs-hero .cs-media-frame--portrait { margin: 0 auto; }
+  .cs-hero .cs-media-caption { text-align: center; }
   .cs-facts > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .page-case pre { margin-left: -16px; margin-right: -16px; border-left: 0; border-right: 0; }
   /* Diagrams that are naturally wide (their viewBox is landscape) need a floor width to stay
      legible, with horizontal scroll picking up the rest. Diagrams already drawn tall/narrow
      (the vertical pipeline, the mobile rings) just scale down with the column — no override. */
-  .cs-diagram--wide svg { width: 640px; max-width: none; }
+  .cs-diagram--wide svg { width: 780px; max-width: none; }
   .cs-diagram--wide .cs-diagram-hint { display: block; }
+  /* The mask pipeline (Grave) is nearly square and its type large, so a narrower floor does. */
+  .cs-diagram--squarish svg { width: 640px; }
   /* A long left-to-right pipeline (Luggage Please's scanner) has smaller type in a wider
-     viewBox, so it needs a wider floor than 640px to stay legible; it scrolls sideways. */
-  .cs-diagram--pipeline svg { width: 780px; }
+     viewBox, so it needs a wider floor to stay legible; it scrolls sideways. */
+  .cs-diagram--pipeline svg { width: 920px; }
+}
+/* The pipeline's text is drawn for 920px (its Polish labels fill their boxes at 11px): narrower
+   than that it scrolls sideways at that width, and from 1000px up it breaks out of the 780px
+   text column by 70px each side. The other wide diagrams are drawn for 780px. */
+.cs-diagram--pipeline svg { min-width: 920px; max-width: none; }
+@media (max-width: 999px) {
+  .cs-diagram--pipeline .cs-diagram-hint { display: block; }
+}
+@media (min-width: 1000px) {
+  .cs-diagram--pipeline .cs-diagram-scroll { margin: 0 -70px; }
 }
 @media (max-width: 560px) {
   .cs-top { gap: 6px 12px; }
   .cs-system { padding: 32px 0; }
   .cs-next a { flex-direction: column; align-items: flex-start; }
+  /* Micro labels step up to 12px on a phone, and the footage counter reads in body colour. */
+  .cs-scrolly-meta, .cs-scrolly-hint, .cs-diagram-hint, .cs-part-label, .cs-eyebrow, .cs-source-label { font-size: 12px; }
+  .cs-scrolly-meta { color: var(--cs-body); }
+}
+/* "← All projects" shrinks to the arrow so the top bar (brand, back, e-mail, language) stays on
+   one line at 375px; the words stay in the markup for screen readers (zero font size hides
+   them visually only). */
+@media (max-width: 480px) {
+  .cs-back { font-size: 0; min-width: 44px; justify-content: center; }
+  .cs-back::before { content: "←"; font-size: 14px; letter-spacing: 0; }
+}
+
+/* Touch targets: at least 44px tall for the links and buttons in the top bar and the footer. */
+@media (pointer: coarse), (max-width: 720px) {
+  .cs-top { min-height: 56px; }
+  .cs-back, .cs-brand, .cs-mail, .cs-foot-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 4px;
+  }
+  .cs-lang { min-height: 44px; min-width: 44px; }
+  /* A bigger hit area for the skip link without changing the height of the pinned block. */
+  .cs-scrolly-skip { padding: 12px 6px 12px; margin: -12px -6px -12px; }
+  .cs-foot-links { gap: 0 12px; }
+  /* A bottom border on a 44px-tall link would sit far below its text: underline instead. */
+  .cs-foot-links a {
+    border-bottom: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--cs-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-brand, .cs-back, .cs-lang, .cs-source a, .cs-foot-links a, .cs-next a { transition: none; }
+  .cs-brand, .cs-back, .cs-mail, .cs-lang, .cs-source a, .cs-foot-links a, .cs-next a { transition: none; }
+}
+
+/* ---------- Section rail: a fixed axis down the left edge with a stop per part of the page ----------
+   Only where the margin beside the content can hold it (≥960px). With a wide margin (≥1400px) every
+   stop carries its number and name; narrower, only the dots show and the name appears on hover or
+   keyboard focus, laid over the page. The part on screen is lit by js/case-study.js. */
+.cs-rail { display: none; }
+@media (min-width: 960px) {
+  .cs-rail {
+    display: block;
+    position: fixed;
+    left: 14px;
+    top: 50%;
+    z-index: 40;
+    transform: translateY(-50%);
+  }
+  .cs-rail-list {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  /* The axis itself, through the middle of the dots. */
+  .cs-rail-list::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: var(--cs-line-2);
+  }
+  .cs-rail a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 28px;
+    text-decoration: none;
+    color: var(--cs-muted);
+    transition: color 0.15s;
+  }
+  .cs-rail-dot {
+    position: relative;
+    flex: 0 0 auto;
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--cs-line-2);
+    background: var(--cs-bg);
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  /* Narrower, the footage sits 40px from the edge: only the dots fit beside it, so the number
+     waits for the wide layout below. */
+  .cs-rail-num {
+    display: none;
+    font-family: var(--cs-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .cs-rail-label {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    /* Hidden until the margin is wide enough, or the stop is hovered or focused. */
+    position: absolute;
+    left: 22px;
+    padding: 4px 8px;
+    border: 1px solid var(--cs-line-2);
+    background: rgba(11, 12, 14, 0.94);
+    color: var(--cs-text);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-4px);
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .cs-rail a:hover .cs-rail-label,
+  .cs-rail a:focus-visible .cs-rail-label { opacity: 1; transform: none; }
+  .cs-rail a:hover, .cs-rail a:focus-visible { color: var(--cs-text); }
+  .cs-rail a:hover .cs-rail-dot { border-color: var(--cs-accent); }
+  .cs-rail a:focus-visible { outline: none; }
+  .cs-rail a:focus-visible .cs-rail-dot { outline: 2px solid var(--cs-accent); outline-offset: 3px; }
+  /* Parts already passed fill in quietly; the part on screen takes the accent. */
+  .cs-rail a.is-past .cs-rail-dot { background: var(--cs-line-2); }
+  .cs-rail a.is-active { color: var(--cs-text); }
+  .cs-rail a.is-active .cs-rail-dot { background: var(--cs-accent); border-color: var(--cs-accent); transform: scale(1.25); }
+  .cs-rail a.is-active .cs-rail-num { color: var(--cs-accent); }
+}
+/* A wide margin: the names stay in place, number above name, wrapping within the margin. */
+@media (min-width: 1400px) {
+  .cs-rail { left: 20px; }
+  .cs-rail-list { gap: 6px; }
+  .cs-rail a {
+    display: grid;
+    grid-template-columns: 9px auto;
+    column-gap: 12px;
+    align-items: start;
+    min-height: 0;
+    padding: 4px 0;
+  }
+  .cs-rail-dot { grid-column: 1; grid-row: 1; margin-top: 3px; }
+  .cs-rail-num { display: block; grid-column: 2; line-height: 15px; }
+  .cs-rail-label,
+  .cs-rail-num + .cs-rail-label {
+    grid-column: 2;
+    position: static;
+    max-width: calc((100vw - 1160px) / 2 - 56px);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-weight: 500;
+    white-space: normal;
+    opacity: 1;
+    transform: none;
+  }
+  .cs-rail a > .cs-rail-label:nth-child(2) { grid-row: 1; line-height: 15px; }
+  .cs-rail a.is-active .cs-rail-label { font-weight: 700; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-rail a, .cs-rail-dot, .cs-rail-label { transition: none; }
 }

@@ -16,25 +16,29 @@
       'index.nav.linkedin': 'LinkedIn',
       'index.meta.title': 'Dominik Barański — programista Unity',
       'index.meta.description':
-        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D, a do tego systemy rozgrywki zbudowane na stażu w Rubens Games.',
+        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D, a do tego systemy rozgrywki ze stażu w Rubens Games.',
 
       // ---------- index.html: hero ----------
       'index.hero.lead':
-        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako junior/mid Unity developer.',
+        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako Unity developer.',
       'index.hero.stack': 'Unity · C# · Burst / Job System · shadery URP · Android',
       'index.hero.cta': 'Zobacz projekty',
 
       // ---------- index.html: projects ----------
       'index.section.projects': 'Projekty',
-      'index.project.gol.meta': 'Android · Unity 2022.3 · solo · 15 000+ pobrań w Google Play',
+      // The card meta line is one span per segment (index.html); the segments that read the same in
+      // both languages (Android, Unity versions, solo, PC) have no key.
+      'index.project.gol.meta4': '15 000+ pobrań w Google Play',
       'index.project.gol.body':
         'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek. Najważniejsza praca kryje się w silniku: obliczenia na bitach w Burst i Job System, wątek symulacji, który nie blokuje renderowania, i renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca.',
       'index.project.gol.cta': 'Zobacz, jak działa silnik →',
-      'index.project.grave.meta': 'PC · Unity 6 URP 2D · zespół 4 osób · praca inżynierska',
+      'index.project.grave.meta3': 'zespół 4 osób',
+      'index.project.grave.meta4': 'praca inżynierska',
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
       'index.project.grave.cta': 'Zobacz systemy →',
-      'index.project.lp.meta': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games',
+      'index.project.lp.meta3': 'zespół studia',
+      'index.project.lp.meta4': 'staż w Rubens Games',
       'index.project.lp.body':
         'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
       'index.project.lp.cta': 'Zobacz, jak działają →',
@@ -47,7 +51,7 @@
       'index.contact.github.label': 'GitHub:',
 
       // ---------- index.html: redesigned hero / cards (2026-09) ----------
-      'index.hero.kicker': 'Szukam pracy jako junior/mid Unity developer',
+      'index.hero.kicker': 'Szukam pracy jako Unity developer',
       'index.hero.intro': 'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu.',
       'index.hero.email': 'Napisz do mnie',
       'index.hero.stat1.value': '15\u00a0000+',
@@ -62,23 +66,23 @@
       'index.project.gol.alt': 'Universal Turing Machine: 252 tys. żywych komórek, mocno oddalona na ekranie telefonu i narysowana jako jedna tekstura gęstości.',
       'index.project.gol.media': 'Widok gęstości · 252 tys. komórek',
       'index.project.gol.summary': 'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek.',
-      'index.project.gol.sys1': 'Obliczenia na bitach w Burst i Job System',
+      'index.project.gol.sys1': 'Silnik symulacji, który przelicza tylko to, co się zmieniło (Burst, Job System)',
       'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
       'index.project.gol.sys3': 'Renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca',
-      'index.project.gol.sys4': 'Harness testowy, który porównuje silnik z wersji sklepowej z implementacją referencyjną poza Unity',
+      'index.project.gol.sys4': 'Testy, które uruchamiają silnik z wersji sklepowej poza Unity i porównują każdą generację z prostą wersją wzorcową',
       'index.project.grave.alt': 'Grave z góry: pomieszczenie w lochu oświetlone tylko w stożku widzenia gracza.',
       'index.project.grave.media': 'System widoczności',
-      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole.',
-      'index.project.grave.sys1': 'Pathfinding A* o ograniczonym koszcie na klatkę',
-      'index.project.grave.sys2': 'Maska światła renderowana przez drugą kamerę i własne shadery',
-      'index.project.grave.sys3': 'Generator lochów z seeda pokryty 48 testami jednostkowymi',
+      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, do czego dociera światło. Powstał w 4-osobowym zespole, a ja zbudowałem systemy, które generują loch, ukrywają go i prowadzą po nim przeciwników.',
+      'index.project.grave.sys1': 'Generator lochów z seeda pokryty 48 testami jednostkowymi',
+      'index.project.grave.sys2': 'Światło i linia wzroku: widać tylko to, co widzi gracz (druga kamera, własne shadery)',
+      'index.project.grave.sys3': 'A* z limitem kosztu jednego wyszukiwania',
       'index.project.grave.sys4': 'AI przeciwników składane z wymiennych komponentów',
       'index.project.lp.alt': 'Luggage Please: ekran skanera rentgenowskiego z zawartością walizki pokolorowaną według materiału.',
       'index.project.lp.media': 'Skaner rentgenowski',
-      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu.',
+      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games. Na stażu zbudowałem trzy jej systemy, do których podpinają się grafika i kod NPC studia.',
       'index.project.lp.sys1': 'Fizyka walizki działająca tylko w trakcie jej kontroli',
-      'index.project.lp.sys2': 'Skaner rentgenowski zbudowany z renderer features URP i shadera w Shader Graph: nowy przedmiot wymaga tylko właściwych warstw, bez kodu',
-      'index.project.lp.sys3': 'Koło interakcji oddzielone od logiki NPC, która je wypełnia',
+      'index.project.lp.sys2': 'Skaner rentgenowski kolorujący przedmioty według materiału, zbudowany z renderer features URP: nowy przedmiot nie wymaga kodu',
+      'index.project.lp.sys3': 'Kołowe menu akcji, którego opcje zmieniają się przy każdym stanowisku, oddzielone od logiki pasażerów',
 
       // ---------- Shared case-study UI (game-of-life.html, grave.html) ----------
       'case.skip': 'Przejdź do treści',
@@ -87,7 +91,14 @@
       'case.keynums': 'Najważniejsze liczby',
       'case.glance': 'W skrócie',
       'case.toc': 'Systemy na tej stronie',
-      'case.scrub.hint': 'Przewijaj, aby odtwarzać nagranie etap po etapie',
+      'case.scrub.hint': 'Przewijaj, żeby odtworzyć nagranie krok po kroku',
+      'case.scrub.hint.touch': 'Przesuń w górę, żeby odtworzyć nagranie krok po kroku',
+      'case.scrub.skip': 'Pomiń nagranie ↓',
+      'case.top.email': 'E-mail',
+      'case.rail.aria': 'Części tej strony',
+      'case.rail.top': 'Przegląd',
+      'case.video.pause': 'Zatrzymaj wideo',
+      'case.video.play': 'Odtwórz wideo',
       'case.diagram.hint': 'Przewiń, aby zobaczyć cały diagram →',
       'case.how': 'Jak działa',
       'case.what': 'Co to pokazuje',
@@ -102,16 +113,16 @@
       'case.kicker.grave': 'PC · Unity 6 URP 2D · zespół 4 osób · praca inżynierska, 2026',
       'case.kicker.lp': 'PC · Unity 2022.3 URP · zespół studia · staż w Rubens Games, lipiec–wrzesień 2024',
       'case.foot.gol':
-        'Projekt solo. Repozytorium jest prywatne — fragment kodu jest powyżej, a resztę chętnie pokażę na rozmowie.',
+        'Projekt solo. Repozytorium jest prywatne, ale fragmenty kodu widać powyżej, a resztę chętnie pokażę na rozmowie.',
       'case.foot.grave': 'Projekt zespołowy (4 osoby). Pokazuję tylko systemy, które zbudowałem sam.',
       'case.foot.lp':
-        'Projekt studyjny, niepubliczny. Pokazuję go za zgodą Rubens Games — resztę chętnie omówię na rozmowie.',
+        'Projekt studia, niepubliczny. Kod pokazuję za zgodą Rubens Games, a resztę chętnie omówię na rozmowie.',
       'case.meta.gol.title': 'Game of Life — studium przypadku — Dominik Barański',
       'case.meta.gol.description':
         'Symulator gry w życie na Androida zbudowany tak, by radzić sobie z wzorcami liczącymi setki tysięcy żywych komórek: bitowo-równoległy silnik na Burst/Job System, zweryfikowany poza Unity. 15 000+ pobrań w Google Play.',
       'case.meta.grave.title': 'Grave — studium przypadku — Dominik Barański',
       'case.meta.grave.description':
-        'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry, zrobionego w 4-osobowym zespole w Unity 6: pathfinding A*, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów oparty na seedzie, pokryty 48 testami jednostkowymi, oraz AI przeciwników złożone z komponentów.',
+        'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry, zrobionego w 4-osobowym zespole w Unity 6: generator lochów oparty na seedzie, pokryty 48 testami jednostkowymi, maska światła renderowana przez drugą kamerę i własne shadery, pathfinding A* oraz AI przeciwników złożone z komponentów.',
       'case.meta.lp.title': 'Luggage Please — studium przypadku — Dominik Barański',
       'case.meta.lp.description':
         'Systemy zbudowane podczas stażu w Rubens Games: fizyka walizki i przedmiotów, skaner rentgenowski złożony z warstw i renderer features URP oraz kontekstowe koło interakcji.',
@@ -120,7 +131,7 @@
       'gol.tagline':
         'Symulator automatu komórkowego na Androida, zbudowany tak, żeby telefon radził sobie z wzorcami liczącymi setki tysięcy żywych komórek.',
       'gol.intro':
-        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują, od kilku komórek po wzorce liczące setki tysięcy. Reguły mieszczą się w trzech linijkach (poniżej). Trudność techniczna polega na tym, żeby skalowały się na telefonie.',
+        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują. Reguły mieszczą się w trzech linijkach (poniżej). Cała trudność techniczna polega na tym, żeby telefon nadążał z ich stosowaniem, gdy żywych komórek są setki tysięcy.',
       'gol.hero.caption':
         'Universal Turing Machine: 252 tys. żywych komórek, ~240 generacji na sekundę na Pixelu 6 Pro. Przy takim oddaleniu cały widok to jedna tekstura gęstości.',
 
@@ -131,7 +142,7 @@
       'gol.kn2.value': '64 → 141 gen./s',
       'gol.kn2.label': '2,2× więcej generacji na sekundę przy wysokiej prędkości',
       'gol.kn2.ctx':
-        'Losowy wzorzec z 275 tys. komórek na Pixelu 6 Pro, po zdjęciu z głównego wątku odtwarzania generacja po generacji (system 2).',
+        'Losowy wzorzec z 275 tys. komórek na Pixelu 6 Pro, po tym, jak główny wątek przestał odtwarzać każdą generację osobno (system 2).',
       'gol.kn3.value': '~50 µs vs 1035 µs',
       'gol.kn3.label': '~20× szybsze wyszukiwanie widocznych komórek, niezależne od rozmiaru wzorca',
       'gol.kn3.ctx':
@@ -140,6 +151,8 @@
       // ---------- game-of-life.html: at a glance ----------
       'gol.glance.role.t': 'Rola',
       'gol.glance.role.d': 'solo (silnik, rozgrywka, UI i publikacja w sklepie)',
+      'gol.glance.time.t': 'Okres',
+      'gol.glance.time.d': '02.2025 – obecnie; w Google Play od 08.2025, aktualizowana po premierze',
       'gol.glance.engine.t': 'Silnik',
       'gol.glance.engine.d': 'Unity 2022.3 LTS, wbudowany render pipeline (built-in)',
       'gol.glance.platform.t': 'Platforma',
@@ -166,14 +179,18 @@
       'gol.primer.r3':
         '<b>Śmierć:</b> każda inna żywa komórka umiera, z samotności (0–1 sąsiadów) albo z tłoku (4 i więcej).',
       'gol.primer.end':
-        'Nie ma tur ani przeciwnika: rysuje się wzorzec startowy i patrzy, co z niego wyrośnie. Z tych trzech reguł powstają kształty, które wędrują po planszy, działa, które je wystrzeliwują, i wzorce tak duże, że liczą, jak maszyna Turinga z filmu. Trudność, o której jest ta strona, polega na tym, żeby to wszystko działało szybko na telefonie.',
+        'Z tych trzech reguł powstają kształty, które wędrują po planszy, działa, które je wystrzeliwują, i wzorce tak duże, że wykonują obliczenia jak maszyna Turinga z filmu.',
+      'gol.rail.1': 'Silnik',
+      'gol.rail.2': 'Wątki',
+      'gol.rail.3': 'Renderowanie',
+      'gol.rail.4': 'Testy',
       'gol.sys1.title': 'Silnik, który liczy tylko to, co się zmienia',
       'gol.sys1.problem':
         'Prosta symulacja w każdej generacji odwiedza każdą żywą komórkę, więc jej koszt rośnie razem z całym wzorcem. Na telefonie przy dużych wzorcach symulacja zaczyna się dławić, nawet gdy większość planszy się nie zmienia.',
       'gol.sys1.how':
-        'Plansza jest podzielona na chunki 64×64 zapisane jako maski bitowe (jedna 64-bitowa liczba na wiersz, jeden bit na komórkę). Każdy krok przelicza tylko chunki sąsiadujące z tymi, które zmieniły się w poprzednim kroku, liczy sąsiadów 64 komórek naraz arytmetyką bitową i działa jako łańcuch pięciu jobów Burst na pamięci natywnej. Burst kompiluje ograniczony podzbiór C# do zoptymalizowanego kodu natywnego, a Job System rozkłada tę pracę na wątki robocze.',
+        'Plansza jest podzielona na chunki 64×64 zapisane jako maski bitowe. Każdy krok przelicza tylko chunki zmienione w poprzednim kroku i ich sąsiadów, licząc żywych sąsiadów 64 komórek naraz arytmetyką bitową. Cały pipeline, a nie tylko rdzeń obliczeń, działa jako joby Burst na pamięci natywnej: na gęstym losowym wzorcu cztery wątki robocze dają 1,96 raza więcej generacji na sekundę niż jeden (pomiar na telefonie).',
       'gol.sys1.what':
-        'Projektowanie zorientowane na dane z użyciem Burst i Job System oraz profilowanie na urządzeniu docelowym. Zrównoleglenie samego rdzenia obliczeń dało wyraźny zysk w edytorze, ale na telefonie nie dało mierzalnej różnicy, bo prawdziwym wąskim gardłem było szeregowe zbieranie danych wokół niego. Wersja w sklepie uruchamia cały pipeline jako joby: na gęstym losowym wzorcu cztery wątki robocze dają 1,96 raza więcej generacji na sekundę niż jeden (pomiar na telefonie).',
+        'Profilowanie na urządzeniu docelowym: zrównoleglenie samego rdzenia obliczeń dało wyraźny zysk w edytorze, a na telefonie żadnej mierzalnej różnicy, bo prawdziwym wąskim gardłem było szeregowe zbieranie danych wokół niego. Do tego dyscyplinę alokacji na gorącej ścieżce: usunięcie dwóch tymczasowych NativeArray na chunk zlikwidowało około 6000 natywnych par alokacja/zwolnienie na generację przy mniej więcej 3000 chunków, a po rozgrzaniu sam solver nic nie alokuje w kolejnych generacjach.',
       'gol.sys1.code.aria':
         'Fragment kodu z BitmaskGenerationSolver.cs, metoda Step: budowa zbioru kandydatów i planowanie łańcucha jobów Burst',
       // nagrania z edytora (js/gol-footage.js rysuje licznik i panel bitów sam, w obu językach)
@@ -193,7 +210,7 @@
         'Gra zatrzymuje się w generacji 399, z chunkami oznaczonymi jak w nagraniu powyżej.',
       'gol.f2.s2.t': 'Zbieranie sąsiedztwa',
       'gol.f2.s2.b':
-        'Kamera zbliża się do chunka, który następny krok przeliczy, i do chunków wokół niego. <code>GatherJob</code> kopiuje do jednego płaskiego bufora tylko to, czego potrzebuje jądro: chunk i jego sąsiadów z lewej i prawej w całości, a z trzech chunków nad nim i trzech pod nim tylko graniczący wiersz. To 198 słów 64-bitowych zamiast 576 dla pełnego bloku 3×3: o dwie trzecie mniej zapisów do pamięci na chunk, około 9 MB na generację przy 3000 chunków.',
+        'Kamera zbliża się do chunka, który następny krok przeliczy, i do chunków wokół niego. <code>GatherJob</code> kopiuje do jednego płaskiego bufora tylko to, czego potrzebuje jądro: chunk i jego sąsiadów z lewej i prawej w całości, a z trzech chunków nad nim i trzech pod nim tylko graniczący wiersz. To 198 słów 64-bitowych zamiast 576 dla pełnego bloku 3×3: o dwie trzecie mniej zapisów do pamięci na chunk, czyli około 9 MB mniej na generację przy 3000 chunków.',
       'gol.f2.s3.t': '64 komórki naraz',
       'gol.f2.s3.b':
         'Jeden wiersz (żółta linia), w panelu bit po bicie, dla 16 z jego 64 kolumn. Trzy wywołania <code>AddBits</code> liczą sąsiadów wszystkich 64 komórek naraz, z przesuniętych kopii wierszy r − 1, r + 1 i r. Liczby sąsiadów zajmują trzy słowa, po jednym na każdy bit liczby (płaszczyzny bitowe), więc reguły Conwaya to dwie maski: „dokładnie 2” i „dokładnie 3”. W ostatnim wierszu panelu żółte się rodzą, a czerwone giną.',
@@ -226,10 +243,10 @@
         'Przy 4 generacjach na sekundę kamera się zbliża. U dołu jest 128 slotów bufora pierścieniowego, jeden słupek na generację (jego wysokość to liczba zmienionych komórek). Wątek obliczeniowy wypełnia je z wyprzedzeniem (żółte), najwyżej 100 generacji do przodu; główny wątek pobiera po jednej (biały kursor) i odtwarza ją z animacjami narodzin i śmierci. Sloty, limit i zmiany każdej generacji pochodzą z gry; tempo, w jakim pasek zapełnia się na początku, ustawia nagranie, bo to ono samo wywołuje kolejne kroki silnika.',
       'gol.f3.s3.t': 'Przyspieszanie',
       'gol.f3.s3.b':
-        'Tempo rośnie do 10 generacji na sekundę, najwyższego, przy którym gra jeszcze animuje; powyżej animacje i tak się wyłączają.',
+        'Tempo rośnie do 10 generacji na sekundę. To najwyższe tempo, przy którym gra jeszcze animuje; powyżej animacje i tak się wyłączają.',
       'gol.f3.s4.t': 'Szybko: całe chunki, bezpośrednio',
       'gol.f3.s4.b':
-        'Powyżej 10 bufor zostaje opróżniony i odłożony, a każdy zmieniony chunk przechodzi w całości: 64 wiersze, 512 bajtów, kopiowane przez wątek obliczeniowy do wyświetlanego stanu (żółte wypełnienie), a główny wątek tylko renderuje. Przy 60 generacjach na sekundę nagranie (30 kl./s) dostaje dwie generacje na klatkę, czyli około 630 kopii chunków (315 KB). Jako listy komórek ta sama zmiana to około 54 tys. komórek do wyciągnięcia z bitów i odtworzenia w głównym wątku. Na telefonie ta zmiana podniosła tempo losowego wzorca z 275 tys. komórek z 64 do 141 gen./s.',
+        'Powyżej 10 bufor zostaje opróżniony i odłożony, a każdy zmieniony chunk przechodzi w całości: 64 wiersze, 512 bajtów, kopiowane przez wątek obliczeniowy do wyświetlanego stanu (żółte wypełnienie), a główny wątek tylko renderuje. Przy 60 generacjach na sekundę nagranie (30 kl./s) dostaje dwie generacje na klatkę, czyli około 630 kopii chunków (315 KB). Gdyby przekazywać listy komórek, ta sama zmiana oznaczałaby około 54 tys. komórek do wyciągnięcia z bitów i odtworzenia w głównym wątku.',
       'gol.f3.aria':
         'Nagranie dwóch ścieżek przekazywania wyników: ruchliwy wzorzec przy 4 generacjach na sekundę z buforem pierścieniowym narysowanym u dołu, potem przyspieszenie powyżej 10, gdzie całe zmienione chunki są kopiowane bezpośrednio. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       'gol.diag2.aria':
@@ -260,24 +277,24 @@
       'gol.sys3.what':
         'Optymalizację renderowania w Unity (draw calle, ograniczenia wbudowanego komponentu, przełączanie poziomu szczegółowości, czyli LOD) i dobór struktur danych do zapytań, na które muszą odpowiadać. W benchmarku poza Unity zapytanie o widoczne komórki zajmuje stale ~50 µs, bez względu na to, ile komórek jest poza ekranem. Stare pełne skanowanie dochodziło do 1035 µs przy 316 tys. żywych komórek.',
       'gol.sys3.caption':
-        'Jeden ciągły pinch-zoom na Pixelu 6 Pro, od 13 komórek do liczącej 252 tys. komórek Universal Turing Machine, z włączonym licznikiem FPS z gry: Tilemapa ustępuje widokowi gęstości na jednym quadzie, a licznik utrzymuje się między 56 a 60.',
+        'Jeden ciągły zoom szczypnięciem na Pixelu 6 Pro przy zatrzymanej symulacji, więc mierzone jest samo renderowanie. W trakcie oddalania, od 13 komórek aż po Universal Turing Machine z 252 tys. komórek, Tilemapę zastępuje widok gęstości na jednym quadzie, a licznik FPS gry nie spada poniżej 56 (limit to 60).',
 
       // ---------- game-of-life.html: system 4 ----------
       'gol.sys4.title': 'Kod silnika weryfikowany poza Unity',
       'gol.sys4.problem':
         'Błąd w stanowym silniku operującym na bitach nie powoduje awarii. Daje wiarygodnie wyglądający, ale błędny wzorzec, często dopiero wiele generacji później, więc patrząc na ekran, nie da się go wyłapać.',
       'gol.sys4.how':
-        'Konsolowy harness .NET kompiluje te same pliki źródłowe solvera, które trafiają do wersji w sklepie, a mały shim zastępuje kolekcje, Jobs i Burst z Unity. Każda generacja każdego scenariusza (glidery przekraczające granice chunków i wchodzące w ujemne współrzędne, pusta plansza) jest porównywana komórka po komórce z naiwną implementacją referencyjną. Cały przebieg daje też jeden hash wzorcowy, który refaktor przenoszący tylko kod musi odtworzyć bajt w bajt. Uruchamiana bez edytora kompilacja wszystkich pięciu jobów kompilatorem Burst pod ARM64 zawiera kontrolę negatywną, czyli kod, który musi się nie skompilować, więc czysty wynik faktycznie coś dowodzi.',
+        'Konsolowy harness .NET kompiluje te same pliki źródłowe solvera, które trafiają do wersji w sklepie, a mały shim zastępuje kolekcje, Jobs i Burst z Unity. Każda generacja każdego scenariusza (glidery przekraczające granice chunków i wchodzące w ujemne współrzędne, pusta plansza) jest porównywana komórka po komórce z naiwną implementacją referencyjną. Cały przebieg daje też jeden hash wzorcowy, który każdy refaktor niezmieniający działania musi odtworzyć bajt w bajt. Kompilacja wszystkich pięciu jobów kompilatorem Burst pod ARM64, uruchamiana bez edytora, zawiera kontrolę negatywną: kod, który musi się nie skompilować. Dzięki temu czysty wynik naprawdę coś dowodzi.',
       'gol.sys4.what':
-        'Dyscyplinę testowania kluczowej logiki gry wykraczającą poza to, co oferuje edytor: testy różnicowe, które wskazują generację, w której błąd pojawia się po raz pierwszy, sprawdzenie hasha wzorcowego, dzięki któremu „ten refaktor niczego nie zmienił” staje się faktem, i sprawdzenie Burst, które, jak dowodzi kontrola negatywna, naprawdę potrafi wykryć błąd. Wszystko działa z linii poleceń.',
+        'Dyscyplinę testowania logiki silnika wykraczającą poza to, co oferuje edytor: testy różnicowe, które wskazują generację, w której błąd pojawia się po raz pierwszy, hash wzorcowy, dzięki któremu „ten refaktor niczego nie zmienił” staje się faktem, oraz sprawdzenie Burst, o którym kontrola negatywna dowodzi, że naprawdę potrafi wykryć błąd. Wszystko działa z linii poleceń.',
       'gol.diag4.aria':
         'Te same pliki solvera, które trafiają do sklepu, zasilają build Android do sklepu i harness testowy .NET, który porównuje każdą generację z naiwną implementacją referencyjną i sprowadza każdy przebieg do jednego hasha wzorcowego. Kompilacja Burst uruchamiana bez edytora buduje te same pięć jobów pod ARM64, z kontrolą negatywną, która musi się nie skompilować.',
       'gol.diag4.source': 'To samo źródło solvera',
-      'gol.diag4.sourceSub': 'pliki wysyłanego solvera',
+      'gol.diag4.sourceSub': 'pliki wydanego solvera',
       'gol.diag4.android': 'Build Android do sklepu',
       'gol.diag4.androidSub': 'gra w sklepie',
       'gol.diag4.harness': 'Harness testowy .NET',
-      'gol.diag4.harnessSub': 'kompiluje wysyłany solver',
+      'gol.diag4.harnessSub': 'kompiluje wydany solver',
       'gol.diag4.naive': 'Porównanie z referencją',
       'gol.diag4.cellByCell': 'komórka po komórce',
       'gol.diag4.hash': 'Hash wzorcowy',
@@ -295,26 +312,26 @@
         'Mierzyć trzeba na urządzeniu docelowym, a nie w edytorze: w tym projekcie edytor wskazał niewłaściwe wąskie gardło.',
       'gol.also.label': 'Również w kodzie (poza wersją sklepową)',
       'gol.also.body':
-        'HashLife (algorytm Gospera), drugi silnik, który zapamiętuje i ponownie wykorzystuje wyniki w drzewie czwórkowym, dzięki czemu powtarzalne wzorce przeskakują tysiące generacji w jednym kroku. Ma budżet pamięci skalowany do RAM-u urządzenia i testy względem implementacji brute-force, ale w wersji w sklepie jest wyłączony.',
+        'HashLife (algorytm Gospera) to drugi silnik, który zapamiętuje i ponownie wykorzystuje wyniki w drzewie czwórkowym, dzięki czemu powtarzalne wzorce przeskakują tysiące generacji w jednym kroku. Ma budżet pamięci skalowany do RAM-u urządzenia i testy względem implementacji brute-force.',
 
       // ---------- grave.html: intro ----------
       'grave.tagline':
-        'Systemy, które zbudowałem do gry 2D z widokiem z góry w Unity 6: pathfinding, widoczność, proceduralne lochy i AI przeciwników.',
+        'Systemy, które zbudowałem do gry 2D z widokiem z góry w Unity 6: proceduralne lochy, widoczność, pathfinding i AI przeciwników.',
       'grave.intro':
-        'Grave to survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, co obejmuje jego pole widzenia i co oświetlają źródła światła. Powstał w 4-osobowym zespole jako projekt inżynierski. Opisuję tu zbudowane przeze mnie systemy: pathfinding przeciwników, system widoczności, proceduralne generowanie lochów i AI przeciwników.',
+        'Grave to survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, co obejmuje jego pole widzenia i co oświetlają źródła światła. Powstał w 4-osobowym zespole jako projekt inżynierski.',
       'grave.meta.ogImageAlt':
         'Pomieszczenie lochu w Grave widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a na granicy światła stoi przeciwnik.',
       'grave.hero.caption':
         'Oświetlone pomieszczenie lochu widziane z góry: filary rzucają ostre cienie w stożku widzenia gracza, a wszystko poza światłem ginie w ciemności.',
 
       // ---------- grave.html: key numbers ----------
-      'grave.kn1.label': 'Testów jednostkowych EditMode',
+      'grave.kn1.label': 'Automatyczne testy jednostkowe (Unity EditMode)',
       'grave.kn1.ctx':
         'Wszystkie dotyczą generatora lochów, który działa bez sceny; wiele z nich sprawdza dziesiątki lub setki seedów.',
       'grave.kn2.value': '4000',
-      'grave.kn2.label': 'Limit węzłów na wyszukiwanie A*',
+      'grave.kn2.label': 'Dozwolona liczba kroków wyszukiwania na jedną trasę przeciwnika (A*)',
       'grave.kn2.ctx':
-        'Limit projektowy, a nie wynik benchmarku: po jego przekroczeniu wyszukiwanie zwraca najlepszą częściową ścieżkę, zamiast przycinać klatkę.',
+        'Limit projektowy, a nie wynik benchmarku: po jego przekroczeniu wyszukiwanie zwraca najlepszą częściową ścieżkę, zamiast wydłużać klatkę.',
       'grave.kn3.label': 'Czas klatki po profilowaniu',
       'grave.kn3.ctx':
         'Pomiar w edytorze, po jednej serii optymalizacji: rzadsze próbkowanie promieni poza stożkiem widzenia, ponowne użycie buforów A* i kilka innych poprawek.',
@@ -324,7 +341,9 @@
       'grave.glance.team.d': '4 osoby (praca inżynierska)',
       'grave.glance.covered.t': 'Opisuję tu',
       'grave.glance.covered.d':
-        'zbudowane przeze mnie systemy: pathfinding A*, system widoczności, proceduralne generowanie lochów, AI przeciwników',
+        'proceduralne generowanie lochów, system widoczności, pathfinding A* i AI przeciwników: cztery najważniejsze z systemów, które zbudowałem w tej grze',
+      'grave.glance.time.t': 'Okres',
+      'grave.glance.time.d': 'ukończony 08.2026',
       'grave.glance.engine.t': 'Silnik',
       'grave.glance.platform.t': 'Platforma',
       'grave.glance.status.t': 'Status',
@@ -334,33 +353,36 @@
         'C#, Physics2D, własne shadery URP (HLSL), RenderTexture, assembly definitions, Unity Test Framework (48 testów EditMode)',
       'grave.glance.code.t': 'Kod',
       'grave.glance.code.link': 'repozytorium zespołu na GitHubie',
-      'grave.glance.code.d': ', każdy system poniżej linkuje do swojego folderu',
+      'grave.glance.code.d': '; przy każdym systemie poniżej jest link do jego folderu',
 
       // ---------- grave.html: systems on this page ----------
-      'grave.toc1.skills': 'A* · kopiec binarny · ograniczony koszt klatki',
+      'grave.toc1.skills': 'A* · kopiec binarny · limit kosztu wyszukiwania',
       'grave.toc2.skills': 'RenderTexture · własne shadery URP · raycasting',
       'grave.toc3.skills': 'Algorytmy grafowe · determinizm · testy jednostkowe',
       'grave.toc4.skills': 'Kompozycja · interfejsy · budżet aktualizacji AI',
 
       // ---------- grave.html: system 1 ----------
-      'grave.sys1.title': 'Pathfinding A* o przewidywalnym koszcie na klatkę',
+      'grave.sys1.title': 'A* z limitem kosztu jednego wyszukiwania',
       'grave.sys1.problem':
         'Przeciwnicy gonią gracza po wygenerowanym lochu, czyli po siatce 40 000 komórek (200×200), a żadne pojedyncze wyszukiwanie ścieżki nie może powodować przycięć. Najgorszy przypadek to cel nieosiągalny: zwykły A* przeszukuje wtedy całą mapę, zanim uzna, że ścieżki nie ma.',
       'grave.sys1.how':
-        'Collidery poziomu są próbkowane do płaskiej siatki, która dla każdego pola zapisuje, czy da się po nim przejść; po zniszczeniu przeszkody siatka jest aktualizowana lokalnie. Flood fill dzieli ją na spójne regiony, więc nieosiągalny cel odpada w O(1), zanim wyszukiwanie w ogóle ruszy. Wyszukiwanie korzysta z kopca binarnego, czyli kolejki priorytetowej, która zwraca najtańszy węzeł w O(log n). Bufory są używane ponownie między wyszukiwaniami, a zamiast je czyścić, unieważnia się je numerem wersji nadawanym każdemu wyszukiwaniu. Liczba odwiedzonych węzłów ma limit, a po jego przekroczeniu zwracana jest najlepsza częściowa ścieżka, więc gra się nie zawiesza.',
+        'Collidery poziomu są próbkowane do płaskiej siatki przechodniości. Gdy przeszkoda zostaje zniszczona, ponownie próbkowany jest tylko jej obszar, ale etykiety regionów są celowo przebudowywane w całości, bo otwarcie jednej komórki może połączyć dwa całe regiony. Flood fill dzieli siatkę na spójne regiony, więc nieosiągalny cel odpada w O(1), zanim wyszukiwanie w ogóle ruszy. Wyszukiwanie korzysta z kopca binarnego, czyli kolejki priorytetowej, która zwraca najtańszy węzeł w O(log n). Bufory są używane ponownie między wyszukiwaniami, a zamiast je czyścić, unieważnia się je numerem wersji nadawanym każdemu wyszukiwaniu. Liczba odwiedzonych węzłów ma limit, a po jego przekroczeniu zwracana jest najlepsza częściowa ścieżka, więc gra się nie zawiesza.',
       'grave.sys1.what':
-        'Przerobienie algorytmu z podręcznika na taki, którego koszt na klatkę jest ograniczony, przy czym przygotowanie zależy od przeszukanego obszaru, a nie od rozmiaru mapy. Ruch jest wymiennym komponentem-strategią za wąskimi interfejsami, więc logika przeciwnika nie zależy od pathfindera, a A* można zastąpić prostym ruchem bezpośrednim.',
+        'Przerobienie podręcznikowego algorytmu tak, żeby koszt jednego wyszukiwania miał górny limit nawet w najgorszym przypadku, a przygotowanie zależało od przeszukanego obszaru, a nie od rozmiaru mapy. Liczbę wyszukiwań na klatkę ogranicza co innego: każdy przeciwnik przelicza ścieżkę co pewien czas albo gdy cel się przesunie, nieudane wyszukiwanie odczekuje przed kolejną próbą, a budżet aktualizacji z systemu 4 usypia dalekich przeciwników.',
       'grave.sys1.code.aria':
         'Fragment kodu z AStarPathfinder.cs, metoda FindPath: odrzucenie celu po regionie, pętla wyszukiwania na kopcu, limit węzłów i awaryjny zwrot częściowej ścieżki',
 
       // ---------- grave.html: system 2 ----------
       'grave.sys2.title': 'System widoczności: maska światła renderowana przez drugą kamerę i własne shadery',
       'grave.sys2.problem':
-        'Wszystko poza linią wzroku gracza, łącznie z przeciwnikami, musi być ukryte, a światło z kilku źródeł (stożek widzenia gracza, lampy) ma się płynnie łączyć. Wcześniejsza wersja opierała się na stencil buforze, który przechowuje dla każdego piksela prostą flagę widoczne/niewidoczne. Sprite’y urywały się ostro na granicy światła, a dwa światła nie łączyły się płynnie.',
+        'Wszystko poza linią wzroku gracza, łącznie z przeciwnikami, musi być ukryte, a światło z kilku źródeł (stożek widzenia gracza, lampy) ma się płynnie łączyć. Wcześniejsza wersja opierała się na stencil bufferze, który przechowuje dla każdego piksela prostą flagę widoczne/niewidoczne. Sprite’y urywały się ostro na granicy światła, a nakładające się światła nie mieszały się ze sobą.',
       'grave.sys2.how':
-        'Stożek widzenia gracza i każda lampa korzystają z jednego wspólnego buildera meshy. Tam, gdzie sąsiednie promienie trafiają w różne powierzchnie, wyszukiwanie binarne między nimi znajduje dokładną krawędź, więc kontury pozostają ostre bez dokładania promieni. Blending typu max sprawia, że nakładające się światła dają jaśniejszą z dwóch wartości, zamiast się sumować. Maska trzyma poziom światła w kanale alfa, a jego kolor w RGB, więc jedna tekstura jednocześnie przyciemnia i barwi scenę, a shadery sprite’ów ukrywają wszystko, do czego nie dociera żadne światło.',
+        'Stożek widzenia gracza i każda lampa korzystają z jednego wspólnego buildera meshy. Tam, gdzie sąsiednie promienie się nie zgadzają (jeden trafia, drugi nie, albo ich odległości skaczą), wyszukiwanie binarne między nimi znajduje dokładną krawędź, więc kontury pozostają ostre bez dokładania promieni. Druga kamera renderuje te meshe do RenderTexture z blendingiem typu max, więc nakładające się światła dają jaśniejszą z dwóch wartości, zamiast się sumować. Maska trzyma poziom światła w kanale alfa, a jego kolor w RGB, więc jedna tekstura jednocześnie przyciemnia i barwi scenę, a shadery sprite’ów ukrywają wszystko, do czego nie dociera żadne światło.',
       'grave.sys2.what':
-        'Pracę z renderowaniem w Unity poza gotowymi komponentami: dodatkowa kamera, warstwy renderowania, RenderTexture, tryby blendingu i własne shadery URP, a także wymianę architektury, gdy poprzednia wyczerpała swoje możliwości. Do tego profilowanie. Stożek rzucał kiedyś pełne koło promieni w pełnej gęstości tylko po to, żeby narysować mały krąg widzenia wokół gracza. Rzadsze próbkowanie tego kręgu, razem z innymi poprawkami z tej samej serii, w tym ponownym użyciem buforów A* między wyszukiwaniami, skróciło klatkę z ~30 ms do ~12 ms (pomiar w edytorze).',
+        'Pracę z renderowaniem w Unity poza gotowymi komponentami: dodatkowa kamera, warstwy renderowania, RenderTexture, tryby blendingu i własne shadery URP, a także wymianę architektury, gdy poprzednia wyczerpała swoje możliwości. Do tego profilowanie: stożek rzucał kiedyś pełne koło promieni w pełnej gęstości tylko po to, żeby narysować mały krąg wokół gracza, a rzadsze próbkowanie tego kręgu było częścią serii poprawek, która skróciła klatkę z ~30 ms do ~12 ms (pomiar w edytorze).',
+      'grave.sys2.code.file': 'VisionMaskWriter.shader · SpriteFovMasked.shader',
+      'grave.sys2.code.aria':
+        'Fragmenty shaderów: blending typu max w shaderze zapisującym maskę i shader sprite’ów, który wygasza je według maski widoczności',
       'grave.diag2.b1a': 'Wachlarz promieni',
       'grave.diag2.b1b': 'Szukanie krawędzi → mesh',
       'grave.diag2.b2a': 'Kamera maski → RenderTexture',
@@ -373,11 +395,15 @@
         "Czteroetapowy pipeline, od góry do dołu. Pierwszy: wachlarz promieni dla każdego światła znajduje krawędzie i buduje mesh za pomocą OcclusionMeshBuilder, wspólnego dla gracza i lamp. Drugi: kamera maski renderuje te meshe do RenderTexture z blendingiem typu max, więc wygrywa jaśniejsze światło; działa na warstwie VisionMask. Trzeci: wynik jest udostępniany jako globalna tekstura _VisionMask. Czwarty: nakładka ciemności i shadery sprite'ów próbkują tę teksturę, żeby przyciemnić scenę i ukryć wszystko, do czego nie dociera światło.",
 
       // ---------- grave.html: system 3 ----------
+      'grave.rail.1': 'Generator lochów',
+      'grave.rail.2': 'Widoczność',
+      'grave.rail.3': 'Pathfinding A*',
+      'grave.rail.4': 'AI przeciwników',
       'grave.sys3.title': 'Generator lochów: z seeda, walidowany, przetestowany',
       'grave.sys3.problem':
         'Każda rozgrywka potrzebuje nowego lochu, który zawsze jest w pełni spójny, bez nieosiągalnych pokoi i bez drzwi prowadzących w skałę. Musi też być powtarzalny: ten sam seed ma dać identyczny loch na każdym komputerze, żeby poziom dało się odtworzyć, debugować i testować na podstawie samego seeda.',
       'grave.sys3.how':
-        'Generator to pipeline w czystym C#, w osobnym assembly, bez zależności od scen i MonoBehaviour. Rozmieszcza pokoje i łączy je minimalnym drzewem rozpinającym zbudowanym algorytmem Kruskala z Union-Find, co daje najtańszy zestaw korytarzy łączący wszystkie pokoje. Kilka dodatkowych krawędzi tworzy pętle. Potem pipeline wycina pokoje i korytarze, w tym ślepe wnęki w korytarzach, waliduje wynik, a gdy walidacja się nie powiedzie, ponawia próbę z seedem wyprowadzonym z pierwotnego. Deterministyczny generator liczb losowych daje każdemu etapowi osobny, niezależny strumień, więc zmiana jednego etapu nie przetasowuje pozostałych. Analiza grafu znajduje punkty artykulacji (przewężenia), czyli komórki, których zablokowanie rozcięłoby loch na dwie części, więc nie stawia się na nich żadnych obiektów.',
+        'Generator to pipeline w czystym C#, w osobnym assembly, bez zależności od scen i MonoBehaviour. Rozmieszcza pokoje i łączy je minimalnym drzewem rozpinającym zbudowanym algorytmem Kruskala z Union-Find, co daje najtańszy zestaw korytarzy łączący wszystkie pokoje. Kilka dodatkowych krawędzi tworzy pętle. Potem pipeline wycina pokoje i korytarze, w tym ślepe wnęki w korytarzach, waliduje wynik, a gdy walidacja się nie powiedzie, ponawia próbę z seedem wyprowadzonym z pierwotnego. Deterministyczny generator liczb losowych daje każdemu etapowi osobny, niezależny strumień, więc zmiana jednego etapu nie przetasowuje pozostałych. Analiza grafu znajduje punkty artykulacji (przewężenia), czyli komórki, których zablokowanie rozcięłoby loch na dwie części, więc nie stawia się na nich niczego, co blokuje przejście.',
       'grave.sys3.what':
         'Zastosowanie algorytmów grafowych do realnego problemu w grze i architekturę przygotowaną do testowania. Generator nie potrzebuje sceny, więc pokrywa go 48 testów jednostkowych EditMode. Wiele z nich sprawdza dziesiątki lub setki seedów; w jednym z testów każdy z 500 losowych seedów musi przejść walidację i dać unikalny układ.',
       'grave.sys3.tests.label': 'testy:',
@@ -390,7 +416,7 @@
       'grave.sys4.problem':
         'W wygenerowanym lochu jest wielu przeciwników. Każdy uruchamia maszynę stanów (patrol, pościg, sprawdzanie tropu) i kilka razy na sekundę pełne wyszukiwanie A*, choć większość z nich jest daleko od gracza. Typy przeciwników różnią się też tym, jak wyczuwają gracza, a dodanie nowego typu nie powinno wymagać zmian we wspólnej klasie bazowej.',
       'grave.sys4.how':
-        '<code>EnemyBase</code> wyszukuje swoje komponenty po interfejsach i nie wie, jakie klasy za nimi stoją. Odpytuje wszystkie podpięte detektory, a każdy z nich może potwierdzić obecność gracza. Słuch to osobny kanał zasilany przez szynę zdarzeń hałasu: usłyszany hałas każe przeciwnikowi sprawdzić miejsce, ale nie oznacza wykrycia, bo to tylko podejrzenie. Strefy aktualizacji z diagramu są liczone od zasięgu zmysłów konkretnego przeciwnika, więc budżet dopasowuje się do jego typu. Losowy rozrzut sprawia, że grupy przeciwników nie aktualizują się w tej samej klatce, a uśpieni przeciwnicy zwalniają zapamiętane ścieżki.',
+        '<code>EnemyBase</code> wyszukuje swoje komponenty po interfejsach i nie wie, jakie klasy za nimi stoją. Odpytuje wszystkie podpięte detektory, a każdy z nich może potwierdzić obecność gracza. Słuch to osobny kanał zasilany przez szynę zdarzeń hałasu: usłyszany hałas każe przeciwnikowi sprawdzić miejsce, ale nie oznacza wykrycia, bo to tylko podejrzenie. AI każdego przeciwnika działa z jedną z trzech częstotliwości, zależnie od odległości od gracza: co klatkę w pierścieniu liczonym od zasięgu zmysłów danego przeciwnika, dalej co interwał z losowym rozrzutem, a za linią uśpienia wcale; tam przeciwnik zwalnia też zapamiętaną ścieżkę. Rozrzut sprawia, że grupy nie aktualizują się w tej samej klatce.',
       'grave.sys4.what':
         'Kompozycję zamiast dziedziczenia w praktyce. „Ślepy” typ przeciwnika, <code>BlindListenerEnemy</code>, to podklasa, której jedyną realną treścią jest <code>[RequireComponent(typeof(SoundPlayerDetector))]</code>: ślepota oznacza po prostu, że jego prefab nie ma <code>VisionPlayerDetector</code>. Ten typ doszedł bez żadnych zmian w <code>EnemyBase</code>. Do tego budżetowanie kosztu AI na dużym poziomie bez pogorszenia reakcji przeciwników w pobliżu gracza.',
       'grave.diag4.senses': 'ZMYSŁY',
@@ -398,18 +424,18 @@
       'grave.diag4.sight': 'Wykrycie: wzrok',
       'grave.diag4.hearing': 'Słuch: tylko podejrzenie',
       'grave.diag4.movement':
-        '<tspan x="350" dy="0">Ruch: A* lub bezpośredni —</tspan><tspan x="350" dy="15">to nie zmysł</tspan>',
+        '<tspan x="350" dy="0">Ruch (A* lub bezpośredni):</tspan><tspan x="350" dy="17">to nie zmysł</tspan>',
       'grave.diag4.blindLabel': 'Typ ślepy: bez wzroku',
       'grave.diag4.noSight': 'Brak komponentu wzroku',
       'grave.diag4.blind':
-        '„Ślepy” typ przeciwnika to ten sam hub bez szprychy wzroku — dodany bez zmiany ani jednej linii we wspólnej klasie bazowej.',
+        'Typ ślepy: ten sam hub bez szprychy wzroku.',
       'grave.diag4hub.aria':
         "EnemyBase stoi w środku huba. Przez interfejsy odpytuje dwa komponenty zmysłów, z których każdy łączy się z konkretnym punktem na krawędzi huba: IPlayerDetector, implementowany przez VisionPlayerDetector, odpowiada za wzrok, a INoiseSensor, implementowany przez SoundPlayerDetector i zasilany z NoiseEvents, za słuch, który wzbudza tylko podejrzenie, a nie wykrycie. Osobna, przerywana szprycha prowadzi w dół do IMovementStrategy, implementowanego przez PathfindingMovement albo SimpleDirectMovement — ruch nie jest zmysłem. Panel z boku, połączony z hubem własną linią, pokazuje ten sam hub bez szprychy wzroku: ślepy typ przeciwnika.",
       'grave.diag4ringsWide.aria':
         'Koncentryczne pierścienie wokół gracza, z legendą obok. Najbardziej wewnętrzny krąg jest aktualizowany co klatkę, a jego promień to zasięg zmysłów plus margines. Środkowy pas aktualizuje się co interwał, z losowym rozrzutem. Zewnętrzny pas jest uśpiony i zwalnia zapamiętaną ścieżkę. Dwa bliskie okręgi na granicy uśpienia oznaczają histerezę — linia wybudzenia leży tuż wewnątrz linii uśpienia — a dolny próg bezpieczeństwa gwarantuje, że przeciwnik, który mógłby jeszcze wyczuć gracza, nigdy nie zostanie uśpiony.',
       'grave.diag4ringsTall.aria':
         'Koncentryczne pierścienie wokół gracza, z legendą pod spodem. Najbardziej wewnętrzny krąg jest aktualizowany co klatkę, a jego promień to zasięg zmysłów plus margines. Środkowy pas aktualizuje się co interwał, z losowym rozrzutem. Zewnętrzny pas jest uśpiony i zwalnia zapamiętaną ścieżkę. Dwa bliskie okręgi na granicy uśpienia oznaczają histerezę — linia wybudzenia leży tuż wewnątrz linii uśpienia — a dolny próg bezpieczeństwa gwarantuje, że przeciwnik, który mógłby jeszcze wyczuć gracza, nigdy nie zostanie uśpiony.',
-      'grave.diag4.part1': 'Zmysły jako komponenty za interfejsami — hub, nie pipeline',
+      'grave.diag4.part1': 'Zmysły jako komponenty za interfejsami: hub, nie pipeline',
       'grave.diag4.part2': 'Budżet aktualizacji zależny od odległości od gracza',
       'grave.diag4.player': 'Gracz',
       'grave.diag4.zone1.t': 'Co klatkę',
@@ -428,7 +454,7 @@
       // system 1: generator
       'grave.f1.s1.t': 'Działki pokoi',
       'grave.f1.s1.b':
-        'Plansza 200×200 komórek. Najpierw działka huba (niebieska), potem kolejne pokoje; fioletowe to skarbce. Cały loch wynika z ziarna i ustawień.',
+        'Plansza 200×200 komórek. Najpierw działka huba (niebieska), potem kolejne pokoje; fioletowe to skarbce. Cały loch wynika z seeda i ustawień.',
       'grave.f1.s2.t': 'Drzewo rozpinające',
       'grave.f1.s2.b':
         'Algorytm Kruskala łączy pokoje najkrótszymi krawędziami (odległość Manhattan), aż każdy pokój jest osiągalny.',
@@ -440,12 +466,12 @@
         'Pokoje wycinane są w kolejności ułożenia, z nieregularnymi obrysami. Korytarze kopane są wzdłuż połączeń, a przejścia do pokoi stają się drzwiami (bursztynowe). Graf połączeń gaśnie, bo zrobił swoje.',
       'grave.f1.s5.t': 'Role i wnętrza',
       'grave.f1.s5.b':
-        'Hub, skarbce, wyjście (zielone) i pokój z kluczem do wyjścia. Potem filary, przegrody i gruz, pokój po pokoju.',
+        'Role przydzielane są po przejściu grafu pokoi: hub, skarbce, wyjście (zielone) i pokój z kluczem do wyjścia. Dopiero potem filary, przegrody i gruz, bo etap wnętrz czyta role.',
       'grave.f1.s6.t': 'Przewężenia',
       'grave.f1.s6.b': 'Wąskie gardła lochu (czerwone), zaznaczane dla dalszych systemów.',
       'grave.f1.s7.t': 'Ten sam loch w grze',
       'grave.f1.s7.b':
-        'Schemat przenika w grafikę gry, a kamera zjeżdża do gracza w hubie. Nagrania kolejnych trzech systemów dzieją się w innej sali tego samego lochu, wśród filarów z kroku „Role i wnętrza”.',
+        'Schemat przechodzi w grafikę gry, a kamera zjeżdża do gracza w hubie. Nagrania pozostałych trzech systemów powstały w innej sali tego samego lochu, wśród filarów z kroku „Role i wnętrza”.',
       'grave.f1.aria':
         'Nagranie generatora lochów: pusta plansza wypełnia się etap po etapie, a potem zamienia w samą grę. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       // system 2: widoczność
@@ -457,22 +483,22 @@
       'grave.f2.s3.b': 'Gracz wchodzi na kolumnadę. Za każdym filarem zostaje klin cienia.',
       'grave.f2.s4.t': 'Promienie',
       'grave.f2.s4.b':
-        'Stop-klatka. 166 promieni: w stożku co 1°, wokół gracza co 4°, bo tam gęstość nie jest potrzebna. Koniec mówi, co zatrzymało promień: bursztyn to filar, niebieski inna przeszkoda, jasny pełny zasięg.',
+        'Stop-klatka. 166 promieni: w stożku co 1°, wokół gracza co 4°, bo tam gęstość nie jest potrzebna. Kolor końca promienia mówi, co go zatrzymało: bursztynowy to filar, niebieski inna przeszkoda, jasny oznacza pełny zasięg.',
       'grave.f2.s5.t': 'Krawędzie',
       'grave.f2.s5.b':
-        'Krawędź filara w powiększeniu: kąt w poprzek, odległość w górę. Sąsiednie promienie się nie zgadzają (inna przeszkoda albo ponad 0,5 różnicy), więc gra 4 razy dzieli kąt na pół: z 1° do 1/16°. Białe punkty to wyniki wszystkich 11 wyszukiwań.',
+        'Krawędź filara w powiększeniu: kąt w poprzek, odległość w górę. Sąsiednie promienie się nie zgadzają (jeden trafia w przeszkodę, a drugi nie, albo ich odległości różnią się o ponad 0,5), więc gra 4 razy dzieli kąt na pół: z 1° do 1/16°. Białe punkty to wyniki wszystkich 11 wyszukiwań.',
       'grave.f2.s6.t': 'Bez bisekcji',
       'grave.f2.s6.b':
         'Test: ten sam widok zbudowany kodem gry, ale z promieniem co 4° i bez bisekcji. Niebieskie to cień tam, gdzie gra widzi światło, czerwone odwrotnie. Jasna linia to prawdziwa krawędź.',
       'grave.f2.s7.t': 'Z bisekcją',
       'grave.f2.s7.b':
-        'Te same 93 promienie i 4 kroki bisekcji na każdej z 11 krawędzi: błąd prawie znika za 44 dodatkowe rzuty. Taką dokładność bez bisekcji dałoby dopiero 400 promieni w samym stożku.',
+        'Te same 93 promienie i 4 kroki bisekcji na każdej z 11 krawędzi: błąd prawie znika kosztem 44 dodatkowych rzutów. Taką dokładność bez bisekcji dałoby dopiero 400 promieni w samym stożku.',
       'grave.f2.s8.t': 'Maska',
       'grave.f2.s8.b':
         'Końce promieni tworzą wachlarz trójkątów, budowany w LateUpdate, gdy wszystko już się ruszyło. Druga kamera rysuje go do tekstury: alfa to siła światła, RGB jego barwa. Koniec zasięgu wygasa płynnie.',
       'grave.f2.s9.t': 'Bez maski na sprite’ach',
       'grave.f2.s9.b':
-        'Maskę czytają dwie rzeczy. Bez maski na sprite’ach sama ciemność tylko przyciemnia do 1/3: przeciwnik za filarem prześwituje, a z nim skrzynia, beczki i szkło.',
+        'Maskę czytają dwie rzeczy: nakładka ciemności i shadery sprite’ów. Bez maski na sprite’ach sama ciemność przyciemnia je tylko do 1/3: przeciwnik za filarem prześwituje, a z nim skrzynia, beczki i szkło.',
       'grave.f2.s10.t': 'Bez ciemności',
       'grave.f2.s10.b':
         'Odwrotnie: bez ciemności podłoga jest jasna, a z przeciwnika widać tylko skrawek w świetle, w obrysie wachlarza. Sprite sam czyta maskę, piksel po pikselu.',
@@ -481,7 +507,7 @@
         'Gra rusza. Przeciwnik jest cięty dokładnie po krawędzi maski: widać go tylko w szczelinach.',
       'grave.f2.s12.t': 'Na żywo',
       'grave.f2.s12.b':
-        'To samo w każdej klatce, po ruchu gracza. Pod graczem: promienie · krawędzie · rzuty w tej klatce i czas budowy siatki (mediana z 9 klatek, mierzona w edytorze). Białe punkty skaczą, bo krawędzie szukane są od nowa.',
+        'To samo w każdej klatce, po ruchu gracza. Pod graczem: promienie · krawędzie · rzuty w tej klatce i czas budowy meshu (mediana z 9 klatek, mierzona w edytorze). Białe punkty skaczą, bo krawędzie szukane są od nowa.',
       'grave.f2.s13.t': 'Przeciwnik',
       'grave.f2.s13.b':
         'Szkło chrzęści pod butem. Tu przeciwnik ma wyłączone zmysły; w następnym nagraniu usłyszy krok i pobiegnie tam, skąd dobiegł, trasą wyznaczoną przez A*.',
@@ -490,13 +516,13 @@
       // system 3: A*
       'grave.f3.s1.t': 'Krok na szkle',
       'grave.f3.s1.b':
-        'Gracz przestępuje na szkle. Stop-klatka: hałas trafia magistralą zdarzeń do każdego słuchacza. Ślepy przeciwnik go słyszy, bo jest w zasięgu, a beczki, inaczej niż filary, dźwięku nie blokują.',
+        'Gracz przestępuje z nogi na nogę na szkle. Stop-klatka: hałas trafia szyną zdarzeń do każdego słuchacza. Ślepy przeciwnik go słyszy, bo jest w zasięgu, a beczki, inaczej niż filary, dźwięku nie blokują.',
       'grave.f3.s2.t': 'Siatka',
       'grave.f3.s2.b':
         'Przeciwnik nie widzi sali, tylko siatkę: dla środka każdej komórki jedno zapytanie o przeszkody, z pominięciem wyzwalaczy. Szkło drogi nie zamyka, beczki tak, choć dźwięk przez nie przechodzi.',
       'grave.f3.s3.t': 'A*',
       'grave.f3.s3.b':
-        'A* bierze z kolejki (obrysy z liczbą f) komórkę o najmniejszym f = g + h: koszt dojścia plus odległość oktylna do celu. Rozwija każdą tańszą niż trasa, więc przy objeździe także te za przeciwnikiem. Pod graczem: rozwinięte z budżetu.',
+        'A* bierze z kolejki (obrysy z liczbą f) komórkę o najmniejszym f = g + h: koszt dojścia plus odległość oktylna do celu. Rozwija każdą tańszą niż trasa, więc przy objeździe także te za przeciwnikiem. Pod graczem: liczba rozwiniętych komórek i budżet.',
       'grave.f3.s4.t': 'Trasa',
       'grave.f3.s4.b':
         'Cel zdjęty z kolejki kończy szukanie. Trasę czyta się wstecz po strzałkach poprzedników, od celu do przeciwnika. Po wyczerpaniu budżetu przeciwnik dostałby trasę do komórki najbliższej celu, zamiast stanąć.',
@@ -505,16 +531,16 @@
         'Krok po skosie jest dozwolony tylko wtedy, gdy obie sąsiednie komórki są wolne. Przy beczce jedna nie jest, więc trasa robi dwa kroki proste i przeciwnik nie przenika przez narożnik.',
       'grave.f3.s6.t': 'Za dźwiękiem',
       'grave.f3.s6.b':
-        'Gra rusza. Gracz skrada się ze szkła: na szkle nawet skradanie słychać, ale z bliska, na zwykłej podłodze wcale. Przeciwnik biegnie dookoła beczek po trasie (bursztyn) liczonej od nowa kilka razy na sekundę.',
+        'Gra toczy się dalej. Gracz zakrada się poza szkło. Przeciwnik obiega beczki trasą (bursztynową), przeliczaną kilka razy na sekundę.',
       'grave.f3.s7.t': 'Tam, skąd dobiegł dźwięk',
       'grave.f3.s7.b':
-        'Słuch daje miejsce dźwięku, nie gracza. Przeciwnik dobiega do szkła, rozgląda się i wraca na patrol, a gracz jest już poza przerywanym okręgiem, w którym wyczułby go nawet w ciszy.',
+        'Słuch daje miejsce dźwięku, nie gracza. Przeciwnik dobiega do szkła, rozgląda się i wraca na patrol, a gracz jest już poza przerywanym okręgiem, w którym przeciwnik wyczułby go nawet w ciszy.',
       'grave.f3.aria':
         'Nagranie pathfindingu A*: ślepy przeciwnik słyszy krok, zatrzymana gra pokazuje jego wyszukiwanie i trasę, a potem przeciwnik ją przebiega. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
       // system 4: AI
       'grave.f4.s1.t': 'Krok, który słychać',
       'grave.f4.s1.b':
-        'Gracz idzie zwykłym krokiem, nie skrada się. Przeciwnik wracający na patrol słyszy go i zawraca („?”), a trasę do miejsca dźwięku znowu wyznacza A*. Patrz na przerywany okrąg wokół przeciwnika.',
+        'Gracz idzie zwykłym krokiem, nie skrada się. Przeciwnik wracający na patrol słyszy go i zawraca („?”), a trasę do miejsca dźwięku znowu wyznacza A*. Zwróć uwagę na przerywany okrąg wokół przeciwnika.',
       'grave.f4.s2.t': 'Wykryty',
       'grave.f4.s2.b':
         'Gdy gracz jest w okręgu, dźwięk nie jest już potrzebny: przeciwnik go wykrywa i rusza w pościg („!”). Gracz rzuca się do ucieczki biegiem.',
@@ -523,25 +549,25 @@
         'Stop-klatka, a kamera odjeżdża: gra rozpływa się w plan lochu z nagrania generatora. Przeciwnik, który właśnie ruszył w pościg, jest na nim jednym z wielu.',
       'grave.f4.s4.t': 'Kto naprawdę się aktualizuje',
       'grave.f4.s4.b':
-        'Każdy przeciwnik oznaczony tym, co gra z nim robi. Pełny znacznik: AI aktualizuje się co klatkę. Obrys z bladym środkiem: co interwał, 0,35 s z rozrzutem. Pusty: wcale, bo uśpiony. Liczby: ilu w grupie.',
+        'Każdy przeciwnik ma znacznik zależny od tego, co gra z nim robi. Pełny znacznik: AI aktualizuje się co klatkę. Obrys z bladym środkiem: co interwał, 0,35 s z rozrzutem. Pusty: wcale, bo uśpiony. Liczby: ilu przeciwników jest w każdej grupie.',
       'grave.f4.s5.t': 'Pierścienie liczone od gracza',
       'grave.f4.s5.b':
         'Pierścień pełnego tempa wynika z komponentów: ślepy nie ma wzroku, więc jego pierścień jest mniejszy niż widzącego. Za linią uśpienia AI nie działa; linia wybudzenia leży tuż wewnątrz niej (histereza).',
       'grave.f4.s6.t': 'Ile to kosztuje',
       'grave.f4.s6.b':
-        'Licznik: ile aktualizacji AI zdarzyło się w ostatniej sekundzie, obok tylu, ile byłoby przy każdym przeciwniku co klatkę. Niżej wyszukiwania A*: każde płaci za odwiedzone komórki (stempel zamiast czyszczenia siatki), nie za całą mapę.',
+        'Licznik: ile aktualizacji AI było w ostatniej sekundzie, a obok ile byłoby, gdyby każdy przeciwnik aktualizował się co klatkę. Niżej wyszukiwania A*: każde płaci za odwiedzone komórki (stempel zamiast czyszczenia siatki), nie za całą mapę.',
       'grave.f4.s7.t': 'Ucieczka na mapie',
       'grave.f4.s7.b':
-        'Gra rusza. Gracz biegnie szybciej, niż goni przeciwnik, i wychodzi z jego zasięgu wykrycia. Przeciwnik słyszy bieg (cienki okrąg: jak daleko niosą się kroki) i trzyma się pierścienia pełnego tempa. Stamina się kończy, gracz zwalnia.',
+        'Gra toczy się dalej. Gracz ucieka poza zasięg wykrycia, ale przeciwnik wciąż słyszy bieg (cienki okrąg: jak daleko niosą się kroki), więc zostaje w pierścieniu pełnej częstotliwości.',
       'grave.f4.s8.t': 'Co to daje w grze',
       'grave.f4.s8.b':
-        'Kroki idącego gracza nie sięgają już przeciwnika. Poza pierścieniem i poza zasięgiem słuchu spada on na interwał. Blisko gracza nikt nie jest przez to głupszy, a cały loch kosztuje ułamek tego, co bez budżetu.',
+        'Gdy gracz zwalnia do marszu, jego kroki przestają docierać do przeciwnika. Poza pierścieniem i poza zasięgiem słuchu przechodzi na aktualizacje co interwał. Blisko gracza nikt nie jest przez to głupszy, a cały loch kosztuje ułamek tego, co bez budżetu.',
       'grave.f4.aria':
         'Nagranie AI przeciwników: przeciwnik słyszy i goni gracza, potem kamera wznosi się nad cały loch i oznacza, jak często aktualizowany jest każdy przeciwnik. Przewijanie je odtwarza; kroki obok opisują każdy etap.',
 
       // ---------- grave.html: takeaway ----------
       'grave.takeaway':
-        'Łączy je jedna zasada: luźne powiązanie przez dane. Generator nic nie wie o pathfindingu, widoczności ani AI. Tworzy układ, z którego powstają collidery czytane zarówno przez siatkę A*, jak i przez promienie światła, oraz listę przewężeń i wnęk w korytarzach, z której korzysta rozmieszczanie przeciwników: zasadzki trafiają do wnęk, a strażnicy stają obok przewężenia, nigdy na nim. AI z kolei sięga do pathfindingu wyłącznie przez wąskie interfejsy, więc systemy współpracują, nie zależąc nawzajem od swojego kodu.',
+        'Łączy je jedna zasada: luźne powiązanie przez dane. Generator nic nie wie o pathfindingu, widoczności ani AI. Tworzy układ, z którego powstają collidery czytane zarówno przez siatkę A*, jak i przez promienie światła. Tworzy też listę przewężeń i wnęk w korytarzach. Korzysta z niej rozmieszczanie przeciwników, osobny krok, który napisałem i który uruchamia się po zbudowaniu lochu: zasadzki trafiają do wnęk, a strażnicy stają obok przewężeń, nigdy na nich. AI z kolei sięga do pathfindingu wyłącznie przez wąskie interfejsy, więc systemy współpracują, choć żaden nie zależy od kodu pozostałych.',
 
       // ---------- luggage-please.html: intro ----------
       'lp.tagline':
@@ -549,7 +575,7 @@
       'lp.intro':
         'Luggage Please to gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu; grafika jest autorstwa studia.',
       'lp.hero.alt':
-        'Zbudowany przeze mnie skaner rentgenowski: przedmioty w walizce narysowane w kolorach według kategorii materiału.',
+        'Zbudowany przeze mnie skaner rentgenowski: przedmioty w walizce pokolorowane według kategorii materiału.',
       'lp.hero.credit': 'Zbudowany przeze mnie skaner rentgenowski koloruje przedmioty według materiału na żywo.',
       'lp.meta.ogImageAlt':
         'Grafika tytułowa Luggage Please na czarnym tle: rysunkowa otwarta walizka ze złożonymi ubraniami i gumową kaczką, a wokół niej złota rybka, pistolet, nóż i otwarta książka; pod spodem tytuł gry.',
@@ -557,6 +583,8 @@
       // ---------- luggage-please.html: at a glance ----------
       'lp.glance.team.t': 'Zespół',
       'lp.glance.team.d': 'zespół studia Rubens Games (staż); grafika od artystów studia',
+      'lp.glance.time.t': 'Okres',
+      'lp.glance.time.d': '07.2024 – 09.2024 (staż)',
       'lp.glance.engine.t': 'Silnik',
       'lp.glance.platform.t': 'Platforma',
       'lp.glance.status.d': 'projekt ze stażu (lipiec–wrzesień 2024), niewydany',
@@ -573,11 +601,14 @@
       'lp.toc3.skills': 'uGUI · UI oddzielone od logiki gry · korutyny',
 
       // ---------- luggage-please.html: system 1 ----------
+      'lp.rail.1': 'Fizyka walizki',
+      'lp.rail.2': 'Skaner rentgenowski',
+      'lp.rail.3': 'Koło akcji',
       'lp.sys1.title': 'Fizyka walizki działająca tylko w trakcie kontroli',
       'lp.sys1.problem':
         'Spakowana walizka musi zachowywać się jak jeden solidny obiekt, gdy gracz ją niesie, rzuca albo wysyła przez skaner. Na stanowisku kontroli ta sama walizka ma się otworzyć i zamienić w luźne przedmioty, które gracz może podnieść, obrócić i spakować z powrotem, a wieko nie może się zamknąć przez wystający przedmiot.',
       'lp.sys1.how':
-        'Przedmioty są symulowane tylko wtedy, gdy walizka leży otwarta na stanowisku kontroli. Gdy kontrola się kończy, <code>OverlapBox</code> obejmujący walizkę ustala, które przedmioty są w środku; stają się one kinematycznymi dziećmi walizki, więc zamkniętą walizkę można nieść, rzucić i prześwietlić jak jedno ciało, a to, co zostało na zewnątrz, zostaje na miejscu. Chwycony przedmiot jest przesuwany do kursora siłami, a nie teleportowany, więc nadal odpycha sąsiednie przedmioty. Wieko jest animowane, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, podczas zamykania co klatkę uruchamia wokół siebie <code>OverlapBox</code> i otwiera się z powrotem, jeśli na drodze jest przedmiot.',
+        'Przedmioty są symulowane tylko wtedy, gdy walizka leży otwarta na stanowisku kontroli. Gdy kontrola się kończy, <code>OverlapBox</code> obejmujący walizkę ustala, które przedmioty są w środku; stają się one kinematycznymi dziećmi walizki, więc zamkniętą walizkę można nieść, rzucić i prześwietlić jak jedno ciało, a to, co leży na zewnątrz, zostaje na miejscu. Chwycony przedmiot jest przesuwany do kursora siłami, a nie teleportowany, więc nadal odpycha sąsiednie przedmioty. Wieko jest animowane, a nie symulowane, więc zamiast czekać na zdarzenia kolizji, podczas zamykania co klatkę uruchamia wokół siebie <code>OverlapBox</code> i otwiera się z powrotem, jeśli na drodze jest przedmiot.',
       'lp.sys1.what':
         'Decydowanie, kiedy nie symulować: fizyka działa tylko wtedy, gdy przedmiotów można dotknąć, z dwoma wyraźnymi punktami przełączenia, a zapytania fizyczne służą za logikę gry tam, gdzie zdarzenia kolizji nie pomogą.',
       'lp.sys1.caption':
@@ -592,7 +623,7 @@
       'lp.sys2.how':
         'Kolor jest przypisany do części modelu, a nie do całego przedmiotu: każda część leży na jednej z czterech warstw rentgena, więc model, który artyści zbudowali z kilku materiałów, po prostu ma części na różnych warstwach. Każda warstwa ma własny renderer feature URP typu RenderObjects (dodatkowy przebieg renderowania ustawiany w assecie renderera), który rysuje obiekty z tej warstwy materiałem nadpisującym. Wszystkie cztery materiały nadpisujące korzystają z jednego shadera fresnela, który zrobiłem w Shader Graph; każdy ma własny kolor. Efekt fresnela rozjaśnia powierzchnie ustawione bokiem do kamery, więc przedmioty wyglądają jak świecące kontury.',
       'lp.sys2.what':
-        'Na tyle dobrą znajomość mechanizmów rozszerzania URP, żeby rozwiązać problem renderowania bez własnego kodu renderującego, i budowanie rozwiązania tak, żeby skalowało się z zawartością: skaner obsługuje 27 prefabów przedmiotów, rekwizyt z kilku materiałów, np. dron, ma kilka kolorów, bo każda jego część leży na własnej warstwie, a nowy przedmiot potrzebuje tylko właściwych warstw w prefabie, bez zmian w kodzie.',
+        'Na tyle dobrą znajomość mechanizmów rozszerzania URP, żeby rozwiązać problem renderowania bez własnego kodu renderującego, oraz rozwiązanie, które skaluje się razem z zawartością gry: skaner obsługuje 27 prefabów przedmiotów, a nowy przedmiot, nawet z kilku materiałów, potrzebuje tylko właściwych warstw w prefabie.',
       'lp.sys2.caption':
         'Ekran konsoli skanera: przedmioty organiczne, np. owoce, świecą na żółto, metalowe na pomarańczowo, a cała reszta, łącznie ze skorupą walizki, na turkusowo.',
       // Horizontal pipeline: one key per line of text, in reading order (b2c "Culling mask:",
@@ -619,11 +650,11 @@
       // ---------- luggage-please.html: system 3 ----------
       'lp.sys3.title': 'Koło interakcji, którego opcje zależą od stanowiska pasażera',
       'lp.sys3.problem':
-        'Pasażer potrzebuje innych akcji zależnie od tego, na jakim etapie odprawy się znajduje: to, co ma sens w kolejce, jest nie na miejscu przy bramce z wykrywaczem metalu. Wybór ma być szybki i nie może wyrywać gracza z widoku gry do pełnoekranowego menu.',
+        'Dostępne akcje zależą od tego, na którym etapie kontroli jest pasażer: to, co ma sens w kolejce, jest nie na miejscu przy bramce z wykrywaczem metalu. Wybór akcji ma być szybki i nie może wyrywać gracza z widoku gry do pełnoekranowego menu.',
       'lp.sys3.how':
         'Kod NPC buduje listę identyfikatorów opcji na podstawie bieżącego stanu pasażera (przy którym stanowisku jest, czy jego bagaż leży na wadze) i przekazuje ją kołu. Koło, zbudowane w czystym uGUI, włącza tylko te gotowe segmenty, które są na liście, i rozkłada je równo na okręgu, bez względu na ich liczbę. Wywołująca korutyna czeka, aż gracz wybierze opcję albo zamknie koło, i wtedy uruchamia odpowiednią akcję.',
       'lp.sys3.what':
-        'Komponent UI oddzielony od logiki gry. Koło dostaje listę identyfikatorów, rozmieszcza tyle segmentów, ile otrzyma, i zwraca wybór, a wszystkie reguły lotniska zostają w kodzie NPC. Koło samo zarządza też trybem sterowania w OnEnable/OnDisable: otwarcie zamraża rozglądanie się i ruch oraz odblokowuje kursor, a zamknięcie przywraca jedno i drugie, więc żaden wywołujący nie musi o tym pamiętać.',
+        'Komponent UI oddzielony od logiki gry: koło nic nie wie o regułach lotniska, które w całości zostają w kodzie NPC. Samo zarządza też trybem sterowania w OnEnable/OnDisable: otwarcie zamraża rozglądanie się i ruch oraz odblokowuje kursor, a zamknięcie przywraca poprzedni stan, więc kod, który je otwiera, nie musi o tym pamiętać.',
       'lp.sys3.caption':
         'Trzy opcje, więc każda zajmuje jedną trzecią okręgu; po najechaniu kursorem na opcję jej nazwa pojawia się w środku.',
       'lp.sys3.code.aria':
