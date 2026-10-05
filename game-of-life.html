@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="case.meta.gol.title">Game of Life — Case Study — Dominik Barański</title>
-  <meta name="description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." data-i18n-attr="content" data-i18n-attr-key="case.meta.gol.description" />
+  <meta name="description" content="A Game of Life simulator for Android that runs patterns of hundreds of thousands of live cells on a phone: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." data-i18n-attr="content" data-i18n-attr-key="case.meta.gol.description" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://dbarans.github.io/Portfolio/game-of-life.html" />
   <meta name="theme-color" content="#0b0c0e" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Dominik Barański" />
   <meta property="og:title" content="Game of Life — Case Study — Dominik Barański" />
-  <meta property="og:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
+  <meta property="og:description" content="A Game of Life simulator for Android that runs patterns of hundreds of thousands of live cells on a phone: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
   <meta property="og:url" content="https://dbarans.github.io/Portfolio/game-of-life.html" />
   <meta property="og:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
   <meta property="og:image:width" content="540" />
@@ -21,7 +21,7 @@
   <meta property="og:locale:alternate" content="pl_PL" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Game of Life — Case Study — Dominik Barański" />
-  <meta name="twitter:description" content="A Game of Life simulator for Android built to handle patterns of hundreds of thousands of live cells: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
+  <meta name="twitter:description" content="A Game of Life simulator for Android that runs patterns of hundreds of thousands of live cells on a phone: a bit-parallel Burst/Job System engine, verified outside Unity. 15,000+ downloads on Google Play." />
   <meta name="twitter:image" content="https://dbarans.github.io/Portfolio/images/game-of-life/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,7 +74,7 @@
         <div>
           <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
           <h1>Game of Life</h1>
-          <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator built to handle patterns of hundreds of thousands of live cells on a phone.</p>
+          <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator whose optimised engine lets a phone run patterns of hundreds of thousands of live cells.</p>
           <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve. The rules fit in three lines (below); the engineering is in making them scale on a phone.</p>
         </div>
 
@@ -102,13 +102,13 @@
           <span class="cs-keynum-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
         </div>
         <div class="cs-keynum">
-          <b data-i18n="gol.kn2.value">64 → 141 gen/s</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn2.label">2.2× the generations per second at high speed</span>
-          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">275k-cell random pattern on a Pixel 6 Pro, after taking per-generation replay off the main thread (system 2).</span>
+          <b data-i18n="gol.kn2.value">64 → 141</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Generations (simulation steps) per second on a 275k-cell pattern: 2.2× more</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern, high simulation speed, Pixel 6 Pro. The simulation thread now copies whole changed chunks instead of the main thread replaying every generation (system 2).</span>
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn3.label">~20× faster on-screen cell lookup, flat as the pattern grows</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn3.label">~20× faster lookup of the cells on screen, however large the pattern</span>
           <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity, a 200×200-cell view with 316k live cells off-screen: chunked query vs the old full scan (system 3).</span>
         </div>
       </div>
@@ -127,6 +127,16 @@
       </dl>
     </section>
 
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="gol.sys1.title">An engine that only computes what changes</span><span class="cs-toc-skills" data-i18n="gol.toc1.skills">Burst · Job System · bit-parallel kernel</span></a></li>
+        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that scales with the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
+        <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
+      </ol>
+    </nav>
+
     <section class="cs-primer" aria-labelledby="primer-h">
       <h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2>
       <div class="cs-primer-body">
@@ -139,16 +149,6 @@
         <p data-i18n="gol.primer.end">These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video.</p>
       </div>
     </section>
-
-    <nav class="cs-toc" aria-labelledby="toc-h">
-      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
-      <ol class="cs-toc-list">
-        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="gol.sys1.title">An engine that only computes what changes</span><span class="cs-toc-skills" data-i18n="gol.toc1.skills">Burst · Job System · bit-parallel kernel</span></a></li>
-        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
-        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that scales with the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
-        <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
-      </ol>
-    </nav>
 
     <section class="cs-systems">
 
@@ -173,7 +173,7 @@
           <div class="cs-scrolly-text">
             <div class="cs-part cs-part--problem">
               <span class="cs-part-label" data-i18n="case.problem">Problem</span>
-              <p data-i18n="gol.sys1.problem">A straightforward simulation visits every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns slow to a crawl even when most of the board isn't changing.</p>
+              <p data-i18n="gol.sys1.problem">A straightforward simulation processes every live cell in every generation, so its cost grows with the whole pattern. On a phone, large patterns slow to a crawl even when most of the board isn't changing.</p>
             </div>
             <div class="cs-part cs-part--how">
               <span class="cs-part-label" data-i18n="case.how">How it works</span>
@@ -200,7 +200,7 @@
               <li class="cs-step" data-phases="active">
                 <div class="cs-step-text">
                   <h3 data-i18n="gol.f1.s3.t">Only what changed is recomputed</h3>
-                  <p data-i18n="gol.f1.s3.b">Yellow outlines: the chunks recomputed in this generation, the ones that changed in the previous one plus their neighbours, empty or not. Yellow fill: the chunks that actually changed. About 35 chunks are recomputed per step; over a hundred of the 143 occupied ones sleep and cost nothing.</p>
+                  <p data-i18n="gol.f1.s3.b">Yellow outlines: the chunks recomputed in this generation, the ones that changed in the previous one plus their neighbours, empty or not. Yellow fill: the chunks that actually changed. About 35 chunks are recomputed per step; over a hundred of the 143 occupied ones are unchanged, so the engine skips them at no cost.</p>
                 </div>
               </li>
             </ol>
@@ -364,8 +364,8 @@ for (int r = 1; r &lt;= ChunkSize; r++)
             <ol class="cs-steps">
               <li class="cs-step" data-phases="all-busy">
                 <div class="cs-step-text">
-                  <h3 data-i18n="gol.f3.s1.t">A pattern that never sleeps</h3>
-                  <p data-i18n="gol.f3.s1.b">Recorded in the editor, like the footage above. Paul Rendell's original Turing machine, about 36,000 cells (not the 252,000-cell universal one in the video at the top): nearly every chunk changes in every generation, about 315 of 327. Skipping idle chunks can't help here, so the other half of the design matters: keeping the work off the main thread.</p>
+                  <h3 data-i18n="gol.f3.s1.t">A pattern where almost every chunk changes</h3>
+                  <p data-i18n="gol.f3.s1.b">Recorded in the editor, like the footage above. Paul Rendell's original Turing machine, about 36,000 cells (not the 252,000-cell universal one in the video at the top): nearly every chunk changes in every generation, about 315 of 327. Skipping unchanged chunks can't help here, so the other half of the design matters: keeping the work off the main thread.</p>
                 </div>
               </li>
               <li class="cs-step" data-phases="diagram-out buffered-zoom-in buffered-slow">
