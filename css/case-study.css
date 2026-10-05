@@ -199,17 +199,26 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-keynums { padding: 30px 0; border-bottom: 1px solid var(--cs-line); }
 /* Game of Life: the rules for readers who have never met the game, each with a 3×3 picture of
    the middle cell's neighbours before and its fate after (the neighbours dimmed there).
-   Folded by default, so it is there for whoever wants it without pushing the key numbers down. */
-.cs-primer { padding: 18px 0; border-bottom: 1px solid var(--cs-line); }
-.cs-primer-details > summary { display: flex; align-items: center; gap: 10px; cursor: pointer; list-style: none; }
-.cs-primer-details > summary::-webkit-details-marker { display: none; }
-.cs-primer-details > summary::after { content: '+'; font-family: var(--cs-mono); font-size: 0.95rem; line-height: 1; color: var(--cs-accent); }
-.cs-primer-details[open] > summary::after { content: '\2212'; }
-.cs-primer-details > summary .cs-eyebrow { margin: 0; transition: color 0.15s; }
-.cs-primer-details > summary:hover .cs-eyebrow,
-.cs-primer-details > summary:focus-visible .cs-eyebrow { color: var(--cs-text); }
-.cs-primer-details > summary:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 4px; }
-.cs-primer-details[open] > .cs-primer-body { margin-top: 16px; }
+   Folded under the hero intro by default, behind a framed toggle, so it is there for whoever
+   wants it without pushing the key numbers down. */
+.cs-primer { margin-top: 26px; }
+.cs-primer > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  border: 1px solid var(--cs-line-2);
+  cursor: pointer;
+  list-style: none;
+  transition: border-color 0.15s;
+}
+.cs-primer > summary::-webkit-details-marker { display: none; }
+.cs-primer > summary::after { content: '+'; font-family: var(--cs-mono); font-size: 1.15rem; line-height: 1; color: var(--cs-accent); }
+.cs-primer[open] > summary::after { content: '\2212'; }
+.cs-primer > summary .cs-eyebrow { margin: 0; font-size: 12px; color: var(--cs-text); }
+.cs-primer > summary:hover { border-color: var(--cs-accent); }
+.cs-primer > summary:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 3px; }
+.cs-primer[open] > .cs-primer-body { margin-top: 18px; }
 .cs-primer-body { max-width: 44em; }
 .cs-primer-body p { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.7; }
 .cs-primer-body p:last-child { margin-bottom: 0; }
