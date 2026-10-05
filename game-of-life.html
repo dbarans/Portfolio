@@ -75,7 +75,7 @@
           <p class="cs-kicker" data-i18n="case.kicker.gol">Android · Unity 2022.3 · solo · published on Google Play</p>
           <h1>Game of Life</h1>
           <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator whose optimised engine lets a phone run patterns of hundreds of thousands of live cells.</p>
-          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve. The rules fit in three lines (below); the engineering is in making them scale on a phone.</p>
+          <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve. The engineering is in keeping a phone up to speed when hundreds of thousands of cells are alive.</p>
         </div>
 
         <!-- Recorded on a Pixel 6 Pro (Play release 1.11.0). MP4 comes first: the WebM is VP8 and
@@ -103,13 +103,13 @@
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn2.value">64 → 141</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Generations (simulation steps) per second on a 275k-cell pattern: 2.2× more</span>
-          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">Random pattern, high simulation speed, Pixel 6 Pro. The simulation thread now copies whole changed chunks instead of the main thread replaying every generation (system 2).</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Simulation steps per second: 2.2× more</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">275k-cell random pattern on a Pixel 6 Pro, after taking work off the main thread (system 2).</span>
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn3.label">~20× faster lookup of the cells on screen, however large the pattern</span>
-          <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity, a 200×200-cell view with 316k live cells off-screen: chunked query vs the old full scan (system 3).</span>
+          <span class="cs-keynum-label" data-i18n="gol.kn3.label">Finding on-screen cells: ~20× faster</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn3.ctx">Benchmark outside Unity: 200×200 view, 316k cells off-screen (system 3).</span>
         </div>
       </div>
     </section>

@@ -131,7 +131,7 @@
       'gol.tagline':
         'Symulator automatu komórkowego na Androida, którego zoptymalizowany silnik pozwala telefonowi przeliczać wzorce liczące setki tysięcy żywych komórek.',
       'gol.intro':
-        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują. Reguły mieszczą się w trzech linijkach (poniżej). Cała trudność techniczna polega na tym, żeby telefon nadążał z obliczeniami, gdy żywych komórek są setki tysięcy.',
+        'Gra w życie Conwaya na nieograniczonej planszy: gracz rysuje komórki palcem i patrzy, jak ewoluują. Cała trudność techniczna polega na tym, żeby telefon nadążał z obliczeniami, gdy żywych komórek są setki tysięcy.',
       'gol.hero.caption':
         'Universal Turing Machine: 252 tys. żywych komórek, ~240 generacji na sekundę na Pixelu 6 Pro. Przy takim oddaleniu cały widok to jedna tekstura gęstości.',
 
@@ -140,13 +140,13 @@
       'gol.kn1.label': 'Pobrań w Google Play',
       'gol.kn1.ctx': 'Strona gry w Google Play; projekt solo.',
       'gol.kn2.value': '64 → 141',
-      'gol.kn2.label': 'Generacji (kroków symulacji) na sekundę przy wzorcu z 275 tys. komórek: 2,2× więcej',
+      'gol.kn2.label': 'Kroków symulacji na sekundę: 2,2× więcej',
       'gol.kn2.ctx':
-        'Losowy wzorzec, wysoka prędkość symulacji, Pixel 6 Pro. Wątek symulacji kopiuje teraz całe zmienione chunki, zamiast żeby główny wątek odtwarzał każdą generację (system 2).',
+        'Losowy wzorzec z 275 tys. komórek na Pixelu 6 Pro, po odciążeniu głównego wątku (system 2).',
       'gol.kn3.value': '~50 µs vs 1035 µs',
-      'gol.kn3.label': '~20× szybsze wyszukiwanie widocznych komórek, niezależne od rozmiaru wzorca',
+      'gol.kn3.label': 'Szukanie widocznych komórek: ~20× szybciej',
       'gol.kn3.ctx':
-        'Benchmark poza Unity, widok 200×200 komórek i 316 tys. żywych komórek poza ekranem: zapytanie po chunkach vs stare pełne skanowanie (system 3).',
+        'Benchmark poza Unity: widok 200×200, 316 tys. komórek poza ekranem (system 3).',
 
       // ---------- game-of-life.html: at a glance ----------
       'gol.glance.role.t': 'Rola',
