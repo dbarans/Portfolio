@@ -36,12 +36,12 @@
       'index.project.grave.meta4': 'praca inżynierska',
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
-      'index.project.grave.cta': 'Zobacz systemy →',
+      'index.project.grave.cta': 'Zobacz, jak działają systemy →',
       'index.project.lp.meta3': 'zespół studia',
       'index.project.lp.meta4': 'staż w Rubens Games',
       'index.project.lp.body':
         'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
-      'index.project.lp.cta': 'Zobacz, jak działają →',
+      'index.project.lp.cta': 'Zobacz, jak działają systemy →',
 
       // ---------- index.html: contact ----------
       'index.section.contact': 'Kontakt',
@@ -72,16 +72,16 @@
       'index.project.gol.sys4': 'Testy, które uruchamiają silnik z wersji sklepowej poza Unity i porównują każdą generację z prostą wersją wzorcową',
       'index.project.grave.alt': 'Grave z góry: pomieszczenie w lochu oświetlone tylko w stożku widzenia gracza.',
       'index.project.grave.media': 'System widoczności',
-      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, do czego dociera światło. Powstał w 4-osobowym zespole, a ja zbudowałem systemy, które generują loch, ukrywają go i prowadzą po nim przeciwników.',
+      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, do czego dociera światło. Gra powstała w 4-osobowym zespole; odpowiadałem w niej m.in. za generowanie lochu, widoczność i AI przeciwników.',
       'index.project.grave.sys1': 'Generator lochów z seeda pokryty 48 testami jednostkowymi',
       'index.project.grave.sys2': 'Światło i linia wzroku: widać tylko to, co widzi gracz (druga kamera, własne shadery)',
       'index.project.grave.sys3': 'A* z limitem kosztu jednego wyszukiwania',
       'index.project.grave.sys4': 'AI przeciwników składane z wymiennych komponentów',
       'index.project.lp.alt': 'Luggage Please: ekran skanera rentgenowskiego z zawartością walizki pokolorowaną według materiału.',
       'index.project.lp.media': 'Skaner rentgenowski',
-      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games. Na stażu zbudowałem trzy jej systemy, do których podpinają się grafika i kod NPC studia.',
-      'index.project.lp.sys1': 'Fizyka walizki działająca tylko w trakcie jej kontroli',
-      'index.project.lp.sys2': 'Skaner rentgenowski kolorujący przedmioty według materiału, zbudowany z renderer features URP: nowy przedmiot nie wymaga kodu',
+      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games. Podczas stażu zbudowałem w niej trzy systemy, do których są podpięte modele artystów i kod NPC studia.',
+      'index.project.lp.sys1': 'Fizyka walizki działająca tylko w trakcie kontroli',
+      'index.project.lp.sys2': 'Skaner rentgenowski kolorujący przedmioty według materiału, zbudowany z renderer features URP: obsługuje 27 prefabów, a nowy przedmiot wymaga tylko ustawienia warstw, bez kodu',
       'index.project.lp.sys3': 'Kołowe menu akcji, którego opcje zmieniają się przy każdym stanowisku, oddzielone od logiki pasażerów',
 
       // ---------- Shared case-study UI (game-of-life.html, grave.html) ----------
@@ -94,6 +94,7 @@
       'case.scrub.hint': 'Przewijaj, żeby odtworzyć nagranie krok po kroku',
       'case.scrub.hint.touch': 'Przesuń w górę, żeby odtworzyć nagranie krok po kroku',
       'case.scrub.skip': 'Pomiń nagranie ↓',
+      'case.toc.note': 'Nagrania przy systemach odtwarzają się podczas przewijania, krok po kroku; <span class="cs-nowrap">„Pomiń nagranie ↓”</span> przenosi dalej.',
       'case.top.email': 'E-mail',
       'case.rail.aria': 'Części tej strony',
       'case.rail.top': 'Przegląd',
@@ -101,7 +102,7 @@
       'case.video.play': 'Odtwórz wideo',
       'case.diagram.hint': 'Przewiń, aby zobaczyć cały diagram →',
       'case.how': 'Jak działa',
-      'case.what': 'Co to pokazuje',
+      'case.what': 'Co tu pokazuję',
       'case.takeaway': 'Wnioski',
       'case.source': 'Kod',
       'case.next': 'Następny projekt',
@@ -571,7 +572,7 @@
 
       // ---------- luggage-please.html: intro ----------
       'lp.tagline':
-        'Systemy, które zbudowałem na stażu w Rubens Games: fizyka walizki, skaner rentgenowski złożony z renderer features URP i kontekstowe koło interakcji.',
+        'Systemy, które zbudowałem podczas stażu w Rubens Games: fizyka walizki, skaner rentgenowski złożony z renderer features URP i kontekstowe koło interakcji.',
       'lp.intro':
         'Luggage Please to gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu; grafika jest autorstwa studia.',
       'lp.hero.alt':

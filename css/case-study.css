@@ -293,6 +293,8 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
   text-decoration: none;
   color: inherit;
 }
+.cs-toc-note { margin: 16px 0 0; max-width: 44em; font-size: 0.86rem; line-height: 1.6; color: var(--cs-muted); }
+.cs-nowrap { white-space: nowrap; }
 .cs-toc-num { font-family: var(--cs-mono); font-size: 0.85rem; color: var(--cs-accent); }
 .cs-toc-title { grid-column: 2; font-size: 0.98rem; font-weight: 700; color: var(--cs-text); }
 .cs-toc-skills { grid-column: 2; font-family: var(--cs-mono); font-size: 0.76rem; letter-spacing: 0.3px; color: var(--cs-muted); }
