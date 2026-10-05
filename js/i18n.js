@@ -65,7 +65,7 @@
       'index.project.systems': 'Systemy, które zbudowałem',
       'index.project.gol.alt': 'Universal Turing Machine: 252 tys. żywych komórek, mocno oddalona na ekranie telefonu i narysowana jako jedna tekstura gęstości.',
       'index.project.gol.media': 'Widok gęstości · 252 tys. komórek',
-      'index.project.gol.summary': 'Symulator gry w życie, który przelicza na telefonie wzorce z setkami tysięcy żywych komórek.',
+      'index.project.gol.summary': 'Symulator gry w życie na telefon, który przelicza wzorce z setkami tysięcy żywych komórek.',
       'index.project.gol.sys1': 'Silnik symulacji, który przelicza tylko to, co się zmieniło (Burst, Job System)',
       'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
       'index.project.gol.sys3': 'Renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca',
