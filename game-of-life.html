@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/case-study.css?v=20261005h" />
+  <link rel="stylesheet" href="css/case-study.css?v=20261005j" />
 </head>
 <body class="page-case page-case--gol">
   <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
@@ -76,18 +76,7 @@
           <h1>Game of Life</h1>
           <p class="cs-tagline" data-i18n="gol.tagline">An Android cellular-automaton simulator whose optimised engine lets a phone run patterns of hundreds of thousands of live cells.</p>
           <p class="cs-intro" data-i18n="gol.intro">Conway's Game of Life on an unbounded board: the player draws cells with a finger and watches them evolve. The engineering is in keeping a phone up to speed when hundreds of thousands of cells are alive.</p>
-          <details class="cs-primer">
-            <summary><h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2></summary>
-            <div class="cs-primer-body">
-              <p data-i18n="gol.primer.lead">A grid of cells, each alive or dead. At every step, called a generation, all cells change at once, each looking only at its eight neighbours:</p>
-              <ul class="gol-rules">
-                <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r1"><b>Birth:</b> a dead cell with exactly 3 live neighbours comes alive.</span></li>
-                <li><span class="gol-mini" aria-hidden="true"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r2"><b>Survival:</b> a live cell with 2 or 3 live neighbours stays alive.</span></li>
-                <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=""></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r3"><b>Death:</b> every other live cell dies, of loneliness (0–1 neighbours) or overcrowding (4 or more).</span></li>
-              </ul>
-              <p data-i18n="gol.primer.end">These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video.</p>
-            </div>
-          </details>
+          <button type="button" class="cs-primer-toggle" aria-expanded="false" aria-controls="primer"><span data-i18n="gol.primer.title">The Game of Life in 30 seconds</span></button>
         </div>
 
         <!-- Recorded on a Pixel 6 Pro (Play release 1.11.0). MP4 comes first: the WebM is VP8 and
@@ -104,6 +93,19 @@
         </figure>
       </div>
     </header>
+
+    <section class="cs-primer" id="primer" aria-labelledby="primer-h">
+      <h2 class="cs-eyebrow" id="primer-h" data-i18n="gol.primer.title">The Game of Life in 30 seconds</h2>
+      <div class="cs-primer-body">
+        <p data-i18n="gol.primer.lead">A grid of cells, each alive or dead. At every step, called a generation, all cells change at once, each looking only at its eight neighbours:</p>
+        <ul class="gol-rules">
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r1"><b>Birth:</b> a dead cell with exactly 3 live neighbours comes alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class="on"></i><i class=" nb"></i><i class=" nb"></i><i class="on nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r2"><b>Survival:</b> a live cell with 2 or 3 live neighbours stays alive.</span></li>
+          <li><span class="gol-mini" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="gol-mini-arrow" aria-hidden="true">→</span><span class="gol-mini" aria-hidden="true"><i class="on nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=""></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i><i class=" nb"></i></span><span data-i18n="gol.primer.r3"><b>Death:</b> every other live cell dies, of loneliness (0–1 neighbours) or overcrowding (4 or more).</span></li>
+        </ul>
+        <p data-i18n="gol.primer.end">These three rules give rise to shapes that travel across the board, guns that fire them, and patterns so large they compute, like the Turing machine in the video.</p>
+      </div>
+    </section>
 
     <section class="cs-keynums" aria-labelledby="keynums-h">
       <h2 class="cs-eyebrow" id="keynums-h" data-i18n="case.keynums">Key numbers</h2>
@@ -559,7 +561,7 @@ for (int r = 1; r &lt;= ChunkSize; r++)
 
   <script src="js/i18n.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/case-study.js" defer></script>
+  <script src="js/case-study.js?v=20261005k" defer></script>
   <script src="js/frame-stream.js?v=20261005f" defer></script>
   <script src="js/footage.js?v=20261005i" defer></script>
   <script src="js/gol-footage.js" defer></script>

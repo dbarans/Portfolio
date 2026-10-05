@@ -110,6 +110,21 @@
       frame.focus();
     });
   });
+  // --- Folded panels (the Game of Life rules): a toggle in the hero opens a full-width panel
+  // below it. The panel is only hidden here, so without JS it simply stays open.
+  document.querySelectorAll('[aria-controls].cs-primer-toggle').forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+    panel.hidden = true;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.hidden = !open;
+      // On a phone the panel opens below the hero footage, out of sight: bring it up.
+      if (open && panel.getBoundingClientRect().top > window.innerHeight * 0.75) panel.scrollIntoView({ block: 'start' });
+    });
+  });
+
   // --- Section rail (.cs-rail): lights the part of the page on screen, the one whose top has
   // passed a line a third of the way down the window; the parts above it read as passed.
   var railLinks = Array.prototype.slice.call(document.querySelectorAll('.cs-rail a'));
