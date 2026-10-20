@@ -65,7 +65,7 @@
       'index.project.systems': 'Systemy, które zbudowałem',
       'index.project.gol.alt': 'Universal Turing Machine: 252 tys. żywych komórek, mocno oddalona na ekranie telefonu i narysowana jako jedna tekstura gęstości.',
       'index.project.gol.media': 'Widok gęstości · 252 tys. komórek',
-      'index.project.gol.summary': 'Symulator gry w życie na telefon, który przelicza wzorce z setkami tysięcy żywych komórek.',
+      'index.project.gol.summary': 'Symulator gry w życie na telefon, który przelicza wzorce z setkami tysięcy żywych komórek. W kolejnych wersjach ta sama symulacja przyspieszyła na tym samym telefonie ~370×.',
       'index.project.gol.sys1': 'Silnik symulacji, który przelicza tylko to, co się zmieniło (Burst, Job System)',
       'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
       'index.project.gol.sys3': 'Renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca',
@@ -140,10 +140,10 @@
       'gol.kn1.value': '15 000+',
       'gol.kn1.label': 'Pobrań w Google Play',
       'gol.kn1.ctx': 'Strona gry w Google Play; projekt solo.',
-      'gol.kn2.value': '64 → 141',
-      'gol.kn2.label': 'Kroków symulacji na sekundę: 2,2× więcej',
+      'gol.kn2.value': '67 s → 0,18 s',
+      'gol.kn2.label': 'Ta sama symulacja: ~370× szybciej',
       'gol.kn2.ctx':
-        'Losowy wzorzec z 275 tys. komórek na Pixelu 6 Pro, po odciążeniu głównego wątku (system 2).',
+        '1000 generacji tej samej losowej planszy 400×400 na Pixelu 6 Pro: wczesna v1.2 kontra obecna v1.11 (zob. „Wydajność w kolejnych wersjach”).',
       'gol.kn3.value': '~50 µs vs 1035 µs',
       'gol.kn3.label': 'Szukanie widocznych komórek: ~20× szybciej',
       'gol.kn3.ctx':
@@ -235,7 +235,7 @@
       'gol.sys2.how':
         'Poniżej prędkości, przy której animacje i tak się wyłączają, zmiany każdej generacji (narodzone i obumarłe komórki) trafiają do bufora pierścieniowego, czyli kolejki o stałym rozmiarze, która ponownie używa swoich slotów. Dzięki temu wątek obliczeniowy może liczyć z wyprzedzeniem. Powyżej tej prędkości nie ma czego animować, więc wątek obliczeniowy sam kopiuje całe zmienione chunki do wyświetlanego stanu, a główny wątek tylko renderuje.',
       'gol.sys2.what':
-        'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku: model producent–konsument z jawną dyscypliną locków. Dwa locki, jeden chroniący stan planszy, a drugi liczniki, z których powstaje widok gęstości przy dużym oddaleniu (system 3), są zawsze brane w tej samej kolejności, co wyklucza zakleszczenie. Do tego wytropienie nieintuicyjnej regresji: przejście na kopiowanie całych chunków podniosło tempo losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro.',
+        'Bezpieczną wielowątkowość wokół API Unity, które działa tylko na głównym wątku: model producent–konsument z jawną dyscypliną locków. Dwa locki, jeden chroniący stan planszy, a drugi liczniki, z których powstaje widok gęstości przy dużym oddaleniu (system 3), są zawsze brane w tej samej kolejności, co wyklucza zakleszczenie. Do tego wytropienie nieintuicyjnej regresji: w osobnym teście w trakcie prac nad v1.11 samo przejście na kopiowanie całych chunków podniosło tempo gęstego losowego wzorca z 275 tys. komórek z 64 do 141 generacji na sekundę na Pixelu 6 Pro (to cięższa plansza niż plansze testowe w „Wydajności w kolejnych wersjach”, które z czasem pustoszeją).',
       'gol.f3.s1.t': 'Wzorzec, w którym zmienia się prawie każdy chunk',
       'gol.f3.s1.b':
         'Nagranie z edytora, jak powyżej. Oryginalna maszyna Turinga Paula Rendella, około 36 tys. komórek (nie uniwersalna z 252 tys. z filmu na górze strony): prawie każdy chunk zmienia się w każdej generacji, około 315 z 327. Pomijanie niezmienionych chunków tu nie pomoże, więc liczy się druga część rozwiązania: praca poza głównym wątkiem.',
@@ -309,6 +309,54 @@
         'Obie gałęzie kompilują te same pliki, więc testy nigdy nie są nieaktualną kopią silnika.',
 
       // ---------- game-of-life.html: takeaway ----------
+      // ---------- game-of-life.html: performance across releases ----------
+      'gol.perf.title': 'Wydajność w kolejnych wersjach',
+      'gol.perf.lead':
+        'Każda wersja od wczesnej v1.2 do obecnej w sklepie v1.11 została zmierzona na tym samym telefonie, a cztery kluczowe zmierzono potem ponownie na identycznych planszach (poniżej). Przyspieszenie przyszło w trzech skokach: v1.6 przeniosła symulację do osobnego wątku i zniosła limit jednej generacji na klatkę ekranu (60 na sekundę), v1.10 wprowadziła silnik na maskach bitowych (system 1), a v1.11 zaczęła kopiować do wyświetlanego stanu całe zmienione chunki (system 2). Wersje pomiędzy dodawały funkcje, takie jak menu i samouczek, a nie szybkość. Przy małych wzorcach większość wczesnego zysku to po prostu zniesienie limitu klatki.',
+      'gol.perf.chart.title': 'Wykres: czas 1000 generacji (losowa plansza 400×400, Pixel 6 Pro)',
+      'gol.perf.chart.aria':
+        'Wykres słupkowy czasu w sekundach potrzebnego na 1000 generacji tej samej losowej planszy 400×400 na Pixelu 6 Pro, skala liniowa, mniej znaczy lepiej: v1.2 około 67 sekund; v1.6 około 24 sekund, po przeniesieniu symulacji do osobnego wątku obliczeniowego; v1.10 około 0,34 sekundy, z chunkami na maskach bitowych i jobami Burst; v1.11 około 0,18 sekundy, z kopiowaniem całych chunków.',
+      'gol.perf.chart.cap':
+        'Czas policzenia 1000 generacji tej samej losowej planszy 400×400 na Pixelu 6 Pro, w kolejnych wersjach (skala liniowa, mniej znaczy lepiej). Dwa ostatnie słupki to mniej niż pół sekundy.',
+      'gol.perf.bar1.l': 'Punkt wyjścia: najwyżej jedna generacja na klatkę ekranu',
+      'gol.perf.bar1.v': '≈ 67 s',
+      'gol.perf.bar2.l': 'Własny wątek obliczeniowy, bez limitu klatki',
+      'gol.perf.bar2.v': '≈ 24 s',
+      'gol.perf.bar3.l': 'Chunki z maskami bitowymi + joby Burst (system 1)',
+      'gol.perf.bar3.v': '≈ 0,34 s',
+      'gol.perf.bar4.l': 'Kopiowanie całych chunków (system 2)',
+      'gol.perf.bar4.v': '≈ 0,18 s',
+      'gol.perf.tbl.title': 'Generacje na sekundę, pełny zakres',
+      'gol.perf.tbl.aria': 'Generacje na sekundę dla czterech wzorców w wersjach v1.2, v1.6, v1.10 i v1.11',
+      'gol.perf.tbl.h0': 'Wzorzec',
+      'gol.perf.tbl.r1': 'Losowa plansza 400×400 (1000 gen.)',
+      'gol.perf.tbl.r1c1': '14,9',
+      'gol.perf.tbl.r1c2': '41,8',
+      'gol.perf.tbl.r1c3': '~2900',
+      'gol.perf.tbl.r1c4': '5800',
+      'gol.perf.tbl.r2': 'Działo szybowców Gospera: małe, stale strzela (10 tys. gen.)',
+      'gol.perf.tbl.r2c1': '59,7',
+      'gol.perf.tbl.r2c2': '590',
+      'gol.perf.tbl.r2c3': '~5900',
+      'gol.perf.tbl.r2c4': '8653',
+      'gol.perf.tbl.r3': '64 szybowce: małe, w ruchu (10 tys. gen.)',
+      'gol.perf.tbl.r3c1': '59,8',
+      'gol.perf.tbl.r3c2': '1071',
+      'gol.perf.tbl.r3c3': '~10 050',
+      'gol.perf.tbl.r3c4': '12 927',
+      'gol.perf.tbl.r4': 'Nieskończony wzrost 5×5: mały, stale rośnie (10 tys. gen.)',
+      'gol.perf.tbl.r4c1': '59,8',
+      'gol.perf.tbl.r4c2': '741',
+      'gol.perf.tbl.r4c3': '~14 000',
+      'gol.perf.tbl.r4c4': '17 925',
+      'gol.perf.note1':
+        'v1.2 liczy najwyżej jedną generację na klatkę ekranu, a ekran odświeża się 60 razy na sekundę, więc nie przekracza 60 gen./s; dlatego trzy małe wzorce mają tam ~60. Wartości dla v1.10 są przybliżone. Wynik 67 s → 0,18 s pochodzi z osobnego, powtórzonego pomiaru; tabela to średnia ze wszystkich przebiegów, stąd dla planszy w v1.11 wychodzi 0,17 s.',
+      'gol.perf.note2': 'Nawet największy test, plansza 1000×1000 startująca z 500 tys. żywych komórek, liczy się w v1.11 z prędkością ~1460 generacji na sekundę.',
+      'gol.perf.method':
+        'Metoda: każda wersja zbudowana od nowa z jej taga git jako IL2CPP ARM64, identyczne plansze, 3–10 przebiegów, telefon schłodzony przed każdym przebiegiem (nagrzany zwalnia), HashLife (opisany niżej) wyłączony.',
+      'gol.toc5.skills': 'Benchmarki na telefonie · buildy IL2CPP z tagów git',
+      'gol.rail.perf': 'Wersje',
+
       'gol.takeaway':
         'Mierzyć trzeba na urządzeniu docelowym, a nie w edytorze: w tym projekcie edytor wskazał niewłaściwe wąskie gardło.',
       'gol.also.label': 'Również w kodzie (poza wersją sklepową)',

@@ -46,6 +46,7 @@
         <li><a href="#sys-2"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">02</span><span class="cs-rail-label" data-i18n="gol.rail.2">Threading</span></a></li>
         <li><a href="#sys-3"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">03</span><span class="cs-rail-label" data-i18n="gol.rail.3">Rendering</span></a></li>
         <li><a href="#sys-4"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">04</span><span class="cs-rail-label" data-i18n="gol.rail.4">Testing</span></a></li>
+        <li><a href="#perf"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="gol.rail.perf">Releases</span></a></li>
         <li><a href="#takeaway"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="case.takeaway">Takeaway</span></a></li>
     </ol>
   </nav>
@@ -116,9 +117,9 @@
           <span class="cs-keynum-ctx" data-i18n="gol.kn1.ctx">Google Play store listing; solo project.</span>
         </div>
         <div class="cs-keynum">
-          <b data-i18n="gol.kn2.value">64 → 141</b>
-          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Simulation steps per second: 2.2× more</span>
-          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">275k-cell random pattern on a Pixel 6 Pro, after taking work off the main thread (system 2).</span>
+          <b data-i18n="gol.kn2.value">67 s → 0.18 s</b>
+          <span class="cs-keynum-label" data-i18n="gol.kn2.label">Same simulation: ~370× faster</span>
+          <span class="cs-keynum-ctx" data-i18n="gol.kn2.ctx">1,000 generations of the same random 400×400 board on a Pixel 6 Pro: early v1.2 vs current v1.11 (see “Performance across releases”).</span>
         </div>
         <div class="cs-keynum">
           <b data-i18n="gol.kn3.value">~50 µs vs 1,035 µs</b>
@@ -148,6 +149,7 @@
         <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="gol.sys2.title">Simulation on a background thread, with two ways to deliver results</span><span class="cs-toc-skills" data-i18n="gol.toc2.skills">Multithreading · producer–consumer · lock ordering</span></a></li>
         <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="gol.sys3.title">Rendering cost that scales with the screen, not the pattern</span><span class="cs-toc-skills" data-i18n="gol.toc3.skills">Rendering · LOD · custom shader</span></a></li>
         <li><a href="#sys-4"><span class="cs-toc-num">04</span><span class="cs-toc-title" data-i18n="gol.sys4.title">Engine code verified outside Unity</span><span class="cs-toc-skills" data-i18n="gol.toc4.skills">Differential testing · headless Burst checks</span></a></li>
+        <li><a href="#perf"><span class="cs-toc-num" aria-hidden="true">+</span><span class="cs-toc-title" data-i18n="gol.perf.title">Performance across releases</span><span class="cs-toc-skills" data-i18n="gol.toc5.skills">On-device benchmarks · IL2CPP builds from git tags</span></a></li>
       </ol>
       <p class="cs-toc-note" data-i18n="case.toc.note">Footage in each system plays as you scroll, one step at a time; <span class="cs-nowrap">“Skip footage ↓”</span> jumps past it.</p>
     </nav>
@@ -360,7 +362,7 @@ for (int r = 1; r &lt;= ChunkSize; r++)
             </div>
             <div class="cs-part cs-part--what">
               <span class="cs-part-label" data-i18n="case.what">What it shows</span>
-              <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API: a producer–consumer design with explicit lock discipline. Two locks, one guarding the board state and one guarding the counters behind the zoomed-out density view (system 3), are always taken in the same order, which rules out deadlock. It also shows tracking down a counter-intuitive regression: switching to whole-chunk copies took a 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro.</p>
+              <p data-i18n="gol.sys2.what">Safe multithreading around Unity's main-thread-only API: a producer–consumer design with explicit lock discipline. Two locks, one guarding the board state and one guarding the counters behind the zoomed-out density view (system 3), are always taken in the same order, which rules out deadlock. It also shows tracking down a counter-intuitive regression: in a separate test during the v1.11 work, switching to whole-chunk copies alone took a dense 275k-cell random pattern from 64 to 141 generations per second on a Pixel 6 Pro (a heavier board than the test boards in “Performance across releases”, which empty out as they run).</p>
             </div>
             <h3 class="cs-steps-label" data-i18n="gol.footage.label">In the footage</h3>
             <ol class="cs-steps">
@@ -535,6 +537,101 @@ for (int r = 1; r &lt;= ChunkSize; r++)
         </figure>
       </article>
 
+    </section>
+
+    <section class="cs-perf" id="perf" aria-labelledby="perf-h">
+      <div class="cs-system-head">
+        <span class="cs-system-num" aria-hidden="true">+</span>
+        <h2 id="perf-h" data-i18n="gol.perf.title">Performance across releases</h2>
+      </div>
+      <p class="cs-perf-lead" data-i18n="gol.perf.lead">Every release from the early v1.2 to the current store version v1.11 was benchmarked on the same phone; the four that mattered were then re-measured on identical boards, shown below. The speed-up came in three jumps: v1.6 moved the simulation to its own thread and lifted the cap of one generation per screen frame (60 per second), v1.10 brought the bitmask engine (system 1), and v1.11 copied whole changed chunks to the display (system 2). The releases in between added features such as the menu and tutorial, not speed. For small patterns, most of the early gain is simply the end of the frame cap.</p>
+
+      <h3 class="cs-perf-h3" id="gol-perf-chart-h" data-i18n="gol.perf.chart.title">Chart: time for 1,000 generations (random 400×400 board, Pixel 6 Pro)</h3>
+      <figure class="cs-diagram cs-chart" role="group" aria-labelledby="gol-perf-chart-cap">
+        <!-- Horizontal bars, LINEAR scale: 3.7313 px per second (67 s = 250 px). The v1.10 and
+             v1.11 bars are 1.27 px and 0.67 px wide on purpose; the value is printed beside every bar. -->
+        <svg viewBox="0 0 360 256" role="img" aria-label="Bar chart of the time, in seconds, to compute 1,000 generations of the same random 400×400 board on a Pixel 6 Pro, linear scale, lower is better: v1.2 about 67 seconds; v1.6 about 24 seconds, after the simulation moved to its own calculation thread; v1.10 about 0.34 seconds, with bitmask chunks and Burst jobs; v1.11 about 0.18 seconds, with whole-chunk copies." data-i18n-attr="aria-label" data-i18n-attr-key="gol.perf.chart.aria">
+          <g aria-hidden="true">
+            <path d="M75.63,20 V38 M150.25,20 V38 M224.88,20 V38 M75.63,78 V96 M150.25,78 V96 M224.88,78 V96 M75.63,136 V154 M150.25,136 V154 M224.88,136 V154 M75.63,194 V212 M150.25,194 V212 M224.88,194 V212" class="cs-i-grid" />
+            <path d="M1,20 V212" class="cs-i-axis" />
+            <path d="M1,226 H251" class="cs-i-axis" />
+            <path d="M1,226 V231 M75.63,226 V231 M150.25,226 V231 M224.88,226 V231" class="cs-i-axis" />
+            <text x="1" y="247" class="cs-i-label" font-size="10">0</text>
+            <text x="75.63" y="247" text-anchor="middle" class="cs-i-label" font-size="10">20</text>
+            <text x="150.25" y="247" text-anchor="middle" class="cs-i-label" font-size="10">40</text>
+            <text x="224.88" y="247" text-anchor="middle" class="cs-i-label" font-size="10">60 s</text>
+          </g>
+
+          <text x="0" y="17" class="cs-i-title" font-size="13">v1.2</text>
+          <text x="52" y="17" class="cs-i-label" font-size="10.5" data-i18n="gol.perf.bar1.l">Baseline: at most one generation per screen frame</text>
+          <rect x="1" y="20" width="250" height="18" class="cs-i-bar" aria-hidden="true" />
+          <text x="259" y="34" class="cs-i-title" font-size="13" data-i18n="gol.perf.bar1.v">≈ 67 s</text>
+
+          <text x="0" y="75" class="cs-i-title" font-size="13">v1.6</text>
+          <text x="52" y="75" class="cs-i-label" font-size="10.5" data-i18n="gol.perf.bar2.l">Own calculation thread, no frame cap</text>
+          <rect x="1" y="78" width="89.55" height="18" class="cs-i-bar" aria-hidden="true" />
+          <text x="98.55" y="92" class="cs-i-title" font-size="13" data-i18n="gol.perf.bar2.v">≈ 24 s</text>
+
+          <text x="0" y="133" class="cs-i-title" font-size="13">v1.10</text>
+          <text x="52" y="133" class="cs-i-label" font-size="10.5" data-i18n="gol.perf.bar3.l">Bitmask chunks + Burst jobs (system 1)</text>
+          <rect x="1" y="136" width="1.27" height="18" class="cs-i-bar" aria-hidden="true" />
+          <text x="10" y="150" class="cs-i-title" font-size="13" data-i18n="gol.perf.bar3.v">≈ 0.34 s</text>
+
+          <text x="0" y="191" class="cs-i-title" font-size="13">v1.11</text>
+          <text x="52" y="191" class="cs-i-label" font-size="10.5" data-i18n="gol.perf.bar4.l">Whole-chunk copies (system 2)</text>
+          <rect x="1" y="194" width="0.67" height="18" class="cs-i-bar" aria-hidden="true" />
+          <text x="10" y="208" class="cs-i-title" font-size="13" data-i18n="gol.perf.bar4.v">≈ 0.18 s</text>
+        </svg>
+        <figcaption class="cs-diagram-cap" id="gol-perf-chart-cap" data-i18n="gol.perf.chart.cap">Time to compute 1,000 generations of the same random 400×400 board on a Pixel 6 Pro, per release (linear scale, lower is better). The last two bars are under half a second.</figcaption>
+      </figure>
+
+      <div class="cs-table-wrap" role="region" aria-labelledby="gol-perf-tbl-cap" tabindex="0">
+        <table class="cs-perf-table" aria-label="Generations per second for four patterns in releases v1.2, v1.6, v1.10 and v1.11" data-i18n-attr="aria-label" data-i18n-attr-key="gol.perf.tbl.aria">
+          <caption id="gol-perf-tbl-cap" data-i18n="gol.perf.tbl.title">Generations per second, full range</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="gol.perf.tbl.h0">Pattern</th>
+              <th scope="col">v1.2</th>
+              <th scope="col">v1.6</th>
+              <th scope="col">v1.10</th>
+              <th scope="col">v1.11</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" data-i18n="gol.perf.tbl.r1">Random 400×400 board (1,000 gen.)</th>
+              <td data-i18n="gol.perf.tbl.r1c1">14.9</td>
+              <td data-i18n="gol.perf.tbl.r1c2">41.8</td>
+              <td data-i18n="gol.perf.tbl.r1c3">~2,900</td>
+              <td data-i18n="gol.perf.tbl.r1c4">5,800</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="gol.perf.tbl.r2">Gosper glider gun: small, keeps firing (10k gen.)</th>
+              <td data-i18n="gol.perf.tbl.r2c1">59.7</td>
+              <td data-i18n="gol.perf.tbl.r2c2">590</td>
+              <td data-i18n="gol.perf.tbl.r2c3">~5,900</td>
+              <td data-i18n="gol.perf.tbl.r2c4">8,653</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="gol.perf.tbl.r3">64 gliders: small, moving (10k gen.)</th>
+              <td data-i18n="gol.perf.tbl.r3c1">59.8</td>
+              <td data-i18n="gol.perf.tbl.r3c2">1,071</td>
+              <td data-i18n="gol.perf.tbl.r3c3">~10,050</td>
+              <td data-i18n="gol.perf.tbl.r3c4">12,927</td>
+            </tr>
+            <tr>
+              <th scope="row" data-i18n="gol.perf.tbl.r4">5×5 infinite growth: small, keeps growing (10k gen.)</th>
+              <td data-i18n="gol.perf.tbl.r4c1">59.8</td>
+              <td data-i18n="gol.perf.tbl.r4c2">741</td>
+              <td data-i18n="gol.perf.tbl.r4c3">~14,000</td>
+              <td data-i18n="gol.perf.tbl.r4c4">17,925</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-perf-note" data-i18n="gol.perf.note1">v1.2 computes at most one generation per screen frame and the screen refreshes 60 times a second, so it can't go above 60 gen/s; that's why the three small patterns read ~60. v1.10 values are approximate. The 67 s → 0.18 s headline comes from a separate, repeated measurement; the table averages all runs, so its v1.11 board works out to 0.17 s.</p>
+      <p class="cs-perf-note" data-i18n="gol.perf.note2">Even the largest test, a 1,000×1,000 board starting with 500k live cells, runs at ~1,460 generations per second in v1.11.</p>
+      <p class="cs-perf-method" data-i18n="gol.perf.method">Method: each release rebuilt from its git tag as IL2CPP ARM64, identical boards, 3–10 runs, phone cooled before each run (a hot phone slows down), HashLife (described below) off.</p>
     </section>
 
     <section class="cs-takeaway" id="takeaway">

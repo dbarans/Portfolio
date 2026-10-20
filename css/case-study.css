@@ -469,6 +469,9 @@ body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
 .cs-i-title { fill: var(--cs-text); font-family: var(--cs-mono); }
 .cs-i-label { fill: var(--cs-muted); font-family: var(--cs-mono); }
 .cs-i-accent-text { fill: var(--cs-accent); font-family: var(--cs-mono); }
+.cs-i-bar { fill: var(--cs-accent); }
+.cs-i-grid { stroke: var(--cs-line-2); stroke-width: 1; fill: none; }
+.cs-i-axis { stroke: var(--cs-muted); stroke-width: 1; fill: none; }
 
 /* ---------- Hero image (Luggage Please: real key art, not a placeholder) ---------- */
 .cs-hero-shot { margin: 0; }
@@ -877,6 +880,82 @@ html.cs-hold { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cs-media-pause { display: none; }
+}
+
+/* ---------- Performance across releases (Game of Life): an unnumbered block after the systems,
+   made of prose, a linear-scale bar chart, a scrollable table and small method notes. Static:
+   nothing here animates, so there is nothing to switch off for prefers-reduced-motion. ---------- */
+.cs-perf {
+  padding: 42px 0;
+  border-bottom: 1px solid var(--cs-line);
+  scroll-margin-top: 76px;
+}
+.cs-perf-lead { margin: 0; max-width: 42em; font-size: 0.97rem; line-height: 1.65; }
+.cs-perf-h3 {
+  margin: 32px 0 12px;
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--cs-body);
+}
+.cs-chart { margin-top: 0; }
+.cs-chart svg { max-width: 560px; }
+.cs-chart .cs-diagram-cap { max-width: 42em; }
+
+.cs-table-wrap {
+  margin-top: 36px;
+  overflow-x: auto;
+  background: var(--cs-bg-1);
+  border: 1px solid var(--cs-line);
+  scrollbar-color: var(--cs-line-2) transparent;
+}
+.cs-table-wrap:focus-visible { outline-offset: -2px; }
+.cs-perf-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.cs-perf-table caption {
+  padding: 12px 12px 10px;
+  text-align: left;
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--cs-body);
+}
+.cs-perf-table th,
+.cs-perf-table td { padding: 9px 12px; border-top: 1px solid var(--cs-line); vertical-align: baseline; }
+.cs-perf-table thead th {
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--cs-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+.cs-perf-table thead th:first-child,
+.cs-perf-table tbody th { text-align: left; }
+.cs-perf-table tbody th { min-width: 9.5em; font-weight: 600; line-height: 1.4; color: var(--cs-text); }
+.cs-perf-table td {
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--cs-mono);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--cs-body);
+}
+.cs-perf-table td:last-child { color: var(--cs-accent); }
+.cs-perf-note { margin: 12px 0 0; max-width: 42em; font-size: 0.85rem; line-height: 1.6; color: var(--cs-muted); }
+.cs-perf-note + .cs-perf-note { margin-top: 6px; }
+.cs-perf-method {
+  margin: 20px 0 0;
+  max-width: 42em;
+  font-family: var(--cs-mono);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--cs-muted);
 }
 
 /* ---------- Takeaway ---------- */
