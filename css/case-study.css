@@ -40,6 +40,7 @@ body.page-case {
 
 body.page-case.page-case--grave { --cs-accent: #ffb85c; }
 body.page-case.page-case--luggage { --cs-accent: #2fd3c4; }
+body.page-case.page-case--room { --cs-accent: #8f9dff; }
 
 * { box-sizing: border-box; }
 .page-case a { color: inherit; }
@@ -1151,4 +1152,112 @@ html.cs-hold { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cs-rail a, .cs-rail-dot, .cs-rail-label { transition: none; }
+}
+
+/* ---------- Room Planner: the interactive demo (room-planner.html) ----------
+   A canvas plan beside a small control panel; the plan's colours come from the tokens below
+   (js/room-planner-demo.js reads them), so the drawing stays in the page's palette. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.rp-try { padding: 34px 0 30px; border-bottom: 1px solid var(--cs-line); }
+.rp-try-lead { margin: 0 0 18px; max-width: 44em; font-size: 0.95rem; line-height: 1.65; }
+.rp-try-note { margin: 14px 0 0; max-width: 44em; font-size: 0.86rem; line-height: 1.6; color: var(--cs-muted); }
+.rp-try kbd {
+  font-family: var(--cs-mono);
+  font-size: 0.85em;
+  padding: 0 5px;
+  border: 1px solid var(--cs-line-2);
+  color: var(--cs-text);
+}
+.rp-demo {
+  --rp-bg: #0b0c0e;
+  --rp-floor: #15161a;
+  --rp-wall: #f4f3ef;
+  --rp-line: #2f3137;
+  --rp-text: #cfcdc6;
+  --rp-muted: #8e8c86;
+  --rp-accent: #8f9dff;
+  --rp-error: #ff5a4a;
+  --rp-warning: #ffb85c;
+  --rp-window: #7fd0ff;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border: 1px solid var(--cs-line-2);
+  background: var(--cs-bg-1);
+}
+.rp-stage { position: relative; border-bottom: 1px solid var(--cs-line); }
+.rp-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 628 / 518;
+  touch-action: none;
+  background: var(--rp-bg);
+}
+.rp-canvas:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: -2px; }
+.rp-status {
+  margin: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--cs-line);
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--cs-muted);
+}
+.rp-demo.is-failed .rp-status { color: var(--rp-error); }
+.rp-noscript { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--cs-muted); }
+.rp-panel { padding: 16px 16px 18px; display: grid; gap: 16px; align-content: start; }
+.rp-label {
+  margin: 0 0 8px;
+  font-family: var(--cs-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+.rp-pieces { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.rp-pieces button,
+.rp-actions button {
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--cs-line-2);
+  background: var(--cs-bg-2);
+  color: var(--cs-text);
+  font: 500 0.86rem var(--cs-font);
+  cursor: pointer;
+}
+.rp-pieces button { display: inline-flex; align-items: center; gap: 7px; }
+.rp-pieces button[aria-pressed="true"] { border-color: var(--cs-accent); box-shadow: inset 0 -2px 0 var(--cs-accent); }
+.rp-piece-dot { width: 7px; height: 7px; background: var(--cs-line-2); flex-shrink: 0; }
+.rp-pieces button[data-status="ERROR"] .rp-piece-dot { background: var(--rp-error); }
+.rp-pieces button[data-status="WARNING"] .rp-piece-dot { background: var(--rp-warning); }
+.rp-piece-state { font-family: var(--cs-mono); font-size: 10.5px; color: var(--cs-muted); }
+.rp-piece-state:empty { display: none; }
+.rp-sel-head { margin: 0 0 6px; color: var(--cs-text); }
+.rp-sel-meta { font-family: var(--cs-mono); font-size: 12px; color: var(--cs-muted); margin-left: 6px; }
+.rp-sel-issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; min-height: 3.2em; }
+.rp-sel-issues li { position: relative; padding-left: 15px; font-size: 0.9rem; line-height: 1.45; }
+.rp-sel-issues li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 7px; height: 7px; background: var(--cs-muted); }
+.rp-sel-issues li[data-severity="ERROR"]::before { background: var(--rp-error); }
+.rp-sel-issues li[data-severity="WARNING"]::before { background: var(--rp-warning); }
+.rp-sel-issues li.rp-ok { color: var(--cs-muted); }
+.rp-sel-issues li.rp-ok::before { background: var(--cs-accent); }
+.rp-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.rp-pieces button:hover,
+.rp-actions button:hover:not(:disabled) { border-color: var(--cs-accent); }
+.rp-actions button:disabled { opacity: 0.45; cursor: default; }
+.rp-toggle { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; }
+.rp-toggle input { width: 16px; height: 16px; accent-color: var(--cs-accent); margin: 0; }
+@media (min-width: 760px) {
+  .rp-demo { grid-template-columns: minmax(0, 1fr) 250px; }
+  .rp-stage { border-bottom: 0; border-right: 1px solid var(--cs-line); }
+}
+@media (pointer: coarse) {
+  .rp-pieces button, .rp-actions button { min-height: 44px; }
 }

@@ -16,29 +16,23 @@
       'index.nav.linkedin': 'LinkedIn',
       'index.meta.title': 'Dominik Barański — programista Unity',
       'index.meta.description':
-        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D, a do tego systemy rozgrywki ze stażu w Rubens Games.',
+        'Dominik Barański buduje systemy gier w Unity i C#: wielowątkowy silnik symulacji w grze na Androida z ponad 20 000 pobrań oraz AI przeciwników, pathfinding, widoczność i proceduralne lochy w zespołowym projekcie 2D, a do tego systemy rozgrywki ze stażu w Rubens Games.',
 
       // ---------- index.html: hero ----------
       'index.hero.lead':
-        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 15 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako Unity developer.',
-      'index.hero.stack': 'Unity · C# · Burst / Job System · shadery URP · Android',
+        'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu. Moja praca obejmuje zarówno wielowątkowy silnik symulacji w grze na Androida z ponad 20 000 pobrań w Google Play, jak i AI przeciwników, pathfinding, system widoczności oraz generator lochów w zespołowym projekcie 2D. Na stażu w Rubens Games budowałem też systemy rozgrywki w zespole studia, razem z artystami studia. Szukam pracy jako Unity developer.',
       'index.hero.cta': 'Zobacz projekty',
 
       // ---------- index.html: projects ----------
       'index.section.projects': 'Projekty',
       // The card meta line is one span per segment (index.html); the segments that read the same in
       // both languages (Android, Unity versions, solo, PC) have no key.
-      'index.project.gol.meta4': '15 000+ pobrań w Google Play',
       'index.project.gol.body':
         'Symulator gry w życie, który na telefonie musi poradzić sobie z setkami tysięcy żywych komórek. Najważniejsza praca kryje się w silniku: obliczenia na bitach w Burst i Job System, wątek symulacji, który nie blokuje renderowania, i renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca.',
       'index.project.gol.cta': 'Zobacz, jak działa silnik →',
-      'index.project.grave.meta3': 'zespół 4 osób',
-      'index.project.grave.meta4': 'praca inżynierska',
       'index.project.grave.body':
         'Survival horror 2D z widokiem z góry, zrobiony w 4-osobowym zespole. Cztery z systemów, które do niego zbudowałem: pathfinding A* o ograniczonym koszcie na klatkę, maska światła renderowana przez drugą kamerę i własne shadery, generator lochów z seeda pokryty 48 testami jednostkowymi i AI przeciwników składane z wymiennych komponentów.',
       'index.project.grave.cta': 'Zobacz, jak działają systemy →',
-      'index.project.lp.meta3': 'zespół studia',
-      'index.project.lp.meta4': 'staż w Rubens Games',
       'index.project.lp.body':
         'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games, w którym byłem na stażu. Trzy systemy, które do niej zbudowałem: fizyka walizki działająca tylko w trakcie jej kontroli, skaner rentgenowski kolorujący przedmioty według materiału za pomocą warstw i renderer features URP, bez kodu renderowania, oraz koło interakcji, którego opcje zależą od stanowiska, na którym jest pasażer.',
       'index.project.lp.cta': 'Zobacz, jak działają systemy →',
@@ -52,9 +46,8 @@
 
       // ---------- index.html: redesigned hero / cards (2026-09) ----------
       'index.hero.kicker': 'Szukam pracy jako Unity developer',
-      'index.hero.intro': 'Buduję systemy gier w Unity i C#, dbając o wydajność i testowalność kodu.',
       'index.hero.email': 'Napisz do mnie',
-      'index.hero.stat1.value': '15\u00a0000+',
+      'index.hero.stat1.value': '20\u00a0000+',
       'index.hero.stat1.label': 'pobrań w Google Play',
       'index.hero.stat1.tag': 'Game of Life · solo',
       'index.hero.stat2.label': 'testów jednostkowych mojego generatora lochów',
@@ -62,27 +55,15 @@
       'index.hero.stat3.label': 'staż w zespole studia',
       'index.hero.stat3.tag': 'Luggage Please · lipiec–wrzesień 2024',
       'index.projects.note': 'Każde studium przypadku omawia problem, działanie systemu i kod, który za nim stoi.',
-      'index.project.systems': 'Systemy, które zbudowałem',
       'index.project.gol.alt': 'Universal Turing Machine: 252 tys. żywych komórek, mocno oddalona na ekranie telefonu i narysowana jako jedna tekstura gęstości.',
       'index.project.gol.media': 'Widok gęstości · 252 tys. komórek',
-      'index.project.gol.summary': 'Symulator gry w życie na telefon, który przelicza wzorce z setkami tysięcy żywych komórek.',
-      'index.project.gol.sys1': 'Silnik symulacji, który przelicza tylko to, co się zmieniło (Burst, Job System)',
-      'index.project.gol.sys2': 'Wątek symulacji, który nie blokuje renderowania',
-      'index.project.gol.sys3': 'Renderowanie, którego koszt zależy od ekranu, a nie od wielkości wzorca',
-      'index.project.gol.sys4': 'Testy, które uruchamiają silnik z wersji sklepowej poza Unity i porównują każdą generację z prostą wersją wzorcową',
+      'index.project.gol.summary': 'Symulator gry w życie Conwaya na telefon, pobrany ponad 20 000 razy z Google Play. Przelicza wzorce z setkami tysięcy żywych komórek.',
       'index.project.grave.alt': 'Grave z góry: pomieszczenie w lochu oświetlone tylko w stożku widzenia gracza.',
       'index.project.grave.media': 'System widoczności',
-      'index.project.grave.summary': 'Survival horror 2D z widokiem z góry, w którym gracz widzi tylko to, do czego dociera światło. Gra powstała w 4-osobowym zespole; odpowiadałem w niej m.in. za generowanie lochu, widoczność i AI przeciwników.',
-      'index.project.grave.sys1': 'Generator lochów z seeda pokryty 48 testami jednostkowymi',
-      'index.project.grave.sys2': 'Światło i linia wzroku: widać tylko to, co widzi gracz (druga kamera, własne shadery)',
-      'index.project.grave.sys3': 'A* z limitem kosztu jednego wyszukiwania',
-      'index.project.grave.sys4': 'AI przeciwników składane z wymiennych komponentów',
+      'index.project.grave.summary': 'Survival horror z widokiem z góry, w którym widzisz tylko to, do czego dociera światło. Zbudowałem generator lochów, linię wzroku i AI przeciwników.',
       'index.project.lp.alt': 'Luggage Please: ekran skanera rentgenowskiego z zawartością walizki pokolorowaną według materiału.',
       'index.project.lp.media': 'Skaner rentgenowski',
-      'index.project.lp.summary': 'Gra z widokiem z pierwszej osoby o kontroli bezpieczeństwa na lotnisku, tworzona przez zespół studia Rubens Games. Podczas stażu zbudowałem w niej trzy systemy, do których są podpięte modele artystów i kod NPC studia.',
-      'index.project.lp.sys1': 'Fizyka walizki działająca tylko w trakcie kontroli',
-      'index.project.lp.sys2': 'Skaner rentgenowski kolorujący przedmioty według materiału, zbudowany z renderer features URP: obsługuje 27 prefabów, a nowy przedmiot wymaga tylko ustawienia warstw, bez kodu',
-      'index.project.lp.sys3': 'Kołowe menu akcji, którego opcje zmieniają się przy każdym stanowisku, oddzielone od logiki pasażerów',
+      'index.project.lp.summary': 'Gra o kontroli bezpieczeństwa na lotnisku, z mojego stażu w Rubens Games. Zbudowałem w niej skaner rentgenowski, fizykę walizek i menu akcji.',
 
       // ---------- Shared case-study UI (game-of-life.html, grave.html) ----------
       'case.skip': 'Przejdź do treści',
@@ -120,7 +101,7 @@
         'Projekt studia, niepubliczny. Kod pokazuję za zgodą Rubens Games, a resztę chętnie omówię na rozmowie.',
       'case.meta.gol.title': 'Game of Life — studium przypadku — Dominik Barański',
       'case.meta.gol.description':
-        'Symulator gry w życie na Androida, który przelicza na telefonie wzorce z setkami tysięcy żywych komórek: bitowo-równoległy silnik na Burst/Job System, zweryfikowany poza Unity. 15 000+ pobrań w Google Play.',
+        'Symulator gry w życie na Androida, który przelicza na telefonie wzorce z setkami tysięcy żywych komórek: bitowo-równoległy silnik na Burst/Job System, zweryfikowany poza Unity. 20 000+ pobrań w Google Play.',
       'case.meta.grave.title': 'Grave — studium przypadku — Dominik Barański',
       'case.meta.grave.description':
         'Systemy zbudowane do gry Grave, survival horroru 2D z widokiem z góry, zrobionego w 4-osobowym zespole w Unity 6: generator lochów oparty na seedzie, pokryty 48 testami jednostkowymi, maska światła renderowana przez drugą kamerę i własne shadery, pathfinding A* oraz AI przeciwników złożone z komponentów.',
@@ -137,7 +118,7 @@
         'Universal Turing Machine: 252 tys. żywych komórek, ~240 generacji na sekundę na Pixelu 6 Pro. Przy takim oddaleniu cały widok to jedna tekstura gęstości.',
 
       // ---------- game-of-life.html: key numbers ----------
-      'gol.kn1.value': '15 000+',
+      'gol.kn1.value': '20 000+',
       'gol.kn1.label': 'Pobrań w Google Play',
       'gol.kn1.ctx': 'Strona gry w Google Play; projekt solo.',
       'gol.kn2.value': '64 → 141',
@@ -158,7 +139,7 @@
       'gol.glance.engine.d': 'Unity 2022.3 LTS, wbudowany render pipeline (built-in)',
       'gol.glance.platform.t': 'Platforma',
       'gol.glance.status.d1': 'opublikowana w',
-      'gol.glance.status.d2': ', 15 000+ pobrań',
+      'gol.glance.status.d2': ', 20 000+ pobrań',
       'gol.glance.tech.t': 'Kluczowe technologie',
       'gol.glance.tech.d': 'C#, Burst, Job System, Native Collections, wielowątkowość, własne shadery, Tilemap',
       'gol.glance.code.t': 'Kod',
@@ -673,6 +654,129 @@
       // ---------- luggage-please.html: takeaway ----------
       'lp.takeaway':
         'Wszystkie trzy systemy są zbudowane tak, żeby mogła się do nich podłączyć praca innych osób: nowy model przedmiotu pojawia się w skanerze w kolorze swojej kategorii, gdy tylko jego części trafią na właściwe warstwy, a koło pokazuje te opcje, których identyfikatory przekaże mu wywołujący. Kompromis, na który zwróciłbym uwagę: sprawdzanie, czy coś blokuje wieko, używa jako maski fizyki tych samych warstw przedmiotów co rentgen, więc przedmiot bez swojej warstwy ani nie pojawiłby się w skanerze, ani nie zablokowałby wieka.',
+
+      // ---------- index.html: project focus (?focus=unity / ?focus=mobile, js/focus.js) ----------
+      'index.hero.kicker.all': 'Szukam pracy jako Unity lub Android developer',
+      'index.hero.kicker.mobile': 'Szukam pracy jako Android / mobile developer',
+      'index.hero.role.all': 'Unity i Android developer',
+      'index.hero.role.unity': 'Unity developer',
+      'index.hero.role.mobile': 'Android developer',
+      'index.hero.stat4.value': '1679',
+      'index.hero.stat4.label': 'testów, od geometrii po UI w Compose',
+      'index.hero.stat4.tag': 'Room Planner · solo',
+      'index.filter.label': 'Pokaż',
+      'index.project.stack': 'Technologie',
+      'index.about.p1': 'Jestem Dominik, inżynier informatyki z Poznania. Od ponad trzech lat tworzę gry, a ostatnio też aplikacje na Androida.',
+      'index.about.p2': 'Pasjonuję się tworzeniem oprogramowania i jestem entuzjastą AI: na co dzień programuję z narzędziami AI i robię to z przyjemnością.',
+      'index.about.f3': 'Polski (ojczysty), angielski (B2)',
+      'index.filter.all': 'Wszystkie',
+      'index.filter.mobile': 'Mobile',
+
+      // ---------- index.html: Room Planner card ----------
+      'index.project.rp.alt':
+        'Room Planner na telefonie: plan salonu przełącza się na 3D, kamera obraca się wokół umeblowanego pokoju, a potem przechodzi przez niego.',
+      'index.project.rp.media': 'Plan, 3D i tryb spaceru',
+      'index.project.rp.summary':
+        'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz jakikolwiek ciężki mebel. Możesz ją wypróbować od razu w przeglądarce.',
+      'index.project.rp.cta': 'Wypróbuj demo i zobacz, jak to działa →',
+
+      // ---------- room-planner.html: meta, hero, at a glance ----------
+      'case.meta.rp.title': 'Room Planner — studium przypadku — Dominik Barański',
+      'case.meta.rp.description':
+        'Aplikacja na Androida w Kotlinie i Jetpack Compose do planowania pokoju co do centymetra: reguły rozmieszczenia podpinane niezależnie od siebie, dokładne kolizje z twierdzeniem o osi separującej i kod domeny, który działa też w przeglądarce.',
+      'case.kicker.rp': 'Android · Kotlin · Jetpack Compose · solo · w trakcie prac',
+      'case.foot.rp': 'Repozytorium prywatne. Kod chętnie omówię na rozmowie.',
+      'rp.rail.try': 'Wypróbuj',
+      'rp.rail.1': 'Reguły rozmieszczenia',
+      'rp.rail.2': 'Dokładne kolizje',
+      'rp.rail.3': 'Przenośna domena',
+      'rp.tagline': 'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz choć jeden ciężki mebel.',
+      'rp.hero.caption':
+        'Przykładowy salon w aplikacji: plan, ten sam pokój w 3D z kamerą obracaną palcem, a potem spacer po nim.',
+      'rp.intro':
+        'Chciałem zobaczyć, jak pokój będzie wyglądał po przemeblowaniu, bez przeciągania szafy przez pół pokoju tylko po to, żeby się przekonać, że zasłania drzwi. W aplikacji rysujesz pokój co do centymetra i przesuwasz meble palcem, a przesuwany mebel jest na bieżąco sprawdzany względem innych mebli, ścian, odstępu przeciwpożarowego od pieca, grzejników i zasięgu otwierania drzwi. Ten sam plan możesz też obejrzeć w 3D: z modelami mebli, kamerą obracaną palcem i trybem spaceru po pokoju. Demo poniżej uruchamia w przeglądarce kod rozmieszczania z samej aplikacji, skompilowany z Kotlina do JavaScriptu.',
+      'rp.glance.team.t': 'Zespół',
+      'rp.glance.team.d': 'solo',
+      'rp.glance.time.t': 'Czas',
+      'rp.glance.time.d': 'od października 2026, w trakcie prac, niewydana',
+      'rp.glance.platform.t': 'Platforma',
+      'rp.glance.platform.d': 'Android: telefony w pionie i w poziomie, tablety; angielski i polski, jasny i ciemny motyw',
+      'rp.glance.tech.t': 'Kluczowe technologie',
+      'rp.glance.tech.d':
+        'Kotlin 2.0, Jetpack Compose z Material 3, Hilt, DataStore, korutyny i Flow, kotlinx.serialization; SceneView (Filament) i modele glTF w widoku 3D; Kotlin/JS w demie na tej stronie',
+      'rp.glance.quality.t': 'Jakość',
+      'rp.glance.quality.d':
+        '1679 testów: domena, scena 3D, dane, ViewModele i UI w Compose na Robolectricu, bez emulatora; detekt z regułami ktlint i Android lint, oba przerywają build; CI przy każdym pushu',
+      'rp.glance.built.t': 'Jak powstała',
+      'rp.glance.built.d':
+        'z Claude Code, który napisał większość kodu: ja projektowałem funkcje, decydowałem, co ma robić każda zmiana, i testowałem wynik na emulatorach',
+      'rp.glance.code.t': 'Kod',
+      'rp.glance.code.d': 'repozytorium prywatne; chętnie omówię je na rozmowie',
+
+      // ---------- room-planner.html: the demo ----------
+      'rp.try.title': 'Wypróbuj: kod aplikacji w twojej przeglądarce',
+      'rp.try.lead':
+        'Przeciągnij mebel, żeby go przesunąć, a okrągły uchwyt, żeby go obrócić. Mebel przyciąga się do ścian, do których jest równoległy, i do przydatnych kątów. Czerwony oznacza problem, a pomarańczowy uwagę; zakreskowane obszary to odstępy, które trzeba zostawić wolne. Gdy plan ma fokus, strzałki przesuwają wybrany mebel o 5 cm, a <kbd>[</kbd> <kbd>]</kbd> obracają go o 15°.',
+      'rp.try.note':
+        'Pokój i meble to przykładowy projekt, z którym startuje aplikacja. Działa tu moduł <code>:domain</code> aplikacji, skompilowany bez zmian, za małą fasadą, która robi to samo, co ViewModel planera przy przeciąganiu. Nowe jest tylko rysowanie.',
+      'rp.demo.canvas':
+        'Plan przykładowego salonu z pięcioma meblami. Meble wybierzesz i zmienisz listą i przyciskami obok planu; tam też są wypisane znalezione problemy.',
+      'rp.demo.noscript': 'Demo wymaga JavaScriptu.',
+      'rp.demo.pieces': 'Meble',
+      'rp.demo.selected': 'Wybrany',
+      'rp.demo.rotate': 'Obróć o 90°',
+      'rp.demo.align': 'Dosuń do ściany',
+      'rp.demo.reset': 'Od nowa',
+      'rp.demo.snap': 'Przyciągaj do ścian i kątów',
+
+      // ---------- room-planner.html: systems ----------
+      'rp.toc1.skills': 'interfejsy · multibinding w Hilt · typy zapieczętowane',
+      'rp.toc2.skills': 'twierdzenie o osi separującej · kształty wypukłe · tolerancje',
+      'rp.toc3.skills': 'moduły Gradle · czysta architektura · Kotlin/JS',
+      'rp.sys1.title': 'Reguły rozmieszczenia, które podpina się bez ruszania pozostałych',
+      'rp.sys1.problem':
+        'Każdy mebel jest sprawdzany na pięć sposobów: względem innych mebli, ścian, odstępu od pieca, zasięgu drzwi i grzejników. Każde sprawdzenie ma własną geometrię i własne wyjątki, na przykład blat biurka, który może stać nad grzejnikiem. Zebrane w jednej funkcji urosłyby w plątaninę warunków przemieszanych z tekstami interfejsu.',
+      'rp.sys1.how':
+        'Każde sprawdzenie to klasa implementująca jednometodowy interfejs <code>PlacementRule</code>, zarejestrowana w Hilt jako multibinding <code>@IntoSet</code>. <code>LayoutAnalyzer</code> uruchamia taki zestaw reguł, jaki dostanie, i sortuje wyniki według wagi. Reguły zwracają typowane problemy, a nie tekst: <code>PlacementIssue</code> to hierarchia zapieczętowana, a interfejs zamienia każdy typ na przetłumaczony komunikat w jednym <code>when</code>, więc nowy typ problemu nie skompiluje się, dopóki nie dostanie komunikatu.',
+      'rp.sys1.what':
+        'Kod otwarty na rozszerzenia: nowa reguła to jedna nowa klasa i jeden provider w Hilt, bez zmian w analizatorze i pozostałych regułach. Każdą regułę testuję osobno, a demo powyżej uruchamia te same pięć.',
+      'rp.sys1.code.aria':
+        'Fragment kodu z domain/rules/RadiatorRule.kt: cała reguła, która zgłasza mebel stojący na grzejniku, biurko nad grzejnikiem albo mebel w odstępie przed nim',
+      'rp.sys2.title': 'Dokładne kolizje pod dowolnym kątem',
+      'rp.sys2.problem':
+        'Meble obracają się o dowolny kąt, a pokoje mają ścięte narożniki i skośne ściany. Sprawdzanie prostokątów otaczających zgłosiłoby kolizję kanapy obróconej o 45°, która ma mnóstwo miejsca. A szafa dosunięta na styk do komody nie może się liczyć jako nachodząca na nią.',
+      'rp.sys2.how':
+        'Pokój może być wklęsły, jak litera L, ale każdy obrys i każda strefa porównywane przez reguły są z założenia wypukłe: obrócony prostokąt, pas grzejnika, zasięg drzwi narysowany jako ćwiartka koła z jedenastu punktów łuku. Dla kształtów wypukłych twierdzenie o osi separującej daje dokładny wynik: rzutuje się oba kształty na normalną każdej krawędzi i jeśli którykolwiek rzut zostawia przerwę, kształty się nie stykają. Nakładanie do 0,5 cm liczy się jako styk. Wystawanie przez ścianę jest liczone osobno, dla każdej ściany, bo sam pokój może nie być wypukły.',
+      'rp.sys2.what':
+        'Dobranie kształtów tak, żeby pasował do nich prosty i dokładny algorytm, zamiast przybliżać. Tolerancja to nazwana stała wspólna dla reguł, więc „na styk jest w porządku” znaczy wszędzie to samo.',
+      'rp.sys2.code.aria':
+        'Fragment kodu z domain/geometry/ConvexPolygon.kt: rzutuje oba wielokąty na normalną każdej krawędzi i zwraca 0, gdy tylko któraś oś je rozdziela',
+      'rp.sys3.title': 'Kod domeny bez Androida, więc działa też na tej stronie',
+      'rp.sys3.problem':
+        'Geometria, reguły i przyciąganie to serce aplikacji i część, którą najbardziej warto testować. Testy wymagające urządzenia z Androidem są wolne, a domena, która po cichu zacznie używać klas Androida, da się testować już tylko w ten sposób.',
+      'rp.sys3.how':
+        'Aplikacja to trzy moduły Gradle: <code>:domain</code> to czysty Kotlin, <code>:data</code> zapisuje projekt przez DataStore, a <code>:app</code> zawiera UI w Compose, ViewModele i Hilt. Import z Androida w domenie to błąd kompilacji, a nie uwaga w code review. Na potrzeby tej strony skompilowałem te same źródła domeny przez Kotlin/JS. Nic w nich nie zmieniłem: build dodaje zamienniki trzech nazw dostępnych tylko na JVM (<code>Math</code>, <code>@JvmInline</code>, <code>@Volatile</code>) i pomija jeden plik, którego demo nie potrzebuje, czyli bibliotekę zapisanych pokoi.',
+      'rp.sys3.what':
+        'Podział na warstwy, który wytrzymuje sprawdzian z zewnątrz: domena przeszła na inną platformę, a dołożyłem do niej tylko cienką fasadę. Testy domeny działają na zwykłej JVM w milisekundach.',
+      'rp.diag3.aria':
+        'Moduł domeny pośrodku, czysty Kotlin: modele, geometria, reguły rozmieszczenia, przyciąganie i scena 3D. Po lewej, skompilowana na JVM, korzysta z niego aplikacja na Androida przez moduł danych (DataStore) i moduł aplikacji (UI w Compose, ViewModele, Hilt). Po prawej, skompilowana przez Kotlin/JS, korzysta z niego ta strona przez małą fasadę i rysowanie na canvasie.',
+      'rp.diag3.d1': ':domain',
+      'rp.diag3.d2': 'czysty Kotlin, bez Androida',
+      'rp.diag3.d3': 'modele · geometria (SAT)',
+      'rp.diag3.d4': 'reguły · przyciąganie · scena 3D',
+      'rp.diag3.d5': '486 testów na JVM',
+      'rp.diag3.a1': ':app',
+      'rp.diag3.a2': 'UI w Compose · ViewModele · Hilt',
+      'rp.diag3.b1': ':data',
+      'rp.diag3.b2': 'DataStore · wersjonowany JSON',
+      'rp.diag3.c1': 'Ta strona',
+      'rp.diag3.c2': 'fasada · rysowanie na canvasie',
+      'rp.diag3.jvm': 'aplikacja na Androida · JVM',
+      'rp.diag3.js': 'przeglądarka · Kotlin/JS',
+      'rp.diag3.cap':
+        'Strzałki wskazują, od czego zależy każda część. Domena nie zależy od niczego, więc te same źródła kompilują się na telefon i na tę stronę.',
+      'rp.takeaway':
+        'Reguły, geometria i przyciąganie nic nie wiedzą o ekranach ani o zapisie, i właśnie dlatego dało się je testować na zwykłej JVM i przenieść do przeglądarki z samą cienką fasadą. Kompromis, na który zwróciłbym uwagę: sprawdzanie kolizji zakłada, że każdy obrys jest wypukły. Pokoje już mogą być wklęsłe, ale narożną kanapę w kształcie litery L trzeba by podzielić na wypukłe części, zanim reguły mogłyby ją sprawdzić.',
     },
   };
 
@@ -740,7 +844,22 @@
     }
   })();
 
-  const initialLang = storedLang === 'pl' || storedLang === 'en' ? storedLang : detectInitialLang();
+  // ?lang=pl or ?lang=en in the link (for example from a CV) wins and is remembered like a toggle.
+  const urlLang = (() => {
+    try {
+      const value = new URLSearchParams(location.search).get('lang');
+      return value === 'pl' || value === 'en' ? value : null;
+    } catch (e) {
+      return null;
+    }
+  })();
+  if (urlLang) {
+    try {
+      localStorage.setItem(STORAGE_KEY, urlLang);
+    } catch {}
+  }
+
+  const initialLang = urlLang || (storedLang === 'pl' || storedLang === 'en' ? storedLang : detectInitialLang());
   applyLang(initialLang);
 
   if (toggleBtn) {

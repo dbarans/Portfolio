@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="case.meta.rp.title">Room Planner — Case Study — Dominik Barański</title>
+  <meta name="description" content="An Android app in Kotlin and Jetpack Compose for planning a room to the centimetre: placement rules that plug in without touching each other, exact collisions with the separating axis theorem, and domain code that also runs in the browser." data-i18n-attr="content" data-i18n-attr-key="case.meta.rp.description" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://dbarans.github.io/Portfolio/room-planner.html" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Dominik Barański" />
+  <meta property="og:title" content="Room Planner — Case Study — Dominik Barański" />
+  <meta property="og:description" content="An Android app in Kotlin and Jetpack Compose for planning a room to the centimetre, with an interactive demo that runs the app's own placement code in the browser." />
+  <meta property="og:url" content="https://dbarans.github.io/Portfolio/room-planner.html" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Room Planner — Case Study — Dominik Barański" />
+  <meta name="twitter:description" content="An Android app in Kotlin and Jetpack Compose for planning a room to the centimetre, with an interactive demo that runs the app's own placement code in the browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/case-study.css?v=20261117a" />
+</head>
+<body class="page-case page-case--room">
+  <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
+  <header class="cs-top">
+    <a class="cs-brand" href="index.html">Dominik Barański</a>
+    <a class="cs-back" href="index.html#projects" data-i18n="case.back">← All projects</a>
+    <a class="cs-mail" href="mailto:baranskidominik109@gmail.com" data-i18n="case.top.email">Email</a>
+    <button id="lang-toggle" type="button" class="cs-lang" aria-label="PL, switch to Polish" data-i18n-attr="aria-label" data-i18n-attr-key="case.lang.aria">PL</button>
+  </header>
+
+  <nav class="cs-rail" aria-label="Sections of this page" data-i18n-attr="aria-label" data-i18n-attr-key="case.rail.aria">
+    <ol class="cs-rail-list">
+        <li><a href="#overview"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="case.rail.top">Overview</span></a></li>
+        <li><a href="#try"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="rp.rail.try">Try it</span></a></li>
+        <li><a href="#sys-1"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">01</span><span class="cs-rail-label" data-i18n="rp.rail.1">Placement rules</span></a></li>
+        <li><a href="#sys-2"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">02</span><span class="cs-rail-label" data-i18n="rp.rail.2">Exact collisions</span></a></li>
+        <li><a href="#sys-3"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-num">03</span><span class="cs-rail-label" data-i18n="rp.rail.3">Portable domain</span></a></li>
+        <li><a href="#takeaway"><span class="cs-rail-dot" aria-hidden="true"></span><span class="cs-rail-label" data-i18n="case.takeaway">Takeaway</span></a></li>
+    </ol>
+  </nav>
+
+  <main class="cs-page" id="main" tabindex="-1">
+
+    <header class="cs-hero" id="overview">
+      <div class="cs-hero-grid">
+        <div>
+          <p class="cs-kicker" data-i18n="case.kicker.rp">Android · Kotlin · Jetpack Compose · solo · in development</p>
+          <h1>Room Planner</h1>
+          <p class="cs-tagline" data-i18n="rp.tagline">An Android app for seeing a rearranged room before moving a single heavy piece of furniture.</p>
+          <p class="cs-intro" data-i18n="rp.intro">I wanted to see how a room would look after rearranging it without dragging a wardrobe across the floor to find out it blocks a door. In the app you draw the room to the centimetre and move furniture with a finger, and while a piece moves it is checked against the other furniture, the walls, a stove’s fire clearance, radiators and the swing of every door. The same plan can also be viewed in 3D, with furniture models, a camera you orbit with a finger and a walk-through mode. The demo below runs the app’s own placement code in your browser, compiled from Kotlin to JavaScript.</p>
+        </div>
+
+        <!-- Recorded on the Android emulator (Pixel 7, release build). js/case-study.js pauses the loop under
+             prefers-reduced-motion. -->
+        <figure class="cs-media">
+          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--filled">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-3d-poster.jpg" data-still="images/room-planner/room-planner-3d-poster.jpg">
+              <source src="images/room-planner/room-planner-3d.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
+          </div>
+          <figcaption class="cs-media-caption" data-i18n="rp.hero.caption">The sample living room in the app: the plan, the same room in 3D with a camera orbited by a finger, then a walk through it.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <section class="cs-glance" aria-labelledby="glance-h">
+      <h2 class="cs-eyebrow" id="glance-h" data-i18n="case.glance">At a glance</h2>
+      <dl class="cs-facts">
+        <div><dt data-i18n="rp.glance.team.t">Team</dt><dd data-i18n="rp.glance.team.d">solo</dd></div>
+        <div><dt data-i18n="rp.glance.time.t">Timeline</dt><dd data-i18n="rp.glance.time.d">since October 2026, in development, not released</dd></div>
+        <div><dt data-i18n="rp.glance.platform.t">Platform</dt><dd data-i18n="rp.glance.platform.d">Android: phones in portrait and landscape, tablets; English and Polish, light and dark theme</dd></div>
+        <div><dt data-i18n="rp.glance.tech.t">Key tech</dt><dd data-i18n="rp.glance.tech.d">Kotlin 2.0, Jetpack Compose with Material 3, Hilt, DataStore, coroutines and Flow, kotlinx.serialization; SceneView (Filament) and glTF models for the 3D view; Kotlin/JS for the demo on this page</dd></div>
+        <div><dt data-i18n="rp.glance.quality.t">Quality</dt><dd data-i18n="rp.glance.quality.d">1,679 tests: domain, 3D scene, data, ViewModels and Compose UI on Robolectric, no emulator needed; detekt with ktlint rules and Android lint, both failing the build; CI on every push</dd></div>
+        <div><dt data-i18n="rp.glance.built.t">How it was built</dt><dd data-i18n="rp.glance.built.d">with Claude Code, which wrote most of the code: I designed the features, decided what each change had to do and tested the result on emulators</dd></div>
+        <div><dt data-i18n="rp.glance.code.t">Code</dt><dd data-i18n="rp.glance.code.d">private repository; happy to walk through it in an interview</dd></div>
+      </dl>
+    </section>
+
+    <section class="rp-try" id="try" aria-labelledby="try-h">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" id="try-h" data-i18n="rp.try.title">Try it: the app’s code in your browser</h2>
+      <p class="rp-try-lead" data-i18n="rp.try.lead">Drag a piece to move it and drag the round handle to turn it. It snaps to walls it is parallel to and to useful angles. Red means a problem and amber a warning; the hatched areas are gaps to keep free. With the plan focused, arrow keys move the selected piece by 5 cm and <kbd>[</kbd> <kbd>]</kbd> turn it by 15°.</p>
+
+      <div class="rp-demo" id="rp-demo">
+        <div class="rp-stage">
+          <canvas class="rp-canvas" tabindex="0" role="img" aria-label="Floor plan of the sample living room with five pieces of furniture. Use the list of pieces and the buttons to select and change them; the problems found are listed beside the plan." data-i18n-attr="aria-label" data-i18n-attr-key="rp.demo.canvas"></canvas>
+          <p class="rp-status" aria-hidden="true"></p>
+          <noscript><p class="rp-noscript" data-i18n="rp.demo.noscript">The demo needs JavaScript.</p></noscript>
+        </div>
+        <div class="rp-panel">
+          <p class="rp-label" data-i18n="rp.demo.pieces">Furniture</p>
+          <ul class="rp-pieces" aria-label="Furniture" data-i18n-attr="aria-label" data-i18n-attr-key="rp.demo.pieces"></ul>
+
+          <div class="rp-sel">
+            <p class="rp-label" data-i18n="rp.demo.selected">Selected</p>
+            <p class="rp-sel-head"><strong class="rp-sel-name"></strong> <span class="rp-sel-meta"></span></p>
+            <ul class="rp-sel-issues"></ul>
+          </div>
+
+          <div class="rp-actions">
+            <button type="button" data-rp="rotate" data-i18n="rp.demo.rotate">Turn 90°</button>
+            <button type="button" data-rp="align" data-i18n="rp.demo.align">Back to the wall</button>
+            <button type="button" data-rp="reset" data-i18n="rp.demo.reset">Reset</button>
+          </div>
+          <label class="rp-toggle"><input type="checkbox" data-rp="snap" checked /> <span data-i18n="rp.demo.snap">Snap to walls and angles</span></label>
+          <p class="rp-live visually-hidden" aria-live="polite"></p>
+        </div>
+      </div>
+      <p class="rp-try-note" data-i18n="rp.try.note">The room and furniture are the sample project the app opens with. What runs here is the app’s <code>:domain</code> module, compiled as it is, behind a small facade that does what the planner’s ViewModel does on a drag. Only the drawing is new.</p>
+    </section>
+
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 class="cs-eyebrow" id="toc-h" data-i18n="case.toc">Systems on this page</h2>
+      <ol class="cs-toc-list">
+        <li><a href="#sys-1"><span class="cs-toc-num">01</span><span class="cs-toc-title" data-i18n="rp.sys1.title">Placement rules that plug in without touching each other</span><span class="cs-toc-skills" data-i18n="rp.toc1.skills">interfaces · Hilt multibinding · sealed types</span></a></li>
+        <li><a href="#sys-2"><span class="cs-toc-num">02</span><span class="cs-toc-title" data-i18n="rp.sys2.title">Exact collisions at any angle</span><span class="cs-toc-skills" data-i18n="rp.toc2.skills">separating axis theorem · convex shapes · tolerances</span></a></li>
+        <li><a href="#sys-3"><span class="cs-toc-num">03</span><span class="cs-toc-title" data-i18n="rp.sys3.title">Domain code with no Android in it, so it also runs on this page</span><span class="cs-toc-skills" data-i18n="rp.toc3.skills">Gradle modules · clean architecture · Kotlin/JS</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="cs-systems">
+
+      <article class="cs-system" id="sys-1" aria-labelledby="sys-1-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">01</span>
+          <h2 id="sys-1-h" data-i18n="rp.sys1.title">Placement rules that plug in without touching each other</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="rp.sys1.problem">Every piece is checked five ways: against other furniture, the walls, a stove’s clearance, door swings and radiators. Each check has its own geometry and its own exceptions, such as a desk top that may stand above a radiator. Kept in one function, the checks would grow into a tangle of conditions with UI text mixed in.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="rp.sys1.how">Each check is a class implementing a one-method <code>PlacementRule</code> interface, registered with Hilt as an <code>@IntoSet</code> multibinding. <code>LayoutAnalyzer</code> runs whatever set of rules it is given and sorts the results by severity. Rules return typed issues, not text: <code>PlacementIssue</code> is a sealed hierarchy, and the UI turns each type into a localised message in one <code>when</code>, so a new issue type is a compile error until it has a message.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="rp.sys1.what">Code that is open for extension: adding a rule is one new class and one Hilt provider, with no change to the analyzer or the other rules. Each rule is tested on its own, and the demo above runs the same five.</p>
+        </div>
+
+        <div class="cs-code">
+          <p class="cs-code-file">RadiatorRule</p>
+          <pre tabindex="0" aria-label="Code excerpt from domain/rules/RadiatorRule.kt: the whole rule, which reports a piece on a radiator, a desk above one, or a piece in the gap in front of one" data-i18n-attr="aria-label" data-i18n-attr-key="rp.sys1.code.aria"><code class="language-kotlin">class RadiatorRule : PlacementRule {
+
+    override fun evaluate(item: Furniture, context: LayoutContext): List&lt;PlacementIssue&gt; {
+        val footprint = context.footprintOf(item)
+        val gap = context.settings.radiatorGapCm
+        return context.room.mounted&lt;Radiator&gt;().mapNotNull { (radiator, wall) -&gt;
+            when {
+                footprint.overlaps(radiator.body(wall)) -&gt;
+                    if (item.kind.mayOverhangRadiator) OverhangsRadiator(radiator.id) else BlocksRadiator(radiator.id)
+                item.kind.mayOverhangRadiator -&gt; null
+                gap &gt; 0.0 &amp;&amp; footprint.overlaps(radiator.frontZone(wall, gap)) -&gt; InFrontOfRadiator(radiator.id)
+                else -&gt; null
+            }
+        }
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-2" aria-labelledby="sys-2-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">02</span>
+          <h2 id="sys-2-h" data-i18n="rp.sys2.title">Exact collisions at any angle</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="rp.sys2.problem">Furniture turns to any angle, and rooms have cut corners and diagonal walls. A bounding-box check would report a collision for a sofa turned 45° that has plenty of room. And a wardrobe pushed flush against a dresser must not count as overlapping it.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="rp.sys2.how">A room can be concave, like an L, but every footprint and zone the rules compare is convex by construction: a rotated rectangle, a radiator strip, a door swing drawn as a quarter disc of eleven arc points. For convex shapes the separating axis theorem is exact: project both shapes onto the normal of every edge, and if any projection leaves a gap, they don’t touch. An overlap of up to 0.5 cm counts as touching. Sticking out through a wall is measured separately, per wall, because the room itself may not be convex.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="rp.sys2.what">Choosing the shapes so a simple, exact algorithm fits, instead of approximating. The tolerance is a named constant shared by the rules, so “flush is fine” means the same thing everywhere.</p>
+        </div>
+
+        <div class="cs-code">
+          <p class="cs-code-file">ConvexPolygon.penetrationDepth()</p>
+          <pre tabindex="0" aria-label="Code excerpt from domain/geometry/ConvexPolygon.kt: projects both polygons onto every edge normal and returns 0 as soon as one axis separates them" data-i18n-attr="aria-label" data-i18n-attr-key="rp.sys2.code.aria"><code class="language-kotlin">fun penetrationDepth(other: ConvexPolygon, tolerance: Double = CONTACT_TOLERANCE_CM): Double {
+    var smallest = Double.POSITIVE_INFINITY
+    for (axis in separatingAxes() + other.separatingAxes()) {
+        val a = project(axis)
+        val b = other.project(axis)
+        val overlap = min(a.endInclusive, b.endInclusive) - max(a.start, b.start)
+        if (overlap &lt;= tolerance) return 0.0
+        smallest = min(smallest, overlap)
+    }
+    return smallest
+}</code></pre>
+        </div>
+      </article>
+
+      <article class="cs-system" id="sys-3" aria-labelledby="sys-3-h">
+        <div class="cs-system-head">
+          <span class="cs-system-num" aria-hidden="true">03</span>
+          <h2 id="sys-3-h" data-i18n="rp.sys3.title">Domain code with no Android in it, so it also runs on this page</h2>
+        </div>
+        <div class="cs-part cs-part--problem">
+          <span class="cs-part-label" data-i18n="case.problem">Problem</span>
+          <p data-i18n="rp.sys3.problem">Geometry, rules and snapping are the heart of the app and the part most worth testing. Tests that need an Android device are slow, and a domain that quietly picks up Android classes can only be tested that way.</p>
+        </div>
+        <div class="cs-part cs-part--how">
+          <span class="cs-part-label" data-i18n="case.how">How it works</span>
+          <p data-i18n="rp.sys3.how">The app is three Gradle modules: <code>:domain</code> is plain Kotlin, <code>:data</code> stores the project with DataStore, and <code>:app</code> holds the Compose UI, ViewModels and Hilt. An Android import in the domain is a compile error, not a code review comment. For this page I compiled the same domain sources with Kotlin/JS. Nothing in them changed: the build adds stand-ins for three JVM-only names (<code>Math</code>, <code>@JvmInline</code>, <code>@Volatile</code>) and leaves out one file the demo doesn’t need, the saved-rooms library.</p>
+        </div>
+        <div class="cs-part cs-part--what">
+          <span class="cs-part-label" data-i18n="case.what">What it shows</span>
+          <p data-i18n="rp.sys3.what">A layering that holds up when tested from outside: the domain moved to a different platform with only a thin facade added. The domain tests run on the plain JVM in milliseconds.</p>
+        </div>
+
+        <figure class="cs-diagram cs-diagram--wide" role="group" aria-labelledby="rp-diag3-cap">
+          <div class="cs-diagram-scroll">
+            <p class="cs-diagram-hint" aria-hidden="true" data-i18n="case.diagram.hint">Scroll to see the whole diagram →</p>
+            <svg viewBox="0 0 860 230" role="img" aria-label="The domain module in the middle, plain Kotlin: models, geometry, placement rules, snapping and the 3D scene. On the left, compiled for the JVM, the Android app uses it through the data module (DataStore) and the app module (Compose UI, ViewModels, Hilt). On the right, compiled with Kotlin/JS, this page uses it through a small facade and canvas drawing." data-i18n-attr="aria-label" data-i18n-attr-key="rp.diag3.aria">
+              <defs>
+                <marker id="rp-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" class="cs-i-dot" aria-hidden="true" />
+                </marker>
+              </defs>
+
+              <rect x="300" y="40" width="260" height="150" class="cs-i-box-accent" aria-hidden="true" />
+              <text x="430" y="78" text-anchor="middle" class="cs-i-title" font-size="14" data-i18n="rp.diag3.d1">:domain</text>
+              <text x="430" y="100" text-anchor="middle" class="cs-i-accent-text" font-size="11.5" data-i18n="rp.diag3.d2">plain Kotlin, no Android</text>
+              <text x="430" y="130" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.d3">models · geometry (SAT)</text>
+              <text x="430" y="149" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.d4">rules · snapping · 3D scene</text>
+              <text x="430" y="168" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.d5">486 tests on the JVM</text>
+
+              <rect x="10" y="20" width="220" height="80" class="cs-i-box" aria-hidden="true" />
+              <text x="120" y="52" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="rp.diag3.a1">:app</text>
+              <text x="120" y="74" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.a2">Compose UI · ViewModels · Hilt</text>
+              <rect x="10" y="130" width="220" height="80" class="cs-i-box" aria-hidden="true" />
+              <text x="120" y="162" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="rp.diag3.b1">:data</text>
+              <text x="120" y="184" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.b2">DataStore · versioned JSON</text>
+              <path d="M231,60 L297,95" class="cs-i-line" marker-end="url(#rp-arrow)" aria-hidden="true" />
+              <path d="M231,170 L297,135" class="cs-i-line" marker-end="url(#rp-arrow)" aria-hidden="true" />
+              <text x="120" y="12" text-anchor="middle" class="cs-i-accent-text" font-size="11" data-i18n="rp.diag3.jvm">Android app · JVM</text>
+
+              <rect x="630" y="75" width="220" height="80" class="cs-i-box" aria-hidden="true" />
+              <text x="740" y="107" text-anchor="middle" class="cs-i-title" font-size="13" data-i18n="rp.diag3.c1">This page</text>
+              <text x="740" y="129" text-anchor="middle" class="cs-i-label" font-size="11.5" data-i18n="rp.diag3.c2">facade · canvas drawing</text>
+              <path d="M629,115 L563,115" class="cs-i-line" marker-end="url(#rp-arrow)" aria-hidden="true" />
+              <text x="740" y="64" text-anchor="middle" class="cs-i-accent-text" font-size="11" data-i18n="rp.diag3.js">browser · Kotlin/JS</text>
+            </svg>
+          </div>
+          <figcaption class="cs-diagram-cap" id="rp-diag3-cap" data-i18n="rp.diag3.cap">Arrows point at what each part depends on. The domain depends on nothing, so the same sources compile for the phone and for this page.</figcaption>
+        </figure>
+      </article>
+
+    </section>
+
+    <section class="cs-takeaway" id="takeaway">
+      <h2 class="cs-eyebrow cs-eyebrow--accent" data-i18n="case.takeaway">Takeaway</h2>
+      <p data-i18n="rp.takeaway">The rules, the geometry and the snapping know nothing about screens or storage, which is why they could be tested on the plain JVM and moved to a browser with only a thin facade. The trade-off I’d flag: the collision check relies on every footprint being convex. Rooms already may be concave, but an L-shaped corner sofa would have to be split into convex parts before the rules could check it.</p>
+    </section>
+
+    <nav class="cs-next" aria-label="Next case study" data-i18n-attr="aria-label" data-i18n-attr-key="case.next.aria">
+      <a href="luggage-please.html"><span class="cs-next-label" data-i18n="case.next">Next project</span><strong>Luggage Please →</strong></a>
+    </nav>
+  </main>
+
+  <footer class="cs-foot">
+    <p data-i18n="case.foot.rp">Private repository. I’m happy to walk through the code in an interview.</p>
+    <p class="cs-foot-links">
+      <a href="mailto:baranskidominik109@gmail.com" data-i18n="case.foot.email">Email</a>
+      <a href="https://www.linkedin.com/in/baranskidominik/" target="_blank" rel="noopener noreferrer" data-i18n="case.foot.linkedin">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script src="js/i18n.js?v=20261119a" defer></script>
+  <script src="js/focus.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async data-hljs integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/case-study.js?v=20261005k" defer></script>
+  <script src="js/room-planner-demo.js?v=20261117c" defer></script>
+</body>
+</html>

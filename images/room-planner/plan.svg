@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs>
+<pattern id="he" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#ff5a4a" stroke-opacity="0.45" stroke-width="2"/></pattern>
+<pattern id="hw" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#ffb85c" stroke-opacity="0.4" stroke-width="2"/></pattern>
+</defs>
+<rect width="1200" height="750" fill="#0b0c0e"/>
+<path d="M208.0,60.0 L866.0,60.0 L992.0,186.0 L992.0,690.0 L208.0,690.0 Z" fill="#15161a"/>
+<path d="M908.0,690.0 L782.0,690.0 L783.6,670.3 L788.2,651.1 L795.7,632.8 L806.1,615.9 L818.9,600.9 L833.9,588.1 L850.8,577.7 L869.1,570.2 L888.3,565.6 L908.0,564.0 Z" fill="#2f3137" fill-opacity="0.5" stroke="#8e8c86" stroke-dasharray="6 6" stroke-width="1.5"/>
+<path d="M460.0,60.0 L600.0,60.0 L600.0,88.0 L460.0,88.0 Z" fill="url(#hw)"/>
+<path d="M208.0,200.0 L208.0,88.0 L236.0,88.0 L236.0,200.0 Z" fill="url(#hw)"/>
+<path d="M376.0,690.0 L264.0,690.0 L264.0,620.0 L376.0,620.0 Z" fill="url(#he)"/>
+<path d="M208.0,60.0 L866.0,60.0 L992.0,186.0 L992.0,690.0 L208.0,690.0 Z" fill="none" stroke="#f4f3ef" stroke-width="11.2" stroke-linejoin="miter"/>
+<path d="M908.0,690.0 L782.0,690.0" stroke="#0b0c0e" stroke-width="12.6"/>
+<path d="M432.0,60.0 L628.0,60.0" stroke="#0b0c0e" stroke-width="12.6"/>
+<path d="M432.0,60.0 L628.0,60.0" stroke="#7fd0ff" stroke-width="3"/>
+<path d="M992.0,326.0 L992.0,494.0" stroke="#0b0c0e" stroke-width="12.6"/>
+<path d="M992.0,326.0 L992.0,494.0" stroke="#7fd0ff" stroke-width="3"/>
+<path d="M460.0,60.0 L600.0,60.0 L600.0,74.0 L460.0,74.0 Z" fill="#ffb85c"/>
+<path d="M208.0,200.0 L208.0,88.0 L222.0,88.0 L222.0,200.0 Z" fill="#ffb85c"/>
+<path d="M376.0,690.0 L264.0,690.0" stroke="#ff5a4a" stroke-width="12.6"/>
+<path d="M208.0,515.0 L208.0,207.0 L341.0,207.0 L341.0,515.0 Z" fill="#0b0c0e" fill-opacity="0.85" stroke="#cfcdc6" stroke-width="2.5"/>
+<path d="M208.0,515.0 L208.0,207.0" stroke="#cfcdc6" stroke-width="5"/>
+<text x="274.5" y="361.0" fill="#cfcdc6" font-family="ui-monospace, Consolas, monospace" font-size="20" font-weight="500" text-anchor="middle" dominant-baseline="middle">Sofa</text>
+<path d="M992.0,224.5 L992.0,343.5 L873.0,343.5 L873.0,224.5 Z" fill="#0b0c0e" fill-opacity="0.85" stroke="#cfcdc6" stroke-width="2.5"/>
+<path d="M992.0,224.5 L992.0,343.5" stroke="#cfcdc6" stroke-width="5"/>
+<text x="932.5" y="284.0" fill="#cfcdc6" font-family="ui-monospace, Consolas, monospace" font-size="20" font-weight="500" text-anchor="middle" dominant-baseline="middle">Armchair</text>
+<path d="M236.0,60.0 L432.0,60.0 L432.0,123.0 L236.0,123.0 Z" fill="#0b0c0e" fill-opacity="0.85" stroke="#cfcdc6" stroke-width="2.5"/>
+<path d="M236.0,60.0 L432.0,60.0" stroke="#cfcdc6" stroke-width="5"/>
+<text x="334.0" y="91.5" fill="#cfcdc6" font-family="ui-monospace, Consolas, monospace" font-size="20" font-weight="500" text-anchor="middle" dominant-baseline="middle">Sideboard</text>
+<path d="M740.0,690.0 L516.0,690.0 L516.0,606.0 L740.0,606.0 Z" fill="#ff5a4a" fill-opacity="0.2" stroke="#ff5a4a" stroke-width="2.5"/>
+<path d="M740.0,690.0 L516.0,690.0" stroke="#ff5a4a" stroke-width="5"/>
+<text x="628.0" y="648.0" fill="#ff5a4a" font-family="ui-monospace, Consolas, monospace" font-size="20" font-weight="500" text-anchor="middle" dominant-baseline="middle">Wardrobe</text>
+<path d="M355.0,543.0 L551.0,543.0 L551.0,655.0 L355.0,655.0 Z" fill="#ff5a4a" fill-opacity="0.2" stroke="#8f9dff" stroke-width="4"/>
+<path d="M355.0,543.0 L551.0,543.0" stroke="#8f9dff" stroke-width="7"/>
+<text x="453.0" y="599.0" fill="#ff5a4a" font-family="ui-monospace, Consolas, monospace" font-size="20" font-weight="500" text-anchor="middle" dominant-baseline="middle">Table</text>
+<path d="M453.0,599.0 L453.0,691.4" stroke="#8f9dff" stroke-width="2" stroke-dasharray="5 5"/>
+<circle cx="453.0" cy="691.4" r="15" fill="#8f9dff"/>
+</svg>
