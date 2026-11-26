@@ -722,8 +722,8 @@
 
       // ---------- index.html: Room Planner card ----------
       'index.project.rp.alt':
-        'Room Planner na telefonie: plan salonu przełącza się na 3D, kamera obraca się wokół umeblowanego pokoju, a potem przechodzi przez niego.',
-      'index.project.rp.media': 'Plan, 3D i tryb spaceru',
+        'Makieta 3D umeblowanego salonu w Room Plannerze, przechylona tak, że widać ściany, okno i drzwi.',
+      'index.project.rp.media': 'Pokój jako makieta 3D',
       'index.project.rp.summary':
         'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz jakikolwiek ciężki mebel. Możesz ją wypróbować od razu w przeglądarce.',
       'index.project.rp.cta': 'Wypróbuj demo i zobacz, jak to działa →',

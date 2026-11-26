@@ -284,8 +284,6 @@
 .page-home .pcard--gol .pcard-media img { object-position: 50% 60%; }
 .page-home .pcard--grave .pcard-media img { object-position: 30% 50%; }
 .page-home .pcard--lp .pcard-media img { object-position: 50% 45%; }
-/* Portrait phone footage in a 16:10 card: keep the band where the room sits. */
-.page-home .pcard--rp .pcard-media video { object-position: 50% 32%; }
 .page-home .pcard-media-tag {
   position: absolute;
   left: 0;
@@ -450,7 +448,8 @@
 }
 .page-home .hero-stat--rp { --acc: var(--acc-rp); }
 .page-home .pcard--rp { --acc: var(--acc-rp); }
-.page-home .pcard--rp .pcard-media { background: #0b0c0e; }
+/* The 3D model still sits on the app's grey: contain shows the whole room whatever the card's shape, the grey fills the rest. */
+.page-home .pcard--rp .pcard-media { background: #e4e3df; }
 .page-home .pcard--rp .pcard-media img { object-fit: contain; }
 
 .page-home .pfilter {
