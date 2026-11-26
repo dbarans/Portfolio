@@ -820,14 +820,14 @@ html.cs-hold { overflow: hidden; }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
 /* Room Planner: the recordings are 720×1446 (a phone taller than 9:16); this keeps cover from cropping them. */
 .cs-media-frame--tall { aspect-ratio: 720 / 1446; }
-/* Room Planner hero: three numbered steps (room, furniture, 3D) side by side under the hero text, one caption under all. */
+/* Room Planner hero: four numbered steps (room, furniture, 3D model, walk) side by side under the hero text, one caption under all. */
 .cs-hero > .cs-media { margin-top: 32px; }
-.rp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 780px; }
+.rp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .rp-step-label { margin: 0 0 10px; font-family: var(--cs-mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--cs-body); }
 .rp-step-num { color: var(--cs-accent); }
-/* Phones: three columns would be ~100 px each, so the steps become a row that scrolls sideways. */
-@media (max-width: 560px) {
-  .rp-steps { grid-template-columns: repeat(3, 72%); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+/* Narrow screens: four columns would be under ~170 px each, so the steps become a row that scrolls sideways. */
+@media (max-width: 760px) {
+  .rp-steps { grid-template-columns: repeat(4, min(72%, 260px)); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .rp-steps > li { scroll-snap-align: start; }
 }
 /* In the two-column hero the video starts at its column's edge, like the caption under it; the
@@ -1078,7 +1078,7 @@ html.cs-hold { overflow: hidden; }
 @media (min-width: 1000px) {
   .cs-diagram--pipeline .cs-diagram-scroll { margin: 0 -70px; }
 }
-@media (max-width: 560px) {
+@media (max-width: 760px) {
   .cs-top { gap: 6px 12px; }
   .cs-system { padding: 32px 0; }
   .cs-next a { flex-direction: column; align-items: flex-start; }

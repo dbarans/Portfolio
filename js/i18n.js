@@ -740,15 +740,17 @@
       'rp.rail.3': 'Przenośna domena',
       'rp.tagline': 'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz choć jeden ciężki mebel.',
       'rp.hero.caption':
-        'Jeden salon, w kolejności, w jakiej używa się aplikacji: rysujesz pokój z drzwiami i oknami, ustawiasz meble (każdy jest sprawdzany w trakcie przesuwania), a potem oglądasz ten sam pokój w 3D i spacerujesz po nim.',
+        'Jeden salon, w kolejności, w jakiej używa się aplikacji: rysujesz pokój z drzwiami i oknami, ustawiasz meble (każdy jest sprawdzany w trakcie przesuwania), a potem oglądasz ten sam pokój jako makietę 3D i spacerujesz po nim.',
       'rp.hero.room.t': 'Pokój',
       'rp.hero.plan.t': 'Meble',
-      'rp.hero.walk.t': '3D',
+      'rp.hero.model.t': 'Makieta 3D',
+      'rp.hero.walk.t': 'Spacer',
       'rp.hero.room.aria':
         'Edycja pokoju: drzwi przesuwają się wzdłuż ściany, potem dolna ściana jest przeciągana i pokój się wydłuża.',
       'rp.hero.plan.aria':
         'Plan: ostrzeżenie przy kanapie znika, gdy się przesunie, stół robi się czerwony przy fotelu, a na końcu wszystko jest w porządku.',
-      'rp.hero.walk.aria': 'Ten sam pokój w 3D: model obracany palcem, a potem spacer po pokoju.',
+      'rp.hero.model.aria': 'Ten sam pokój jako makieta 3D, przechylona tak, że widać ściany, i obracana palcem.',
+      'rp.hero.walk.aria': 'Spacer po tym samym pokoju w 3D z rozglądaniem się.',
       'rp.intro':
         'Chciałem zobaczyć, jak pokój będzie wyglądał po przemeblowaniu, bez przeciągania szafy przez pół pokoju tylko po to, żeby się przekonać, że zasłania drzwi. W aplikacji rysujesz pokój co do centymetra i przesuwasz meble palcem, a przesuwany mebel jest na bieżąco sprawdzany względem innych mebli, ścian, odstępu przeciwpożarowego od pieca, grzejników i zasięgu otwierania drzwi. Ten sam plan możesz też obejrzeć w 3D: z modelami mebli, kamerą obracaną palcem i trybem spaceru po pokoju. Demo poniżej uruchamia w przeglądarce kod rozmieszczania z samej aplikacji, skompilowany z Kotlina do JavaScriptu.',
       'rp.glance.team.t': 'Zespół',
