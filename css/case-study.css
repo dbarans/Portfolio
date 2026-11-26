@@ -820,12 +820,12 @@ html.cs-hold { overflow: hidden; }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
 /* Room Planner: the recordings are 720×1446 (a phone taller than 9:16); this keeps cover from cropping them. */
 .cs-media-frame--tall { aspect-ratio: 720 / 1446; }
-/* Room Planner hero: four numbered steps (room, furniture, 3D model, walk) side by side under the hero text, one caption under all. */
+/* Room Planner hero: four numbered steps (room, furniture, 3D model, walk) in a 2×2 grid under the hero text (four in a row was too small to read), one caption under all. */
 .cs-hero > .cs-media { margin-top: 32px; }
-.rp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.rp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 280px)); gap: 28px 16px; }
 .rp-step-label { margin: 0 0 10px; font-family: var(--cs-mono); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--cs-body); }
 .rp-step-num { color: var(--cs-accent); }
-/* Narrow screens: four columns would be under ~170 px each, so the steps become a row that scrolls sideways. */
+/* Narrow screens: two columns would be under ~170 px each, so the steps become a row that scrolls sideways. */
 @media (max-width: 760px) {
   .rp-steps { grid-template-columns: repeat(4, min(72%, 260px)); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .rp-steps > li { scroll-snap-align: start; }
