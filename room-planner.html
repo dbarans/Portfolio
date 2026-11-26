@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/case-study.css?v=20261126b" />
+  <link rel="stylesheet" href="css/case-study.css?v=20261126d" />
 </head>
 <body class="page-case page-case--room">
   <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
@@ -45,7 +45,7 @@
 
   <main class="cs-page" id="main" tabindex="-1">
 
-    <header class="cs-hero" id="overview">
+    <header class="cs-hero cs-hero--no-media" id="overview">
       <div class="cs-hero-grid">
         <div>
           <p class="cs-kicker" data-i18n="case.kicker.rp">Android · Kotlin · Jetpack Compose · solo · in development</p>
@@ -53,19 +53,27 @@
           <p class="cs-tagline" data-i18n="rp.tagline">An Android app for seeing a rearranged room before moving a single heavy piece of furniture.</p>
           <p class="cs-intro" data-i18n="rp.intro">I wanted to see how a room would look after rearranging it without dragging a wardrobe across the floor to find out it blocks a door. In the app you draw the room to the centimetre and move furniture with a finger, and while a piece moves it is checked against the other furniture, the walls, a stove’s fire clearance, radiators and the swing of every door. The same plan can also be viewed in 3D, with furniture models, a camera you orbit with a finger and a walk-through mode. The demo below runs the app’s own placement code in your browser, compiled from Kotlin to JavaScript.</p>
         </div>
+      </div>
 
-        <!-- Recorded on the Android emulator (Pixel 7, release build). js/case-study.js pauses the loop under
-             prefers-reduced-motion. -->
-        <figure class="cs-media">
+      <!-- Recorded on a Pixel 6 Pro: the same room as a plan (left) and in 3D (right); status bar cropped,
+           debug FPS overlay masked. js/case-study.js pauses the loops under prefers-reduced-motion. -->
+      <figure class="cs-media">
+        <div class="rp-pair">
           <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
-            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-3d-poster.jpg" data-still="images/room-planner/room-planner-3d-poster.jpg">
-              <source src="images/room-planner/room-planner-3d.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-plan-poster.jpg" data-still="images/room-planner/room-planner-plan-poster.jpg" aria-label="The plan: a warning on the sofa clears when it moves, the table turns red against the armchair, then everything is OK." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.plan.aria">
+              <source src="images/room-planner/room-planner-plan.mp4" type="video/mp4">
             </video>
             <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
           </div>
-          <figcaption class="cs-media-caption" data-i18n="rp.hero.caption">The sample living room in the app: the plan, the same room in 3D with a camera orbited by a finger, then a walk through it.</figcaption>
-        </figure>
-      </div>
+          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-walk-poster.jpg" data-still="images/room-planner/room-planner-walk-poster.jpg" aria-label="The same room in 3D: the model turned with a finger, then a walk through the room." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.walk.aria">
+              <source src="images/room-planner/room-planner-walk.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
+          </div>
+        </div>
+        <figcaption class="cs-media-caption" data-i18n="rp.hero.caption">One living room in the app. Left, the plan: furniture moved with a finger is checked as it moves. Right, the same room in 3D, turned with a finger, then walked through.</figcaption>
+      </figure>
     </header>
 
     <section class="cs-glance" aria-labelledby="glance-h">

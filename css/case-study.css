@@ -818,8 +818,11 @@ html.cs-hold { overflow: hidden; }
   .cs-step, .cs-scrolly-load, .gol-hud { transition: none; }
 }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
-/* Room Planner: the recording is 540×1172 (a phone taller than 9:16); this keeps cover from cropping its bottom bar. */
-.cs-media-frame--tall { aspect-ratio: 540 / 1172; }
+/* Room Planner: the recordings are 720×1446 (a phone taller than 9:16); this keeps cover from cropping them. */
+.cs-media-frame--tall { aspect-ratio: 720 / 1446; }
+/* Room Planner hero: plan and 3D side by side under the hero text (the hero column is too narrow for two), one caption under both. */
+.cs-hero > .cs-media { margin-top: 32px; }
+.rp-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 280px)); gap: 16px; }
 /* In the two-column hero the video starts at its column's edge, like the caption under it; the
    hero stacks at 720px and there both are centred again (see Responsive). */
 .cs-hero .cs-media-frame--portrait { margin: 0; }
