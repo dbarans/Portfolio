@@ -818,6 +818,8 @@ html.cs-hold { overflow: hidden; }
   .cs-step, .cs-scrolly-load, .gol-hud { transition: none; }
 }
 .cs-media-frame--portrait { aspect-ratio: 9 / 16; max-width: 280px; margin: 0 auto; }
+/* Room Planner: the recording is 540×1172 (a phone taller than 9:16); this keeps cover from cropping its bottom bar. */
+.cs-media-frame--tall { aspect-ratio: 540 / 1172; }
 /* In the two-column hero the video starts at its column's edge, like the caption under it; the
    hero stacks at 720px and there both are centred again (see Responsive). */
 .cs-hero .cs-media-frame--portrait { margin: 0; }
