@@ -739,8 +739,12 @@
       'rp.rail.2': 'Dokładne kolizje',
       'rp.rail.3': 'Przenośna domena',
       'rp.tagline': 'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz choć jeden ciężki mebel.',
-      'rp.hero.caption':
-        'Jeden salon, w kolejności, w jakiej używa się aplikacji: rysujesz pokój z drzwiami i oknami, ustawiasz meble (każdy jest sprawdzany w trakcie przesuwania), a potem oglądasz ten sam pokój jako makietę 3D i spacerujesz po nim.',
+      'rp.tour.2d.title': 'Plan 2D',
+      'rp.tour.2d.body':
+        'Najpierw rysujesz pokój co do centymetra: przeciągasz ściany i narożniki, przesuwasz drzwi, okna i grzejniki wzdłuż ścian. Potem ustawiasz meble palcem. Każdy mebel jest sprawdzany w trakcie przesuwania: czerwony to kolizja, pomarańczowy to uwaga, np. odstęp, który trzeba zostawić wolny, a pasek na dole podsumowuje wszystko jako „All OK” albo liczbę problemów.',
+      'rp.tour.3d.title': 'Ten sam pokój w 3D',
+      'rp.tour.3d.body':
+        'Jednym dotknięciem plan zmienia się w makietę 3D z modelami mebli. Przechylasz ją i obracasz palcem, żeby zobaczyć ściany, okna i drzwi, albo przełączasz się w tryb spaceru i chodzisz po pokoju joystickiem, a mini-mapa w rogu pokazuje, gdzie stoisz.',
       'rp.hero.room.t': 'Pokój',
       'rp.hero.plan.t': 'Meble',
       'rp.hero.model.t': 'Makieta 3D',
