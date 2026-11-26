@@ -318,11 +318,11 @@
         'Wykres słupkowy czasu w sekundach potrzebnego na 1000 generacji tej samej losowej planszy 400×400 na Pixelu 6 Pro, skala liniowa, mniej znaczy lepiej: v1.2 około 67 sekund; v1.6 około 24 sekund, po przeniesieniu symulacji do osobnego wątku obliczeniowego; v1.10 około 0,34 sekundy, z chunkami na maskach bitowych i jobami Burst; v1.11 około 0,18 sekundy, z kopiowaniem całych chunków.',
       'gol.perf.chart.cap':
         'Czas policzenia 1000 generacji tej samej losowej planszy 400×400 na Pixelu 6 Pro, w kolejnych wersjach (skala liniowa, mniej znaczy lepiej). Dwa ostatnie słupki to mniej niż pół sekundy.',
-      'gol.perf.bar1.l': 'Punkt wyjścia: najwyżej jedna generacja na klatkę ekranu',
+      'gol.perf.bar1.l': 'Start: najwyżej jedna generacja na klatkę',
       'gol.perf.bar1.v': '≈ 67 s',
       'gol.perf.bar2.l': 'Własny wątek obliczeniowy, bez limitu klatki',
       'gol.perf.bar2.v': '≈ 24 s',
-      'gol.perf.bar3.l': 'Chunki z maskami bitowymi + joby Burst (system 1)',
+      'gol.perf.bar3.l': 'Maski bitowe w chunkach + joby Burst (system 1)',
       'gol.perf.bar3.v': '≈ 0,34 s',
       'gol.perf.bar4.l': 'Kopiowanie całych chunków (system 2)',
       'gol.perf.bar4.v': '≈ 0,18 s',
