@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/case-study.css?v=20261126d" />
+  <link rel="stylesheet" href="css/case-study.css?v=20261126f" />
 </head>
 <body class="page-case page-case--room">
   <a class="cs-skip" href="#main" data-i18n="case.skip">Skip to content</a>
@@ -55,24 +55,39 @@
         </div>
       </div>
 
-      <!-- Recorded on a Pixel 6 Pro: the same room as a plan (left) and in 3D (right); status bar cropped,
-           debug FPS overlay masked. js/case-study.js pauses the loops under prefers-reduced-motion. -->
+      <!-- Recorded on a Pixel 6 Pro, one room in the order the app is used: walls, furniture, 3D. Status bar
+           cropped, debug FPS overlay masked. js/case-study.js pauses the loops under prefers-reduced-motion. -->
       <figure class="cs-media">
-        <div class="rp-pair">
-          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
-            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-plan-poster.jpg" data-still="images/room-planner/room-planner-plan-poster.jpg" aria-label="The plan: a warning on the sofa clears when it moves, the table turns red against the armchair, then everything is OK." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.plan.aria">
-              <source src="images/room-planner/room-planner-plan.mp4" type="video/mp4">
-            </video>
-            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
-          </div>
-          <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
-            <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-walk-poster.jpg" data-still="images/room-planner/room-planner-walk-poster.jpg" aria-label="The same room in 3D: the model turned with a finger, then a walk through the room." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.walk.aria">
-              <source src="images/room-planner/room-planner-walk.mp4" type="video/mp4">
-            </video>
-            <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
-          </div>
-        </div>
-        <figcaption class="cs-media-caption" data-i18n="rp.hero.caption">One living room in the app. Left, the plan: furniture moved with a finger is checked as it moves. Right, the same room in 3D, turned with a finger, then walked through.</figcaption>
+        <ol class="rp-steps">
+          <li>
+            <p class="rp-step-label"><span class="rp-step-num">01</span> <span data-i18n="rp.hero.room.t">The room</span></p>
+            <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
+              <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-room-poster.jpg" data-still="images/room-planner/room-planner-room-poster.jpg" aria-label="Editing the room: the door slides along its wall, then the bottom wall is dragged and the room gets longer." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.room.aria">
+                <source src="images/room-planner/room-planner-room.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
+            </div>
+          </li>
+          <li>
+            <p class="rp-step-label"><span class="rp-step-num">02</span> <span data-i18n="rp.hero.plan.t">Furniture</span></p>
+            <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
+              <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-plan-poster.jpg" data-still="images/room-planner/room-planner-plan-poster.jpg" aria-label="The plan: a warning on the sofa clears when it moves, the table turns red against the armchair, then everything is OK." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.plan.aria">
+                <source src="images/room-planner/room-planner-plan.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
+            </div>
+          </li>
+          <li>
+            <p class="rp-step-label"><span class="rp-step-num">03</span> <span data-i18n="rp.hero.walk.t">3D</span></p>
+            <div class="cs-media-frame cs-media-frame--portrait cs-media-frame--tall cs-media-frame--filled">
+              <video autoplay muted loop playsinline preload="metadata" poster="images/room-planner/room-planner-walk-poster.jpg" data-still="images/room-planner/room-planner-walk-poster.jpg" aria-label="The same room in 3D: the model turned with a finger, then a walk through the room." data-i18n-attr="aria-label" data-i18n-attr-key="rp.hero.walk.aria">
+                <source src="images/room-planner/room-planner-walk.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="cs-media-pause"><span class="cs-pp-pause" data-i18n="case.video.pause">Pause video</span><span class="cs-pp-play" data-i18n="case.video.play">Play video</span></button>
+            </div>
+          </li>
+        </ol>
+        <figcaption class="cs-media-caption" data-i18n="rp.hero.caption">One living room, in the order the app is used: draw the room with its doors and windows, place the furniture (each piece is checked as it moves), then see the same room in 3D and walk through it.</figcaption>
       </figure>
     </header>
 

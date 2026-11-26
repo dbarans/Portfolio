@@ -740,7 +740,12 @@
       'rp.rail.3': 'Przenośna domena',
       'rp.tagline': 'Aplikacja na Androida, w której zobaczysz pokój po przemeblowaniu, zanim ruszysz choć jeden ciężki mebel.',
       'rp.hero.caption':
-        'Jeden salon w aplikacji. Po lewej plan: przesuwany palcem mebel jest sprawdzany na bieżąco. Po prawej ten sam pokój w 3D, obracany palcem, a potem spacer po nim.',
+        'Jeden salon, w kolejności, w jakiej używa się aplikacji: rysujesz pokój z drzwiami i oknami, ustawiasz meble (każdy jest sprawdzany w trakcie przesuwania), a potem oglądasz ten sam pokój w 3D i spacerujesz po nim.',
+      'rp.hero.room.t': 'Pokój',
+      'rp.hero.plan.t': 'Meble',
+      'rp.hero.walk.t': '3D',
+      'rp.hero.room.aria':
+        'Edycja pokoju: drzwi przesuwają się wzdłuż ściany, potem dolna ściana jest przeciągana i pokój się wydłuża.',
       'rp.hero.plan.aria':
         'Plan: ostrzeżenie przy kanapie znika, gdy się przesunie, stół robi się czerwony przy fotelu, a na końcu wszystko jest w porządku.',
       'rp.hero.walk.aria': 'Ten sam pokój w 3D: model obracany palcem, a potem spacer po pokoju.',
